@@ -1,0 +1,2977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f2f9f2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#060e06" media="(prefers-color-scheme: dark)">
+  <script src="assets/js/theme.js"></script>
+  <title>Tourism & Cultural Heritage | Municipal Government of Tumauini</title>
+  <meta name="description" content="Discover Tumauini, Isabela. Home of the San Matias Parish Church National Cultural Treasure, unique cylindrical brick belfry, Pinacanauan River eco-trails, and vibrant cultural traditions.">
+  <link rel="icon" type="image/png" href="assets/tumauini-official-seal.png">
+
+  <!-- Typography: Inter & Hanken Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =============================================================
+       1. ROOT DESIGN SYSTEM VARIABLES (Strict GEMINI.md Guidelines)
+       ============================================================= */
+    :root, [data-theme="light"] {
+      /* User Specified Palette - Light Mode */
+      --text: #0d150d;
+      --background: #f2f9f2;
+      --primary: #4dc24f;
+      --secondary: #8fe490;
+      --accent: #57e659;
+
+      /* Mapped Civic System Tokens */
+      --ink: var(--text);
+      --canvas: var(--background);
+      --soft-canvas: #FFFFFF;
+      --field: #E4F2E4;
+      --hairline: #D0E5D0;
+      --hairline-subtle: #E0EFE0;
+      --muted: #4B634B;
+      --muted-light: #708A70;
+      --civic-green: #15803D;
+
+      /* UI Element Surfaces */
+      --nav-bg: rgba(242, 249, 242, 0.92);
+      --nav-border: rgba(13, 21, 13, 0.08);
+      --dropdown-bg: #FFFFFF;
+      --card-bg: #FFFFFF;
+      --card-border: #D0E5D0;
+      --footer-bg: #15803D;
+      --footer-text: #FFFFFF;
+      --footer-border: #166534;
+      --glance-bg: #15803D;
+      --glance-card-bg: #14532D;
+
+      /* Restrained Government Accents (Philippine Identity Layer) */
+      --ph-blue: #0038A8;
+      --ph-red: #CE1126;
+      --ph-yellow: #FCD116;
+      --ph-blue-tint: rgba(0, 56, 168, 0.08);
+      --ph-red-tint: rgba(206, 17, 38, 0.08);
+      --ph-yellow-tint: rgba(252, 209, 22, 0.15);
+    }
+
+    [data-theme="dark"] {
+      /* User Specified Palette - Dark Mode */
+      --text: #e9f1e9;
+      --background: #060e06;
+      --primary: #3db33f;
+      --secondary: #1b6f1c;
+      --accent: #19a91c;
+
+      /* Mapped Civic System Tokens */
+      --ink: var(--text);
+      --canvas: var(--background);
+      --soft-canvas: #0C180C;
+      --field: #132413;
+      --hairline: #1C381C;
+      --hairline-subtle: #142814;
+      --muted: #9EB89E;
+      --muted-light: #6E886E;
+      --civic-green: #3db33f;
+
+      /* UI Element Surfaces */
+      --nav-bg: rgba(12, 24, 12, 0.94);
+      --nav-border: rgba(233, 241, 233, 0.12);
+      --dropdown-bg: #0E1C0E;
+      --card-bg: #0C180C;
+      --card-border: #1C381C;
+      --footer-bg: #081408;
+      --footer-text: #E9F1E9;
+      --footer-border: #1B6F1C;
+      --glance-bg: #0A170A;
+      --glance-card-bg: #102410;
+
+      /* Restrained Government Accents */
+      --ph-blue: #3B82F6;
+      --ph-red: #EF4444;
+      --ph-yellow: #FCD116;
+      --ph-blue-tint: rgba(59, 130, 246, 0.15);
+      --ph-red-tint: rgba(239, 68, 68, 0.15);
+      --ph-yellow-tint: rgba(252, 209, 22, 0.15);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        /* User Specified Palette - Dark Mode */
+        --text: #e9f1e9;
+        --background: #060e06;
+        --primary: #3db33f;
+        --secondary: #1b6f1c;
+        --accent: #19a91c;
+
+        /* Mapped Civic System Tokens */
+        --ink: var(--text);
+        --canvas: var(--background);
+        --soft-canvas: #0C180C;
+        --field: #132413;
+        --hairline: #1C381C;
+        --hairline-subtle: #142814;
+        --muted: #9EB89E;
+        --muted-light: #6E886E;
+        --civic-green: #3db33f;
+
+        /* UI Element Surfaces */
+        --nav-bg: rgba(12, 24, 12, 0.94);
+        --nav-border: rgba(233, 241, 233, 0.12);
+        --dropdown-bg: #0E1C0E;
+        --card-bg: #0C180C;
+        --card-border: #1C381C;
+        --footer-bg: #081408;
+        --footer-text: #E9F1E9;
+        --footer-border: #1B6F1C;
+        --glance-bg: #0A170A;
+        --glance-card-bg: #102410;
+
+        /* Restrained Government Accents */
+        --ph-blue: #3B82F6;
+        --ph-red: #EF4444;
+        --ph-yellow: #FCD116;
+        --ph-blue-tint: rgba(59, 130, 246, 0.15);
+        --ph-red-tint: rgba(239, 68, 68, 0.15);
+        --ph-yellow-tint: rgba(252, 209, 22, 0.15);
+      }
+    }
+
+    :root {
+
+      /* Typography */
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-display: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+      /* Radii */
+      --radius-pill: 9999px;
+      --radius-card: 16px;
+      --radius-panel: 24px;
+
+      /* Spacing Scale */
+      --sp-8: 8px;
+      --sp-12: 12px;
+      --sp-16: 16px;
+      --sp-24: 24px;
+      --sp-32: 32px;
+      --sp-48: 48px;
+      --sp-64: 64px;
+      --sp-80: 80px;
+
+      /* Dimensions */
+      --max-width: 1240px;
+      --container-max: 1200px;
+      --header-height: 76px;
+    }
+
+    /* CSS Reset */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      color-scheme: light;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 400;
+      color: var(--ink);
+      background-color: var(--canvas);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    button {
+      font-family: inherit;
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: clamp(16px, 3.5vw, 32px);
+      padding-right: clamp(16px, 3.5vw, 32px);
+    }
+
+    .section-wrap {
+      padding: var(--sp-80) 0;
+    }
+
+    /* Section Header with Left Gradient Bar */
+    .section-header {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: var(--sp-48);
+    }
+
+    .section-header::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 4px;
+      bottom: 4px;
+      width: 4px;
+      background: #15803D;
+      background: linear-gradient(180deg, #15803D 0%, #16A34A 70%, #FCD116 100%);
+      border-radius: 4px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: var(--sp-8);
+    }
+
+    .eyebrow-accent {
+      color: var(--civic-green);
+    }
+
+    .h1-title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 5vw, 50px);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+    }
+
+    .h2-title {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 3.5vw, 34px);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+
+    .h3-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--ink);
+    }
+
+    /* Strict Rule 5: 1 crisp line lead (max 12 words) */
+    .body-lead {
+      font-size: clamp(16px, 1.8vw, 19px);
+      font-weight: 400;
+      color: var(--muted);
+      line-height: 1.5;
+      max-width: 720px;
+    }
+
+    /* Badges */
+    .pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      background-color: var(--field);
+      color: var(--ink);
+      border: none;
+      box-shadow: none;
+    }
+
+    .pill-badge-green {
+      background-color: #E8F5E9;
+      color: #166534;
+      border: none;
+    }
+
+    .pill-badge-blue {
+      background-color: var(--ph-blue-tint);
+      color: var(--ph-blue);
+      border: none;
+    }
+
+    .pill-badge-red {
+      background-color: var(--ph-red-tint);
+      color: var(--ph-red);
+      border: none;
+    }
+
+    .pill-badge-yellow {
+      background-color: #FEF9C3;
+      color: #854D0E;
+      border: none;
+    }
+
+
+
+    /* =============================================================
+       2. MANDATORY BUTTON STYLING (Strict Rule 1)
+       ============================================================= */
+    /* All Buttons with Mandatory Green-to-Yellow Radial Gradient (Stroke-Free & Shadow-Free) */
+    .btn,
+    .btn-primary,
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: var(--radius-pill);
+      padding: 12px 24px;
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      background-color: #15803D !important;
+      background-image: radial-gradient(ellipse 75px 36px at 100% 100%, #FCD116 0%, #EAB308 28%, #16A34A 62%, transparent 100%) !important;
+      background-repeat: no-repeat !important;
+      color: #FFFFFF !important;
+      border: none !important;
+      outline: none !important;
+      box-shadow: none !important;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn:hover,
+    .btn-primary:hover,
+    .btn-secondary:hover {
+      background-color: #15803D !important;
+      background-image: radial-gradient(ellipse 75px 36px at 100% 100%, #FCD116 0%, #EAB308 28%, #16A34A 62%, transparent 100%) !important;
+      border: none !important;
+      outline: none !important;
+      color: #FFFFFF !important;
+      transform: translateY(-1px);
+      box-shadow: none !important;
+    }
+    .btn:active,
+    .btn-primary:active,
+    .btn-secondary:active {
+      transform: translateY(0);
+      box-shadow: none !important;
+    }
+    .btn svg,
+    .btn-primary svg,
+    .btn-secondary svg {
+      stroke: #FFFFFF !important;
+    }
+
+    .btn-sm {
+      padding: 8px 16px;
+      font-size: 13px;
+    }
+
+    /* =============================================================
+       3. FLOATING STADIUM NAVIGATION BAR (Rule 2)
+       ============================================================= */
+    /* =============================================================
+       STANDARDIZED CIVIC NAVIGATION & MOBILE DRAWER (Rule 2 & 4)
+       ============================================================= */
+    .nav-wrap, .nav-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .nav-pill {
+      font-family: var(--font-body);
+      pointer-events: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1200px;
+      height: 56px;
+      background: var(--nav-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--nav-border);
+      border-radius: 9999px;
+      padding: 0 12px 0 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .nav-pill:hover {
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .nav-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .nav-title-wrap {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .nav-republic {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .nav-lgu {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-link {
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover {
+      background: var(--field);
+      color: var(--ink);
+    }
+
+    .nav-link.active {
+      background: #15803D;
+      color: #FFFFFF !important;
+      font-weight: 600;
+    }
+
+    .nav-link.active svg {
+      stroke: #FFFFFF;
+    }
+
+    .nav-link.active:hover {
+      background: #15803D;
+      color: #FFFFFF !important;
+    }
+    .nav-link.active:hover svg {
+      stroke: #FFFFFF;
+    }
+
+    .nav-item.dropdown {
+      position: relative;
+    }
+
+    .dropdown-menu {
+      font-family: var(--font-body);
+      position: absolute;
+      top: calc(100% + 12px);
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      width: 320px;
+      background: var(--dropdown-bg);
+      border: 1px solid var(--hairline);
+      border-radius: 20px;
+      padding: 8px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .dropdown-menu::before {
+      content: '';
+      position: absolute;
+      top: -14px;
+      left: 0;
+      right: 0;
+      height: 14px;
+    }
+
+    .nav-item.dropdown:hover .dropdown-menu,
+    .nav-item.dropdown:focus-within .dropdown-menu,
+    .dropdown-menu.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 12px;
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--ink);
+      transition: background 0.15s ease;
+    }
+
+    .dropdown-item:hover {
+      background: var(--field);
+    }
+
+    .dropdown-item.active {
+      background: rgba(21, 128, 61, 0.08);
+    }
+
+    .dropdown-item.active .dropdown-item-title {
+      color: #15803D;
+      font-weight: 700;
+    }
+
+    .dropdown-item-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      background: transparent !important;
+      border: none !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+    }
+
+    .dropdown-item-icon svg {
+      stroke: url(#icon-green-yellow) !important;
+    }
+
+    .dropdown-item-content {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .dropdown-item-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+
+    .dropdown-item-desc {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.3;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .theme-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 9999px;
+      border: none;
+      background: var(--field);
+      color: var(--ink);
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      flex-shrink: 0;
+    }
+
+    .theme-toggle-btn:hover {
+      background: var(--soft-canvas);
+      color: var(--primary);
+      transform: scale(1.06);
+    }
+
+    :root:not([data-theme="dark"]) .theme-toggle-btn .sun-icon {
+      display: none !important;
+    }
+    :root:not([data-theme="dark"]) .theme-toggle-btn .moon-icon {
+      display: block !important;
+    }
+    [data-theme="dark"] .theme-toggle-btn .sun-icon {
+      display: block !important;
+    }
+    [data-theme="dark"] .theme-toggle-btn .moon-icon {
+      display: none !important;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .theme-toggle-btn .sun-icon {
+        display: block !important;
+      }
+      :root:not([data-theme="light"]) .theme-toggle-btn .moon-icon {
+        display: none !important;
+      }
+    }
+
+
+    .nav-spotlight-btn {
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      height: 36px;
+      border-radius: 9999px;
+      border: none;
+      background: var(--field);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .nav-spotlight-btn:hover {
+      background: var(--soft-canvas);
+      color: var(--ink);
+      border-color: #cbd5e1;
+    }
+
+    #btn-nav-action {
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .nav-spotlight-btn kbd {
+      font-size: 10px;
+      font-weight: 700;
+      background: #FFFFFF;
+      padding: 1px 5px;
+      border-radius: 4px;
+      border: 1px solid var(--hairline);
+      color: var(--muted);
+    }
+
+    .mobile-toggle {
+      display: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--hairline);
+      background: var(--canvas);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--ink);
+      transition: background 0.15s ease;
+    }
+
+    .mobile-toggle:hover {
+      background: var(--field);
+    }
+
+    @media (max-width: 1024px) {
+      .nav-menu {
+        display: none !important;
+      }
+      .mobile-toggle {
+        display: flex !important;
+      }
+    }
+
+    .mobile-drawer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      z-index: 1090;
+      display: none;
+    }
+
+    .mobile-drawer-overlay.open {
+      display: block;
+    }
+
+    .mobile-drawer {
+      font-family: var(--font-body);
+      position: fixed;
+      top: 80px;
+      left: 16px;
+      right: 16px;
+      background: var(--canvas);
+      border: none;
+      border-radius: var(--radius-panel, 20px);
+      padding: 20px;
+      z-index: 1100;
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+      max-height: calc(100vh - 110px);
+      overflow-y: auto;
+    }
+
+    .mobile-drawer.open {
+      display: flex;
+    }
+
+    .mobile-drawer a {
+      padding: 9px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: var(--radius-card, 10px);
+      color: var(--ink);
+      background: var(--soft-canvas);
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .mobile-drawer a:hover {
+      background: var(--field);
+    }
+
+    .mobile-drawer a.active {
+      font-weight: 700;
+      color: #15803D !important;
+      background: rgba(21, 128, 61, 0.08) !important;
+    }
+
+    /* =============================================================
+       4. PAGE HERO & MINIMAL PST TIMEKEEPER (Strict Rule 3 Standard)
+       ============================================================= */
+    .page-hero {
+      position: relative;
+      padding-top: calc(var(--header-height) + 52px);
+      padding-bottom: var(--sp-64);
+      background-color: #0E1A11;
+      background-image: linear-gradient(180deg, rgba(10, 26, 15, 0.78) 0%, rgba(8, 20, 12, 0.62) 50%, rgba(10, 20, 14, 0.90) 100%),
+                        url('assets/tumauini-municipal-hall-facade.jpg');
+      background-position: center 38%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+      color: #FFFFFF;
+    }
+
+    .hero-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--sp-24);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .hero-breadcrumb-link {
+      color: rgba(255, 255, 255, 0.75);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.15s ease;
+    }
+
+    .hero-breadcrumb-link:hover {
+      color: #FFFFFF;
+    }
+
+    .hero-breadcrumb-sep {
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 12px;
+    }
+
+    .hero-breadcrumb-current {
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    /* Official 3-Line Philippine Standard Time (Rule 3) */
+    .pst-timekeeper {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      text-align: right;
+      color: #FFFFFF;
+      user-select: none;
+    }
+
+    .pst-label {
+      font-size: 10.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.2;
+      margin-bottom: 2px;
+    }
+
+    .pst-clock {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: #FFFFFF;
+    }
+
+    .pst-date {
+      font-size: 11.5px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.2;
+      margin-top: 2px;
+    }
+
+    .page-hero .eyebrow {
+      color: #FCD116;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+
+    .page-hero .h1-title {
+      color: #FFFFFF;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
+      margin-bottom: 12px;
+    }
+
+    .page-hero .body-lead {
+      color: rgba(255, 255, 255, 0.9);
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+      line-height: 1.6;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: var(--sp-32);
+      flex-wrap: wrap;
+    }
+
+    .page-hero .btn-secondary {
+      background: rgba(255, 255, 255, 0.12);
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .page-hero .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.22);
+      color: #FFFFFF;
+      border-color: rgba(255, 255, 255, 0.6);
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 768px) {
+      .hero-top-row {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+      }
+      .pst-timekeeper {
+        align-items: flex-start;
+        text-align: left;
+      }
+    }
+
+    /* Telemetry Strip */
+    .telemetry-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: var(--sp-48);
+      padding-top: var(--sp-32);
+      border-top: 1px solid var(--hairline);
+    }
+
+    .telemetry-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .telemetry-val {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1.1;
+    }
+
+    .telemetry-label {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+      margin-top: 4px;
+    }
+
+    /* =============================================================
+       5. ARCHITECTURAL SHOWCASE (San Matias Church)
+       ============================================================= */
+    .heritage-spotlight {
+      background-color: var(--field);
+      border: none;
+      box-shadow: none;
+      border-radius: var(--radius-panel);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+    }
+
+    .spotlight-media {
+      position: relative;
+      background-color: #1A1A1A;
+      min-height: 440px;
+      overflow: hidden;
+    }
+
+    .spotlight-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .heritage-spotlight:hover .spotlight-img {
+      transform: scale(1.03);
+    }
+
+    .spotlight-overlay-badge {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(20, 20, 20, 0.88);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 10px 16px;
+      border-radius: var(--radius-card);
+      color: #FFFFFF;
+      font-size: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .spotlight-content {
+      padding: clamp(24px, 4vw, 48px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .spotlight-specs {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin: 24px 0;
+      padding: 20px;
+      background-color: var(--field);
+      border-radius: var(--radius-card);
+      border: 1px solid var(--hairline);
+    }
+
+    .spec-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .spec-label {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .spec-val {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-top: 2px;
+    }
+
+    /* =============================================================
+       6. DESTINATIONS & TOURISM CARDS (Rules 4 & 5)
+       ============================================================= */
+    .filter-search-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: var(--sp-32);
+    }
+
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: thin;
+    }
+
+    .filter-pill {
+      background: var(--canvas);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-pill);
+      padding: 8px 18px;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .filter-pill:hover {
+      background-color: var(--field);
+    }
+
+    .filter-pill.active {
+      background-color: var(--ink);
+      color: #FFFFFF;
+      border-color: var(--ink);
+    }
+
+    .filter-pill-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px 7px;
+      font-size: 11px;
+      border-radius: var(--radius-pill);
+      background-color: var(--field);
+      color: var(--ink);
+    }
+
+    .filter-pill.active .filter-pill-count {
+      background-color: rgba(255, 255, 255, 0.25);
+      color: #FFFFFF;
+    }
+
+    /* Search Input */
+    .dest-search-wrap {
+      position: relative;
+      min-width: 280px;
+    }
+
+    .dest-search-input {
+      width: 100%;
+      height: 42px;
+      padding: 0 16px 0 40px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--hairline);
+      background-color: #FFFFFF;
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--ink);
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .dest-search-input:focus {
+      border-color: var(--civic-green);
+      box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.12);
+    }
+
+    .dest-search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      pointer-events: none;
+    }
+
+    .destinations-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .destination-card {
+      background-color: var(--field);
+      border: none;
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      box-shadow: none;
+    }
+
+    .destination-card:hover {
+      transform: translateY(-2px);
+      box-shadow: none;
+    }
+
+    /* Rule 3: 180px Photo Ratio */
+    .card-photo-wrap {
+      width: 100%;
+      height: 180px;
+      position: relative;
+      background-color: var(--field);
+      overflow: hidden;
+    }
+
+    .card-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.35s ease;
+    }
+
+    .destination-card:hover .card-photo {
+      transform: scale(1.05);
+    }
+
+    .card-tag {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(20, 20, 20, 0.82);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: #FFFFFF;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+    }
+
+    .card-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
+    }
+
+    .card-meta-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    /* STRICT RULE 4: Stroke-Free & Box-Free Icon Wrapper */
+    .tourism-icon-wrap {
+      background: transparent !important;
+      border: none !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .tourism-icon-wrap svg {
+      width: 24px;
+      height: 24px;
+      stroke: url(#icon-green-yellow) !important;
+      transition: transform 0.2s ease;
+    }
+
+    .destination-card:hover .tourism-icon-wrap svg {
+      transform: scale(1.1);
+    }
+
+    .card-arrow {
+      color: var(--muted);
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .destination-card:hover .card-arrow {
+      color: var(--ink);
+      transform: translate(2px, -2px);
+    }
+
+    /* Rule 3: 2-line title clamp */
+    .destination-card-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.3;
+      margin-bottom: 6px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* STRICT RULE 5: Minimalist 4 to 10 words card description */
+    .destination-card-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.45;
+      margin-bottom: 16px;
+    }
+
+    .card-footer-meta {
+      padding-top: 12px;
+      border-top: 1px solid var(--hairline);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .meta-location {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    /* Empty state */
+    .no-dest-results {
+      grid-column: 1 / -1;
+      padding: 64px 24px;
+      text-align: center;
+      background: #FFFFFF;
+      border: 1px dashed var(--hairline);
+      border-radius: var(--radius-card);
+      display: none;
+    }
+
+    .no-dest-results.show {
+      display: block;
+    }
+
+    /* =============================================================
+       7. CULTURAL CALENDAR & TRADITIONS SECTION
+       ============================================================= */
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .event-card {
+      background: var(--field);
+      border: none;
+      border-radius: var(--radius-card);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: none;
+    }
+
+    .event-card:hover {
+      transform: translateY(-2px);
+      box-shadow: none;
+    }
+
+    .event-date-chip {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--civic-green);
+      margin-bottom: 8px;
+    }
+
+    /* =============================================================
+       8. CULINARY TRAIL & TRAVELER'S GUIDE
+       ============================================================= */
+    .culinary-mosaic {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .culinary-item-card {
+      background: var(--field);
+      border: none;
+      border-radius: var(--radius-card);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: none;
+    }
+
+    .culinary-item-card:hover {
+      transform: translateY(-2px);
+      box-shadow: none;
+    }
+
+    .travel-guide-panel {
+      background-color: var(--field);
+      border: none;
+      box-shadow: none;
+      border-radius: var(--radius-panel);
+      padding: clamp(24px, 4vw, 40px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+    }
+
+    .guide-col-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+
+    .guide-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--ink);
+    }
+
+    .guide-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.45;
+    }
+
+    .guide-bullet {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--civic-green);
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+
+    /* =============================================================
+       9. INTERACTIVE DESTINATION MODAL
+       ============================================================= */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s ease;
+    }
+
+    .modal-backdrop.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-card {
+      background-color: var(--soft-canvas);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-panel);
+      width: 100%;
+      max-width: 720px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.16);
+      transform: scale(0.96);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-backdrop.open .modal-card {
+      transform: scale(1);
+    }
+
+    .modal-header {
+      padding: 24px 28px;
+      border-bottom: 1px solid var(--hairline);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: var(--soft-canvas);
+      z-index: 10;
+    }
+
+    .modal-close-btn {
+      background: var(--field);
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--ink);
+      transition: background 0.15s ease;
+      flex-shrink: 0;
+    }
+
+    .modal-close-btn:hover {
+      background: #E0E0E0;
+    }
+
+    .modal-body {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .modal-section-title {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .modal-meta-box {
+      background: var(--field);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-card);
+      padding: 18px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      font-size: 13px;
+    }
+
+    .meta-box-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .meta-box-label {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .meta-box-value {
+      font-weight: 700;
+      color: var(--ink);
+      margin-top: 2px;
+    }
+
+    .modal-footer {
+      padding: 18px 28px;
+      border-top: 1px solid var(--hairline);
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      background: var(--field);
+      border-bottom-left-radius: var(--radius-panel);
+      border-bottom-right-radius: var(--radius-panel);
+    }
+
+    /* =============================================================
+       10. CIVIC GREEN FOOTER (Rule 2)
+       ============================================================= */
+    .footer-inverse {
+      background-color: var(--footer-bg);
+      color: #FFFFFF;
+      padding: var(--sp-64) 0 var(--sp-32) 0;
+      border-top: 1px solid var(--footer-border);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.2fr;
+      gap: 48px;
+      margin-bottom: var(--sp-48);
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .footer-brand-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.01em;
+    }
+
+    .footer-brand-sub {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.5;
+      max-width: 340px;
+    }
+
+    .footer-col-title {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 18px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-link {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.8);
+      transition: color 0.15s ease;
+    }
+
+    .footer-link:hover {
+      color: #FFFFFF;
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.75);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .heritage-spotlight {
+        grid-template-columns: 1fr;
+      }
+      .destinations-grid, .calendar-grid, .culinary-mosaic {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+      }
+      .travel-guide-panel {
+        grid-template-columns: 1fr;
+      }
+      .telemetry-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu, .nav-right #btn-nav-action {
+        display: none;
+      }
+      
+      .hero-top-row {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+      }
+      .pst-timekeeper {
+        align-items: flex-start;
+        text-align: left;
+      }
+      .destinations-grid, .calendar-grid, .culinary-mosaic {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .spotlight-specs {
+        grid-template-columns: 1fr;
+      }
+      .modal-meta-box {
+        grid-template-columns: 1fr;
+      }
+      .filter-search-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .dest-search-wrap {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =============================================================
+       GLOBAL HIDDEN SVG GRADIENT DEFINITION (Rule 4)
+       ============================================================= -->
+  <svg width="0" height="0" style="position: absolute; width: 0; height: 0; overflow: hidden;" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="icon-green-yellow" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#15803D" />
+        <stop offset="35%" stop-color="#16A34A" />
+        <stop offset="80%" stop-color="#EAB308" />
+        <stop offset="100%" stop-color="#FCD116" />
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <!-- =============================================================
+       FLOATING STADIUM NAVIGATION BAR (Rule 2)
+       ============================================================= -->
+  <header class="nav-wrap" role="banner">
+    <nav class="nav-pill" id="navbar" aria-label="Main Navigation">
+      <!-- Left: LGU Branding -->
+      <a href="index.html" class="nav-left" aria-label="Municipality of Tumauini Homepage">
+        <img src="assets/images/logo.png" alt="Seal of Tumauini" class="nav-logo" width="32" height="32" />
+        <div class="nav-title-wrap">
+          <span class="nav-republic">Republic of the Philippines</span>
+          <span class="nav-lgu">Municipality of Tumauini</span>
+        </div>
+      </a>
+
+      <!-- Center: Stadium Menu Items -->
+      <ul class="nav-menu" role="menubar">
+        <!-- 1. Home -->
+        <li role="none"><a href="index.html" class="nav-link" role="menuitem">Home</a></li>
+
+        <!-- 2. About Us Dropdown -->
+        <li class="nav-item dropdown" role="none">
+          <button class="nav-link dropdown-toggle" id="about-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+            <span>About Us</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="dropdown-menu" id="about-dropdown-menu" role="menu" aria-labelledby="about-dropdown-btn">
+            <a href="barangays.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">46 Barangays Directory</span>
+                <span class="dropdown-item-desc">Territorial & demographic profile</span>
+              </div>
+            </a>
+            <a href="municipal-profile.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Municipal Profile</span>
+                <span class="dropdown-item-desc">Geography, climate & demographics</span>
+              </div>
+            </a>
+            <a href="historical-background.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Historical Background</span>
+                <span class="dropdown-item-desc">1705 founding & heritage</span>
+              </div>
+            </a>
+            <a href="awards-and-recognition.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Awards & Citations</span>
+                <span class="dropdown-item-desc">Civic governance accolades</span>
+              </div>
+            </a>
+            <a href="elected-officials.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Elected Officials</span>
+                <span class="dropdown-item-desc">Mayor, Vice Mayor & Councilors</span>
+              </div>
+            </a>
+            <a href="department-heads.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><polyline points="16 11 18 13 22 9"></polyline></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Department Heads</span>
+                <span class="dropdown-item-desc">Executive directors & chiefs</span>
+              </div>
+            </a>
+            <a href="mission-and-vision.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Mission & Vision</span>
+                <span class="dropdown-item-desc">Strategic development & civic goals</span>
+              </div>
+            </a>
+          </div>
+        </li>
+
+        <!-- 3. Services Dropdown -->
+        <li class="nav-item dropdown" role="none">
+          <button class="nav-link dropdown-toggle" id="services-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+            <span>Services</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="dropdown-menu" id="services-dropdown-menu" role="menu" aria-labelledby="services-dropdown-btn">
+            <a href="services.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Citizen's Charter & Services</span>
+                <span class="dropdown-item-desc">Business, civil registry & permits</span>
+              </div>
+            </a>
+            <a href="tax-calculator.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line><line x1="16" y1="14" x2="16" y2="18"></line><path d="M16 10h.01"></path><path d="M12 10h.01"></path><path d="M8 10h.01"></path><path d="M12 14h.01"></path><path d="M8 14h.01"></path><path d="M12 18h.01"></path><path d="M8 18h.01"></path></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Business Tax Calculator</span>
+                <span class="dropdown-item-desc">Mayor's Permit & LBT estimates</span>
+              </div>
+            </a>
+            <a href="map.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Interactive GIS Map</span>
+                <span class="dropdown-item-desc">46 Barangays & flood zones</span>
+              </div>
+            </a>
+            <a href="mdrrmo.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">MDRRMO & Rescue 3325</span>
+                <span class="dropdown-item-desc">Disaster telemetry & 24/7 rescue</span>
+              </div>
+            </a>
+          </div>
+        </li>
+
+        <!-- 4. Transparency Dropdown -->
+        <li class="nav-item dropdown" role="none">
+          <button class="nav-link dropdown-toggle" id="transparency-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+            <span>Transparency</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="dropdown-menu" id="transparency-dropdown-menu" role="menu" aria-labelledby="transparency-dropdown-btn">
+            <a href="bids-and-awards.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Bids & Awards (BAC)</span>
+                <span class="dropdown-item-desc">Procurement notices, bids & awards</span>
+              </div>
+            </a>
+            <a href="fund-utilization.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Fund Utilization Report</span>
+                <span class="dropdown-item-desc">Form 74-A & COA disclosures</span>
+              </div>
+            </a>
+            <a href="ordinances.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Ordinances & Resolutions</span>
+                <span class="dropdown-item-desc">Sangguniang Bayan legislative acts</span>
+              </div>
+            </a>
+          </div>
+        </li>
+
+        <!-- 5. Explore Dropdown -->
+        <li class="nav-item dropdown" role="none">
+          <button class="nav-link dropdown-toggle active" id="explore-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+            <span>Explore</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="dropdown-menu" id="explore-dropdown-menu" role="menu" aria-labelledby="explore-dropdown-btn">
+            <a href="tourism.html" class="dropdown-item active" aria-current="page" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Tourism & Heritage</span>
+                <span class="dropdown-item-desc">San Matias Church & ecotourism</span>
+              </div>
+            </a>
+            <a href="smart-city.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Smart & Sustainable City</span>
+                <span class="dropdown-item-desc">Agri-tech, IoT & green roadmap</span>
+              </div>
+            </a>
+          </div>
+        </li>
+
+        <!-- 6. News -->
+        <li role="none"><a href="news.html" class="nav-link" role="menuitem">News</a></li>
+      </ul>
+
+      <!-- Right: Spotlight Search, Primary Action & Mobile Toggle -->
+      <div class="nav-right">
+                <button class="theme-toggle-btn" id="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle light or dark theme" title="Toggle Theme">
+          <svg class="sun-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="21" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg class="moon-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+        <button class="nav-spotlight-btn" onclick="openSpotlight()" aria-label="Search municipal portal (Ctrl+K)" title="Search (Ctrl + K)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <span>Search</span>
+          <kbd>Ctrl K</kbd>
+        </button>
+
+        <a href="services.html" class="btn btn-primary btn-sm" id="btn-nav-action">
+          <span>Online Services</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+        </a>
+
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Open mobile navigation menu" onclick="toggleMobileMenu()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer-overlay" id="mobile-drawer-overlay" onclick="toggleMobileMenu()"></div>
+  <div class="mobile-drawer" id="mobile-drawer">
+    <button onclick="toggleMobileMenu(); openSpotlight();" style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; font-size: 14px; font-weight: 500; border-radius: var(--radius-card); color: var(--ink); background: var(--field); border: none; cursor: pointer; text-align: left; width: 100%;">
+      <span style="display: flex; align-items: center; gap: 8px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        Search Portal (Ctrl + K)
+      </span>
+      <kbd style="font-size: 10px; font-weight: 700; background: #fff; padding: 2px 6px; border-radius: 4px; border: 1px solid #d4d4d4;">Ctrl K</kbd>
+    </button>
+    <button class="mobile-theme-btn" onclick="toggleTheme()" aria-label="Toggle light or dark theme" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; font-size: 13px; font-weight: 600; border-radius: var(--radius-card); color: var(--ink); background: var(--field); border: none; cursor: pointer; text-align: left; width: 100%; margin-top: 6px;">
+      <span style="display: flex; align-items: center; gap: 8px;">
+        <span class="theme-icon-slot">
+          <svg class="sun-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="21" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg class="moon-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </span>
+        <span>Theme Mode</span>
+      </span>
+      <span class="theme-mode-badge" style="font-size: 11px; padding: 2px 8px; border-radius: var(--radius-pill); background: var(--canvas); color: var(--muted); font-weight: 500;">Toggle</span>
+    </button>
+    <a href="index.html">Home</a>
+
+    <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #15803D; padding: 6px 14px 2px;">About Tumauini</div>
+    <a href="barangays.html">46 Barangays Directory ↗</a>
+    <a href="municipal-profile.html">Municipal Profile ↗</a>
+    <a href="historical-background.html">Historical Background ↗</a>
+    <a href="awards-and-recognition.html">Awards & Recognition ↗</a>
+    <a href="elected-officials.html">Elected Officials ↗</a>
+    <a href="department-heads.html">Department Heads ↗</a>
+    <a href="mission-and-vision.html">Mission & Vision ↗</a>
+
+    <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #15803D; padding: 8px 14px 2px;">Citizen Services</div>
+    <a href="services.html">Citizen's Charter & Services ↗</a>
+    <a href="tax-calculator.html">Business Tax Calculator ↗</a>
+    <a href="map.html">Interactive GIS Map ↗</a>
+    <a href="mdrrmo.html">MDRRMO & Rescue 3325 ↗</a>
+
+    <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #15803D; padding: 8px 14px 2px;">Transparency</div>
+    <a href="bids-and-awards.html">Bids & Awards Committee (BAC) ↗</a>
+    <a href="fund-utilization.html">Fund Utilization Report ↗</a>
+    <a href="ordinances.html">Ordinances & Resolutions ↗</a>
+
+    <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #15803D; padding: 8px 14px 2px;">Explore & Innovation</div>
+    <a href="tourism.html" class="active">Tourism & Cultural Heritage ↗</a>
+    <a href="smart-city.html">Smart & Sustainable City ↗</a>
+
+    <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #15803D; padding: 8px 14px 2px;">News & Updates</div>
+    <a href="news.html">News & Announcements ↗</a>
+  </div>
+
+  <main id="main-content">
+    
+    <!-- =============================================================
+         HERO SECTION WITH 3-LINE PST TIMEKEEPER (Rule 3)
+         ============================================================= -->
+    <section class="page-hero" aria-labelledby="tourism-hero-title">
+      <div class="container">
+        
+        <div class="hero-top-row">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <a href="index.html" class="hero-breadcrumb-link">Home</a>
+            <span class="hero-breadcrumb-sep">/</span>
+            <span class="hero-breadcrumb-current">Tourism &amp; Cultural Heritage</span>
+          </div>
+
+          <!-- Official 3-Line Philippine Standard Time (Rule 3) -->
+          <div class="pst-timekeeper" aria-label="Philippine Standard Time">
+            <span class="pst-label">Philippine Standard Time</span>
+            <span class="pst-clock" id="pst-live-clock">12:00:00 PM</span>
+            <span class="pst-date" id="pst-live-date">Thursday, October 01, 2026</span>
+          </div>
+        </div>
+
+        <div style="max-width: 860px;">
+          <span class="eyebrow">National Cultural Treasure &bull; UNESCO Tentative List</span>
+          <h1 class="h1-title" id="tourism-hero-title">
+            Tumauini Heritage &amp; Tourism.
+          </h1>
+          <p class="body-lead">
+            Centuries of baroque terracotta craftsmanship, sacred history, and vibrant valley ecotourism across Tumauini.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#destinations" class="btn btn-primary">
+              <span>Explore Tourism Destinations</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+            </a>
+            <a href="#spotlight" class="btn btn-secondary">
+              <span>San Matias Church Heritage</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =============================================================
+         NATIONAL CULTURAL TREASURE SPOTLIGHT (San Matias Church)
+         ============================================================= -->
+    <section class="section-wrap" id="spotlight">
+      <div class="container">
+
+        <!-- Telemetry Strip -->
+        <div class="telemetry-strip" style="margin-bottom: var(--sp-32);">
+          <div class="telemetry-item">
+            <span class="telemetry-val">1783</span>
+            <span class="telemetry-label">Church Construction Year</span>
+          </div>
+          <div class="telemetry-item">
+            <span class="telemetry-val">4-Tier</span>
+            <span class="telemetry-label">Cylindrical Bell Tower</span>
+          </div>
+          <div class="telemetry-item">
+            <span class="telemetry-val">Feb 24</span>
+            <span class="telemetry-label">San Matias Patronal Feast</span>
+          </div>
+          <div class="telemetry-item">
+            <span class="telemetry-val">Zero-Fee</span>
+            <span class="telemetry-label">Public Heritage Access</span>
+          </div>
+        </div>
+        
+        <div class="section-header">
+          <span class="eyebrow eyebrow-accent">Architectural Crown Jewel</span>
+          <h2 class="h2-title">San Matias Parish Church.</h2>
+          <p class="body-lead" style="margin-top: 8px;">
+            Declared a National Cultural Treasure on February 24, 1989 by the National Museum of the Philippines.
+          </p>
+        </div>
+
+        <div class="heritage-spotlight">
+          
+          <div class="spotlight-media">
+            <img src="assets/tumauini-church-belfry.jpg" alt="Tumauini Cylindrical Brick Bell Tower" class="spotlight-img">
+            <div class="spotlight-overlay-badge">
+              <strong>Cylindrical Bell Tower</strong> • Only 4-Tier Wedding Cake Belfry in the Philippines
+            </div>
+          </div>
+
+          <div class="spotlight-content">
+            <div>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
+                <span class="pill-badge pill-badge-red">Ultra-Baroque Terracotta</span>
+                <span class="pill-badge">Dominican Order 1707</span>
+                <span class="pill-badge pill-badge-yellow">UNESCO Tentative</span>
+              </div>
+              <h3 class="h2-title" style="font-size: 24px; margin-bottom: 12px;">
+                Mastery of Carved Red Brick Masonry.
+              </h3>
+              <p style="font-size: 14px; color: var(--muted); line-height: 1.6;">
+                Built under the direction of Dominican friar Domingo Forto beginning in 1783, Tumauini Church is acclaimed across Southeast Asia for its exuberant red-brick ornamentation. Each clay block was carved, numbered, and kiln-fired individually along the Pinacanauan River.
+              </p>
+            </div>
+
+            <div class="spotlight-specs">
+              <div class="spec-item">
+                <span class="spec-label">Architectural Style</span>
+                <span class="spec-val">Ultra-Baroque Terracotta</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Primary Material</span>
+                <span class="spec-val">Fired Local Red Bricks</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Key Highlight</span>
+                <span class="spec-val">4-Tier Cylindrical Belfry</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">National Status</span>
+                <span class="spec-val">National Cultural Treasure</span>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+              <button class="btn btn-primary btn-sm" onclick="openTourismModal('san_matias')">
+                <span>View Historical Dossier</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </button>
+              <button class="btn btn-secondary btn-sm" onclick="openTourismModal('belfry')">
+                <span>Inspect Belfry Architecture</span>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =============================================================
+         DESTINATIONS & ATTRACTIONS DIRECTORY
+         ============================================================= -->
+    <section class="section-wrap" id="destinations">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="eyebrow eyebrow-accent">Curated Local Itinerary</span>
+          <h2 class="h2-title">Attractions & Heritage Sites.</h2>
+          <p class="body-lead" style="margin-top: 8px;">
+            Select any destination card to inspect visiting hours, history, and travel guidelines.
+          </p>
+        </div>
+
+        <!-- Filter & Live Search Row -->
+        <div class="filter-search-row">
+          <div class="filter-bar" role="tablist" aria-label="Attraction Categories">
+            <button class="filter-pill active" onclick="filterDestinations('all', this)" role="tab" aria-selected="true">
+              <span>All Destinations</span>
+              <span class="filter-pill-count">8</span>
+            </button>
+            <button class="filter-pill" onclick="filterDestinations('heritage', this)" role="tab" aria-selected="false">
+              <span>Cultural & Historic</span>
+              <span class="filter-pill-count">3</span>
+            </button>
+            <button class="filter-pill" onclick="filterDestinations('nature', this)" role="tab" aria-selected="false">
+              <span>Rivers & Nature</span>
+              <span class="filter-pill-count">2</span>
+            </button>
+            <button class="filter-pill" onclick="filterDestinations('agri', this)" role="tab" aria-selected="false">
+              <span>Agri-Tourism</span>
+              <span class="filter-pill-count">1</span>
+            </button>
+            <button class="filter-pill" onclick="filterDestinations('culinary', this)" role="tab" aria-selected="false">
+              <span>Culinary & Events</span>
+              <span class="filter-pill-count">2</span>
+            </button>
+          </div>
+
+          <!-- Instant Search Input -->
+          <div class="dest-search-wrap">
+            <svg class="dest-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="dest-search-input" class="dest-search-input" placeholder="Search heritage, nature, food..." aria-label="Search Destinations">
+          </div>
+        </div>
+
+        <!-- 8-Card Destination Grid (Balanced & Curated) -->
+        <div class="destinations-grid" id="destinations-grid">
+
+          <!-- 1. San Matias Parish Church -->
+          <div class="destination-card" data-category="heritage" onclick="openTourismModal('san_matias')" data-keywords="san matias parish church national cultural treasure dominican baroque 1783">
+            <div class="card-photo-wrap">
+              <img src="assets/tumauini-church-hero.jpg" alt="San Matias Parish Church Facade" class="card-photo">
+              <span class="card-tag">National Landmark</span>
+            </div>
+            <div class="card-body">
+              <div>
+                <div class="card-meta-top">
+                  <div class="tourism-icon-wrap" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+                  </div>
+                  <svg class="card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                </div>
+                <h3 class="destination-card-title">San Matias Parish Church (1783)</h3>
+                <p class="destination-card-desc">Historic 1783 Dominican ultra-baroque terracotta brick parish church.</p>
+              </div>
+              <div class="card-footer-meta">
+                <span class="meta-location">Poblacion • Highway</span>
+                <span>Fray Domingo Forto</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Cylindrical Bell Tower -->
+          <div class="destination-card" data-category="heritage" onclick="openTourismModal('belfry')" data-keywords="cylindrical bell tower belfry wedding cake campanile brick">
+            <div class="card-photo-wrap">
+              <img src="assets/tumauini-church-belfry.jpg" alt="Tumauini Cylindrical Brick Bell Tower" class="card-photo">
+              <span class="card-tag">Unique Architecture</span>
+            </div>
+            <div class="card-body">
+              <div>
+                <div class="card-meta-top">
+                  <div class="tourism-icon-wrap" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10a6 6 0 0 0-12 0v10"></path><line x1="2" y1="20" x2="22" y2="20"></line><circle cx="12" cy="7" r="1"></circle></svg>
+                  </div>
+                  <svg class="card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                </div>
+                <h3 class="destination-card-title">Cylindrical Brick Bell Tower</h3>
+                <p class="destination-card-desc">The Philippines' only four-tier cylindrical red-brick campanile.</p>
+              </div>
+              <div class="card-footer-meta">
+                <span class="meta-location">Church Courtyard</span>
+                <span>Completed 1805</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Terracotta Carved Rosettes -->
+          <div class="destination-card" data-category="heritage" onclick="openTourismModal('rosettes')" data-keywords="terracotta brick rosettes carved botanical relief ornamentation">
+            <div class="card-photo-wrap">
+              <img src="assets/tumauini-historical-church.jpg" alt="Carved Brick Rosettes at Tumauini Church" class="card-photo">
+              <span class="card-tag">Artisan Masonry</span>
+            </div>
+            <div class="card-body">
+              <div>
+                <div class="card-meta-top">
+                  <div class="tourism-icon-wrap" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  </div>
+                  <svg class="card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                </div>
+                <h3 class="destination-card-title">Carved Brick Rosettes & Motifs</h3>
+                <p class="destination-card-desc">Individually sculpted clay floral motifs and baroque reliefs.</p>
+              </div>
+              <div class="card-footer-meta">
+                <span class="meta-location">Church Exterior Facade</span>
+                <span>1,000+ Unique Tiles</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Pinacanauan de Tumauini River -->
+          <div class="destination-card" data-category="nature" onclick="openTourismModal('pinacanauan')" data-keywords="pinacanauan river kayaking boating eco-trail cagayan valley water">
+            <div class="card-photo-wrap">
+              <img src="assets/cagayan-valley-agriculture.jpg" alt="Pinacanauan River and Cagayan Valley Waters" class="card-photo">
+              <span class="card-tag">River Ecotourism</span>
+            </div>
+            <div class="card-body">
+              <div>
+                <div class="card-meta-top">
+                  <div class="tourism-icon-wrap" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"></path><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6"></path><path d="M12 2v10"></path></svg>
+                  </div>
+                  <svg class="card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                </div>
+                <h3 class="destination-card-title">Pinacanauan de Tumauini River</h3>
+                <p class="destination-card-desc">Pristine freshwater river for kayaking, rafting, and swimming.</p>
+              </div>
+              <div class="card-footer-meta">
+                <span class="meta-location">Brgy. Lapogan & Fugu</span>
+                <span>Scenic Tributary</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. Camp Samal & Foothills -->
+          <div class="destination-card" data-category="nature" onclick="openTourismModal('camp_samal')" data-keywords="camp samal sierra madre nature trail hiking camping birdwatching">
+            <div class="card-photo-wrap">
+              <img src="assets/cagayan-valley-agriculture.jpg" alt="Camp Samal Nature Trail" class="card-photo">
+              <span class="card-tag">Nature Adventure</span>
+            </div>
+            <div class="card-body">
+              <div>
+                <div class="card-meta-top">
+                  <div class="tourism-icon-wrap" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
+                  </div>
+                  <svg class="card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                </div>
+                <h3 class="destination-card-title">Camp Samal Nature & Eco-Trails</h3>
+                <p class="destination-card-desc">Panoramic Sierra Madre forest trails and tranquil campsites.</p>
+              </div>
+              <div class="card-footer-meta">
+                <span class="meta-location">Eastern Foothills</span>
+                <span>Eco-Park Reserve</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6. Rolling Yellow Corn Plains -->
+          <div class="destination-card" data-category="agri" onclick="openTourismModal('corn_plains')" data-keywords="corn plains agriculture agro-tourism yellow corn fields harvest">
+            <div class="card-photo-wrap">
+              <img src="assets/agriculture-corn.jpg" alt="Vast Yellow Corn Fields in Tumauini" class="card-photo">
+              <span class="card-tag">Agri-Heartland</span>
+            </div>
+            <div class="card-body">
+              <div>
+                <div class="card-meta-top">
+                  <div class="tourism-icon-wrap" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2z"></path><path d="M12 6v6l4 2"></path></svg>
+                  </div>
+                  <svg class="card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                </div>
+                <h3 class="destination-card-title">Rolling Yellow Corn Plains</h3>
+                <p class="destination-card-desc">Endless golden corn fields across Isabela's premier capital.</p>
+              </div>
+              <div class="card-footer-meta">
+                <span class="meta-location">Rural Tumauini</span>
+                <span>Corn Capital</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 7. Pav-vurulun Festival Grounds -->
+          <div class="destination-card" data-category="culinary" onclick="openTourismModal('festivals')" data-keywords="pav-vurulun festival town fiesta plaza street dance celebration">
+            <div class="card-photo-wrap">
+              <img src="assets/tumauini-awards-recognition.jpg" alt="Pav-vurulun Festival Celebration Arena" class="card-photo">
+              <span class="card-tag">Town Fiesta</span>
+            </div>
+            <div class="card-body">
+              <div>
+                <div class="card-meta-top">
+                  <div class="tourism-icon-wrap" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  </div>
+                  <svg class="card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                </div>
+                <h3 class="destination-card-title">Pav-vurulun Festival Grounds</h3>
+                <p class="destination-card-desc">Vibrant annual street dancing and patronal fiesta arena.</p>
+              </div>
+              <div class="card-footer-meta">
+                <span class="meta-location">Municipal Coliseum</span>
+                <span>May 10–11 Fiesta</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 8. Pancit Tumauini & Food Trail -->
+          <div class="destination-card" data-category="culinary" onclick="openTourismModal('pancit_tumauini')" data-keywords="pancit tumauini food cuisine noodles lechon carabao milk">
+            <div class="card-photo-wrap">
+              <img src="assets/civic-service.jpg" alt="Tumauini Local Cuisine and Panciterias" class="card-photo">
+              <span class="card-tag">Local Gastronomy</span>
+            </div>
+            <div class="card-body">
+              <div>
+                <div class="card-meta-top">
+                  <div class="tourism-icon-wrap" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+                  </div>
+                  <svg class="card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                </div>
+                <h3 class="destination-card-title">Pancit Tumauini Food Trail</h3>
+                <p class="destination-card-desc">Signature handcrafted miki noodles topped with crispy lechon.</p>
+              </div>
+              <div class="card-footer-meta">
+                <span class="meta-location">Poblacion Food Hub</span>
+                <span>Authentic Delicacy</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- No Search Results -->
+          <div class="no-dest-results" id="no-dest-results">
+            <h3 class="h3-title" style="margin-bottom: 8px;">No matching destinations found</h3>
+            <p style="font-size: 14px; color: var(--muted); margin-bottom: 16px;">Try adjusting your search query or reset your category filters.</p>
+            <button class="btn btn-secondary btn-sm" onclick="resetDestFilters()">Reset All Filters</button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =============================================================
+         CULTURAL FESTIVALS & LIVING TRADITIONS
+         ============================================================= -->
+    <section class="section-wrap" id="festivals">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="eyebrow eyebrow-accent">Civic Traditions & Faith</span>
+          <h2 class="h2-title">Festivals & Cultural Events.</h2>
+          <p class="body-lead" style="margin-top: 8px;">
+            Annual cultural celebrations honoring Saint Matthias and the agricultural bounty of Isabela.
+          </p>
+        </div>
+
+        <div class="calendar-grid">
+          
+          <!-- Event 1 -->
+          <div class="event-card">
+            <div>
+              <span class="event-date-chip">Every May 10 – 11</span>
+              <h3 class="h3-title" style="margin-bottom: 8px;">Pav-vurulun Festival</h3>
+              <p style="font-size: 13px; color: var(--muted); line-height: 1.5;">
+                The grand patronal town fiesta celebrated with street dancing, agricultural exhibits, traditional sports, and the coronation of the Festival Queen.
+              </p>
+            </div>
+            <div style="margin-top: 20px; font-size: 11px; font-weight: 600; color: var(--ink); border-top: 1px solid var(--hairline); padding-top: 12px;">
+              Venue: Municipal Plaza & Town Coliseum
+            </div>
+          </div>
+
+          <!-- Event 2 -->
+          <div class="event-card">
+            <div>
+              <span class="event-date-chip">Every February 24</span>
+              <h3 class="h3-title" style="margin-bottom: 8px;">Feast of Saint Matthias</h3>
+              <p style="font-size: 13px; color: var(--muted); line-height: 1.5;">
+                Solemn liturgical feast and heritage day marking the declaration of San Matias Parish Church as a National Cultural Treasure.
+              </p>
+            </div>
+            <div style="margin-top: 20px; font-size: 11px; font-weight: 600; color: var(--ink); border-top: 1px solid var(--hairline); padding-top: 12px;">
+              Venue: San Matias Parish Church
+            </div>
+          </div>
+
+          <!-- Event 3 -->
+          <div class="event-card">
+            <div>
+              <span class="event-date-chip">March & September</span>
+              <h3 class="h3-title" style="margin-bottom: 8px;">Annual Corn Harvest Fair</h3>
+              <p style="font-size: 13px; color: var(--muted); line-height: 1.5;">
+                Celebrating the bountiful harvest of Tumauini as Isabela's premier corn capital, with agri-trade bazaars and culinary competitions.
+              </p>
+            </div>
+            <div style="margin-top: 20px; font-size: 11px; font-weight: 600; color: var(--ink); border-top: 1px solid var(--hairline); padding-top: 12px;">
+              Venue: Agriculture Complex Annex
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =============================================================
+         GASTRONOMY & LOCAL DELICACIES
+         ============================================================= -->
+    <section class="section-wrap" id="culinary">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="eyebrow eyebrow-accent">Flavors of Tumauini</span>
+          <h2 class="h2-title">Authentic Culinary Heritage.</h2>
+          <p class="body-lead" style="margin-top: 8px;">
+            Traditional panciterias, fresh carabao dairy confections, and local harvest specialties.
+          </p>
+        </div>
+
+        <div class="culinary-mosaic">
+          
+          <div class="culinary-item-card">
+            <div>
+              <span class="pill-badge pill-badge-green" style="margin-bottom: 10px;">Signature Dish</span>
+              <h3 class="h3-title" style="margin-bottom: 8px;">Pancit Tumauini</h3>
+              <p style="font-size: 13px; color: var(--muted); line-height: 1.5;">
+                Handmade egg miki noodles bathed in rich meat broth, heaped with crunchy lechon carajay, boiled egg wedges, and native calamansi-chili dip.
+              </p>
+            </div>
+            <div style="margin-top: 18px; font-size: 12px; font-weight: 600; color: var(--ink);">
+              Serving: Available across Poblacion panciterias
+            </div>
+          </div>
+
+          <div class="culinary-item-card">
+            <div>
+              <span class="pill-badge pill-badge-blue" style="margin-bottom: 10px;">Sweet Specialty</span>
+              <h3 class="h3-title" style="margin-bottom: 8px;">Carabao Milk Pastillas</h3>
+              <p style="font-size: 13px; color: var(--muted); line-height: 1.5;">
+                Fresh farm-sourced carabao milk gently simmered into silky, melt-in-your-mouth milk candies, wrapped in traditional colorful papel de hapon.
+              </p>
+            </div>
+            <div style="margin-top: 18px; font-size: 12px; font-weight: 600; color: var(--ink);">
+              Serving: Local pasalubong centers & town cooperatives
+            </div>
+          </div>
+
+          <div class="culinary-item-card">
+            <div>
+              <span class="pill-badge pill-badge-yellow" style="margin-bottom: 10px;">Agri Product</span>
+              <h3 class="h3-title" style="margin-bottom: 8px;">Roasted Corn Coffee</h3>
+              <p style="font-size: 13px; color: var(--muted); line-height: 1.5;">
+                Caffeine-free traditional brew made from slow-roasted native yellow corn kernels, celebrated for its aromatic earthy warmth.
+              </p>
+            </div>
+            <div style="margin-top: 18px; font-size: 12px; font-weight: 600; color: var(--ink);">
+              Serving: Agri-trade hub & public market stalls
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =============================================================
+         VISITOR GUIDELINES & TRAVEL LOGISTICS
+         ============================================================= -->
+    <section class="section-wrap" id="travel-guide">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="eyebrow eyebrow-accent">Visitor Logistics & Ethics</span>
+          <h2 class="h2-title">Plan Your Visit to Tumauini.</h2>
+          <p class="body-lead" style="margin-top: 8px;">
+            Essential access routes, conservation etiquette, and tourism desk support.
+          </p>
+        </div>
+
+        <div class="travel-guide-panel">
+          
+          <div>
+            <h3 class="guide-col-title">How to Get to Tumauini</h3>
+            <ul class="guide-list">
+              <li>
+                <span class="guide-bullet"></span>
+                <span><strong>By Air:</strong> Fly to Cauayan City Airport (45 mins south) or Tuguegarao City Airport (1 hour north), followed by public bus or van along Maharlika Highway.</span>
+              </li>
+              <li>
+                <span class="guide-bullet"></span>
+                <span><strong>By Land:</strong> Direct air-conditioned passenger buses (Victory Liner, Florida, Partas, Genesis) depart daily from Metro Manila (Cubao/Kamias/Sampaloc) bound for Tuguegarao/Aparri, stopping directly in front of Tumauini Municipal Hall.</span>
+              </li>
+              <li>
+                <span class="guide-bullet"></span>
+                <span><strong>Local Transit:</strong> Registered MTFRB tricycles provide convenient point-to-point transit from the town center to heritage sites and riverbanks.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="guide-col-title">Heritage Conservation Code</h3>
+            <ul class="guide-list">
+              <li>
+                <span class="guide-bullet"></span>
+                <span><strong>Preserve the Red Brickwork:</strong> Do not touch, lean on, scratch, or lean bikes against the 240-year-old terracotta bricks or rosettes.</span>
+              </li>
+              <li>
+                <span class="guide-bullet"></span>
+                <span><strong>Sacred Reverence:</strong> San Matias is an active house of worship. Maintain silence, dress respectfully (covered shoulders/knees), and avoid flash photography during religious services.</span>
+              </li>
+              <li>
+                <span class="guide-bullet"></span>
+                <span><strong>Clean As You Go (CLAYGO):</strong> Tumauini strictly enforces municipal anti-littering and plastic waste ordinances at all eco-parks.</span>
+              </li>
+              <li>
+                <span class="guide-bullet"></span>
+                <span><strong>Tourist Information Desk:</strong> Register at the Municipal Tourism Office, Ground Floor, Municipal Hall for accredited local tour guides.</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =============================================================
+       INTERACTIVE DESTINATION MODAL
+       ============================================================= -->
+  <div class="modal-backdrop" id="tourism-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-dest-title">
+    <div class="modal-card">
+      
+      <div class="modal-header">
+        <div>
+          <span class="pill-badge pill-badge-green" id="modal-dest-badge">Heritage Site</span>
+          <h2 class="h2-title" id="modal-dest-title" style="margin-top: 6px; font-size: 22px;">Destination Title</h2>
+        </div>
+        <button class="modal-close-btn" onclick="closeTourismModal()" aria-label="Close Tourism Modal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        
+        <div>
+          <h3 class="modal-section-title">Significance & Background</h3>
+          <p id="modal-dest-desc" style="font-size: 14px; color: var(--ink); line-height: 1.6;"></p>
+        </div>
+
+        <div>
+          <h3 class="modal-section-title">Visitor Highlights & Features</h3>
+          <p id="modal-dest-highlights" style="font-size: 14px; color: var(--muted); line-height: 1.5;"></p>
+        </div>
+
+        <!-- Meta Details -->
+        <div class="modal-meta-box">
+          <div class="meta-box-item">
+            <span class="meta-box-label">Location / Coordinates</span>
+            <span class="meta-box-value" id="modal-dest-location">Poblacion, Tumauini, Isabela</span>
+          </div>
+          <div class="meta-box-item">
+            <span class="meta-box-label">Access & Visiting Hours</span>
+            <span class="meta-box-value" id="modal-dest-hours">Daily, 6:00 AM – 6:00 PM</span>
+          </div>
+          <div class="meta-box-item">
+            <span class="meta-box-label">Entrance Fee / Charges</span>
+            <span class="meta-box-value" id="modal-dest-fee">Free Public Access</span>
+          </div>
+          <div class="meta-box-item">
+            <span class="meta-box-label">Best Visiting Time</span>
+            <span class="meta-box-value" id="modal-dest-best-time">Early Morning / Late Afternoon</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <a href="index.html#map-contact" class="btn btn-secondary btn-sm">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          <span>View on Map</span>
+        </a>
+        <button class="btn btn-primary btn-sm" onclick="closeTourismModal()">
+          <span>Understood & Close</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =============================================================
+       CIVIC GREEN FOOTER (Rule 2)
+       ============================================================= -->
+  <footer class="footer-inverse" role="contentinfo">
+    <div class="container">
+      
+      <div class="footer-grid">
+        
+        <div>
+          <div class="footer-brand">
+            <div class="seal-wrap" style="width: 44px; height: 44px; background: #FFFFFF; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 2px;">
+              <img src="assets/tumauini-official-seal.png" alt="Official Seal of Tumauini" class="seal-img" width="40" height="40" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+            <div>
+              <h3 class="footer-brand-title">Municipality of Tumauini</h3>
+              <span style="font-size: 12px; color: rgba(255, 255, 255, 0.85);">Province of Isabela, Philippines</span>
+            </div>
+          </div>
+          <p class="footer-brand-sub">
+            Serving Tumauini through accessible, transparent, and responsive local government across all 46 barangays.
+          </p>
+          <div style="margin-top: 16px; font-size: 12px; color: rgba(255, 255, 255, 0.85);">
+            <div><strong>Municipal Hall:</strong> National Highway, Tumauini, Isabela 3325</div>
+            <div style="margin-top: 4px;"><strong>Office Hours:</strong> Monday – Friday, 8:00 AM – 5:00 PM</div>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">About Tumauini</h4>
+          <ul class="footer-links">
+            <li><a href="ordinances.html" class="footer-link">Ordinances &amp; Resolutions</a></li>
+            <li><a href="barangays.html" class="footer-link">46 Barangays Directory</a></li>
+            <li><a href="municipal-profile.html" class="footer-link">Municipal Profile</a></li>
+            <li><a href="historical-background.html" class="footer-link">Historical Background</a></li>
+            <li><a href="awards-and-recognition.html" class="footer-link">Awards &amp; Recognition</a></li>
+            <li><a href="elected-officials.html" class="footer-link">Elected Officials</a></li>
+            <li><a href="department-heads.html" class="footer-link">Department Heads</a></li>
+            <li><a href="mission-and-vision.html" class="footer-link">Mission &amp; Vision</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Services &amp; Portals</h4>
+          <ul class="footer-links">
+            <li><a href="services.html" class="footer-link">Citizen’s Charter &amp; Services</a></li>
+            <li><a href="map.html" class="footer-link">Interactive GIS Map</a></li>
+            <li><a href="tax-calculator.html" class="footer-link">Tax &amp; Fee Calculator</a></li>
+            <li><a href="mdrrmo.html" class="footer-link">Disaster Telemetry (MDRRMO)</a></li>
+            <li><a href="news.html" class="footer-link">News &amp; Bulletins</a></li>
+            <li><a href="smart-city.html" class="footer-link">Smart &amp; Sustainable City</a></li>
+            <li><a href="bids-and-awards.html" class="footer-link">Bids &amp; Awards (BAC)</a></li>
+            <li><a href="fund-utilization.html" class="footer-link">Fund Utilization (FDP)</a></li>
+            <li><a href="tourism.html" class="footer-link" style="color: #FFFFFF; font-weight: 700;">Tourism &amp; Heritage</a></li>
+            <li><a href="index.html#transparency" class="footer-link">Full Disclosure Portal</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Emergency Hotlines</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#emergency" class="footer-link" style="color: #F87171;">Rescue 3325: (078) 323-2004</a></li>
+            <li><a href="index.html#emergency" class="footer-link">PNP Tumauini: 0917-123-4567</a></li>
+            <li><a href="index.html#emergency" class="footer-link">BFP Fire Station: 0917-987-6543</a></li>
+            <li><a href="index.html#emergency" class="footer-link">Municipal Health Office</a></li>
+            <li><a href="index.html#feedback" class="footer-link">Public Assistance &amp; Feedback</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 Municipal Government of Tumauini, Isabela. All public rights reserved. Official Philippine Government Portal.
+        </div>
+        <div style="display: flex; gap: 16px;">
+          <a href="index.html" class="footer-link">Home</a>
+          <a href="services.html" class="footer-link">Services</a>
+          <a href="index.html#transparency" class="footer-link">Transparency</a>
+          <a href="index.html#emergency" class="footer-link">Emergency</a>
+          <a href="index.html#feedback" class="footer-link">Citizen Feedback</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- =============================================================
+       JAVASCRIPT LOGIC
+       ============================================================= -->
+  <script>
+    // 1. Live Philippine Standard Time (Rule 3)
+    function updatePSTClock() {
+      try {
+        const now = new Date();
+        const timeFormatter = new Intl.DateTimeFormat('en-US', {
+          timeZone: 'Asia/Manila',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: true
+        });
+        const dateFormatter = new Intl.DateTimeFormat('en-US', {
+          timeZone: 'Asia/Manila',
+          weekday: 'long',
+          month: '2-digit',
+          day: '2-digit',
+          year: 'numeric'
+        });
+
+        const timeElem = document.getElementById('pst-live-clock') || document.getElementById('pst-live-time') || document.getElementById('pst-time');
+        const dateElem = document.getElementById('pst-live-date') || document.getElementById('pst-date');
+        if (timeElem) timeElem.textContent = timeFormatter.format(now);
+        if (dateElem) dateElem.textContent = dateFormatter.format(now);
+      } catch (e) {
+        console.error('PST clock update error:', e);
+      }
+    }
+    setInterval(updatePSTClock, 1000);
+    updatePSTClock();
+
+    // 2. Navigation Dropdowns & Mobile Drawer
+    // Standardized Mobile Menu Toggle
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobile-drawer');
+      const overlay = document.getElementById('mobile-drawer-overlay');
+      const toggleBtn = document.getElementById('mobile-toggle');
+      const isOpen = drawer?.classList.toggle('open');
+      overlay?.classList.toggle('open', !!isOpen);
+      if (toggleBtn) {
+        toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      }
+    }
+
+    // Keyboard and Touch Handlers for Nav
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        const drawer = document.getElementById('mobile-drawer');
+        const overlay = document.getElementById('mobile-drawer-overlay');
+        if (drawer && drawer.classList.contains('open')) {
+          drawer.classList.remove('open');
+          overlay?.classList.remove('open');
+        }
+        document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('open'));
+      }
+    });
+
+    document.querySelectorAll('.dropdown-toggle').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const menu = this.nextElementSibling;
+        if (!menu) return;
+        const isOpen = menu.classList.contains('open');
+        document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('open'));
+        if (!isOpen) {
+          menu.classList.add('open');
+          this.setAttribute('aria-expanded', 'true');
+        } else {
+          menu.classList.remove('open');
+          this.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.nav-item.dropdown')) {
+        document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('open'));
+        document.querySelectorAll('.dropdown-toggle').forEach(t => t.setAttribute('aria-expanded', 'false'));
+      }
+    });
+
+    
+
+    // 3. Tourism Database
+    const destinationsDatabase = {
+      san_matias: {
+        title: "San Matias Parish Church (1783)",
+        badge: "National Cultural Treasure",
+        desc: "Declared a National Cultural Treasure in 1989 and currently on the tentative list for UNESCO World Heritage Site extension. Built by Dominican Fray Domingo Forto and completed in 1805, the church represents the pinnacle of Filipino-Spanish ultra-baroque terracotta architecture.",
+        highlights: "Features an exuberant curvilinear pediment, carved terracotta relief ornamentation, antique stone baptistery, and adjoining historical ruins.",
+        location: "National Highway, Poblacion, Tumauini, Isabela",
+        hours: "Daily: 6:00 AM – 6:00 PM (Except during holy masses)",
+        fee: "Free admission; donations for preservation welcome",
+        bestTime: "Morning sunlight highlights the red terracotta warmth"
+      },
+      belfry: {
+        title: "Cylindrical Brick Bell Tower",
+        badge: "Architectural Marvel",
+        desc: "The only cylindrical bell tower constructed in the Philippines during the Spanish colonial era. It consists of four stepped cylindrical tiers decorated with garlands, rosettes, and balustrades, earning its international nickname as the 'wedding cake' belfry.",
+        highlights: "Four cylindrical diminishing tiers with inset arched windows, baroque finials, and original bronze parish bells dating to the 19th century.",
+        location: "Right flank of San Matias Parish Church",
+        hours: "Viewable from church courtyard daily",
+        fee: "Free Public Viewing",
+        bestTime: "Late afternoon for golden hour photography"
+      },
+      rosettes: {
+        title: "Carved Terracotta Brick Rosettes",
+        badge: "Artisan Brick Craft",
+        desc: "Unlike other Philippine baroque churches constructed of coral stone or volcanic tuff, Tumauini's master builders molded every decorative clay block individually with botanical leaves, cherubs, rosettes, and heraldic emblems before firing in local kilns.",
+        highlights: "Thousands of individualized carved relief motifs, acanthus scrolls, and floral medallions seamlessly fitted without modern mortar.",
+        location: "San Matias Church Facade & Nave Walls",
+        hours: "Open during church visiting hours",
+        fee: "Free (strictly zero-touch policy)",
+        bestTime: "Clear daylight for architectural inspection"
+      },
+      pinacanauan: {
+        title: "Pinacanauan de Tumauini River",
+        badge: "Eco-Nature & Waterway",
+        desc: "A pristine mountain tributary cascading from the Sierra Madre range down to the great Cagayan River. Renowned for clean freshwater currents, riverbank gravel bars, and scenic boating.",
+        highlights: "River rafting, local banca boating, recreational sport fishing, and tranquil countryside camping.",
+        location: "Eastern barangays of Tumauini (accessible via Brgy. Lapogan & Fugu)",
+        hours: "Daytime access (6:00 AM – 5:30 PM)",
+        fee: "Free public access; boat rentals vary",
+        bestTime: "Dry season (January to June)"
+      },
+      corn_plains: {
+        title: "Rolling Yellow Corn Capital Plains",
+        badge: "Agri-Tourism Heartland",
+        desc: "Tumauini is celebrated as the premier yellow corn capital of Isabela, surrounded by scenic green and golden agricultural plains that stretch to the horizon.",
+        highlights: "Farm-to-table experiences, agro-drone photography, harvesting demos, and fresh sweet corn vendors along the national highway.",
+        location: "Barangays Annafunan, Malamag, Lanna, and Camasi",
+        hours: "Daylight hours",
+        fee: "Free scenic views along national & provincial roads",
+        bestTime: "March and September cropping peak seasons"
+      },
+      camp_samal: {
+        title: "Camp Samal Nature & Eco-Trails",
+        badge: "Adventure & Birdwatching",
+        desc: "Perched along the scenic foothills of the Sierra Madre, Camp Samal offers verdant forest canopies, historical camping sites, and refreshing mountain breezes overlooking the valley.",
+        highlights: "Nature hiking, birdwatching for endemic Cagayan Valley avifauna, star-gazing, and eco-campsite facilities.",
+        location: "Eastern Foothills, Tumauini, Isabela",
+        hours: "Registration required at Tourism Office prior to trek",
+        fee: "Modest environmental fee for campsite maintenance",
+        bestTime: "Early morning for cool climate and wildlife viewing"
+      },
+      festivals: {
+        title: "Pav-vurulun Festival Grounds",
+        badge: "Civic Festival Arena",
+        desc: "The central stage for Tumauini's grandest annual fiesta held every May 10–11. It showcases the vibrant fusion of agricultural harvest gratitude, patronal devotion to Saint Matthias, and energetic municipal street dancing.",
+        highlights: "Street dancing parade, agricultural corn product competitions, cultural pageantry, and community sports tournaments.",
+        location: "Municipal Plaza & Town Coliseum",
+        hours: "Festival Season (May 10–11; events throughout May)",
+        fee: "Free admission to public plaza and stadium stands",
+        bestTime: "Fiesta week for night illuminations and parades"
+      },
+      pancit_tumauini: {
+        title: "Pancit Tumauini & Local Food Trail",
+        badge: "Signature Culinary Heritage",
+        desc: "Tumauini's distinct version of the regional noodle dish features freshly drawn miki noodles, savory meat broth, crispy chicharon and lechon carajay toppings, hard-boiled eggs, and native calamansi with chili garlic.",
+        highlights: "Available at traditional panciterias across Poblacion and District 1–4, paired with fresh carabao milk pastillas and native corn snacks.",
+        location: "Town Center & Maharlika Highway Panciterias",
+        hours: "7:00 AM – 8:00 PM daily",
+        fee: "₱80 – ₱140 per serving (generous portions)",
+        bestTime: "Breakfast, lunch, or mid-afternoon merienda"
+      }
+    };
+
+    // 4. Combined Filter & Live Search
+    function filterDestinations(category, element) {
+      const pills = document.querySelectorAll('.filter-pill');
+      pills.forEach(p => {
+        p.classList.remove('active');
+        p.setAttribute('aria-selected', 'false');
+      });
+      if (element) {
+        element.classList.add('active');
+        element.setAttribute('aria-selected', 'true');
+      }
+
+      const searchInput = document.getElementById('dest-search-input');
+      const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+      applyDestFilter(category, query);
+    }
+
+    function applyDestFilter(category, query) {
+      const cards = document.querySelectorAll('.destination-card');
+      const noResults = document.getElementById('no-dest-results');
+      let visible = 0;
+
+      cards.forEach(card => {
+        const cardCat = card.getAttribute('data-category');
+        const keywords = (card.getAttribute('data-keywords') || '') + ' ' + (card.querySelector('.destination-card-title')?.textContent || '') + ' ' + (card.querySelector('.destination-card-desc')?.textContent || '');
+
+        const matchesCat = (category === 'all' || cardCat === category);
+        const matchesQuery = !query || keywords.toLowerCase().includes(query);
+
+        if (matchesCat && matchesQuery) {
+          card.style.display = 'flex';
+          visible++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      if (visible === 0) {
+        noResults.classList.add('show');
+      } else {
+        noResults.classList.remove('show');
+      }
+    }
+
+    const destSearch = document.getElementById('dest-search-input');
+    if (destSearch) {
+      destSearch.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        const activePill = document.querySelector('.filter-pill.active');
+        const activeCat = activePill ? activePill.getAttribute('onclick').match(/'([^']+)'/)[1] : 'all';
+        applyDestFilter(activeCat, query);
+      });
+    }
+
+    function resetDestFilters() {
+      if (destSearch) destSearch.value = '';
+      const allPill = document.querySelector('.filter-pill');
+      if (allPill) filterDestinations('all', allPill);
+    }
+
+    // 5. Interactive Modal
+    function openTourismModal(key) {
+      const data = destinationsDatabase[key];
+      if (!data) return;
+
+      const backdrop = document.getElementById('tourism-modal-backdrop');
+      document.getElementById('modal-dest-title').textContent = data.title;
+      document.getElementById('modal-dest-badge').textContent = data.badge;
+      document.getElementById('modal-dest-desc').textContent = data.desc;
+      document.getElementById('modal-dest-highlights').textContent = data.highlights;
+      document.getElementById('modal-dest-location').textContent = data.location;
+      document.getElementById('modal-dest-hours').textContent = data.hours;
+      document.getElementById('modal-dest-fee').textContent = data.fee;
+      document.getElementById('modal-dest-best-time').textContent = data.bestTime;
+
+      backdrop.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeTourismModal() {
+      const backdrop = document.getElementById('tourism-modal-backdrop');
+      if (backdrop) backdrop.classList.remove('open');
+      document.body.style.overflow = 'auto';
+    }
+
+    document.getElementById('tourism-modal-backdrop')?.addEventListener('click', (e) => {
+      if (e.target.id === 'tourism-modal-backdrop') {
+        closeTourismModal();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeTourismModal();
+    });
+  </script>
+  <!-- Global Civic Spotlight Search Engine (Ctrl + K) -->
+  <script src="assets/js/spotlight.js"></script>
+</body>
+</html>

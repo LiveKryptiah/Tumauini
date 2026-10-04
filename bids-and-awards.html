@@ -1,0 +1,2522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f2f9f2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#060e06" media="(prefers-color-scheme: dark)">
+  <script src="assets/js/theme.js"></script>
+  <title>Bids & Awards Committee (BAC) | Municipal Government of Tumauini</title>
+  <meta name="description" content="Official Bids & Awards (BAC) portal of Tumauini, Isabela. Procurement opportunities and PhilGEPS notices under RA 9184.">
+  <link rel="icon" type="image/png" href="assets/tumauini-official-seal.png">
+
+  <!-- Typography: Inter & Hanken Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =============================================================
+       1. ROOT DESIGN SYSTEM VARIABLES (Strict design.md Monochrome)
+       ============================================================= */
+    :root, [data-theme="light"] {
+      /* User Specified Palette - Light Mode */
+      --text: #0d150d;
+      --background: #f2f9f2;
+      --primary: #4dc24f;
+      --secondary: #8fe490;
+      --accent: #57e659;
+
+      /* Mapped Civic System Tokens */
+      --ink: var(--text);
+      --canvas: var(--background);
+      --soft-canvas: #FFFFFF;
+      --field: #E4F2E4;
+      --hairline: #D0E5D0;
+      --hairline-subtle: #E0EFE0;
+      --muted: #4B634B;
+      --muted-light: #708A70;
+      --civic-green: #15803D;
+
+      /* UI Element Surfaces */
+      --nav-bg: rgba(242, 249, 242, 0.92);
+      --nav-border: rgba(13, 21, 13, 0.08);
+      --dropdown-bg: #FFFFFF;
+      --card-bg: #FFFFFF;
+      --card-border: #D0E5D0;
+      --footer-bg: #15803D;
+      --footer-text: #FFFFFF;
+      --footer-border: #166534;
+      --glance-bg: #15803D;
+      --glance-card-bg: #14532D;
+
+      /* Restrained Government Accents (Philippine Identity Layer) */
+      --ph-blue: #0038A8;
+      --ph-red: #CE1126;
+      --ph-yellow: #FCD116;
+      --ph-blue-tint: rgba(0, 56, 168, 0.08);
+      --ph-red-tint: rgba(206, 17, 38, 0.08);
+      --ph-yellow-tint: rgba(252, 209, 22, 0.15);
+    }
+
+    [data-theme="dark"] {
+      /* User Specified Palette - Dark Mode */
+      --text: #e9f1e9;
+      --background: #060e06;
+      --primary: #3db33f;
+      --secondary: #1b6f1c;
+      --accent: #19a91c;
+
+      /* Mapped Civic System Tokens */
+      --ink: var(--text);
+      --canvas: var(--background);
+      --soft-canvas: #0C180C;
+      --field: #132413;
+      --hairline: #1C381C;
+      --hairline-subtle: #142814;
+      --muted: #9EB89E;
+      --muted-light: #6E886E;
+      --civic-green: #3db33f;
+
+      /* UI Element Surfaces */
+      --nav-bg: rgba(12, 24, 12, 0.94);
+      --nav-border: rgba(233, 241, 233, 0.12);
+      --dropdown-bg: #0E1C0E;
+      --card-bg: #0C180C;
+      --card-border: #1C381C;
+      --footer-bg: #081408;
+      --footer-text: #E9F1E9;
+      --footer-border: #1B6F1C;
+      --glance-bg: #0A170A;
+      --glance-card-bg: #102410;
+
+      /* Restrained Government Accents */
+      --ph-blue: #3B82F6;
+      --ph-red: #EF4444;
+      --ph-yellow: #FCD116;
+      --ph-blue-tint: rgba(59, 130, 246, 0.15);
+      --ph-red-tint: rgba(239, 68, 68, 0.15);
+      --ph-yellow-tint: rgba(252, 209, 22, 0.15);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        /* User Specified Palette - Dark Mode */
+        --text: #e9f1e9;
+        --background: #060e06;
+        --primary: #3db33f;
+        --secondary: #1b6f1c;
+        --accent: #19a91c;
+
+        /* Mapped Civic System Tokens */
+        --ink: var(--text);
+        --canvas: var(--background);
+        --soft-canvas: #0C180C;
+        --field: #132413;
+        --hairline: #1C381C;
+        --hairline-subtle: #142814;
+        --muted: #9EB89E;
+        --muted-light: #6E886E;
+        --civic-green: #3db33f;
+
+        /* UI Element Surfaces */
+        --nav-bg: rgba(12, 24, 12, 0.94);
+        --nav-border: rgba(233, 241, 233, 0.12);
+        --dropdown-bg: #0E1C0E;
+        --card-bg: #0C180C;
+        --card-border: #1C381C;
+        --footer-bg: #081408;
+        --footer-text: #E9F1E9;
+        --footer-border: #1B6F1C;
+        --glance-bg: #0A170A;
+        --glance-card-bg: #102410;
+
+        /* Restrained Government Accents */
+        --ph-blue: #3B82F6;
+        --ph-red: #EF4444;
+        --ph-yellow: #FCD116;
+        --ph-blue-tint: rgba(59, 130, 246, 0.15);
+        --ph-red-tint: rgba(239, 68, 68, 0.15);
+        --ph-yellow-tint: rgba(252, 209, 22, 0.15);
+      }
+    }
+
+    :root {
+
+      /* Typography */
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-display: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+      /* Radii */
+      --radius-pill: 9999px;
+      --radius-card: 16px;
+      --radius-panel: 24px;
+
+      /* Spacing Scale */
+      --sp-8: 8px;
+      --sp-12: 12px;
+      --sp-16: 16px;
+      --sp-24: 24px;
+      --sp-32: 32px;
+      --sp-48: 48px;
+      --sp-64: 64px;
+      --sp-80: 80px;
+
+      /* Dimensions */
+      --max-width: 1240px;
+      --container-max: 1200px;
+      --header-height: 76px;
+    }
+
+    /* CSS Reset */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      color-scheme: light;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 400;
+      color: var(--ink);
+      background-color: var(--canvas);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    button {
+      font-family: inherit;
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    button, input, select, textarea {
+      font: inherit;
+      color: inherit;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 16px;
+      background: var(--ink);
+      color: #FFFFFF;
+      padding: 10px 18px;
+      border-radius: var(--radius-pill);
+      font-weight: 500;
+      z-index: 10000;
+      transition: top 0.2s ease;
+    }
+    .skip-link:focus {
+      top: 16px;
+    }
+
+    /* Layout Containers */
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    /* Typography Hierarchy */
+    .h1-title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4.5vw, 54px);
+      font-weight: 650;
+      letter-spacing: -0.025em;
+      line-height: 1.12;
+      color: var(--ink);
+    }
+
+    .h2-title {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 3.2vw, 38px);
+      font-weight: 650;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+
+    .h3-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 650;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+      color: var(--ink);
+    }
+
+    .body-lead {
+      font-size: clamp(16px, 1.25vw, 18px);
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #15803D;
+      margin-bottom: 8px;
+    }
+
+    .eyebrow-accent {
+      color: #15803D;
+    }
+
+    /* Section Header with Left Civic Accent Line */
+    .section-header {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: var(--sp-48);
+    }
+
+    .section-header::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 4px;
+      bottom: 4px;
+      width: 4px;
+      background: #15803D;
+      background: linear-gradient(180deg, #15803D 0%, #16A34A 70%, #FCD116 100%);
+      border-radius: 4px;
+    }
+
+    @media (max-width: 640px) {
+      .section-header {
+        padding-left: 16px;
+      }
+      .section-header::before {
+        width: 3.5px;
+      }
+    }
+
+    /* =============================================================
+       2. MANDATORY BUTTON STYLING (Strict GEMINI.md Compliance)
+       Corner-Anchored Green-to-Yellow Radial Gradient (Stroke-Free)
+       ============================================================= */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border-radius: var(--radius-pill);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: none;
+    }
+
+    .btn:focus-visible {
+      outline: 2px solid var(--ph-blue);
+      outline-offset: 2px;
+    }
+
+    /* All Buttons with Mandatory Green-to-Yellow Radial Gradient (Stroke-Free & Shadow-Free) */
+    .btn,
+    .btn-primary,
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: var(--radius-pill);
+      padding: 10px 22px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      background-color: #15803D !important;
+      background-image: radial-gradient(ellipse 75px 36px at 100% 100%, #FCD116 0%, #EAB308 28%, #16A34A 62%, transparent 100%) !important;
+      background-repeat: no-repeat !important;
+      color: #FFFFFF !important;
+      border: none !important;
+      outline: none !important;
+      box-shadow: none !important;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn:hover,
+    .btn-primary:hover,
+    .btn-secondary:hover {
+      background-color: #15803D !important;
+      background-image: radial-gradient(ellipse 75px 36px at 100% 100%, #FCD116 0%, #EAB308 28%, #16A34A 62%, transparent 100%) !important;
+      border: none !important;
+      outline: none !important;
+      color: #FFFFFF !important;
+      transform: translateY(-1px);
+      box-shadow: none !important;
+    }
+    .btn:active,
+    .btn-primary:active,
+    .btn-secondary:active {
+      transform: translateY(0);
+      box-shadow: none !important;
+    }
+    .btn svg,
+    .btn-primary svg,
+    .btn-secondary svg {
+      stroke: #FFFFFF !important;
+    }
+
+    .btn-sm {
+      padding: 7px 16px;
+      font-size: 13px;
+    }
+
+    .pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 12px;
+      font-weight: 500;
+      background-color: var(--field);
+      color: var(--ink);
+      border: none;
+      box-shadow: none;
+    }
+
+    .pill-badge-green {
+      background-color: #E8F5E9;
+      color: #15803D;
+      border: none;
+    }
+
+    .pill-badge-blue {
+      background-color: var(--ph-blue-tint);
+      color: var(--ph-blue);
+      border: none;
+    }
+
+    .pill-badge-yellow {
+      background-color: #FFFDE7;
+      color: #854D0E;
+      border: none;
+    }
+
+    .pill-badge-red {
+      background-color: var(--ph-red-tint);
+      color: var(--ph-red);
+      border: none;
+    }
+
+    /* =============================================================
+       3. FLOATING STADIUM NAVIGATION BAR (Synchronized)
+       ============================================================= */
+    /* =============================================================
+       STANDARDIZED CIVIC NAVIGATION & MOBILE DRAWER (Rule 2 & 4)
+       ============================================================= */
+    .nav-wrap, .nav-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .nav-pill {
+      font-family: var(--font-body);
+      pointer-events: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1200px;
+      height: 56px;
+      background: var(--nav-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--nav-border);
+      border-radius: 9999px;
+      padding: 0 12px 0 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .nav-pill:hover {
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .nav-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .nav-title-wrap {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .nav-republic {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .nav-lgu {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-link {
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover {
+      background: var(--field);
+      color: var(--ink);
+    }
+
+    .nav-link.active {
+      background: #15803D;
+      color: #FFFFFF !important;
+      font-weight: 600;
+    }
+
+    .nav-link.active svg {
+      stroke: #FFFFFF;
+    }
+
+    .nav-link.active:hover {
+      background: #15803D;
+      color: #FFFFFF !important;
+    }
+    .nav-link.active:hover svg {
+      stroke: #FFFFFF;
+    }
+
+    .nav-item.dropdown {
+      position: relative;
+    }
+
+    .dropdown-menu {
+      font-family: var(--font-body);
+      position: absolute;
+      top: calc(100% + 12px);
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      width: 320px;
+      background: var(--dropdown-bg);
+      border: 1px solid var(--hairline);
+      border-radius: 20px;
+      padding: 8px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .dropdown-menu::before {
+      content: '';
+      position: absolute;
+      top: -14px;
+      left: 0;
+      right: 0;
+      height: 14px;
+    }
+
+    .nav-item.dropdown:hover .dropdown-menu,
+    .nav-item.dropdown:focus-within .dropdown-menu,
+    .dropdown-menu.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 12px;
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--ink);
+      transition: background 0.15s ease;
+    }
+
+    .dropdown-item:hover {
+      background: var(--field);
+    }
+
+    .dropdown-item.active {
+      background: rgba(21, 128, 61, 0.08);
+    }
+
+    .dropdown-item.active .dropdown-item-title {
+      color: #15803D;
+      font-weight: 700;
+    }
+
+    .dropdown-item-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      background: transparent !important;
+      border: none !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+    }
+
+    .dropdown-item-icon svg {
+      stroke: url(#icon-green-yellow) !important;
+    }
+
+    .dropdown-item-content {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .dropdown-item-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+
+    .dropdown-item-desc {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.3;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .theme-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 9999px;
+      border: none;
+      background: var(--field);
+      color: var(--ink);
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      flex-shrink: 0;
+    }
+
+    .theme-toggle-btn:hover {
+      background: var(--soft-canvas);
+      color: var(--primary);
+      transform: scale(1.06);
+    }
+
+    :root:not([data-theme="dark"]) .theme-toggle-btn .sun-icon {
+      display: none !important;
+    }
+    :root:not([data-theme="dark"]) .theme-toggle-btn .moon-icon {
+      display: block !important;
+    }
+    [data-theme="dark"] .theme-toggle-btn .sun-icon {
+      display: block !important;
+    }
+    [data-theme="dark"] .theme-toggle-btn .moon-icon {
+      display: none !important;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .theme-toggle-btn .sun-icon {
+        display: block !important;
+      }
+      :root:not([data-theme="light"]) .theme-toggle-btn .moon-icon {
+        display: none !important;
+      }
+    }
+
+
+    .nav-spotlight-btn {
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      height: 36px;
+      border-radius: 9999px;
+      border: none;
+      background: var(--field);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .nav-spotlight-btn:hover {
+      background: var(--soft-canvas);
+      color: var(--ink);
+      border-color: #cbd5e1;
+    }
+
+    #btn-nav-action {
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .nav-spotlight-btn kbd {
+      font-size: 10px;
+      font-weight: 700;
+      background: #FFFFFF;
+      padding: 1px 5px;
+      border-radius: 4px;
+      border: 1px solid var(--hairline);
+      color: var(--muted);
+    }
+
+    .mobile-toggle {
+      display: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--hairline);
+      background: var(--canvas);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--ink);
+      transition: background 0.15s ease;
+    }
+
+    .mobile-toggle:hover {
+      background: var(--field);
+    }
+
+    @media (max-width: 1024px) {
+      .nav-menu {
+        display: none !important;
+      }
+      .mobile-toggle {
+        display: flex !important;
+      }
+    }
+
+    .mobile-drawer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      z-index: 1090;
+      display: none;
+    }
+
+    .mobile-drawer-overlay.open {
+      display: block;
+    }
+
+    .mobile-drawer {
+      font-family: var(--font-body);
+      position: fixed;
+      top: 80px;
+      left: 16px;
+      right: 16px;
+      background: var(--canvas);
+      border: none;
+      border-radius: var(--radius-panel, 20px);
+      padding: 20px;
+      z-index: 1100;
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+      max-height: calc(100vh - 110px);
+      overflow-y: auto;
+    }
+
+    .mobile-drawer.open {
+      display: flex;
+    }
+
+    .mobile-drawer a {
+      padding: 9px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: var(--radius-card, 10px);
+      color: var(--ink);
+      background: var(--soft-canvas);
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .mobile-drawer a:hover {
+      background: var(--field);
+    }
+
+    .mobile-drawer a.active {
+      font-weight: 700;
+      color: #15803D !important;
+      background: rgba(21, 128, 61, 0.08) !important;
+    }
+
+    /* =============================================================
+       4. PAGE HERO & MINIMAL PST TIMEKEEPER (Strict Rule 3 Standard)
+       ============================================================= */
+    .page-hero {
+      position: relative;
+      padding-top: calc(var(--header-height) + 52px);
+      padding-bottom: var(--sp-64);
+      background-color: #0E1A11;
+      background-image: linear-gradient(180deg, rgba(10, 26, 15, 0.78) 0%, rgba(8, 20, 12, 0.62) 50%, rgba(10, 20, 14, 0.90) 100%),
+                        url('assets/tumauini-municipal-hall-facade.jpg');
+      background-position: center 38%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+      color: #FFFFFF;
+    }
+
+    .hero-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--sp-24);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .hero-breadcrumb-link {
+      color: rgba(255, 255, 255, 0.75);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.15s ease;
+    }
+
+    .hero-breadcrumb-link:hover {
+      color: #FFFFFF;
+    }
+
+    .hero-breadcrumb-sep {
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 12px;
+    }
+
+    .hero-breadcrumb-current {
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    /* Official 3-Line Philippine Standard Time (Rule 3) */
+    .pst-timekeeper {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      text-align: right;
+      color: #FFFFFF;
+      user-select: none;
+    }
+
+    .pst-label {
+      font-size: 10.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.2;
+      margin-bottom: 2px;
+    }
+
+    .pst-clock {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: #FFFFFF;
+    }
+
+    .pst-date {
+      font-size: 11.5px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.2;
+      margin-top: 2px;
+    }
+
+    .page-hero .eyebrow {
+      color: #FCD116;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+
+    .page-hero .h1-title {
+      color: #FFFFFF;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
+      margin-bottom: 12px;
+    }
+
+    .page-hero .body-lead {
+      color: rgba(255, 255, 255, 0.9);
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+      line-height: 1.6;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: var(--sp-32);
+      flex-wrap: wrap;
+    }
+
+    .page-hero .btn-secondary {
+      background-color: #15803D !important;
+      background-image: radial-gradient(ellipse 75px 36px at 100% 100%, #FCD116 0%, #EAB308 28%, #16A34A 62%, transparent 100%) !important;
+      background-repeat: no-repeat !important;
+      color: #FFFFFF !important;
+      border: none !important;
+      outline: none !important;
+      box-shadow: none !important;
+    }
+
+    .page-hero .btn-secondary:hover {
+      background-color: #15803D !important;
+      background-image: radial-gradient(ellipse 75px 36px at 100% 100%, #FCD116 0%, #EAB308 28%, #16A34A 62%, transparent 100%) !important;
+      border: none !important;
+      outline: none !important;
+      color: #FFFFFF !important;
+      transform: translateY(-1px);
+      box-shadow: none !important;
+    }
+
+    @media (max-width: 768px) {
+      .hero-top-row {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+      }
+      .pst-timekeeper {
+        align-items: flex-start;
+        text-align: left;
+      }
+    }
+
+    /* =============================================================
+       5. PROCUREMENT STATS & METRICS
+       ============================================================= */
+    .bac-metrics-section {
+      padding: var(--sp-48) 0;
+      background-color: var(--canvas);
+      border: none;
+    }
+
+    .bac-metrics-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    @media (min-width: 600px) {
+      .bac-metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (min-width: 1024px) {
+      .bac-metrics-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .bac-metric-card {
+      background: var(--field);
+      border: none;
+      border-radius: var(--radius-card);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+      transition: all 0.2s ease;
+      box-shadow: none;
+    }
+    .bac-metric-card:hover {
+      transform: translateY(-2px);
+      box-shadow: none;
+    }
+
+    .bac-metric-num {
+      font-family: var(--font-display);
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      line-height: 1.1;
+    }
+    .bac-metric-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+    }
+    .bac-metric-sub {
+      font-size: 12.5px;
+      color: var(--muted);
+      border-top: 1px solid var(--hairline);
+      padding-top: 8px;
+    }
+
+    /* Notice Banner */
+    .bac-alert-banner {
+      background-color: var(--canvas);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-panel);
+      padding: 20px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: var(--sp-24);
+    }
+
+    /* =============================================================
+       6. INTERACTIVE PROCUREMENT OPPORTUNITIES DIRECTORY
+       ============================================================= */
+    .bids-directory-section {
+      padding: var(--sp-80) 0;
+    }
+
+    .search-filter-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: var(--sp-32);
+      margin-bottom: var(--sp-32);
+    }
+    @media (min-width: 900px) {
+      .search-filter-controls {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    .bid-search-box {
+      position: relative;
+      width: 100%;
+      max-width: 440px;
+    }
+    .bid-search-input {
+      width: 100%;
+      padding: 10px 16px 10px 42px;
+      font-size: 14px;
+      background: var(--canvas);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-pill);
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+    .bid-search-input:focus {
+      border-color: #15803D;
+    }
+    .bid-search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      pointer-events: none;
+    }
+
+    .filter-tabs-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+    .filter-tabs-wrap::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filter-tab {
+      padding: 7px 16px;
+      border-radius: var(--radius-pill);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      background-color: var(--soft-canvas);
+      border: 1px solid var(--hairline);
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .filter-tab:hover {
+      color: var(--ink);
+      border-color: #B5B5B5;
+    }
+    /* Mandatory Active Gradient Filter Tab */
+    .filter-tab.active {
+      color: #FFFFFF;
+      background-color: #15803D;
+      background-image: radial-gradient(ellipse 75px 36px at 100% 100%, #FCD116 0%, #EAB308 28%, #16A34A 62%, transparent 100%);
+      background-repeat: no-repeat;
+      border: none;
+      outline: none;
+      font-weight: 600;
+      box-shadow: none;
+    }
+
+    /* Bids Table / Card Layout */
+    .bids-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .bid-card {
+      background: var(--field);
+      border: none;
+      border-radius: var(--radius-card);
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      box-shadow: none;
+    }
+    @media (min-width: 900px) {
+      .bid-card {
+        grid-template-columns: 1.8fr 1.2fr auto;
+        align-items: center;
+      }
+    }
+    .bid-card:hover {
+      transform: translateY(-2px);
+      box-shadow: none;
+    }
+
+    .bid-ref-tag {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .bid-title {
+      font-family: var(--font-display);
+      font-size: 17.5px;
+      font-weight: 650;
+      color: var(--ink);
+      line-height: 1.3;
+      margin: 6px 0 4px;
+    }
+
+    .bid-office {
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+
+    .bid-finance-col {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .bid-abc-label {
+      font-size: 11.5px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .bid-abc-val {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+    .bid-deadline {
+      font-size: 12.5px;
+      color: #991B1B;
+      font-weight: 500;
+    }
+
+    /* =============================================================
+       7. BIDDER PARTICIPATION GUIDE & BAC SECRETARIAT
+       ============================================================= */
+    .guide-section {
+      padding: var(--sp-80) 0;
+      background-color: var(--soft-canvas);
+      border-top: 1px solid var(--hairline);
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .guide-steps-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: var(--sp-48);
+    }
+    @media (min-width: 680px) {
+      .guide-steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (min-width: 1024px) {
+      .guide-steps-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .guide-step-card {
+      background: var(--field);
+      border: none;
+      border-radius: var(--radius-card);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: none;
+      transition: all 0.2s ease;
+    }
+    .guide-step-card:hover {
+      transform: translateY(-2px);
+      box-shadow: none;
+    }
+    .step-number {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 800;
+      color: #15803D;
+      line-height: 1;
+    }
+
+    .secretariat-card {
+      background: #141414;
+      color: #FFFFFF;
+      border-radius: var(--radius-panel);
+      padding: clamp(32px, 4vw, 48px);
+      margin-top: var(--sp-48);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    @media (min-width: 900px) {
+      .secretariat-card {
+        grid-template-columns: 1.5fr 1fr;
+        align-items: center;
+      }
+    }
+
+    /* =============================================================
+       8. MODAL DIALOG CONTAINER
+       ============================================================= */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-backdrop.active {
+      display: flex;
+    }
+    .modal-sheet {
+      background: var(--canvas);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-panel);
+      width: 100%;
+      max-width: 720px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 36px;
+      position: relative;
+      animation: modalSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes modalSlideUp {
+      from { opacity: 0; transform: translateY(16px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .modal-close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--soft-canvas);
+      border: 1px solid var(--hairline);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--ink);
+    }
+
+    /* =============================================================
+       9. INVERSE FOOTER (Civic Green #15803D)
+       ============================================================= */
+    .footer-inverse {
+      background-color: var(--footer-bg);
+      color: #FFFFFF;
+      border-top-left-radius: var(--radius-panel);
+      border-top-right-radius: var(--radius-panel);
+      padding-top: var(--sp-80);
+      padding-bottom: var(--sp-48);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      margin-bottom: var(--sp-48);
+    }
+    @media (min-width: 900px) {
+      .footer-grid {
+        grid-template-columns: 1.2fr 2fr;
+        gap: 64px;
+      }
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .footer-brand-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 650;
+      letter-spacing: -0.01em;
+    }
+    .footer-brand-sub {
+      font-size: 13.5px;
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.6;
+      max-width: 380px;
+    }
+
+    .footer-columns {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    @media (min-width: 600px) {
+      .footer-columns {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .footer-col-title {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 18px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-link {
+      font-size: 13.5px;
+      color: rgba(255, 255, 255, 0.85);
+      transition: color 0.15s ease;
+    }
+    .footer-link:hover {
+      color: #FFFFFF;
+    }
+
+    .footer-bottom {
+      padding-top: var(--sp-32);
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 12.5px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    .footer-legal-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+    .footer-legal-links a:hover {
+      color: #FFFFFF;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Accessible Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Global SVG Linear Gradient for Icons (Corner-to-Corner Green to Yellow) -->
+  <svg width="0" height="0" style="position: absolute; width: 0; height: 0; overflow: hidden;" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="icon-green-yellow" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#15803D" />
+        <stop offset="35%" stop-color="#16A34A" />
+        <stop offset="80%" stop-color="#EAB308" />
+        <stop offset="100%" stop-color="#FCD116" />
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <!-- ============================================================
+       FLOATING STADIUM PILL NAVIGATION BAR (Synchronized)
+       ============================================================ -->
+  <header class="nav-wrap" role="banner">
+    <nav class="nav-pill" id="navbar" aria-label="Main Navigation">
+      <!-- Left: LGU Branding -->
+      <a href="index.html" class="nav-left" aria-label="Municipality of Tumauini Homepage">
+        <img src="assets/images/logo.png" alt="Seal of Tumauini" class="nav-logo" width="32" height="32" />
+        <div class="nav-title-wrap">
+          <span class="nav-republic">Republic of the Philippines</span>
+          <span class="nav-lgu">Municipality of Tumauini</span>
+        </div>
+      </a>
+
+      <!-- Center: Stadium Menu Items -->
+      <ul class="nav-menu" role="menubar">
+        <!-- 1. Home -->
+        <li role="none"><a href="index.html" class="nav-link" role="menuitem">Home</a></li>
+
+        <!-- 2. About Us Dropdown -->
+        <li class="nav-item dropdown" role="none">
+          <button class="nav-link dropdown-toggle" id="about-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+            <span>About Us</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="dropdown-menu" id="about-dropdown-menu" role="menu" aria-labelledby="about-dropdown-btn">
+            <a href="barangays.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">46 Barangays Directory</span>
+                <span class="dropdown-item-desc">Territorial & demographic profile</span>
+              </div>
+            </a>
+            <a href="municipal-profile.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Municipal Profile</span>
+                <span class="dropdown-item-desc">Geography, climate & demographics</span>
+              </div>
+            </a>
+            <a href="historical-background.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Historical Background</span>
+                <span class="dropdown-item-desc">1705 founding & heritage</span>
+              </div>
+            </a>
+            <a href="awards-and-recognition.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Awards & Citations</span>
+                <span class="dropdown-item-desc">Civic governance accolades</span>
+              </div>
+            </a>
+            <a href="elected-officials.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Elected Officials</span>
+                <span class="dropdown-item-desc">Mayor, Vice Mayor & Councilors</span>
+              </div>
+            </a>
+            <a href="department-heads.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><polyline points="16 11 18 13 22 9"></polyline></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Department Heads</span>
+                <span class="dropdown-item-desc">Executive directors & chiefs</span>
+              </div>
+            </a>
+            <a href="mission-and-vision.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Mission & Vision</span>
+                <span class="dropdown-item-desc">Strategic development & civic goals</span>
+              </div>
+            </a>
+          </div>
+        </li>
+
+        <!-- 3. Services Dropdown -->
+        <li class="nav-item dropdown" role="none">
+          <button class="nav-link dropdown-toggle" id="services-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+            <span>Services</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="dropdown-menu" id="services-dropdown-menu" role="menu" aria-labelledby="services-dropdown-btn">
+            <a href="services.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Citizen's Charter & Services</span>
+                <span class="dropdown-item-desc">Business, civil registry & permits</span>
+              </div>
+            </a>
+            <a href="tax-calculator.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line><line x1="16" y1="14" x2="16" y2="18"></line><path d="M16 10h.01"></path><path d="M12 10h.01"></path><path d="M8 10h.01"></path><path d="M12 14h.01"></path><path d="M8 14h.01"></path><path d="M12 18h.01"></path><path d="M8 18h.01"></path></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Business Tax Calculator</span>
+                <span class="dropdown-item-desc">Mayor's Permit & LBT estimates</span>
+              </div>
+            </a>
+            <a href="map.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Interactive GIS Map</span>
+                <span class="dropdown-item-desc">46 Barangays & flood zones</span>
+              </div>
+            </a>
+            <a href="mdrrmo.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">MDRRMO & Rescue 3325</span>
+                <span class="dropdown-item-desc">Disaster telemetry & 24/7 rescue</span>
+              </div>
+            </a>
+          </div>
+        </li>
+
+        <!-- 4. Transparency Dropdown -->
+        <li class="nav-item dropdown" role="none">
+          <button class="nav-link dropdown-toggle active" id="transparency-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+            <span>Transparency</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="dropdown-menu" id="transparency-dropdown-menu" role="menu" aria-labelledby="transparency-dropdown-btn">
+            <a href="bids-and-awards.html" class="dropdown-item active" aria-current="page" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Bids & Awards (BAC)</span>
+                <span class="dropdown-item-desc">Procurement notices, bids & awards</span>
+              </div>
+            </a>
+            <a href="fund-utilization.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Fund Utilization Report</span>
+                <span class="dropdown-item-desc">Form 74-A & COA disclosures</span>
+              </div>
+            </a>
+            <a href="ordinances.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Ordinances & Resolutions</span>
+                <span class="dropdown-item-desc">Sangguniang Bayan legislative acts</span>
+              </div>
+            </a>
+          </div>
+        </li>
+
+        <!-- 5. Explore Dropdown -->
+        <li class="nav-item dropdown" role="none">
+          <button class="nav-link dropdown-toggle" id="explore-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+            <span>Explore</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="dropdown-menu" id="explore-dropdown-menu" role="menu" aria-labelledby="explore-dropdown-btn">
+            <a href="tourism.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Tourism & Heritage</span>
+                <span class="dropdown-item-desc">San Matias Church & ecotourism</span>
+              </div>
+            </a>
+            <a href="smart-city.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Smart & Sustainable City</span>
+                <span class="dropdown-item-desc">Agri-tech, IoT & green roadmap</span>
+              </div>
+            </a>
+          </div>
+        </li>
+
+        <!-- 6. News -->
+        <li role="none"><a href="news.html" class="nav-link" role="menuitem">News</a></li>
+      </ul>
+
+      <!-- Right: Spotlight Search, Primary Action & Mobile Toggle -->
+      <div class="nav-right">
+                <button class="theme-toggle-btn" id="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle light or dark theme" title="Toggle Theme">
+          <svg class="sun-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="21" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg class="moon-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+        <button class="nav-spotlight-btn" onclick="openSpotlight()" aria-label="Search municipal portal (Ctrl+K)" title="Search (Ctrl + K)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <span>Search</span>
+          <kbd>Ctrl K</kbd>
+        </button>
+
+        <a href="services.html" class="btn btn-primary btn-sm" id="btn-nav-action">
+          <span>Online Services</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+        </a>
+
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Open mobile navigation menu" onclick="toggleMobileMenu()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer-overlay" id="mobile-drawer-overlay" onclick="toggleMobileMenu()"></div>
+  <div class="mobile-drawer" id="mobile-drawer">
+    <button onclick="toggleMobileMenu(); openSpotlight();" style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; font-size: 14px; font-weight: 500; border-radius: var(--radius-card); color: var(--ink); background: var(--field); border: none; cursor: pointer; text-align: left; width: 100%;">
+      <span style="display: flex; align-items: center; gap: 8px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        Search Portal (Ctrl + K)
+      </span>
+      <kbd style="font-size: 10px; font-weight: 700; background: #fff; padding: 2px 6px; border-radius: 4px; border: 1px solid #d4d4d4;">Ctrl K</kbd>
+    </button>
+    <button class="mobile-theme-btn" onclick="toggleTheme()" aria-label="Toggle light or dark theme" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; font-size: 13px; font-weight: 600; border-radius: var(--radius-card); color: var(--ink); background: var(--field); border: none; cursor: pointer; text-align: left; width: 100%; margin-top: 6px;">
+      <span style="display: flex; align-items: center; gap: 8px;">
+        <span class="theme-icon-slot">
+          <svg class="sun-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="21" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg class="moon-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </span>
+        <span>Theme Mode</span>
+      </span>
+      <span class="theme-mode-badge" style="font-size: 11px; padding: 2px 8px; border-radius: var(--radius-pill); background: var(--canvas); color: var(--muted); font-weight: 500;">Toggle</span>
+    </button>
+    <a href="index.html">Home</a>
+
+    <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #15803D; padding: 6px 14px 2px;">About Tumauini</div>
+    <a href="barangays.html">46 Barangays Directory ↗</a>
+    <a href="municipal-profile.html">Municipal Profile ↗</a>
+    <a href="historical-background.html">Historical Background ↗</a>
+    <a href="awards-and-recognition.html">Awards & Recognition ↗</a>
+    <a href="elected-officials.html">Elected Officials ↗</a>
+    <a href="department-heads.html">Department Heads ↗</a>
+    <a href="mission-and-vision.html">Mission & Vision ↗</a>
+
+    <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #15803D; padding: 8px 14px 2px;">Citizen Services</div>
+    <a href="services.html">Citizen's Charter & Services ↗</a>
+    <a href="tax-calculator.html">Business Tax Calculator ↗</a>
+    <a href="map.html">Interactive GIS Map ↗</a>
+    <a href="mdrrmo.html">MDRRMO & Rescue 3325 ↗</a>
+
+    <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #15803D; padding: 8px 14px 2px;">Transparency</div>
+    <a href="bids-and-awards.html" class="active">Bids & Awards Committee (BAC) ↗</a>
+    <a href="fund-utilization.html">Fund Utilization Report ↗</a>
+    <a href="ordinances.html">Ordinances & Resolutions ↗</a>
+
+    <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #15803D; padding: 8px 14px 2px;">Explore & Innovation</div>
+    <a href="tourism.html">Tourism & Cultural Heritage ↗</a>
+    <a href="smart-city.html">Smart & Sustainable City ↗</a>
+
+    <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #15803D; padding: 8px 14px 2px;">News & Updates</div>
+    <a href="news.html">News & Announcements ↗</a>
+  </div>
+
+  <main id="main-content">
+
+    <!-- =============================================================
+         HERO SECTION WITH 3-LINE PST TIMEKEEPER (Rule 3)
+         ============================================================= -->
+    <section class="page-hero" aria-labelledby="bac-hero-title">
+      <div class="container">
+        
+        <div class="hero-top-row">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <a href="index.html" class="hero-breadcrumb-link">Home</a>
+            <span class="hero-breadcrumb-sep">/</span>
+            <span class="hero-breadcrumb-current">Bids &amp; Awards Committee</span>
+          </div>
+
+          <!-- Official 3-Line Philippine Standard Time (Rule 3) -->
+          <div class="pst-timekeeper" aria-label="Philippine Standard Time">
+            <span class="pst-label">Philippine Standard Time</span>
+            <span class="pst-clock" id="pst-live-time">12:00:00 PM</span>
+            <span class="pst-date" id="pst-live-date">Thursday, October 01, 2026</span>
+          </div>
+        </div>
+
+        <div style="max-width: 860px;">
+          <span class="eyebrow">Republic Act 9184 &bull; PhilGEPS Procurement Transparency</span>
+          <h1 class="h1-title" id="bac-hero-title">
+            Bids &amp; Awards Committee (BAC).
+          </h1>
+          <p class="body-lead">
+            Open, competitive, and transparent public procurement under RA 9184 and PhilGEPS.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#bids-directory" class="btn btn-primary">
+              <span>View Active Bidding Opportunities</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+            </a>
+            <a href="#bidder-guide" class="btn btn-secondary">
+              <span>Bidder Guidelines &amp; Requirements</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PROCUREMENT STATS & METRICS
+         ============================================================ -->
+    <section class="bac-metrics-section" aria-labelledby="metrics-title">
+      <div class="container">
+        
+        <div class="section-header" style="margin-bottom: 24px;">
+          <span class="eyebrow">Fiscal Year 2026 Procurement Status</span>
+          <h2 class="h2-title" id="metrics-title" style="font-size: 22px;">Municipal Procurement at a Glance</h2>
+        </div>
+
+        <div class="bac-metrics-grid">
+          
+          <div class="bac-metric-card">
+            <span class="bac-metric-label">Active Invitations to Bid</span>
+            <div class="bac-metric-num" style="color: #15803D;">6 Active</div>
+            <div class="bac-metric-sub">Open for competitive bids</div>
+          </div>
+
+          <div class="bac-metric-card">
+            <span class="bac-metric-label">Approved Budget (ABC)</span>
+            <div class="bac-metric-num">₱48.75 M</div>
+            <div class="bac-metric-sub">Active procurement volume</div>
+          </div>
+
+          <div class="bac-metric-card">
+            <span class="bac-metric-label">Contracts Awarded (YTD)</span>
+            <div class="bac-metric-num">24 Projects</div>
+            <div class="bac-metric-sub">PhilGEPS transparency posted</div>
+          </div>
+
+          <div class="bac-metric-card">
+            <span class="bac-metric-label">PhilGEPS Compliance</span>
+            <div class="bac-metric-num" style="color: var(--ph-blue);">100% Platinum</div>
+            <div class="bac-metric-sub">Full disclosure certified</div>
+          </div>
+
+        </div>
+
+        <!-- Fund Utilization Cross-Link Banner -->
+        <div class="bac-alert-banner" style="margin-top: var(--sp-24); background: var(--canvas); border: 1px solid var(--hairline);">
+          <div style="display: flex; align-items: center; gap: 14px;">
+            <span class="pill-badge pill-badge-blue" style="font-weight: 600;">FINANCIAL DISCLOSURE</span>
+            <p style="font-size: 13.5px; color: var(--ink); margin: 0;">
+              <strong>Statutory Fund Utilization:</strong> Inspect 20% Development Fund, Calamity Fund, and project execution status under DILG Full Disclosure Policy.
+            </p>
+          </div>
+          <a href="index.html#fund-utilization" class="btn btn-secondary btn-sm">
+            <span>View Fund Utilization Report</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         INTERACTIVE PROCUREMENT OPPORTUNITIES DIRECTORY
+         ============================================================ -->
+    <section class="bids-directory-section" id="bids-directory" aria-labelledby="directory-title">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="eyebrow eyebrow-accent">Procurement Bulletin Board</span>
+          <h2 class="h2-title" id="directory-title">Active Bids, RFQs & Awarded Contracts.</h2>
+          <p class="body-lead" style="max-width: 680px; margin-top: 8px;">
+            Filter opportunities by procurement type or search by PhilGEPS reference number and project name.
+          </p>
+        </div>
+
+        <!-- Controls: Search & Category Tabs -->
+        <div class="search-filter-controls">
+          <div class="filter-tabs-wrap" role="tablist" aria-label="Procurement categories">
+            <button class="filter-tab active" data-category="all" onclick="setBidCategory('all', this)" role="tab" aria-selected="true">All Opportunities (6)</button>
+            <button class="filter-tab" data-category="civil" onclick="setBidCategory('civil', this)" role="tab" aria-selected="false">Civil Works</button>
+            <button class="filter-tab" data-category="goods" onclick="setBidCategory('goods', this)" role="tab" aria-selected="false">Goods & Supplies</button>
+            <button class="filter-tab" data-category="consulting" onclick="setBidCategory('consulting', this)" role="tab" aria-selected="false">Consulting</button>
+            <button class="filter-tab" data-category="rfq" onclick="setBidCategory('rfq', this)" role="tab" aria-selected="false">Small Value / RFQ</button>
+            <button class="filter-tab" data-category="awarded" onclick="setBidCategory('awarded', this)" role="tab" aria-selected="false">Awarded</button>
+          </div>
+
+          <div class="bid-search-box">
+            <svg class="bid-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="bid-search" class="bid-search-input" placeholder="Search reference ID, project title, or office..." aria-label="Search bids and procurement records" oninput="filterBids()">
+          </div>
+        </div>
+
+        <!-- Bids List Container -->
+        <div class="bids-list" id="bids-container">
+          
+          <!-- Bid 1: Civil Works Road Concreting -->
+          <article class="bid-card" data-category="civil" data-keywords="concreting road farm to market poblacion engineering civil works" onclick="openBidModal('bid-1')">
+            <div>
+              <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+                <span class="bid-ref-tag">PhilGEPS Ref: 10842910</span>
+                <span class="pill-badge pill-badge-green">Open / Active</span>
+              </div>
+              <h3 class="bid-title">Concreting of Barangay Poblacion to Lapogan Farm-to-Market Access Road (Phase 3)</h3>
+              <p class="bid-office">Implementing Unit: Municipal Engineering Office · Fund: 20% Development Fund</p>
+            </div>
+            <div class="bid-finance-col">
+              <span class="bid-abc-label">Approved Budget (ABC)</span>
+              <div class="bid-abc-val">₱ 14,850,000.00</div>
+              <div class="bid-deadline">Deadline: Oct 14, 2026 · 09:30 AM</div>
+            </div>
+            <div>
+              <span class="btn btn-primary btn-sm">
+                <span>View ITB Notice</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </span>
+            </div>
+          </article>
+
+          <!-- Bid 2: Goods & Agri Inputs -->
+          <article class="bid-card" data-category="goods" data-keywords="hybrid corn seeds fertilizer subsidies agriculture farmers grain" onclick="openBidModal('bid-2')">
+            <div>
+              <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+                <span class="bid-ref-tag">PhilGEPS Ref: 10842955</span>
+                <span class="pill-badge pill-badge-green">Open / Active</span>
+              </div>
+              <h3 class="bid-title">Procurement of Certified Yellow Hybrid Corn Seeds and Organic Soil Conditioners for Agrarian Cooperatives</h3>
+              <p class="bid-office">Implementing Unit: Office of the Municipal Agriculturist (OMA) · General Fund</p>
+            </div>
+            <div class="bid-finance-col">
+              <span class="bid-abc-label">Approved Budget (ABC)</span>
+              <div class="bid-abc-val">₱ 8,420,000.00</div>
+              <div class="bid-deadline">Deadline: Oct 12, 2026 · 10:00 AM</div>
+            </div>
+            <div>
+              <span class="btn btn-primary btn-sm">
+                <span>View ITB Notice</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </span>
+            </div>
+          </article>
+
+          <!-- Bid 3: MDRRMO Disaster Rescue Equipment -->
+          <article class="bid-card" data-category="goods" data-keywords="rescue mdrrmo boats flood equipment sirens disaster disaster response" onclick="openBidModal('bid-3')">
+            <div>
+              <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+                <span class="bid-ref-tag">PhilGEPS Ref: 10843102</span>
+                <span class="pill-badge pill-badge-blue">Pre-Bid Scheduled</span>
+              </div>
+              <h3 class="bid-title">Supply and Delivery of High-Capacity Inflatable Rescue Boats, Outboard Motors, and Water Safety Gear</h3>
+              <p class="bid-office">Implementing Unit: Municipal Disaster Risk Reduction & Management Office (MDRRMO 3325)</p>
+            </div>
+            <div class="bid-finance-col">
+              <span class="bid-abc-label">Approved Budget (ABC)</span>
+              <div class="bid-abc-val">₱ 5,600,000.00</div>
+              <div class="bid-deadline">Deadline: Oct 18, 2026 · 09:00 AM</div>
+            </div>
+            <div>
+              <span class="btn btn-primary btn-sm">
+                <span>View ITB Notice</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </span>
+            </div>
+          </article>
+
+          <!-- Bid 4: Consulting Services Comprehensive Land Use -->
+          <article class="bid-card" data-category="consulting" data-keywords="clup land use zoning gis mapping planning consulting study" onclick="openBidModal('bid-4')">
+            <div>
+              <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+                <span class="bid-ref-tag">PhilGEPS Ref: 10843220</span>
+                <span class="pill-badge pill-badge-yellow">Under Evaluation</span>
+              </div>
+              <h3 class="bid-title">Consulting Services for the Formulation of Comprehensive Land Use Plan (CLUP 2026–2036) and GIS Hazard Integration</h3>
+              <p class="bid-office">Implementing Unit: Municipal Planning and Development Office (MPDO)</p>
+            </div>
+            <div class="bid-finance-col">
+              <span class="bid-abc-label">Approved Budget (ABC)</span>
+              <div class="bid-abc-val">₱ 3,500,000.00</div>
+              <div class="bid-deadline" style="color: var(--muted);">Bids Closed · Under Technical Review</div>
+            </div>
+            <div>
+              <span class="btn btn-primary btn-sm">
+                <span>View Status</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </span>
+            </div>
+          </article>
+
+          <!-- Bid 5: Small Value RFQ -->
+          <article class="bid-card" data-category="rfq" data-keywords="rfq small value medical supplies health center medicines rural" onclick="openBidModal('bid-5')">
+            <div>
+              <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+                <span class="bid-ref-tag">RFQ No: 2026-SVP-044</span>
+                <span class="pill-badge pill-badge-green">Open RFQ</span>
+              </div>
+              <h3 class="bid-title">Supply & Delivery of Essential Maintenance Medicines and Laboratory Diagnostic Reagents</h3>
+              <p class="bid-office">Implementing Unit: Municipal Health Office (MHO) · Small Value Procurement (Sec. 53.9)</p>
+            </div>
+            <div class="bid-finance-col">
+              <span class="bid-abc-label">Approved Budget (ABC)</span>
+              <div class="bid-abc-val">₱ 850,000.00</div>
+              <div class="bid-deadline">Deadline: Oct 05, 2026 · 02:00 PM</div>
+            </div>
+            <div>
+              <span class="btn btn-primary btn-sm">
+                <span>View RFQ</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </span>
+            </div>
+          </article>
+
+          <!-- Bid 6: Awarded Contract -->
+          <article class="bid-card" data-category="awarded" data-keywords="awarded solar drainage municipal hall belfry maintenance" onclick="openBidModal('bid-6')">
+            <div>
+              <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+                <span class="bid-ref-tag">NOA-2026-021</span>
+                <span class="pill-badge" style="background: #E5E7EB; color: #374151;">Notice of Award</span>
+              </div>
+              <h3 class="bid-title">Construction of Municipal Stormwater Drainage Canal along National Highway (Section B)</h3>
+              <p class="bid-office">Awardee: Northern Builders & Construction Supply · Contract Amount: ₱ 11,480,210.00</p>
+            </div>
+            <div class="bid-finance-col">
+              <span class="bid-abc-label">Contract Amount</span>
+              <div class="bid-abc-val">₱ 11,480,210.00</div>
+              <div class="bid-deadline" style="color: #15803D;">Notice to Proceed Issued · Ongoing</div>
+            </div>
+            <div>
+              <span class="btn btn-primary btn-sm">
+                <span>View NOA / NTP</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </span>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- No Results Fallback -->
+        <div id="no-bids-msg" style="display: none; text-align: center; padding: 48px 24px; background: var(--soft-canvas); border-radius: var(--radius-card); border: 1px solid var(--hairline); margin-top: 24px;">
+          <p style="font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 6px;">No procurement records found</p>
+          <p style="font-size: 13.5px; color: var(--muted); margin-bottom: 16px;">Try adjusting your reference search or selecting a different procurement category.</p>
+          <button class="btn btn-primary btn-sm" onclick="resetBidFilters()">Reset All Filters</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BIDDER PARTICIPATION GUIDE & BAC SECRETARIAT
+         ============================================================ -->
+    <section class="guide-section" id="bidder-guide" aria-labelledby="guide-title">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="eyebrow eyebrow-accent">Supplier & Contractor Portal</span>
+          <h2 class="h2-title" id="guide-title">How to Participate in Tumauini Municipal Bidding.</h2>
+          <p class="body-lead" style="max-width: 720px; margin-top: 8px;">
+            A step-by-step roadmap for registered contractors, suppliers, and service providers under Republic Act 9184.
+          </p>
+        </div>
+
+        <div class="guide-steps-grid">
+          
+          <div class="guide-step-card">
+            <div>
+              <div class="step-number">01</div>
+              <h4 style="font-size: 16px; font-weight: 600; margin: 10px 0 6px;">PhilGEPS Registration</h4>
+              <p style="font-size: 13px; color: var(--muted); line-height: 1.55;">
+                Maintain valid PhilGEPS Platinum Membership registration.
+              </p>
+            </div>
+            <div style="font-size: 11.5px; color: #15803D; font-weight: 600;">Certificate of Registration Required</div>
+          </div>
+
+          <div class="guide-step-card">
+            <div>
+              <div class="step-number">02</div>
+              <h4 style="font-size: 16px; font-weight: 600; margin: 10px 0 6px;">Secure Bidding Documents</h4>
+              <p style="font-size: 13px; color: var(--muted); line-height: 1.55;">
+                Download documents from PhilGEPS or visit the BAC Secretariat.
+              </p>
+            </div>
+            <div style="font-size: 11.5px; color: #15803D; font-weight: 600;">Official Bid Fee per GPPB Rates</div>
+          </div>
+
+          <div class="guide-step-card">
+            <div>
+              <div class="step-number">03</div>
+              <h4 style="font-size: 16px; font-weight: 600; margin: 10px 0 6px;">Pre-Bid & Submission</h4>
+              <p style="font-size: 13px; color: var(--muted); line-height: 1.55;">
+                Attend pre-bid conference and submit sealed envelopes before deadline.
+              </p>
+            </div>
+            <div style="font-size: 11.5px; color: #15803D; font-weight: 600;">Two-Envelope System (RA 9184)</div>
+          </div>
+
+          <div class="guide-step-card">
+            <div>
+              <div class="step-number">04</div>
+              <h4 style="font-size: 16px; font-weight: 600; margin: 10px 0 6px;">Bid Opening & Evaluation</h4>
+              <p style="font-size: 13px; color: var(--muted); line-height: 1.55;">
+                Transparent public bid opening and post-qualification evaluation.
+              </p>
+            </div>
+            <div style="font-size: 11.5px; color: #15803D; font-weight: 600;">Lowest Calculated Responsive Bid</div>
+          </div>
+
+        </div>
+
+        <!-- Secretariat Contact Card -->
+        <div class="secretariat-card">
+          <div>
+            <span class="eyebrow" style="color: #FCD116;">BAC Secretariat & Procurement Directorate</span>
+            <h3 class="h2-title" style="color: #FFFFFF; margin: 8px 0 12px; font-size: 24px;">Need Assistance with Public Bidding?</h3>
+            <p style="font-size: 14.5px; color: rgba(255, 255, 255, 0.8); line-height: 1.6;">
+              Ground Floor, Tumauini Municipal Hall. Monday to Friday, 8:00 AM – 5:00 PM.
+            </p>
+            <div style="margin-top: 18px; font-size: 13.5px; color: rgba(255, 255, 255, 0.9);">
+              <p><strong>Email:</strong> bac@tumauini.gov.ph · <strong>Trunkline:</strong> (078) 323-2004 loc. 104</p>
+            </div>
+          </div>
+          <div>
+            <a href="index.html#feedback" class="btn btn-primary" style="width: 100%; justify-content: center;">
+              <span>Submit Procurement Inquiry</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       INVERSE FOOTER (#141414)
+       ============================================================ -->
+  <footer class="footer-inverse" role="contentinfo">
+    <div class="container">
+      
+      <div class="footer-grid">
+        
+        <div>
+          <div class="footer-brand">
+            <div class="seal-wrap" style="width: 44px; height: 44px; background: #FFFFFF; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 2px;">
+              <img src="assets/tumauini-official-seal.png" alt="Official Seal of Tumauini" class="seal-img" width="40" height="40" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+            <div>
+              <h3 class="footer-brand-title">Municipality of Tumauini</h3>
+              <span style="font-size: 12px; color: rgba(255, 255, 255, 0.85);">Province of Isabela, Philippines</span>
+            </div>
+          </div>
+          <p class="footer-brand-sub">
+            Serving Tumauini through accessible, transparent, and responsive local government across all 46 barangays.
+          </p>
+          <div style="margin-top: 16px; font-size: 12px; color: rgba(255, 255, 255, 0.85);">
+            <div><strong>Municipal Hall:</strong> National Highway, Tumauini, Isabela 3325</div>
+            <div style="margin-top: 4px;"><strong>Office Hours:</strong> Monday – Friday, 8:00 AM – 5:00 PM</div>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">About Tumauini</h4>
+          <ul class="footer-links">
+            <li><a href="ordinances.html" class="footer-link">Ordinances &amp; Resolutions</a></li>
+            <li><a href="barangays.html" class="footer-link">46 Barangays Directory</a></li>
+            <li><a href="municipal-profile.html" class="footer-link">Municipal Profile</a></li>
+            <li><a href="historical-background.html" class="footer-link">Historical Background</a></li>
+            <li><a href="awards-and-recognition.html" class="footer-link">Awards &amp; Recognition</a></li>
+            <li><a href="elected-officials.html" class="footer-link">Elected Officials</a></li>
+            <li><a href="department-heads.html" class="footer-link">Department Heads</a></li>
+            <li><a href="mission-and-vision.html" class="footer-link">Mission &amp; Vision</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Services &amp; Portals</h4>
+          <ul class="footer-links">
+            <li><a href="services.html" class="footer-link">Citizen’s Charter &amp; Services</a></li>
+            <li><a href="map.html" class="footer-link">Interactive GIS Map</a></li>
+            <li><a href="tax-calculator.html" class="footer-link">Tax &amp; Fee Calculator</a></li>
+            <li><a href="mdrrmo.html" class="footer-link">Disaster Telemetry (MDRRMO)</a></li>
+            <li><a href="news.html" class="footer-link">News &amp; Bulletins</a></li>
+            <li><a href="smart-city.html" class="footer-link">Smart &amp; Sustainable City</a></li>
+            <li><a href="bids-and-awards.html" class="footer-link" style="color: #FFFFFF; font-weight: 700;">Bids &amp; Awards (BAC)</a></li>
+            <li><a href="fund-utilization.html" class="footer-link">Fund Utilization (FDP)</a></li>
+            <li><a href="tourism.html" class="footer-link">Tourism &amp; Heritage</a></li>
+            <li><a href="index.html#transparency" class="footer-link">Full Disclosure Portal</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Emergency Hotlines</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#emergency" class="footer-link" style="color: #F87171;">Rescue 3325: (078) 323-2004</a></li>
+            <li><a href="index.html#emergency" class="footer-link">PNP Tumauini: 0917-123-4567</a></li>
+            <li><a href="index.html#emergency" class="footer-link">BFP Fire Station: 0917-987-6543</a></li>
+            <li><a href="index.html#emergency" class="footer-link">Municipal Health Office</a></li>
+            <li><a href="index.html#feedback" class="footer-link">Public Assistance &amp; Feedback</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 Municipal Government of Tumauini, Isabela. All public rights reserved. Official Philippine Government Portal.
+        </div>
+        <div style="display: flex; gap: 16px;">
+          <a href="index.html" class="footer-link">Home</a>
+          <a href="services.html" class="footer-link">Services</a>
+          <a href="index.html#transparency" class="footer-link">Transparency</a>
+          <a href="index.html#emergency" class="footer-link">Emergency</a>
+          <a href="index.html#feedback" class="footer-link">Citizen Feedback</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       MODAL DIALOG CONTAINER
+       ============================================================ -->
+  <div class="modal-backdrop" id="bid-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" onclick="if(event.target===this)closeBidModal()">
+    <div class="modal-sheet">
+      <button class="modal-close-btn" onclick="closeBidModal()" aria-label="Close procurement details">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+      <div id="bid-modal-content">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 1. Mobile Menu Drawer Controller
+    // Standardized Mobile Menu Toggle
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobile-drawer');
+      const overlay = document.getElementById('mobile-drawer-overlay');
+      const toggleBtn = document.getElementById('mobile-toggle');
+      const isOpen = drawer?.classList.toggle('open');
+      overlay?.classList.toggle('open', !!isOpen);
+      if (toggleBtn) {
+        toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      }
+    }
+
+    // Keyboard and Touch Handlers for Nav
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        const drawer = document.getElementById('mobile-drawer');
+        const overlay = document.getElementById('mobile-drawer-overlay');
+        if (drawer && drawer.classList.contains('open')) {
+          drawer.classList.remove('open');
+          overlay?.classList.remove('open');
+        }
+        document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('open'));
+      }
+    });
+
+    document.querySelectorAll('.dropdown-toggle').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const menu = this.nextElementSibling;
+        if (!menu) return;
+        const isOpen = menu.classList.contains('open');
+        document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('open'));
+        if (!isOpen) {
+          menu.classList.add('open');
+          this.setAttribute('aria-expanded', 'true');
+        } else {
+          menu.classList.remove('open');
+          this.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.nav-item.dropdown')) {
+        document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('open'));
+        document.querySelectorAll('.dropdown-toggle').forEach(t => t.setAttribute('aria-expanded', 'false'));
+      }
+    });
+
+    // 2. Live Philippine Standard Time Clock (Rule 3)
+    function updatePSTClock() {
+      try {
+        const now = new Date();
+        const timeFormatter = new Intl.DateTimeFormat('en-US', {
+          timeZone: 'Asia/Manila',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: true
+        });
+        const dateFormatter = new Intl.DateTimeFormat('en-US', {
+          timeZone: 'Asia/Manila',
+          weekday: 'long',
+          month: '2-digit',
+          day: '2-digit',
+          year: 'numeric'
+        });
+
+        const timeElem = document.getElementById('pst-live-clock') || document.getElementById('pst-live-time') || document.getElementById('pst-time');
+        const dateElem = document.getElementById('pst-live-date') || document.getElementById('pst-date');
+        if (timeElem) timeElem.textContent = timeFormatter.format(now);
+        if (dateElem) dateElem.textContent = dateFormatter.format(now);
+      } catch (err) {
+        console.error('Error updating PST clock:', err);
+      }
+    }
+    setInterval(updatePSTClock, 1000);
+    updatePSTClock();
+
+    // 3. Procurement Opportunities Data Repository
+    const bidOpportunities = {
+      'bid-1': {
+        ref: "PhilGEPS Ref: 10842910 · ITB No. TMN-CW-2026-08",
+        status: "Open / Active",
+        title: "Concreting of Barangay Poblacion to Lapogan Farm-to-Market Access Road (Phase 3)",
+        abc: "₱ 14,850,000.00",
+        unit: "Municipal Engineering Office",
+        deadline: "October 14, 2026 at 09:30 AM",
+        prebid: "October 02, 2026 at 10:00 AM (BAC Conference Room)",
+        details: `
+          <p class="body-lead" style="font-size: 14px; margin-bottom: 14px;">
+            The Municipal Government of Tumauini, through the 20% Municipal Development Fund (MDF 2026), intends to apply the sum of <strong>₱14,850,000.00</strong> being the Approved Budget for the Contract (ABC) to payments under the contract for <em>Concreting of Barangay Poblacion to Lapogan Farm-to-Market Access Road (Phase 3)</em>.
+          </p>
+          <h4 style="font-size: 15px; font-weight: 600; margin: 16px 0 8px;">Scope of Civil Works:</h4>
+          <ul style="padding-left: 20px; font-size: 13.5px; color: var(--muted); margin-bottom: 16px; line-height: 1.6;">
+            <li>Subgrade preparation and aggregate sub-base course (Length: 2.45 km, Width: 5.0 m, Thickness: 200 mm PCCP).</li>
+            <li>Reinforced concrete box culverts and roadside lined storm drainage gutters.</li>
+            <li>Thermoplastic pavement markings and solar safety delineators.</li>
+            <li>Contract duration: 180 Calendar Days. PCAB License Required: Category C & D (Roads, Highways & Bridges).</li>
+          </ul>
+          <div style="background-color: var(--soft-canvas); border: 1px solid var(--hairline); border-radius: var(--radius-card); padding: 16px;">
+            <p style="font-size: 12.5px; color: var(--muted); margin: 0;">
+              <strong>Bid Document Fee:</strong> ₱ 25,000.00 (Non-refundable per GPPB Guidelines) · <strong>Opening of Bids:</strong> Oct 14, 2026, 10:00 AM.
+            </p>
+          </div>
+        `
+      },
+      'bid-2': {
+        ref: "PhilGEPS Ref: 10842955 · ITB No. TMN-GOODS-2026-15",
+        status: "Open / Active",
+        title: "Procurement of Certified Yellow Hybrid Corn Seeds and Organic Soil Conditioners",
+        abc: "₱ 8,420,000.00",
+        unit: "Office of the Municipal Agriculturist (OMA)",
+        deadline: "October 12, 2026 at 10:00 AM",
+        prebid: "September 30, 2026 at 02:00 PM",
+        details: `
+          <p class="body-lead" style="font-size: 14px; margin-bottom: 14px;">
+            Provision of input subsidies for 1,850 registered smallholder corn farmers across Tumauini under the Sustainable Grain Security Program.
+          </p>
+          <h4 style="font-size: 15px; font-weight: 600; margin: 16px 0 8px;">Items to be Supplied:</h4>
+          <ul style="padding-left: 20px; font-size: 13.5px; color: var(--muted); margin-bottom: 16px; line-height: 1.6;">
+            <li>1,850 Bags of Certified High-Yield Yellow Hybrid Corn Seeds (BPI Certified with >90% germination rate).</li>
+            <li>3,700 Bags of Bio-Organic Soil Conditioners and Microbial Inoculants.</li>
+            <li>Delivery Period: 15 Calendar Days upon receipt of Notice to Proceed (NTP).</li>
+          </ul>
+        `
+      },
+      'bid-3': {
+        ref: "PhilGEPS Ref: 10843102 · ITB No. TMN-MDRRMO-2026-04",
+        status: "Pre-Bid Scheduled",
+        title: "Supply and Delivery of High-Capacity Inflatable Rescue Boats and Water Safety Gear",
+        abc: "₱ 5,600,000.00",
+        unit: "Municipal Disaster Risk Reduction & Management Office",
+        deadline: "October 18, 2026 at 09:00 AM",
+        prebid: "October 06, 2026 at 10:00 AM",
+        details: `
+          <p class="body-lead" style="font-size: 14px; margin-bottom: 14px;">
+            Strengthening flood response capabilities of Rescue 3325 for Cagayan River flood operations and typhoon contingencies.
+          </p>
+          <h4 style="font-size: 15px; font-weight: 600; margin: 16px 0 8px;">Technical Specifications:</h4>
+          <ul style="padding-left: 20px; font-size: 13.5px; color: var(--muted); margin-bottom: 16px; line-height: 1.6;">
+            <li>4 Units Heavy-Duty Hypalon Inflatable Rescue Boats (8-person capacity, reinforced aluminum floor).</li>
+            <li>4 Units 40HP 2-Stroke Watercraft Outboard Motors with spare propellers and toolsets.</li>
+            <li>60 Units Coast Guard Approved Professional Life Vests with strobe beacon lights.</li>
+          </ul>
+        `
+      },
+      'bid-4': {
+        ref: "PhilGEPS Ref: 10843220 · REI No. TMN-CS-2026-02",
+        status: "Under Evaluation",
+        title: "Consulting Services for the Comprehensive Land Use Plan (CLUP 2026–2036)",
+        abc: "₱ 3,500,000.00",
+        unit: "Municipal Planning & Development Office (MPDO)",
+        deadline: "Bids Closed (Sep 22, 2026)",
+        prebid: "Conducted Sep 10, 2026",
+        details: `
+          <p class="body-lead" style="font-size: 14px; margin-bottom: 14px;">
+            Technical consultancy for spatial planning, ecological hazard zoning, and demographic forecasting for the 10-year Tumauini municipal development framework.
+          </p>
+          <div style="background-color: var(--soft-canvas); border: 1px solid var(--hairline); border-radius: var(--radius-card); padding: 16px;">
+            <p style="font-size: 13px; color: var(--muted); margin: 0;">
+              <strong>Current Status:</strong> Technical and Financial Proposal evaluation underway by the BAC Technical Working Group (TWG).
+            </p>
+          </div>
+        `
+      },
+      'bid-5': {
+        ref: "RFQ No. 2026-SVP-044",
+        status: "Open RFQ",
+        title: "Supply & Delivery of Essential Maintenance Medicines and Laboratory Diagnostic Reagents",
+        abc: "₱ 850,000.00",
+        unit: "Municipal Health Office (MHO)",
+        deadline: "October 05, 2026 at 02:00 PM",
+        prebid: "N/A (Alternative Mode / Small Value Procurement)",
+        details: `
+          <p class="body-lead" style="font-size: 14px; margin-bottom: 14px;">
+            Procurement under Section 53.9 (Small Value Procurement) of the revised IRR of RA 9184 for basic healthcare clinics and barangay health stations.
+          </p>
+          <p style="font-size: 13.5px; color: var(--muted); line-height: 1.6;">
+            Registered pharmaceutical distributors are requested to submit sealed price quotations and FDA CPR certificates to the BAC Secretariat before the deadline.
+          </p>
+        `
+      },
+      'bid-6': {
+        ref: "NOA-2026-021 · Contract Award",
+        status: "Notice of Award Issued",
+        title: "Construction of Municipal Stormwater Drainage Canal along National Highway (Section B)",
+        abc: "₱ 11,480,210.00 (Awarded Bid)",
+        unit: "Municipal Engineering Office",
+        deadline: "Awarded to Northern Builders & Construction Supply",
+        prebid: "Completed",
+        details: `
+          <p class="body-lead" style="font-size: 14px; margin-bottom: 14px;">
+            In accordance with BAC Resolution No. 2026-088, the contract has been awarded to <strong>Northern Builders & Construction Supply</strong> as the Lowest Calculated Responsive Bidder.
+          </p>
+          <ul style="padding-left: 20px; font-size: 13.5px; color: var(--muted); margin-bottom: 16px; line-height: 1.6;">
+            <li>Notice of Award (NOA) issued: September 15, 2026.</li>
+            <li>Performance Bond verified: September 18, 2026.</li>
+            <li>Notice to Proceed (NTP) issued: September 22, 2026. Target Completion: March 2027.</li>
+          </ul>
+        `
+      }
+    };
+
+    // 4. Modal Handlers
+    function openBidModal(key) {
+      const bid = bidOpportunities[key];
+      if (!bid) return;
+      const content = document.getElementById('bid-modal-content');
+      content.innerHTML = `
+        <span class="pill-badge pill-badge-blue" style="margin-bottom: 12px;">${bid.ref}</span>
+        <h3 id="modal-title" class="h2-title" style="margin-bottom: 8px; font-size: clamp(20px, 2.5vw, 24px);">${bid.title}</h3>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 18px; font-size: 13px; color: var(--muted); border-bottom: 1px solid var(--hairline); padding-bottom: 12px;">
+          <span>Office: <strong style="color: var(--ink);">${bid.unit}</strong></span>
+          <span>ABC: <strong style="color: #15803D;">${bid.abc}</strong></span>
+          <span>Status: <strong style="color: var(--ink);">${bid.status}</strong></span>
+        </div>
+        ${bid.details}
+        <div style="margin-top: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+          <button class="btn btn-secondary btn-sm" onclick="alert('Bidding document package (PDF) requested. You will be redirected to the PhilGEPS Document Download Portal.');">
+            <span>Download Terms of Reference (PDF)</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          </button>
+          <button class="btn btn-primary btn-sm" onclick="closeBidModal()">Close Notice</button>
+        </div>
+      `;
+      document.getElementById('bid-modal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeBidModal() {
+      document.getElementById('bid-modal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeBidModal();
+    });
+
+    // 5. Category Filter & Live Search
+    let currentCategory = 'all';
+
+    function setBidCategory(category, el) {
+      currentCategory = category;
+      document.querySelectorAll('.filter-tab').forEach(tab => {
+        tab.classList.remove('active');
+        tab.setAttribute('aria-selected', 'false');
+      });
+      el.classList.add('active');
+      el.setAttribute('aria-selected', 'true');
+      filterBids();
+    }
+
+    function filterBids() {
+      const query = document.getElementById('bid-search').value.toLowerCase().trim();
+      const cards = document.querySelectorAll('#bids-container .bid-card');
+      let visible = 0;
+
+      cards.forEach(card => {
+        const cat = card.getAttribute('data-category') || '';
+        const keywords = card.getAttribute('data-keywords') || '';
+        const title = card.querySelector('.bid-title')?.innerText.toLowerCase() || '';
+        const ref = card.querySelector('.bid-ref-tag')?.innerText.toLowerCase() || '';
+
+        const matchesCat = (currentCategory === 'all') || cat.includes(currentCategory);
+        const matchesQuery = query === '' || title.includes(query) || ref.includes(query) || keywords.includes(query);
+
+        if (matchesCat && matchesQuery) {
+          card.style.display = 'grid';
+          visible++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      const noBids = document.getElementById('no-bids-msg');
+      if (visible === 0) {
+        noBids.style.display = 'block';
+      } else {
+        noBids.style.display = 'none';
+      }
+    }
+
+    function resetBidFilters() {
+      document.getElementById('bid-search').value = '';
+      const allTab = document.querySelector('.filter-tab[data-category="all"]');
+      if (allTab) setBidCategory('all', allTab);
+    }
+  </script>
+  <!-- Global Civic Spotlight Search Engine (Ctrl + K) -->
+  <script src="assets/js/spotlight.js"></script>
+</body>
+</html>

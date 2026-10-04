@@ -1,0 +1,3253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f2f9f2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#060e06" media="(prefers-color-scheme: dark)">
+  <script src="assets/js/theme.js"></script>
+  <title>BPLO Business Tax & Regulatory Fee Calculator | Municipal Government of Tumauini</title>
+  <meta name="description" content="Official interactive Business Tax and Regulatory Fee Calculator for Tumauini, Isabela. Estimate annual Mayor's Permit fees, Local Business Tax (LBT), sanitary, garbage, and fire inspection dues.">
+  <link rel="icon" type="image/png" href="assets/tumauini-official-seal.png">
+
+  <!-- Typography: Inter & Hanken Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =============================================================
+       1. ROOT DESIGN SYSTEM VARIABLES (Strict GEMINI.md Guidelines)
+       ============================================================= */
+    :root, [data-theme="light"] {
+      /* User Specified Palette - Light Mode */
+      --text: #0d150d;
+      --background: #f2f9f2;
+      --primary: #4dc24f;
+      --secondary: #8fe490;
+      --accent: #57e659;
+
+      /* Mapped Civic System Tokens */
+      --ink: var(--text);
+      --canvas: var(--background);
+      --soft-canvas: #FFFFFF;
+      --field: #E4F2E4;
+      --hairline: #D0E5D0;
+      --hairline-subtle: #E0EFE0;
+      --muted: #4B634B;
+      --muted-light: #708A70;
+      --civic-green: #15803D;
+
+      /* UI Element Surfaces */
+      --nav-bg: rgba(242, 249, 242, 0.92);
+      --nav-border: rgba(13, 21, 13, 0.08);
+      --dropdown-bg: #FFFFFF;
+      --card-bg: #FFFFFF;
+      --card-border: #D0E5D0;
+      --footer-bg: #15803D;
+      --footer-text: #FFFFFF;
+      --footer-border: #166534;
+      --glance-bg: #15803D;
+      --glance-card-bg: #14532D;
+
+      /* Restrained Government Accents (Philippine Identity Layer) */
+      --ph-blue: #0038A8;
+      --ph-red: #CE1126;
+      --ph-yellow: #FCD116;
+      --ph-blue-tint: rgba(0, 56, 168, 0.08);
+      --ph-red-tint: rgba(206, 17, 38, 0.08);
+      --ph-yellow-tint: rgba(252, 209, 22, 0.15);
+    }
+
+    [data-theme="dark"] {
+      /* User Specified Palette - Dark Mode */
+      --text: #e9f1e9;
+      --background: #060e06;
+      --primary: #3db33f;
+      --secondary: #1b6f1c;
+      --accent: #19a91c;
+
+      /* Mapped Civic System Tokens */
+      --ink: var(--text);
+      --canvas: var(--background);
+      --soft-canvas: #0C180C;
+      --field: #132413;
+      --hairline: #1C381C;
+      --hairline-subtle: #142814;
+      --muted: #9EB89E;
+      --muted-light: #6E886E;
+      --civic-green: #3db33f;
+
+      /* UI Element Surfaces */
+      --nav-bg: rgba(12, 24, 12, 0.94);
+      --nav-border: rgba(233, 241, 233, 0.12);
+      --dropdown-bg: #0E1C0E;
+      --card-bg: #0C180C;
+      --card-border: #1C381C;
+      --footer-bg: #081408;
+      --footer-text: #E9F1E9;
+      --footer-border: #1B6F1C;
+      --glance-bg: #0A170A;
+      --glance-card-bg: #102410;
+
+      /* Restrained Government Accents */
+      --ph-blue: #3B82F6;
+      --ph-red: #EF4444;
+      --ph-yellow: #FCD116;
+      --ph-blue-tint: rgba(59, 130, 246, 0.15);
+      --ph-red-tint: rgba(239, 68, 68, 0.15);
+      --ph-yellow-tint: rgba(252, 209, 22, 0.15);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        /* User Specified Palette - Dark Mode */
+        --text: #e9f1e9;
+        --background: #060e06;
+        --primary: #3db33f;
+        --secondary: #1b6f1c;
+        --accent: #19a91c;
+
+        /* Mapped Civic System Tokens */
+        --ink: var(--text);
+        --canvas: var(--background);
+        --soft-canvas: #0C180C;
+        --field: #132413;
+        --hairline: #1C381C;
+        --hairline-subtle: #142814;
+        --muted: #9EB89E;
+        --muted-light: #6E886E;
+        --civic-green: #3db33f;
+
+        /* UI Element Surfaces */
+        --nav-bg: rgba(12, 24, 12, 0.94);
+        --nav-border: rgba(233, 241, 233, 0.12);
+        --dropdown-bg: #0E1C0E;
+        --card-bg: #0C180C;
+        --card-border: #1C381C;
+        --footer-bg: #081408;
+        --footer-text: #E9F1E9;
+        --footer-border: #1B6F1C;
+        --glance-bg: #0A170A;
+        --glance-card-bg: #102410;
+
+        /* Restrained Government Accents */
+        --ph-blue: #3B82F6;
+        --ph-red: #EF4444;
+        --ph-yellow: #FCD116;
+        --ph-blue-tint: rgba(59, 130, 246, 0.15);
+        --ph-red-tint: rgba(239, 68, 68, 0.15);
+        --ph-yellow-tint: rgba(252, 209, 22, 0.15);
+      }
+    }
+
+    :root {
+
+      /* Typography */
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-display: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+      /* Radii */
+      --radius-pill: 9999px;
+      --radius-card: 16px;
+      --radius-panel: 24px;
+
+      /* Spacing Scale */
+      --sp-8: 8px;
+      --sp-12: 12px;
+      --sp-16: 16px;
+      --sp-24: 24px;
+      --sp-32: 32px;
+      --sp-48: 48px;
+      --sp-64: 64px;
+      --sp-80: 80px;
+
+      /* Dimensions */
+      --max-width: 1240px;
+      --container-max: 1200px;
+      --header-height: 76px;
+    }
+
+    /* CSS Reset */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      color-scheme: light;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 400;
+      color: var(--ink);
+      background-color: var(--canvas);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    button {
+      font-family: inherit;
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: clamp(16px, 3.5vw, 32px);
+      padding-right: clamp(16px, 3.5vw, 32px);
+    }
+
+    .section-wrap {
+      padding: var(--sp-80) 0;
+    }
+
+    /* Section Header with Left Gradient Bar */
+    .section-header {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: var(--sp-48);
+    }
+
+    .section-header::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 4px;
+      bottom: 4px;
+      width: 4px;
+      background: #15803D;
+      background: linear-gradient(180deg, #15803D 0%, #16A34A 70%, #FCD116 100%);
+      border-radius: 4px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: var(--sp-8);
+    }
+
+    .eyebrow-accent {
+      color: var(--civic-green);
+    }
+
+    .eyebrow-blue {
+      color: var(--ph-blue);
+    }
+
+    .h1-title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+    }
+
+    .h2-title {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 3.5vw, 34px);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+
+    .body-lead {
+      font-size: clamp(15px, 2vw, 17px);
+      color: var(--muted);
+      line-height: 1.5;
+      margin-top: var(--sp-12);
+      max-width: 720px;
+    }
+
+    /* Pill Badges */
+    .pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      background: var(--field);
+      border: none;
+      box-shadow: none;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    .pill-badge-green {
+      background: rgba(21, 128, 61, 0.08);
+      border: none;
+      color: #15803D;
+    }
+
+    .pill-badge-blue {
+      background: var(--ph-blue-tint);
+      border: none;
+      color: var(--ph-blue);
+    }
+
+    /* =============================================================
+       2. MANDATORY BUTTON STYLING (Strict Rule 1 Specification)
+       ============================================================= */
+    /* All Buttons with Mandatory Green-to-Yellow Radial Gradient (Stroke-Free & Shadow-Free) */
+    .btn,
+    .btn-primary,
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      background-color: #15803D !important;
+      background-image: radial-gradient(ellipse 75px 36px at 100% 100%, #FCD116 0%, #EAB308 28%, #16A34A 62%, transparent 100%) !important;
+      background-repeat: no-repeat !important;
+      color: #FFFFFF !important;
+      border: none !important;
+      outline: none !important;
+      box-shadow: none !important;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn:hover,
+    .btn-primary:hover,
+    .btn-secondary:hover {
+      background-color: #15803D !important;
+      background-image: radial-gradient(ellipse 75px 36px at 100% 100%, #FCD116 0%, #EAB308 28%, #16A34A 62%, transparent 100%) !important;
+      border: none !important;
+      outline: none !important;
+      color: #FFFFFF !important;
+      transform: translateY(-1px);
+      box-shadow: none !important;
+    }
+    .btn:active,
+    .btn-primary:active,
+    .btn-secondary:active {
+      transform: translateY(0);
+      box-shadow: none !important;
+    }
+    .btn svg,
+    .btn-primary svg,
+    .btn-secondary svg {
+      stroke: #FFFFFF !important;
+    }
+
+    .btn-sm {
+      padding: 7px 14px;
+      font-size: 12.5px;
+    }
+
+    /* =============================================================
+       3. FLOATING STADIUM NAVIGATION BAR (Rule 2)
+       ============================================================= */
+    /* =============================================================
+       STANDARDIZED CIVIC NAVIGATION & MOBILE DRAWER (Rule 2 & 4)
+       ============================================================= */
+    .nav-wrap, .nav-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .nav-pill {
+      font-family: var(--font-body);
+      pointer-events: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1200px;
+      height: 56px;
+      background: var(--nav-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--nav-border);
+      border-radius: 9999px;
+      padding: 0 12px 0 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .nav-pill:hover {
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .nav-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .nav-title-wrap {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .nav-republic {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .nav-lgu {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-link {
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover {
+      background: var(--field);
+      color: var(--ink);
+    }
+
+    .nav-link.active {
+      background: #15803D;
+      color: #FFFFFF !important;
+      font-weight: 600;
+    }
+
+    .nav-link.active svg {
+      stroke: #FFFFFF;
+    }
+
+    .nav-link.active:hover {
+      background: #15803D;
+      color: #FFFFFF !important;
+    }
+    .nav-link.active:hover svg {
+      stroke: #FFFFFF;
+    }
+
+    .nav-item.dropdown {
+      position: relative;
+    }
+
+    .dropdown-menu {
+      font-family: var(--font-body);
+      position: absolute;
+      top: calc(100% + 12px);
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      width: 320px;
+      background: var(--dropdown-bg);
+      border: 1px solid var(--hairline);
+      border-radius: 20px;
+      padding: 8px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .dropdown-menu::before {
+      content: '';
+      position: absolute;
+      top: -14px;
+      left: 0;
+      right: 0;
+      height: 14px;
+    }
+
+    .nav-item.dropdown:hover .dropdown-menu,
+    .nav-item.dropdown:focus-within .dropdown-menu,
+    .dropdown-menu.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 12px;
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--ink);
+      transition: background 0.15s ease;
+    }
+
+    .dropdown-item:hover {
+      background: var(--field);
+    }
+
+    .dropdown-item.active {
+      background: rgba(21, 128, 61, 0.08);
+    }
+
+    .dropdown-item.active .dropdown-item-title {
+      color: #15803D;
+      font-weight: 700;
+    }
+
+    .dropdown-item-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      background: transparent !important;
+      border: none !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+    }
+
+    .dropdown-item-icon svg {
+      stroke: url(#icon-green-yellow) !important;
+    }
+
+    .dropdown-item-content {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .dropdown-item-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+
+    .dropdown-item-desc {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.3;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .theme-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 9999px;
+      border: none;
+      background: var(--field);
+      color: var(--ink);
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      flex-shrink: 0;
+    }
+
+    .theme-toggle-btn:hover {
+      background: var(--soft-canvas);
+      color: var(--primary);
+      transform: scale(1.06);
+    }
+
+    :root:not([data-theme="dark"]) .theme-toggle-btn .sun-icon {
+      display: none !important;
+    }
+    :root:not([data-theme="dark"]) .theme-toggle-btn .moon-icon {
+      display: block !important;
+    }
+    [data-theme="dark"] .theme-toggle-btn .sun-icon {
+      display: block !important;
+    }
+    [data-theme="dark"] .theme-toggle-btn .moon-icon {
+      display: none !important;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .theme-toggle-btn .sun-icon {
+        display: block !important;
+      }
+      :root:not([data-theme="light"]) .theme-toggle-btn .moon-icon {
+        display: none !important;
+      }
+    }
+
+
+    .nav-spotlight-btn {
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      height: 36px;
+      border-radius: 9999px;
+      border: none;
+      background: var(--field);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .nav-spotlight-btn:hover {
+      background: var(--soft-canvas);
+      color: var(--ink);
+      border-color: #cbd5e1;
+    }
+
+    #btn-nav-action {
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .nav-spotlight-btn kbd {
+      font-size: 10px;
+      font-weight: 700;
+      background: #FFFFFF;
+      padding: 1px 5px;
+      border-radius: 4px;
+      border: 1px solid var(--hairline);
+      color: var(--muted);
+    }
+
+    .mobile-toggle {
+      display: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--hairline);
+      background: var(--canvas);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--ink);
+      transition: background 0.15s ease;
+    }
+
+    .mobile-toggle:hover {
+      background: var(--field);
+    }
+
+    @media (max-width: 1024px) {
+      .nav-menu {
+        display: none !important;
+      }
+      .mobile-toggle {
+        display: flex !important;
+      }
+    }
+
+    .mobile-drawer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      z-index: 1090;
+      display: none;
+    }
+
+    .mobile-drawer-overlay.open {
+      display: block;
+    }
+
+    .mobile-drawer {
+      font-family: var(--font-body);
+      position: fixed;
+      top: 80px;
+      left: 16px;
+      right: 16px;
+      background: var(--canvas);
+      border: none;
+      border-radius: var(--radius-panel, 20px);
+      padding: 20px;
+      z-index: 1100;
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+      max-height: calc(100vh - 110px);
+      overflow-y: auto;
+    }
+
+    .mobile-drawer.open {
+      display: flex;
+    }
+
+    .mobile-drawer a {
+      padding: 9px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: var(--radius-card, 10px);
+      color: var(--ink);
+      background: var(--soft-canvas);
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .mobile-drawer a:hover {
+      background: var(--field);
+    }
+
+    .mobile-drawer a.active {
+      font-weight: 700;
+      color: #15803D !important;
+      background: rgba(21, 128, 61, 0.08) !important;
+    }
+
+    /* =============================================================
+       4. PAGE HERO & MINIMAL PST TIMEKEEPER (Strict Rule 3 Standard)
+       ============================================================= */
+    .page-hero {
+      position: relative;
+      padding-top: calc(var(--header-height) + 52px);
+      padding-bottom: var(--sp-64);
+      background-color: #0E1A11;
+      background-image: linear-gradient(180deg, rgba(10, 26, 15, 0.78) 0%, rgba(8, 20, 12, 0.62) 50%, rgba(10, 20, 14, 0.90) 100%),
+                        url('assets/tumauini-municipal-hall-facade.jpg');
+      background-position: center 38%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+      color: #FFFFFF;
+    }
+
+    .hero-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--sp-24);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .hero-breadcrumb-link {
+      color: rgba(255, 255, 255, 0.75);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.15s ease;
+    }
+
+    .hero-breadcrumb-link:hover {
+      color: #FFFFFF;
+    }
+
+    .hero-breadcrumb-sep {
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 12px;
+    }
+
+    .hero-breadcrumb-current {
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    /* Official 3-Line Philippine Standard Time (Rule 3) */
+    .pst-timekeeper {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      text-align: right;
+      color: #FFFFFF;
+      user-select: none;
+    }
+
+    .pst-label {
+      font-size: 10.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.2;
+      margin-bottom: 2px;
+    }
+
+    .pst-clock {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: #FFFFFF;
+    }
+
+    .pst-date {
+      font-size: 11.5px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.2;
+      margin-top: 2px;
+    }
+
+    .page-hero .eyebrow {
+      color: #FCD116;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+
+    .page-hero .h1-title {
+      color: #FFFFFF;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
+      margin-bottom: 12px;
+    }
+
+    .page-hero .body-lead {
+      color: rgba(255, 255, 255, 0.9);
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+      line-height: 1.6;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: var(--sp-32);
+      flex-wrap: wrap;
+    }
+
+    .page-hero .btn-secondary {
+      background: rgba(255, 255, 255, 0.12);
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .page-hero .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.22);
+      color: #FFFFFF;
+      border-color: rgba(255, 255, 255, 0.6);
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 768px) {
+      .hero-top-row {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+      }
+      .pst-timekeeper {
+        align-items: flex-start;
+        text-align: left;
+      }
+    }
+
+    /* Quick Stats Banner */
+    .hero-stats-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: var(--sp-32);
+      padding: 18px 24px;
+      background: var(--soft-canvas);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-card);
+    }
+
+    .hero-stat-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-stat-val {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+    }
+
+    .hero-stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* =============================================================
+       5. INTERACTIVE CALCULATOR MAIN GRID
+       ============================================================= */
+    .calc-main-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.95fr;
+      gap: 32px;
+      align-items: flex-start;
+      margin-top: var(--sp-32);
+    }
+
+    /* Left: Inputs Panel */
+    .calc-panel {
+      background: var(--field);
+      border: none;
+      border-radius: var(--radius-panel);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      box-shadow: none;
+    }
+
+    .panel-step-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .step-number {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #15803D;
+      color: #FFFFFF;
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .step-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    /* Mode Segmented Controls */
+    .segmented-control {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--field);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-pill);
+      padding: 4px;
+      gap: 4px;
+    }
+
+    .segment-btn {
+      padding: 10px 16px;
+      border: none;
+      background: transparent;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-display);
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .segment-btn.active {
+      background: #FFFFFF;
+      color: var(--ink);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Category Cards Grid */
+    .category-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .category-card-btn {
+      padding: 14px 16px;
+      border: none;
+      border-radius: var(--radius-card);
+      background: var(--canvas);
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      box-shadow: none;
+    }
+
+    .category-card-btn:hover {
+      background: var(--field);
+      box-shadow: none;
+    }
+
+    .category-card-btn.active {
+      background: rgba(21, 128, 61, 0.08);
+      outline: 2px solid #15803D;
+      box-shadow: none;
+    }
+
+    .cat-btn-name {
+      font-family: var(--font-display);
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .cat-btn-desc {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.3;
+    }
+
+    /* Inputs & Presets */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-label {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .currency-input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .currency-symbol {
+      position: absolute;
+      left: 16px;
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--muted);
+      pointer-events: none;
+    }
+
+    .text-input {
+      width: 100%;
+      height: 48px;
+      padding: 0 16px 0 36px;
+      background: var(--canvas);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-card);
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+
+    .text-input:focus {
+      border-color: #15803D;
+      box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.12);
+    }
+
+    .preset-chips-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .preset-chip {
+      padding: 4px 10px;
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-pill);
+      background: var(--soft-canvas);
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--ink);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .preset-chip:hover {
+      background: var(--field);
+      border-color: #B0B0B0;
+    }
+
+    /* Area & Employees 2-Col */
+    .two-col-inputs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .stepper-input-wrap {
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-card);
+      background: var(--canvas);
+      overflow: hidden;
+      height: 44px;
+    }
+
+    .stepper-btn {
+      width: 44px;
+      height: 100%;
+      background: var(--soft-canvas);
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s ease;
+    }
+
+    .stepper-btn:hover {
+      background: var(--field);
+    }
+
+    .stepper-val {
+      flex: 1;
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+      border: none;
+      outline: none;
+      background: transparent;
+    }
+
+    /* Checkbox Add-ons */
+    .addon-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 16px;
+      border: none;
+      border-radius: var(--radius-card);
+      background: var(--canvas);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      user-select: none;
+      box-shadow: none;
+    }
+
+    .addon-card:hover {
+      background: var(--field);
+    }
+
+    .addon-checkbox {
+      margin-top: 3px;
+      accent-color: #15803D;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    .addon-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .addon-title {
+      font-family: var(--font-display);
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .addon-sub {
+      font-size: 11.5px;
+      color: var(--muted);
+      line-height: 1.3;
+    }
+
+    /* =============================================================
+       6. RIGHT: OFFICIAL MUNICIPAL ASSESSMENT SLIP (STICKY)
+       ============================================================= */
+    .assessment-slip-wrap {
+      position: sticky;
+      top: 100px;
+    }
+
+    .assessment-slip {
+      background: var(--field);
+      border: none;
+      border-radius: var(--radius-panel);
+      padding: 28px;
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .slip-header {
+      border-bottom: 1px dashed var(--hairline);
+      padding-bottom: 16px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .slip-seal {
+      width: 36px;
+      height: 36px;
+      margin-bottom: 4px;
+    }
+
+    .slip-lgu-name {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .slip-office-name {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .slip-ref-pill {
+      margin-top: 6px;
+      font-family: monospace;
+      font-size: 10.5px;
+      background: var(--field);
+      padding: 3px 8px;
+      border-radius: 4px;
+      color: var(--muted);
+    }
+
+    /* Itemized Table */
+    .slip-items-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .slip-item-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      font-size: 13px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed rgba(0, 0, 0, 0.06);
+    }
+
+    .slip-item-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .slip-item-name {
+      font-weight: 500;
+      color: var(--ink);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .slip-item-basis {
+      font-size: 10.5px;
+      color: var(--muted);
+    }
+
+    .slip-item-val {
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    /* Totals & Grand Due */
+    .slip-totals-box {
+      background: var(--soft-canvas);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-card);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .subtotal-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+
+    .discount-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12.5px;
+      color: #15803D;
+      font-weight: 600;
+    }
+
+    .grand-total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 10px;
+      border-top: 1px solid var(--hairline);
+      margin-top: 2px;
+    }
+
+    .grand-total-label {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+    }
+
+    .grand-total-val {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 800;
+      color: #15803D;
+      letter-spacing: -0.02em;
+    }
+
+    /* Quarterly Schedule Preview */
+    .quarterly-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      background: var(--canvas);
+      border: 1px solid var(--hairline);
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .q-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .q-name {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .q-due {
+      font-size: 9.5px;
+      color: var(--muted);
+    }
+
+    .q-val {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .slip-disclaimer {
+      font-size: 10.5px;
+      color: var(--muted);
+      line-height: 1.4;
+      text-align: center;
+      border-top: 1px dashed var(--hairline);
+      padding-top: 12px;
+    }
+
+    /* =============================================================
+       7. MUNICIPAL TAX CODE & SCHEDULE ACCORDION
+       ============================================================= */
+    .tax-guide-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: var(--sp-32);
+    }
+
+    .guide-card {
+      background: var(--field);
+      border: none;
+      border-radius: var(--radius-card);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: none;
+      transition: all 0.2s ease;
+    }
+
+    .guide-card:hover {
+      transform: translateY(-2px);
+      box-shadow: none;
+    }
+
+    .guide-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .guide-icon {
+      width: 28px;
+      height: 28px;
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      stroke: url(#icon-green-yellow) !important;
+    }
+
+    .guide-title {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .guide-body {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Table within guide */
+    .guide-mini-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11.5px;
+      margin-top: 8px;
+    }
+
+    .guide-mini-table th, .guide-mini-table td {
+      padding: 6px 8px;
+      border-bottom: 1px solid var(--hairline);
+      text-align: left;
+    }
+
+    .guide-mini-table th {
+      color: var(--ink);
+      font-weight: 700;
+      background: var(--soft-canvas);
+    }
+
+    /* =============================================================
+       8. CHECKLIST MODAL & SCRIM
+       ============================================================= */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal-backdrop.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-card {
+      background-color: var(--soft-canvas);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-panel);
+      width: 100%;
+      max-width: 640px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.16);
+      transform: scale(0.96);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-backdrop.open .modal-card {
+      transform: scale(1);
+    }
+
+    .modal-header {
+      padding: 24px 28px 18px;
+      border-bottom: 1px solid var(--hairline);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .modal-close-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--hairline);
+      background: var(--soft-canvas);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      color: var(--muted);
+      transition: all 0.15s ease;
+    }
+
+    .modal-close-btn:hover {
+      background: var(--field);
+      color: var(--ink);
+    }
+
+    .modal-body {
+      padding: 24px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 14px;
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-card);
+      background: var(--soft-canvas);
+    }
+
+    .checklist-badge {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      color: #15803D;
+      background: rgba(21, 128, 61, 0.1);
+      padding: 2px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .modal-footer {
+      padding: 18px 28px;
+      border-top: 1px solid var(--hairline);
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      background: var(--field);
+      border-bottom-left-radius: var(--radius-panel);
+      border-bottom-right-radius: var(--radius-panel);
+    }
+
+    /* =============================================================
+       9. CIVIC GREEN FOOTER (Rule 2)
+       ============================================================= */
+    .footer-inverse {
+      background-color: var(--footer-bg);
+      color: #FFFFFF;
+      padding: var(--sp-64) 0 var(--sp-32) 0;
+      border-top: 1px solid var(--footer-border);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.2fr;
+      gap: 48px;
+      margin-bottom: var(--sp-48);
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .footer-brand-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.01em;
+    }
+
+    .footer-brand-sub {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.5;
+      max-width: 340px;
+    }
+
+    .footer-col-title {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 18px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-link {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.8);
+      transition: color 0.15s ease;
+    }
+
+    .footer-link:hover {
+      color: #FFFFFF;
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.75);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    /* =============================================================
+       10. PRINT OPTIMIZATION (Strict Official Assessment Slip)
+       ============================================================= */
+    @media print {
+      body {
+        background: #FFFFFF !important;
+        color: #000000 !important;
+      }
+      .nav-wrap, .page-hero, .calc-panel, .tax-guide-grid, .footer-inverse, .mobile-drawer, .mobile-drawer-overlay, .modal-backdrop {
+        display: none !important;
+      }
+      .calc-main-grid {
+        display: block !important;
+        margin: 0 !important;
+      }
+      .assessment-slip-wrap {
+        position: static !important;
+      }
+      .assessment-slip {
+        box-shadow: none !important;
+        border: 2px solid #000000 !important;
+        padding: 30px !important;
+        max-width: 700px !important;
+        margin: 0 auto !important;
+      }
+      .slip-ref-pill {
+        border: 1px solid #000000 !important;
+      }
+      .grand-total-val {
+        color: #000000 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+
+    /* Responsive Queries */
+    @media (max-width: 1024px) {
+      .calc-main-grid {
+        grid-template-columns: 1fr;
+      }
+      .assessment-slip-wrap {
+        position: static;
+      }
+      .hero-stats-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .tax-guide-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .category-cards-grid {
+        grid-template-columns: 1fr;
+      }
+      .two-col-inputs {
+        grid-template-columns: 1fr;
+      }
+      .hero-stats-strip {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-top-row {
+        flex-direction: column-reverse;
+      }
+      .pst-timekeeper {
+        align-items: flex-start;
+        text-align: left;
+      }
+      .quarterly-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =============================================================
+       GLOBAL HIDDEN SVG GRADIENT DEFINITION (Rule 4)
+       ============================================================= -->
+  <svg width="0" height="0" style="position: absolute; width: 0; height: 0; overflow: hidden;" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="icon-green-yellow" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#15803D" />
+        <stop offset="35%" stop-color="#16A34A" />
+        <stop offset="80%" stop-color="#EAB308" />
+        <stop offset="100%" stop-color="#FCD116" />
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <!-- =============================================================
+       FLOATING STADIUM NAVIGATION BAR (Rule 2)
+       ============================================================= -->
+  <header class="nav-wrap" role="banner">
+    <nav class="nav-pill" id="navbar" aria-label="Main Navigation">
+      <!-- Left: LGU Branding -->
+      <a href="index.html" class="nav-left" aria-label="Municipality of Tumauini Homepage">
+        <img src="assets/images/logo.png" alt="Seal of Tumauini" class="nav-logo" width="32" height="32" />
+        <div class="nav-title-wrap">
+          <span class="nav-republic">Republic of the Philippines</span>
+          <span class="nav-lgu">Municipality of Tumauini</span>
+        </div>
+      </a>
+
+      <!-- Center: Stadium Menu Items -->
+      <ul class="nav-menu" role="menubar">
+        <!-- 1. Home -->
+        <li role="none"><a href="index.html" class="nav-link" role="menuitem">Home</a></li>
+
+        <!-- 2. About Us Dropdown -->
+        <li class="nav-item dropdown" role="none">
+          <button class="nav-link dropdown-toggle" id="about-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+            <span>About Us</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="dropdown-menu" id="about-dropdown-menu" role="menu" aria-labelledby="about-dropdown-btn">
+            <a href="barangays.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">46 Barangays Directory</span>
+                <span class="dropdown-item-desc">Territorial & demographic profile</span>
+              </div>
+            </a>
+            <a href="municipal-profile.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Municipal Profile</span>
+                <span class="dropdown-item-desc">Geography, climate & demographics</span>
+              </div>
+            </a>
+            <a href="historical-background.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Historical Background</span>
+                <span class="dropdown-item-desc">1705 founding & heritage</span>
+              </div>
+            </a>
+            <a href="awards-and-recognition.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Awards & Citations</span>
+                <span class="dropdown-item-desc">Civic governance accolades</span>
+              </div>
+            </a>
+            <a href="elected-officials.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Elected Officials</span>
+                <span class="dropdown-item-desc">Mayor, Vice Mayor & Councilors</span>
+              </div>
+            </a>
+            <a href="department-heads.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><polyline points="16 11 18 13 22 9"></polyline></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Department Heads</span>
+                <span class="dropdown-item-desc">Executive directors & chiefs</span>
+              </div>
+            </a>
+            <a href="mission-and-vision.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Mission & Vision</span>
+                <span class="dropdown-item-desc">Strategic development & civic goals</span>
+              </div>
+            </a>
+          </div>
+        </li>
+
+        <!-- 3. Services Dropdown -->
+        <li class="nav-item dropdown" role="none">
+          <button class="nav-link dropdown-toggle active" id="services-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+            <span>Services</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="dropdown-menu" id="services-dropdown-menu" role="menu" aria-labelledby="services-dropdown-btn">
+            <a href="services.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Citizen's Charter & Services</span>
+                <span class="dropdown-item-desc">Business, civil registry & permits</span>
+              </div>
+            </a>
+            <a href="tax-calculator.html" class="dropdown-item active" aria-current="page" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line><line x1="16" y1="14" x2="16" y2="18"></line><path d="M16 10h.01"></path><path d="M12 10h.01"></path><path d="M8 10h.01"></path><path d="M12 14h.01"></path><path d="M8 14h.01"></path><path d="M12 18h.01"></path><path d="M8 18h.01"></path></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Business Tax Calculator</span>
+                <span class="dropdown-item-desc">Mayor's Permit & LBT estimates</span>
+              </div>
+            </a>
+            <a href="map.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Interactive GIS Map</span>
+                <span class="dropdown-item-desc">46 Barangays & flood zones</span>
+              </div>
+            </a>
+            <a href="mdrrmo.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">MDRRMO & Rescue 3325</span>
+                <span class="dropdown-item-desc">Disaster telemetry & 24/7 rescue</span>
+              </div>
+            </a>
+          </div>
+        </li>
+
+        <!-- 4. Transparency Dropdown -->
+        <li class="nav-item dropdown" role="none">
+          <button class="nav-link dropdown-toggle" id="transparency-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+            <span>Transparency</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="dropdown-menu" id="transparency-dropdown-menu" role="menu" aria-labelledby="transparency-dropdown-btn">
+            <a href="bids-and-awards.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Bids & Awards (BAC)</span>
+                <span class="dropdown-item-desc">Procurement notices, bids & awards</span>
+              </div>
+            </a>
+            <a href="fund-utilization.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Fund Utilization Report</span>
+                <span class="dropdown-item-desc">Form 74-A & COA disclosures</span>
+              </div>
+            </a>
+            <a href="ordinances.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Ordinances & Resolutions</span>
+                <span class="dropdown-item-desc">Sangguniang Bayan legislative acts</span>
+              </div>
+            </a>
+          </div>
+        </li>
+
+        <!-- 5. Explore Dropdown -->
+        <li class="nav-item dropdown" role="none">
+          <button class="nav-link dropdown-toggle" id="explore-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+            <span>Explore</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="dropdown-menu" id="explore-dropdown-menu" role="menu" aria-labelledby="explore-dropdown-btn">
+            <a href="tourism.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Tourism & Heritage</span>
+                <span class="dropdown-item-desc">San Matias Church & ecotourism</span>
+              </div>
+            </a>
+            <a href="smart-city.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Smart & Sustainable City</span>
+                <span class="dropdown-item-desc">Agri-tech, IoT & green roadmap</span>
+              </div>
+            </a>
+          </div>
+        </li>
+
+        <!-- 6. News -->
+        <li role="none"><a href="news.html" class="nav-link" role="menuitem">News</a></li>
+      </ul>
+
+      <!-- Right: Spotlight Search, Primary Action & Mobile Toggle -->
+      <div class="nav-right">
+                <button class="theme-toggle-btn" id="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle light or dark theme" title="Toggle Theme">
+          <svg class="sun-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="21" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg class="moon-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+        <button class="nav-spotlight-btn" onclick="openSpotlight()" aria-label="Search municipal portal (Ctrl+K)" title="Search (Ctrl + K)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <span>Search</span>
+          <kbd>Ctrl K</kbd>
+        </button>
+
+        <a href="services.html" class="btn btn-primary btn-sm" id="btn-nav-action">
+          <span>Online Services</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+        </a>
+
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Open mobile navigation menu" onclick="toggleMobileMenu()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer-overlay" id="mobile-drawer-overlay" onclick="toggleMobileMenu()"></div>
+  <div class="mobile-drawer" id="mobile-drawer">
+    <button onclick="toggleMobileMenu(); openSpotlight();" style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; font-size: 14px; font-weight: 500; border-radius: var(--radius-card); color: var(--ink); background: var(--field); border: none; cursor: pointer; text-align: left; width: 100%;">
+      <span style="display: flex; align-items: center; gap: 8px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        Search Portal (Ctrl + K)
+      </span>
+      <kbd style="font-size: 10px; font-weight: 700; background: #fff; padding: 2px 6px; border-radius: 4px; border: 1px solid #d4d4d4;">Ctrl K</kbd>
+    </button>
+    <button class="mobile-theme-btn" onclick="toggleTheme()" aria-label="Toggle light or dark theme" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; font-size: 13px; font-weight: 600; border-radius: var(--radius-card); color: var(--ink); background: var(--field); border: none; cursor: pointer; text-align: left; width: 100%; margin-top: 6px;">
+      <span style="display: flex; align-items: center; gap: 8px;">
+        <span class="theme-icon-slot">
+          <svg class="sun-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="21" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg class="moon-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </span>
+        <span>Theme Mode</span>
+      </span>
+      <span class="theme-mode-badge" style="font-size: 11px; padding: 2px 8px; border-radius: var(--radius-pill); background: var(--canvas); color: var(--muted); font-weight: 500;">Toggle</span>
+    </button>
+    <a href="index.html">Home</a>
+
+    <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #15803D; padding: 6px 14px 2px;">About Tumauini</div>
+    <a href="barangays.html">46 Barangays Directory ↗</a>
+    <a href="municipal-profile.html">Municipal Profile ↗</a>
+    <a href="historical-background.html">Historical Background ↗</a>
+    <a href="awards-and-recognition.html">Awards & Recognition ↗</a>
+    <a href="elected-officials.html">Elected Officials ↗</a>
+    <a href="department-heads.html">Department Heads ↗</a>
+    <a href="mission-and-vision.html">Mission & Vision ↗</a>
+
+    <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #15803D; padding: 8px 14px 2px;">Citizen Services</div>
+    <a href="services.html">Citizen's Charter & Services ↗</a>
+    <a href="tax-calculator.html" class="active">Business Tax Calculator ↗</a>
+    <a href="map.html">Interactive GIS Map ↗</a>
+    <a href="mdrrmo.html">MDRRMO & Rescue 3325 ↗</a>
+
+    <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #15803D; padding: 8px 14px 2px;">Transparency</div>
+    <a href="bids-and-awards.html">Bids & Awards Committee (BAC) ↗</a>
+    <a href="fund-utilization.html">Fund Utilization Report ↗</a>
+    <a href="ordinances.html">Ordinances & Resolutions ↗</a>
+
+    <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #15803D; padding: 8px 14px 2px;">Explore & Innovation</div>
+    <a href="tourism.html">Tourism & Cultural Heritage ↗</a>
+    <a href="smart-city.html">Smart & Sustainable City ↗</a>
+
+    <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #15803D; padding: 8px 14px 2px;">News & Updates</div>
+    <a href="news.html">News & Announcements ↗</a>
+  </div>
+
+  <main id="main-content">
+
+    <!-- =============================================================
+         HERO SECTION WITH 3-LINE PST TIMEKEEPER (Rule 3)
+         ============================================================= -->
+    <section class="page-hero" aria-labelledby="tax-hero-title">
+      <div class="container">
+        
+        <div class="hero-top-row">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <a href="index.html" class="hero-breadcrumb-link">Home</a>
+            <span class="hero-breadcrumb-sep">/</span>
+            <span class="hero-breadcrumb-current">Business Tax Calculator</span>
+          </div>
+
+          <!-- Official 3-Line Philippine Standard Time (Rule 3) -->
+          <div class="pst-timekeeper" aria-label="Philippine Standard Time">
+            <span class="pst-label">Philippine Standard Time</span>
+            <span class="pst-clock" id="pst-live-clock">12:00:00 PM</span>
+            <span class="pst-date" id="pst-live-date">Thursday, October 01, 2026</span>
+          </div>
+        </div>
+
+        <div style="max-width: 860px;">
+          <span class="eyebrow">Local Government Code &bull; Title II Chapter II</span>
+          <h1 class="h1-title" id="tax-hero-title">
+            Business Tax &amp; Regulatory Fee Calculator.
+          </h1>
+          <p class="body-lead">
+            Interactive computation tool estimating annual Mayor's Permit fees, sanitary inspection charges, and regulatory assessments.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#calc-workbench-heading" class="btn btn-primary">
+              <span>Start Tax Simulation</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+            </a>
+            <a href="#tax-guide-title" class="btn btn-secondary">
+              <span>Revenue Code &amp; Tax Schedules</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =============================================================
+         5. INTERACTIVE CALCULATOR CORE WORKBENCH
+         ============================================================= -->
+    <section class="section-wrap" aria-labelledby="calc-workbench-heading">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="eyebrow">Municipal Tax Simulation Engine</span>
+          <h2 class="h2-title" id="calc-workbench-heading">Interactive Assessment Calculator.</h2>
+          <p class="body-lead">Configure your enterprise parameters to simulate regulatory dues and payment schedules.</p>
+        </div>
+
+        <div class="calc-main-grid">
+          
+          <!-- LEFT: INPUT CONTROLS PANEL -->
+          <div class="calc-panel">
+            
+            <!-- Step 1: Registration Mode -->
+            <div>
+              <div class="panel-step-header">
+                <span class="step-number">1</span>
+                <h3 class="step-title">Application Type</h3>
+              </div>
+              <div class="segmented-control" role="tablist">
+                <button type="button" class="segment-btn active" id="btn-mode-renew" onclick="setAppMode('renew')" role="tab" aria-selected="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                  <span>Annual Renewal</span>
+                </button>
+                <button type="button" class="segment-btn" id="btn-mode-new" onclick="setAppMode('new')" role="tab" aria-selected="false">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                  <span>New Registration</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Step 2: Line of Business / Industry Category -->
+            <div>
+              <div class="panel-step-header">
+                <span class="step-number">2</span>
+                <h3 class="step-title">Line of Business</h3>
+              </div>
+              <div class="category-cards-grid">
+                
+                <button type="button" class="category-card-btn active" data-cat="retail" onclick="selectCategory('retail')">
+                  <span class="cat-btn-name">Retail & General Store</span>
+                  <span class="cat-btn-desc">Sari-sari stores, groceries, boutiques, dry goods.</span>
+                </button>
+
+                <button type="button" class="category-card-btn" data-cat="wholesale" onclick="selectCategory('wholesale')">
+                  <span class="cat-btn-name">Wholesale & Distribution</span>
+                  <span class="cat-btn-desc">Warehouses, suppliers, dealer distributorships.</span>
+                </button>
+
+                <button type="button" class="category-card-btn" data-cat="food" onclick="selectCategory('food')">
+                  <span class="cat-btn-name">Food & Dining Services</span>
+                  <span class="cat-btn-desc">Restaurants, canteens, bakeries, cafes, caterers.</span>
+                </button>
+
+                <button type="button" class="category-card-btn" data-cat="financial" onclick="selectCategory('financial')">
+                  <span class="cat-btn-name">Financial & Remittance</span>
+                  <span class="cat-btn-desc">Rural banks, pawnshops, lending, money transfer.</span>
+                </button>
+
+                <button type="button" class="category-card-btn" data-cat="agro" onclick="selectCategory('agro')">
+                  <span class="cat-btn-name">Agro-Industrial & Milling</span>
+                  <span class="cat-btn-desc">Rice & corn mills, tobacco warehouses, feedmills.</span>
+                </button>
+
+                <button type="button" class="category-card-btn" data-cat="services" onclick="selectCategory('services')">
+                  <span class="cat-btn-name">Contractors & Services</span>
+                  <span class="cat-btn-desc">Motor repair shops, salons, printing, tech shops.</span>
+                </button>
+
+              </div>
+            </div>
+
+            <!-- Step 3: Financial Basis (Gross Sales or Capital) -->
+            <div>
+              <div class="panel-step-header">
+                <span class="step-number">3</span>
+                <h3 class="step-title" id="financial-label-title">Annual Gross Sales / Receipts</h3>
+              </div>
+              <div class="form-group">
+                <div class="currency-input-wrap">
+                  <span class="currency-symbol">₱</span>
+                  <input type="text" id="amount-input" class="text-input" value="350,000" oninput="handleAmountInput(this.value)" placeholder="Enter financial value">
+                </div>
+                <div class="preset-chips-row" id="preset-chips-box">
+                  <button type="button" class="preset-chip" onclick="setAmount(100000)">₱100,000</button>
+                  <button type="button" class="preset-chip" onclick="setAmount(350000)">₱350,000</button>
+                  <button type="button" class="preset-chip" onclick="setAmount(750000)">₱750,000</button>
+                  <button type="button" class="preset-chip" onclick="setAmount(1500000)">₱1,500,000</button>
+                  <button type="button" class="preset-chip" onclick="setAmount(3000000)">₱3,000,000</button>
+                  <button type="button" class="preset-chip" onclick="setAmount(8000000)">₱8,000,000</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 4: Physical Scale (Floor Area & Employees) -->
+            <div>
+              <div class="panel-step-header">
+                <span class="step-number">4</span>
+                <h3 class="step-title">Premises & Personnel Scale</h3>
+              </div>
+              
+              <div class="two-col-inputs">
+                
+                <div class="form-group">
+                  <label class="form-label" for="area-input">
+                    <span>Floor Area (sqm)</span>
+                    <span id="area-tier-badge" style="font-size: 11px; color: var(--muted);">Tier: Small</span>
+                  </label>
+                  <div class="stepper-input-wrap">
+                    <button type="button" class="stepper-btn" onclick="adjustArea(-10)">−</button>
+                    <input type="number" id="area-input" class="stepper-val" value="35" min="5" max="2500" step="5" oninput="updateCalculations()">
+                    <button type="button" class="stepper-btn" onclick="adjustArea(10)">+</button>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="employees-input">
+                    <span>Employees / Handlers</span>
+                    <span style="font-size: 11px; color: var(--muted);">RHU Cards</span>
+                  </label>
+                  <div class="stepper-input-wrap">
+                    <button type="button" class="stepper-btn" onclick="adjustEmployees(-1)">−</button>
+                    <input type="number" id="employees-input" class="stepper-val" value="2" min="0" max="150" oninput="updateCalculations()">
+                    <button type="button" class="stepper-btn" onclick="adjustEmployees(1)">+</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Step 5: Regulatory Add-ons & Statutory Exemptions -->
+            <div>
+              <div class="panel-step-header">
+                <span class="step-number">5</span>
+                <h3 class="step-title">Clearances & Statutory Exemptions</h3>
+              </div>
+              
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                
+                <label class="addon-card" for="chk-bmbe">
+                  <input type="checkbox" id="chk-bmbe" class="addon-checkbox" onchange="updateCalculations()">
+                  <div class="addon-content">
+                    <span class="addon-title">BMBE Registered Enterprise (RA 9178)</span>
+                    <span class="addon-sub">Exempts business from Local Business Tax (LBT); regulatory fees still apply.</span>
+                  </div>
+                </label>
+
+                <label class="addon-card" for="chk-signage">
+                  <input type="checkbox" id="chk-signage" class="addon-checkbox" checked onchange="updateCalculations()">
+                  <div class="addon-content">
+                    <span class="addon-title">Commercial Signboard / Storefront Signage Permit</span>
+                    <span class="addon-sub">Statutory Municipal Engineering inspection and signage seal (+₱350).</span>
+                  </div>
+                </label>
+
+                <label class="addon-card" for="chk-delivery">
+                  <input type="checkbox" id="chk-delivery" class="addon-checkbox" onchange="updateCalculations()">
+                  <div class="addon-content">
+                    <span class="addon-title">Motorized Delivery Vehicles / Trike Haulers</span>
+                    <span class="addon-sub">Municipal delivery van inspection stickers (+₱500 per registered unit).</span>
+                  </div>
+                </label>
+
+              </div>
+            </div>
+
+            <!-- Step 6: Payment Schedule Option -->
+            <div>
+              <div class="panel-step-header">
+                <span class="step-number">6</span>
+                <h3 class="step-title">Settlement Terms</h3>
+              </div>
+              <div class="segmented-control">
+                <button type="button" class="segment-btn active" id="btn-term-annual" onclick="setPaymentTerm('annual')">
+                  <span>Full Annual (10% LBT Discount)</span>
+                </button>
+                <button type="button" class="segment-btn" id="btn-term-quarterly" onclick="setPaymentTerm('quarterly')">
+                  <span>4-Quarter Installments</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- RIGHT: OFFICIAL ESTIMATED ASSESSMENT SLIP (STICKY) -->
+          <div class="assessment-slip-wrap">
+            <div class="assessment-slip" id="print-slip-card">
+              
+              <!-- Slip Header -->
+              <div class="slip-header">
+                <img src="assets/tumauini-official-seal.png" alt="Tumauini Official Seal" class="slip-seal">
+                <div class="slip-lgu-name">Municipality of Tumauini, Isabela</div>
+                <div class="slip-office-name">Business Permits &amp; Licensing Office (BPLO)</div>
+                <div style="font-size: 11px; font-weight: 700; color: #15803D; margin-top: 2px;">OFFICIAL ESTIMATED REGULATORY ASSESSMENT</div>
+                <div class="slip-ref-pill" id="slip-ref-number">REF: BPLO-2026-TUM-04829</div>
+              </div>
+
+              <!-- Metadata Meta Strip -->
+              <div style="display: flex; justify-content: space-between; font-size: 11.5px; color: var(--muted); border-bottom: 1px solid var(--hairline); padding-bottom: 10px;">
+                <div>
+                  <strong>Mode:</strong> <span id="meta-app-mode">Annual Renewal</span>
+                </div>
+                <div>
+                  <strong>Class:</strong> <span id="meta-cat-name">Retail & General Store</span>
+                </div>
+              </div>
+
+              <!-- Itemized Assessment Breakdown -->
+              <div class="slip-items-list">
+                
+                <!-- 1. Local Business Tax -->
+                <div class="slip-item-row">
+                  <div class="slip-item-name">
+                    <span>1. Local Business Tax (LBT)</span>
+                    <span class="slip-item-basis" id="basis-lbt">Graduated on ₱350,000 gross sales</span>
+                  </div>
+                  <span class="slip-item-val" id="val-lbt">₱3,500.00</span>
+                </div>
+
+                <!-- 2. Mayor's Permit Fee -->
+                <div class="slip-item-row">
+                  <div class="slip-item-name">
+                    <span>2. Mayor's Permit & License</span>
+                    <span class="slip-item-basis" id="basis-mayors">Small commercial tier (35 sqm)</span>
+                  </div>
+                  <span class="slip-item-val" id="val-mayors">₱1,500.00</span>
+                </div>
+
+                <!-- 3. Sanitary Inspection & Health Cards -->
+                <div class="slip-item-row">
+                  <div class="slip-item-name">
+                    <span>3. Sanitary Inspection & Health Cards</span>
+                    <span class="slip-item-basis" id="basis-sanitary">RHU inspection + 2 personnel cards</span>
+                  </div>
+                  <span class="slip-item-val" id="val-sanitary">₱750.00</span>
+                </div>
+
+                <!-- 4. Solid Waste & Garbage Clearance -->
+                <div class="slip-item-row">
+                  <div class="slip-item-name">
+                    <span>4. Solid Waste & Garbage Service Fee</span>
+                    <span class="slip-item-basis" id="basis-garbage">MENRO municipal sanitation schedule</span>
+                  </div>
+                  <span class="slip-item-val" id="val-garbage">₱1,200.00</span>
+                </div>
+
+                <!-- 5. Zoning Clearance Fee -->
+                <div class="slip-item-row">
+                  <div class="slip-item-name">
+                    <span>5. Zoning & Location Clearance</span>
+                    <span class="slip-item-basis">MPDC compliance verification</span>
+                  </div>
+                  <span class="slip-item-val" id="val-zoning">₱400.00</span>
+                </div>
+
+                <!-- 6. BFP Fire Safety Inspection Fee (FSIF) -->
+                <div class="slip-item-row">
+                  <div class="slip-item-name">
+                    <span>6. BFP Fire Safety Fee (FSIF)</span>
+                    <span class="slip-item-basis">15% statutory RA 9514 fire code rate</span>
+                  </div>
+                  <span class="slip-item-val" id="val-bfp">₱577.50</span>
+                </div>
+
+                <!-- 7. Regulatory Document Stamps & Plate -->
+                <div class="slip-item-row">
+                  <div class="slip-item-name">
+                    <span>7. Business Plate / Sticker & Doc Stamps</span>
+                    <span class="slip-item-basis" id="basis-stickers">Annual validation sticker & municipal seal</span>
+                  </div>
+                  <span class="slip-item-val" id="val-stickers">₱400.00</span>
+                </div>
+
+                <!-- 8. Signage / Fleet Add-ons -->
+                <div class="slip-item-row" id="row-addons" style="display: flex;">
+                  <div class="slip-item-name">
+                    <span>8. Auxiliary Regulatory Clearances</span>
+                    <span class="slip-item-basis" id="basis-addons">Storefront signage permit</span>
+                  </div>
+                  <span class="slip-item-val" id="val-addons">₱350.00</span>
+                </div>
+
+              </div>
+
+              <!-- Slip Totals Box -->
+              <div class="slip-totals-box">
+                <div class="subtotal-row">
+                  <span>Gross Regulatory Assessment:</span>
+                  <span id="val-subtotal" style="font-family: var(--font-display); font-weight: 600;">₱8,677.50</span>
+                </div>
+                
+                <div class="discount-row" id="row-discount">
+                  <span>Prompt Payment Incentive (10% LBT):</span>
+                  <span id="val-discount">-₱350.00</span>
+                </div>
+
+                <div class="grand-total-row">
+                  <span class="grand-total-label">Net Amount Due:</span>
+                  <span class="grand-total-val" id="val-grand-total">₱8,327.50</span>
+                </div>
+              </div>
+
+              <!-- Quarterly Schedule Table -->
+              <div id="quarterly-schedule-box">
+                <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--muted); margin-bottom: 6px;">
+                  Quarterly Installment Schedule (Option)
+                </div>
+                <div class="quarterly-grid">
+                  <div class="q-item">
+                    <span class="q-name">1st Qtr</span>
+                    <span class="q-due">Jan 20</span>
+                    <span class="q-val" id="val-q1">₱2,169</span>
+                  </div>
+                  <div class="q-item">
+                    <span class="q-name">2nd Qtr</span>
+                    <span class="q-due">Apr 20</span>
+                    <span class="q-val" id="val-q2">₱2,169</span>
+                  </div>
+                  <div class="q-item">
+                    <span class="q-name">3rd Qtr</span>
+                    <span class="q-due">Jul 20</span>
+                    <span class="q-val" id="val-q3">₱2,169</span>
+                  </div>
+                  <div class="q-item">
+                    <span class="q-name">4th Qtr</span>
+                    <span class="q-due">Oct 20</span>
+                    <span class="q-val" id="val-q4">₱2,169</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="no-print" style="display: flex; gap: 10px; margin-top: 4px;">
+                <button class="btn btn-primary" style="flex: 1;" onclick="window.print()">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                  <span>Print Slip (PDF)</span>
+                </button>
+                <button class="btn btn-secondary" onclick="openChecklistModal()">
+                  <span>Requirements</span>
+                </button>
+              </div>
+
+              <!-- Official Disclaimer -->
+              <p class="slip-disclaimer">
+                <strong>Disclaimer:</strong> This interactive assessment is an advisory estimate generated pursuant to the Tumauini Municipal Revenue Code and RA 7160. Final assessment is issued by the Municipal Treasury upon submission of sworn ITRs, financial statements, and on-site BPLO/BFP verification.
+              </p>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =============================================================
+         6. TAX CODE REFERENCE & GUIDELINES SECTION
+         ============================================================= -->
+    <section class="section-wrap" aria-labelledby="tax-guide-title">
+      <div class="container">
+        
+        <div class="section-header">
+
+        <!-- Quick Stats Strip -->
+        <div class="hero-stats-strip" style="margin-bottom: var(--sp-32);">
+          <div class="hero-stat-item">
+            <span class="hero-stat-val">4,280+</span>
+            <span class="hero-stat-label">Registered Commercial Establishments</span>
+          </div>
+          <div class="hero-stat-item">
+            <span class="hero-stat-val">Jan 1 – 20</span>
+            <span class="hero-stat-label">Annual BOSS Renewal Window</span>
+          </div>
+          <div class="hero-stat-item">
+            <span class="hero-stat-val">10% OFF</span>
+            <span class="hero-stat-label">LBT Prompt Full Payment Discount</span>
+          </div>
+          <div class="hero-stat-item">
+            <span class="hero-stat-val">1 Day</span>
+            <span class="hero-stat-label">ARTA Fast-Track BOSS Processing</span>
+          </div>
+        </div>
+          <span class="eyebrow">Municipal Revenue Code Standards</span>
+          <h2 class="h2-title" id="tax-guide-title">Regulatory Framework &amp; Tax Schedules.</h2>
+          <p class="body-lead">Legal tax brackets, incentive schedules, and procedural compliance for Tumauini enterprises.</p>
+        </div>
+
+        <div class="tax-guide-grid">
+          
+          <!-- Guide 1: Graduated Business Tax -->
+          <div class="guide-card">
+            <div>
+              <div class="guide-header">
+                <svg class="guide-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                <h3 class="guide-title">Graduated Business Tax</h3>
+              </div>
+              <p class="guide-body" style="margin-top: 12px;">
+                Governed by Section 143 of the Local Government Code. Local business tax rates apply progressively according to audited gross receipts.
+              </p>
+              
+              <table class="guide-mini-table">
+                <thead>
+                  <tr>
+                    <th>Gross Receipts Bracket</th>
+                    <th>Statutory Rate</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Below ₱400,000 (Retail)</td>
+                    <td>Graduated Scale (2.0%)</td>
+                  </tr>
+                  <tr>
+                    <td>Exceeding ₱400,000</td>
+                    <td>1.0% on excess</td>
+                  </tr>
+                  <tr>
+                    <td>Wholesalers / Trading</td>
+                    <td>0.50% of gross</td>
+                  </tr>
+                  <tr>
+                    <td>Financial / Lending</td>
+                    <td>0.50% of gross interest</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div style="font-size: 11.5px; color: var(--muted); border-top: 1px solid var(--hairline); padding-top: 12px;">
+              Cross-checked with BIR Form 1701 / 1702 Q4 filings.
+            </div>
+          </div>
+
+          <!-- Guide 2: Annual BOSS Period & Penalties -->
+          <div class="guide-card">
+            <div>
+              <div class="guide-header">
+                <svg class="guide-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <h3 class="guide-title">BOSS Calendar &amp; Surcharges</h3>
+              </div>
+              <p class="guide-body" style="margin-top: 12px;">
+                The Business One-Stop Shop (BOSS) operates January 1 to 20 at the Municipal Cultural Center. Surcharges accrue thereafter:
+              </p>
+
+              <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 12px; font-size: 12.5px;">
+                <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed var(--hairline); padding-bottom: 4px;">
+                  <span>Jan 1 – Jan 20:</span>
+                  <strong style="color: #15803D;">10% Discount on LBT</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed var(--hairline); padding-bottom: 4px;">
+                  <span>Jan 21 Onwards:</span>
+                  <strong style="color: var(--ph-red);">25% Late Surcharge</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span>Monthly Interest:</span>
+                  <strong style="color: var(--ph-red);">2% Monthly Penalty</strong>
+                </div>
+              </div>
+            </div>
+
+            <div style="font-size: 11.5px; color: var(--muted); border-top: 1px solid var(--hairline); padding-top: 12px;">
+              Early renewal ensures instant release of Mayor's validation stickers.
+            </div>
+          </div>
+
+          <!-- Guide 3: BMBE Act Incentives -->
+          <div class="guide-card">
+            <div>
+              <div class="guide-header">
+                <svg class="guide-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                <h3 class="guide-title">BMBE Tax Exemption (RA 9178)</h3>
+              </div>
+              <p class="guide-body" style="margin-top: 12px;">
+                Enterprises with total assets not exceeding ₱3,000,000 (excluding land) are eligible for Barangay Micro Business Enterprise incentives.
+              </p>
+
+              <div style="display: flex; flex-direction: column; gap: 6px; margin-top: 12px; font-size: 12px; color: var(--ink);">
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <span style="color: #15803D; font-weight: 700;">✓</span> 100% Exemption from Local Business Tax (LBT)
+                </div>
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <span style="color: #15803D; font-weight: 700;">✓</span> Exemption from statutory income tax (BIR)
+                </div>
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <span style="color: #15803D; font-weight: 700;">✓</span> Priority access to municipal credit facilities
+                </div>
+              </div>
+            </div>
+
+            <div style="font-size: 11.5px; color: var(--muted); border-top: 1px solid var(--hairline); padding-top: 12px;">
+              Certificate of Authority issued through DTI and validated by BPLO.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =============================================================
+       7. BPLO REQUIREMENTS MODAL
+       ============================================================= -->
+  <div class="modal-backdrop" id="checklist-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="checklist-title">
+    <div class="modal-card">
+      
+      <div class="modal-header">
+        <div>
+          <span class="eyebrow eyebrow-accent">Business Permitting Checklist</span>
+          <h3 class="modal-title" id="checklist-title" style="font-family: var(--font-display); font-size: 20px; font-weight: 800;">BPLO Mandatory Documentary Requirements</h3>
+          <p style="font-size: 12.5px; color: var(--muted); margin-top: 4px;">Standardized checklist required before final Mayor's Permit issuance.</p>
+        </div>
+        <button class="modal-close-btn" onclick="closeChecklistModal()" aria-label="Close modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        
+        <div class="checklist-item">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 2px;">
+              <span class="checklist-badge">Legal Identity</span>
+              <strong style="font-size: 13.5px; color: var(--ink);">DTI / SEC / CDA Registration</strong>
+            </div>
+            <p style="font-size: 12px; color: var(--muted);">Certificate of Business Name Registration (Sole Proprietorship) or SEC Articles of Incorporation.</p>
+          </div>
+        </div>
+
+        <div class="checklist-item">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 2px;">
+              <span class="checklist-badge">Barangay</span>
+              <strong style="font-size: 13.5px; color: var(--ink);">Barangay Business Clearance</strong>
+            </div>
+            <p style="font-size: 12px; color: var(--muted);">Issued by the Punong Barangay of the jurisdiction where the establishment physically operates.</p>
+          </div>
+        </div>
+
+        <div class="checklist-item">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 2px;">
+              <span class="checklist-badge">Property</span>
+              <strong style="font-size: 13.5px; color: var(--ink);">Proof of Property / Contract of Lease</strong>
+            </div>
+            <p style="font-size: 12px; color: var(--muted);">Tax Declaration / Transfer Certificate of Title (if owned) or Notarized Contract of Lease with Lessor's Permit.</p>
+          </div>
+        </div>
+
+        <div class="checklist-item">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 2px;">
+              <span class="checklist-badge">Safety</span>
+              <strong style="font-size: 13.5px; color: var(--ink);">BFP Fire Safety Inspection Certificate (FSIC)</strong>
+            </div>
+            <p style="font-size: 12px; color: var(--muted);">Inspection clearance issued by the Bureau of Fire Protection Tumauini Station.</p>
+          </div>
+        </div>
+
+        <div class="checklist-item">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 2px;">
+              <span class="checklist-badge">Health</span>
+              <strong style="font-size: 13.5px; color: var(--ink);">Sanitary Permit &amp; Health Cards</strong>
+            </div>
+            <p style="font-size: 12px; color: var(--muted);">Issued by the Municipal Health Office (RHU) following laboratory food handler clearances.</p>
+          </div>
+        </div>
+
+        <div class="checklist-item">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 2px;">
+              <span class="checklist-badge">Financial</span>
+              <strong style="font-size: 13.5px; color: var(--ink);">ITR / Sworn Gross Sales Statement (Renewal)</strong>
+            </div>
+            <p style="font-size: 12px; color: var(--muted);">Annual Income Tax Returns (BIR Form 1701/1702) or Audited Financial Statements of the preceding year.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary btn-sm" onclick="closeChecklistModal()">Close Checklist</button>
+        <button class="btn btn-primary btn-sm" onclick="window.print()">Print Requirements &amp; Estimate</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =============================================================
+       8. CIVIC GREEN FOOTER (Rule 2)
+       ============================================================= -->
+  <footer class="footer-inverse" role="contentinfo">
+    <div class="container">
+      
+      <div class="footer-grid">
+        
+        <div>
+          <div class="footer-brand">
+            <div class="seal-wrap" style="width: 44px; height: 44px; background: #FFFFFF; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 2px;">
+              <img src="assets/tumauini-official-seal.png" alt="Official Seal of Tumauini" class="seal-img" width="40" height="40" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+            <div>
+              <h3 class="footer-brand-title">Municipality of Tumauini</h3>
+              <span style="font-size: 12px; color: rgba(255, 255, 255, 0.85);">Province of Isabela, Philippines</span>
+            </div>
+          </div>
+          <p class="footer-brand-sub">
+            Serving Tumauini through accessible, transparent, and responsive local government across all 46 barangays.
+          </p>
+          <div style="margin-top: 16px; font-size: 12px; color: rgba(255, 255, 255, 0.85);">
+            <div><strong>Municipal Hall:</strong> National Highway, Tumauini, Isabela 3325</div>
+            <div style="margin-top: 4px;"><strong>Office Hours:</strong> Monday – Friday, 8:00 AM – 5:00 PM</div>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">About Tumauini</h4>
+          <ul class="footer-links">
+            <li><a href="ordinances.html" class="footer-link">Ordinances &amp; Resolutions</a></li>
+            <li><a href="barangays.html" class="footer-link">46 Barangays Directory</a></li>
+            <li><a href="municipal-profile.html" class="footer-link">Municipal Profile</a></li>
+            <li><a href="historical-background.html" class="footer-link">Historical Background</a></li>
+            <li><a href="awards-and-recognition.html" class="footer-link">Awards &amp; Recognition</a></li>
+            <li><a href="elected-officials.html" class="footer-link">Elected Officials</a></li>
+            <li><a href="department-heads.html" class="footer-link">Department Heads</a></li>
+            <li><a href="mission-and-vision.html" class="footer-link">Mission &amp; Vision</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Services &amp; Portals</h4>
+          <ul class="footer-links">
+            <li><a href="services.html" class="footer-link">Citizen’s Charter &amp; Services</a></li>
+            <li><a href="map.html" class="footer-link">Interactive GIS Map</a></li>
+            <li><a href="tax-calculator.html" class="footer-link" style="color: #FFFFFF; font-weight: 700;">Tax &amp; Fee Calculator</a></li>
+            <li><a href="mdrrmo.html" class="footer-link">Disaster Telemetry (MDRRMO)</a></li>
+            <li><a href="news.html" class="footer-link">News &amp; Bulletins</a></li>
+            <li><a href="smart-city.html" class="footer-link">Smart &amp; Sustainable City</a></li>
+            <li><a href="bids-and-awards.html" class="footer-link">Bids &amp; Awards (BAC)</a></li>
+            <li><a href="fund-utilization.html" class="footer-link">Fund Utilization (FDP)</a></li>
+            <li><a href="tourism.html" class="footer-link">Tourism &amp; Heritage</a></li>
+            <li><a href="index.html#transparency" class="footer-link">Full Disclosure Portal</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Emergency Hotlines</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#emergency" class="footer-link" style="color: #F87171;">Rescue 3325: (078) 323-2004</a></li>
+            <li><a href="index.html#emergency" class="footer-link">PNP Tumauini: 0917-123-4567</a></li>
+            <li><a href="index.html#emergency" class="footer-link">BFP Fire Station: 0917-987-6543</a></li>
+            <li><a href="index.html#emergency" class="footer-link">Municipal Health Office</a></li>
+            <li><a href="index.html#feedback" class="footer-link">Public Assistance &amp; Feedback</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 Municipal Government of Tumauini, Isabela. All public rights reserved. Official Philippine Government Portal.
+        </div>
+        <div style="display: flex; gap: 16px;">
+          <a href="index.html" class="footer-link">Home</a>
+          <a href="services.html" class="footer-link">Services</a>
+          <a href="index.html#transparency" class="footer-link">Transparency</a>
+          <a href="index.html#emergency" class="footer-link">Emergency</a>
+          <a href="index.html#feedback" class="footer-link">Citizen Feedback</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- =============================================================
+       9. JAVASCRIPT: TAX CALCULATION ENGINE & INTERACTIVITY
+       ============================================================= -->
+  <script>
+    // 1. Live 3-Line Philippine Standard Time (Rule 3)
+    function updatePstTime() {
+      const clockEl = document.getElementById('pst-live-clock') || document.getElementById('pst-live-time');
+      const dateEl = document.getElementById('pst-live-date');
+      if (!clockEl || !dateEl) return;
+
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString('en-US', {
+        timeZone: 'Asia/Manila',
+        hour12: true,
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      });
+      const dateStr = now.toLocaleDateString('en-US', {
+        timeZone: 'Asia/Manila',
+        weekday: 'long',
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric'
+      });
+
+      clockEl.textContent = timeStr;
+      dateEl.textContent = dateStr;
+    }
+    updatePstTime();
+    setInterval(updatePstTime, 1000);
+
+    // 2. Mobile Menu Toggle
+    // Standardized Mobile Menu Toggle
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobile-drawer');
+      const overlay = document.getElementById('mobile-drawer-overlay');
+      const toggleBtn = document.getElementById('mobile-toggle');
+      const isOpen = drawer?.classList.toggle('open');
+      overlay?.classList.toggle('open', !!isOpen);
+      if (toggleBtn) {
+        toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      }
+    }
+
+    // Keyboard and Touch Handlers for Nav
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        const drawer = document.getElementById('mobile-drawer');
+        const overlay = document.getElementById('mobile-drawer-overlay');
+        if (drawer && drawer.classList.contains('open')) {
+          drawer.classList.remove('open');
+          overlay?.classList.remove('open');
+        }
+        document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('open'));
+      }
+    });
+
+    document.querySelectorAll('.dropdown-toggle').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const menu = this.nextElementSibling;
+        if (!menu) return;
+        const isOpen = menu.classList.contains('open');
+        document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('open'));
+        if (!isOpen) {
+          menu.classList.add('open');
+          this.setAttribute('aria-expanded', 'true');
+        } else {
+          menu.classList.remove('open');
+          this.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.nav-item.dropdown')) {
+        document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('open'));
+        document.querySelectorAll('.dropdown-toggle').forEach(t => t.setAttribute('aria-expanded', 'false'));
+      }
+    });
+
+    // 3. Calculator State Engine
+    const state = {
+      mode: 'renew', // 'renew' or 'new'
+      category: 'retail', // 'retail', 'wholesale', 'food', 'financial', 'agro', 'services'
+      amount: 350000,
+      area: 35,
+      employees: 2,
+      isBmbe: false,
+      hasSignage: true,
+      hasDelivery: false,
+      paymentTerm: 'annual' // 'annual' or 'quarterly'
+    };
+
+    // Category names and descriptions
+    const categoryMeta = {
+      retail: { name: 'Retail & General Store', rateType: 'retail' },
+      wholesale: { name: 'Wholesale & Distribution', rateType: 'wholesale' },
+      food: { name: 'Food & Dining Services', rateType: 'food' },
+      financial: { name: 'Financial & Remittance', rateType: 'financial' },
+      agro: { name: 'Agro-Industrial & Milling', rateType: 'agro' },
+      services: { name: 'Contractors & Services', rateType: 'services' }
+    };
+
+    function setAppMode(mode) {
+      state.mode = mode;
+      document.getElementById('btn-mode-renew').classList.toggle('active', mode === 'renew');
+      document.getElementById('btn-mode-new').classList.toggle('active', mode === 'new');
+      document.getElementById('btn-mode-renew').setAttribute('aria-selected', mode === 'renew');
+      document.getElementById('btn-mode-new').setAttribute('aria-selected', mode === 'new');
+
+      const labelTitle = document.getElementById('financial-label-title');
+      const metaMode = document.getElementById('meta-app-mode');
+      const basisStickers = document.getElementById('basis-stickers');
+
+      if (mode === 'new') {
+        labelTitle.textContent = 'Initial Capital Investment';
+        metaMode.textContent = 'New Registration';
+        basisStickers.textContent = 'New registration plate & documentary stamps';
+      } else {
+        labelTitle.textContent = 'Annual Gross Sales / Receipts';
+        metaMode.textContent = 'Annual Renewal';
+        basisStickers.textContent = 'Annual validation sticker & municipal seal';
+      }
+
+      updateCalculations();
+    }
+
+    function selectCategory(cat) {
+      state.category = cat;
+      document.querySelectorAll('.category-card-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-cat') === cat);
+      });
+      document.getElementById('meta-cat-name').textContent = categoryMeta[cat].name;
+      updateCalculations();
+    }
+
+    function setAmount(val) {
+      state.amount = val;
+      document.getElementById('amount-input').value = Number(val).toLocaleString('en-US');
+      updateCalculations();
+    }
+
+    function handleAmountInput(str) {
+      const clean = str.replace(/[^0-9]/g, '');
+      const num = clean ? parseInt(clean, 10) : 0;
+      state.amount = num;
+      document.getElementById('amount-input').value = num ? num.toLocaleString('en-US') : '';
+      updateCalculations();
+    }
+
+    function adjustArea(delta) {
+      const input = document.getElementById('area-input');
+      let val = (parseInt(input.value, 10) || 35) + delta;
+      if (val < 5) val = 5;
+      if (val > 2500) val = 2500;
+      input.value = val;
+      state.area = val;
+      updateCalculations();
+    }
+
+    function adjustEmployees(delta) {
+      const input = document.getElementById('employees-input');
+      let val = (parseInt(input.value, 10) || 0) + delta;
+      if (val < 0) val = 0;
+      if (val > 150) val = 150;
+      input.value = val;
+      state.employees = val;
+      updateCalculations();
+    }
+
+    function setPaymentTerm(term) {
+      state.paymentTerm = term;
+      document.getElementById('btn-term-annual').classList.toggle('active', term === 'annual');
+      document.getElementById('btn-term-quarterly').classList.toggle('active', term === 'quarterly');
+      updateCalculations();
+    }
+
+    // Mathematical Tax & Fee Engine
+    function calculateFees() {
+      const { mode, category, amount, area, employees, isBmbe, hasSignage, hasDelivery, paymentTerm } = state;
+
+      // 1. Local Business Tax (LBT)
+      let lbt = 0;
+      let lbtBasis = '';
+
+      if (isBmbe) {
+        lbt = 0;
+        lbtBasis = 'RA 9178 BMBE 100% Tax Exemption';
+      } else if (mode === 'new') {
+        // Based on initial capital investment
+        if (amount <= 50000) {
+          lbt = 500;
+        } else if (amount <= 100000) {
+          lbt = 1100;
+        } else if (amount <= 200000) {
+          lbt = 2200;
+        } else if (amount <= 500000) {
+          lbt = 4500;
+        } else if (amount <= 1000000) {
+          lbt = 8000;
+        } else {
+          lbt = 8000 + (amount - 1000000) * 0.0025;
+        }
+        lbtBasis = `Graduated on ₱${amount.toLocaleString()} capital`;
+      } else {
+        // Renewal based on preceding gross receipts
+        if (category === 'retail') {
+          if (amount <= 400000) {
+            lbt = amount * 0.01; // ~1% graduated average
+          } else {
+            lbt = 4000 + (amount - 400000) * 0.0075;
+          }
+        } else if (category === 'wholesale') {
+          lbt = Math.max(1200, amount * 0.0055);
+        } else if (category === 'food') {
+          lbt = Math.max(1500, amount * 0.011);
+        } else if (category === 'financial') {
+          lbt = Math.max(2500, amount * 0.005);
+        } else if (category === 'agro') {
+          lbt = Math.max(2000, amount * 0.006);
+        } else {
+          // services
+          lbt = Math.max(1000, amount * 0.008);
+        }
+        lbtBasis = `Graduated rate on ₱${amount.toLocaleString()} gross`;
+      }
+
+      // 2. Mayor's Permit Fee (Based on Category and Area)
+      let mayors = 1000;
+      let areaTier = 'Micro';
+      if (area <= 25) {
+        mayors = 800;
+        areaTier = 'Micro (<25 sqm)';
+      } else if (area <= 50) {
+        mayors = 1500;
+        areaTier = 'Small (26-50 sqm)';
+      } else if (area <= 150) {
+        mayors = 2500;
+        areaTier = 'Medium (51-150 sqm)';
+      } else if (area <= 500) {
+        mayors = 4500;
+        areaTier = 'Large (151-500 sqm)';
+      } else {
+        mayors = 8000;
+        areaTier = 'Corporate (>500 sqm)';
+      }
+      if (category === 'food' || category === 'agro') mayors += 300;
+
+      // 3. Sanitary Inspection & Health Cards
+      const sanitaryBase = (category === 'food') ? 600 : 450;
+      const healthCardPerHead = 150;
+      const sanitary = sanitaryBase + (employees * healthCardPerHead);
+
+      // 4. Solid Waste & Garbage Service Fee (MENRO)
+      let garbage = 600;
+      if (category === 'food') {
+        garbage = (area <= 50) ? 1500 : 2500;
+      } else if (category === 'agro' || category === 'wholesale') {
+        garbage = (area <= 100) ? 2000 : 3500;
+      } else {
+        garbage = (area <= 50) ? 900 : 1800;
+      }
+
+      // 5. Zoning Clearance Fee
+      const zoning = 400;
+
+      // 6. Regulatory Document Stamps, Sticker, Plate
+      const stickers = (mode === 'new') ? 500 : 400;
+
+      // 7. Add-ons
+      let addons = 0;
+      const addonNotes = [];
+      if (hasSignage) {
+        addons += 350;
+        addonNotes.push('Storefront Signage (₱350)');
+      }
+      if (hasDelivery) {
+        addons += 500;
+        addonNotes.push('Delivery Unit (₱500)');
+      }
+
+      // 8. BFP Fire Safety Inspection Fee (15% statutory of regulatory permits)
+      const regulatorySum = mayors + sanitary + garbage + zoning + addons;
+      const bfp = Math.max(500, Math.round(regulatorySum * 0.15 * 100) / 100);
+
+      // Subtotal
+      const subtotal = lbt + mayors + sanitary + garbage + zoning + stickers + addons + bfp;
+
+      // Prompt discount (10% of LBT if Annual settlement)
+      const discount = (paymentTerm === 'annual' && !isBmbe) ? Math.round(lbt * 0.10 * 100) / 100 : 0;
+      const grandTotal = Math.max(0, subtotal - discount);
+
+      // Quarterly schedule
+      const qAmount = Math.ceil(grandTotal / 4);
+
+      return {
+        lbt,
+        lbtBasis,
+        mayors,
+        areaTier,
+        sanitary,
+        garbage,
+        zoning,
+        bfp,
+        stickers,
+        addons,
+        addonNotes: addonNotes.join(' + ') || 'None selected',
+        subtotal,
+        discount,
+        grandTotal,
+        qAmount
+      };
+    }
+
+    function updateCalculations() {
+      // Fetch latest values from DOM
+      const areaInput = document.getElementById('area-input');
+      const empInput = document.getElementById('employees-input');
+      state.area = parseInt(areaInput?.value, 10) || 35;
+      state.employees = parseInt(empInput?.value, 10) || 0;
+      state.isBmbe = document.getElementById('chk-bmbe')?.checked || false;
+      state.hasSignage = document.getElementById('chk-signage')?.checked || false;
+      state.hasDelivery = document.getElementById('chk-delivery')?.checked || false;
+
+      const calc = calculateFees();
+
+      // Update UI elements
+      document.getElementById('area-tier-badge').textContent = `Tier: ${calc.areaTier}`;
+      document.getElementById('basis-lbt').textContent = calc.lbtBasis;
+      document.getElementById('val-lbt').textContent = `₱${calc.lbt.toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
+
+      document.getElementById('basis-mayors').textContent = `${calc.areaTier} floor plan`;
+      document.getElementById('val-mayors').textContent = `₱${calc.mayors.toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
+
+      document.getElementById('basis-sanitary').textContent = `RHU base + ${state.employees} personnel cards`;
+      document.getElementById('val-sanitary').textContent = `₱${calc.sanitary.toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
+
+      document.getElementById('val-garbage').textContent = `₱${calc.garbage.toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
+      document.getElementById('val-zoning').textContent = `₱${calc.zoning.toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
+      document.getElementById('val-bfp').textContent = `₱${calc.bfp.toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
+      document.getElementById('val-stickers').textContent = `₱${calc.stickers.toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
+
+      const rowAddons = document.getElementById('row-addons');
+      if (calc.addons > 0) {
+        rowAddons.style.display = 'flex';
+        document.getElementById('basis-addons').textContent = calc.addonNotes;
+        document.getElementById('val-addons').textContent = `₱${calc.addons.toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
+      } else {
+        rowAddons.style.display = 'none';
+      }
+
+      document.getElementById('val-subtotal').textContent = `₱${calc.subtotal.toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
+
+      const rowDiscount = document.getElementById('row-discount');
+      if (calc.discount > 0) {
+        rowDiscount.style.display = 'flex';
+        document.getElementById('val-discount').textContent = `-₱${calc.discount.toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
+      } else {
+        rowDiscount.style.display = 'none';
+      }
+
+      document.getElementById('val-grand-total').textContent = `₱${calc.grandTotal.toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
+
+      // Quarterly schedule
+      document.getElementById('val-q1').textContent = `₱${calc.qAmount.toLocaleString('en-US')}`;
+      document.getElementById('val-q2').textContent = `₱${calc.qAmount.toLocaleString('en-US')}`;
+      document.getElementById('val-q3').textContent = `₱${calc.qAmount.toLocaleString('en-US')}`;
+      document.getElementById('val-q4').textContent = `₱${calc.qAmount.toLocaleString('en-US')}`;
+    }
+
+    function resetCalculatorForm() {
+      state.mode = 'renew';
+      state.category = 'retail';
+      state.amount = 350000;
+      state.area = 35;
+      state.employees = 2;
+      state.isBmbe = false;
+      state.hasSignage = true;
+      state.hasDelivery = false;
+      state.paymentTerm = 'annual';
+
+      setAppMode('renew');
+      selectCategory('retail');
+      setAmount(350000);
+      document.getElementById('area-input').value = 35;
+      document.getElementById('employees-input').value = 2;
+      document.getElementById('chk-bmbe').checked = false;
+      document.getElementById('chk-signage').checked = true;
+      document.getElementById('chk-delivery').checked = false;
+      setPaymentTerm('annual');
+
+      // Randomize ref number for freshness
+      const rand = Math.floor(10000 + Math.random() * 90000);
+      document.getElementById('slip-ref-number').textContent = `REF: BPLO-2026-TUM-${rand}`;
+    }
+
+    // 4. Checklist Modal Controls
+    function openChecklistModal() {
+      const modal = document.getElementById('checklist-modal-backdrop');
+      if (modal) {
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeChecklistModal() {
+      const modal = document.getElementById('checklist-modal-backdrop');
+      if (modal) {
+        modal.classList.remove('open');
+        document.body.style.overflow = 'auto';
+      }
+    }
+
+    document.getElementById('checklist-modal-backdrop')?.addEventListener('click', (e) => {
+      if (e.target.id === 'checklist-modal-backdrop') closeChecklistModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeChecklistModal();
+    });
+
+    // Initial run
+    updateCalculations();
+  </script>
+
+  <!-- Global Civic Spotlight Search Engine (Ctrl + K) -->
+  <script src="assets/js/spotlight.js"></script>
+</body>
+</html>

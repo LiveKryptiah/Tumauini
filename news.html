@@ -1,0 +1,2321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News & Announcements · Municipality of Tumauini, Isabela</title>
+  <meta name="description" content="Official news, public advisories, and municipal notices from LGU Tumauini, Isabela.">
+  <meta name="theme-color" content="#f2f9f2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#060e06" media="(prefers-color-scheme: dark)">
+  <script src="assets/js/theme.js"></script>
+  <link rel="icon" type="image/png" href="assets/tumauini-official-seal.png">
+
+  <!-- Google Fonts: Inter & Hanken Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;650;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =============================================================
+       1. MONOCHROME-FIRST SYSTEM TOKENS (design.md)
+       ============================================================= */
+    :root {
+      /* Monochrome Core */
+      --ink: #141414;
+      --canvas: #FFFFFF;
+      --soft-canvas: #FFFFFF;
+      --field: #F0F0F0;
+      --hairline: #E0E0E0;
+      --hairline-subtle: #ECECEC;
+      --muted: #707070;
+      --muted-light: #949494;
+
+      /* Restrained Government Accents (Philippine Identity Layer) */
+      --ph-blue: #0038A8;
+      --ph-red: #CE1126;
+      --ph-yellow: #FCD116;
+      --ph-blue-tint: rgba(0, 56, 168, 0.08);
+      --ph-red-tint: rgba(206, 17, 38, 0.08);
+      --ph-yellow-tint: rgba(252, 209, 22, 0.15);
+
+      /* Typography */
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-display: 'Hanken Grotesk', 'Inter', -apple-system, sans-serif;
+
+      /* Spacing (8px Base System) */
+      --sp-4: 4px;
+      --sp-8: 8px;
+      --sp-12: 12px;
+      --sp-16: 16px;
+      --sp-24: 24px;
+      --sp-32: 32px;
+      --sp-48: 48px;
+      --sp-64: 64px;
+      --sp-80: 80px;
+      --sp-120: 120px;
+
+      /* Radii */
+      --radius-sm: 8px;
+      --radius-card: 16px;
+      --radius-panel: 24px;
+      --radius-pill: 9999px;
+
+      /* Layout */
+      --max-width: 1240px;
+    --container-max: 1200px;
+      --header-height: 76px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--canvas);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--ink);
+      background-color: var(--canvas);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* Accessibility Skip Link */
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 24px;
+      background: var(--ink);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: var(--radius-pill);
+      font-size: 14px;
+      font-weight: 500;
+      z-index: 1000;
+      text-decoration: none;
+      transition: top 0.2s ease;
+    }
+    .skip-link:focus {
+      top: 16px;
+      outline: 2px solid var(--ph-blue);
+      outline-offset: 2px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding-left: var(--sp-24);
+      padding-right: var(--sp-24);
+    }
+
+    /* =============================================================
+       2. TYPOGRAPHIC HIERARCHY
+       ============================================================= */
+    .h1-title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 650;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+
+    .h2-title {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 650;
+      line-height: 1.2;
+      letter-spacing: -0.018em;
+      color: var(--ink);
+    }
+
+    .body-lead {
+      font-size: clamp(16px, 1.5vw, 19px);
+      font-weight: 300;
+      line-height: 1.55;
+      color: var(--muted);
+      letter-spacing: -0.005em;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #15803D;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .eyebrow-accent {
+      color: #15803D;
+    }
+
+    /* Section Header with Left Civic Accent Line */
+    .section-header {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: var(--sp-48);
+    }
+
+    .section-header::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 4px;
+      bottom: 4px;
+      width: 4px;
+      background: #15803D;
+      background: linear-gradient(180deg, #15803D 0%, #16A34A 70%, #FCD116 100%);
+      border-radius: 4px;
+    }
+
+    @media (max-width: 640px) {
+      .section-header {
+        padding-left: 16px;
+      }
+      .section-header::before {
+        width: 3.5px;
+      }
+    }
+
+    /* =============================================================
+       3. BUTTONS & PILLS (Stroke-Free Primary Button)
+       ============================================================= */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: var(--radius-pill);
+      padding: 10px 22px;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      box-shadow: none;
+    }
+
+    .btn:focus-visible {
+      outline: 2px solid var(--ph-blue);
+      outline-offset: 2px;
+    }
+
+    /* All Buttons with Mandatory Green-to-Yellow Radial Gradient (Stroke-Free & Shadow-Free) */
+    .btn,
+    .btn-primary,
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: var(--radius-pill);
+      padding: 10px 22px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      background-color: #15803D !important;
+      background-image: radial-gradient(ellipse 75px 36px at 100% 100%, #FCD116 0%, #EAB308 28%, #16A34A 62%, transparent 100%) !important;
+      background-repeat: no-repeat !important;
+      color: #FFFFFF !important;
+      border: none !important;
+      outline: none !important;
+      box-shadow: none !important;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn:hover,
+    .btn-primary:hover,
+    .btn-secondary:hover {
+      background-color: #15803D !important;
+      background-image: radial-gradient(ellipse 75px 36px at 100% 100%, #FCD116 0%, #EAB308 28%, #16A34A 62%, transparent 100%) !important;
+      border: none !important;
+      outline: none !important;
+      color: #FFFFFF !important;
+      transform: translateY(-1px);
+      box-shadow: none !important;
+    }
+    .btn:active,
+    .btn-primary:active,
+    .btn-secondary:active {
+      transform: translateY(0);
+      box-shadow: none !important;
+    }
+    .btn svg,
+    .btn-primary svg,
+    .btn-secondary svg {
+      stroke: #FFFFFF !important;
+    }
+
+    .btn-sm {
+      padding: 7px 16px;
+      font-size: 13px;
+    }
+
+    .pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 12px;
+      font-weight: 500;
+      background-color: var(--field);
+      color: var(--ink);
+      border: none;
+      box-shadow: none;
+    }
+
+    .pill-badge-green {
+      background-color: #E8F5E9;
+      color: #15803D;
+      border: none;
+    }
+
+    .pill-badge-red {
+      background-color: var(--ph-red-tint);
+      color: var(--ph-red);
+      border: none;
+    }
+
+    .pill-badge-blue {
+      background-color: var(--ph-blue-tint);
+      color: var(--ph-blue);
+      border: none;
+    }
+
+    .pill-badge-yellow {
+      background-color: #FEF9C3;
+      color: #854D0E;
+      border: none;
+    }
+
+    /* =============================================================
+       4. FLOATING PILL NAVIGATION
+       ============================================================= */
+    /* =============================================================
+       STANDARDIZED CIVIC NAVIGATION & MOBILE DRAWER (Rule 2 & 4)
+       ============================================================= */
+    .nav-wrap, .nav-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .nav-pill {
+      font-family: var(--font-body);
+      pointer-events: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1200px;
+      height: 56px;
+      background: var(--nav-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--nav-border);
+      border-radius: 9999px;
+      padding: 0 12px 0 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .nav-pill:hover {
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .nav-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .nav-title-wrap {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .nav-republic {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .nav-lgu {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-link {
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover {
+      background: var(--field);
+      color: var(--ink);
+    }
+
+    .nav-link.active {
+      background: #15803D;
+      color: #FFFFFF !important;
+      font-weight: 600;
+    }
+
+    .nav-link.active svg {
+      stroke: #FFFFFF;
+    }
+
+    .nav-link.active:hover {
+      background: #15803D;
+      color: #FFFFFF !important;
+    }
+    .nav-link.active:hover svg {
+      stroke: #FFFFFF;
+    }
+
+    .nav-item.dropdown {
+      position: relative;
+    }
+
+    .dropdown-menu {
+      font-family: var(--font-body);
+      position: absolute;
+      top: calc(100% + 12px);
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      width: 320px;
+      background: var(--dropdown-bg);
+      border: 1px solid var(--hairline);
+      border-radius: 20px;
+      padding: 8px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .dropdown-menu::before {
+      content: '';
+      position: absolute;
+      top: -14px;
+      left: 0;
+      right: 0;
+      height: 14px;
+    }
+
+    .nav-item.dropdown:hover .dropdown-menu,
+    .nav-item.dropdown:focus-within .dropdown-menu,
+    .dropdown-menu.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 12px;
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--ink);
+      transition: background 0.15s ease;
+    }
+
+    .dropdown-item:hover {
+      background: var(--field);
+    }
+
+    .dropdown-item.active {
+      background: rgba(21, 128, 61, 0.08);
+    }
+
+    .dropdown-item.active .dropdown-item-title {
+      color: #15803D;
+      font-weight: 700;
+    }
+
+    .dropdown-item-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      background: transparent !important;
+      border: none !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+    }
+
+    .dropdown-item-icon svg {
+      stroke: url(#icon-green-yellow) !important;
+    }
+
+    .dropdown-item-content {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .dropdown-item-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+
+    .dropdown-item-desc {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.3;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .theme-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 9999px;
+      border: none;
+      background: var(--field);
+      color: var(--ink);
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      flex-shrink: 0;
+    }
+
+    .theme-toggle-btn:hover {
+      background: var(--soft-canvas);
+      color: var(--primary);
+      transform: scale(1.06);
+    }
+
+    :root:not([data-theme="dark"]) .theme-toggle-btn .sun-icon {
+      display: none !important;
+    }
+    :root:not([data-theme="dark"]) .theme-toggle-btn .moon-icon {
+      display: block !important;
+    }
+    [data-theme="dark"] .theme-toggle-btn .sun-icon {
+      display: block !important;
+    }
+    [data-theme="dark"] .theme-toggle-btn .moon-icon {
+      display: none !important;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .theme-toggle-btn .sun-icon {
+        display: block !important;
+      }
+      :root:not([data-theme="light"]) .theme-toggle-btn .moon-icon {
+        display: none !important;
+      }
+    }
+
+
+    .nav-spotlight-btn {
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      height: 36px;
+      border-radius: 9999px;
+      border: none;
+      background: var(--field);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .nav-spotlight-btn:hover {
+      background: var(--soft-canvas);
+      color: var(--ink);
+      border-color: #cbd5e1;
+    }
+
+    #btn-nav-action {
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .nav-spotlight-btn kbd {
+      font-size: 10px;
+      font-weight: 700;
+      background: #FFFFFF;
+      padding: 1px 5px;
+      border-radius: 4px;
+      border: 1px solid var(--hairline);
+      color: var(--muted);
+    }
+
+    .mobile-toggle {
+      display: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--hairline);
+      background: var(--canvas);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--ink);
+      transition: background 0.15s ease;
+    }
+
+    .mobile-toggle:hover {
+      background: var(--field);
+    }
+
+    @media (max-width: 1024px) {
+      .nav-menu {
+        display: none !important;
+      }
+      .mobile-toggle {
+        display: flex !important;
+      }
+    }
+
+    .mobile-drawer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      z-index: 1090;
+      display: none;
+    }
+
+    .mobile-drawer-overlay.open {
+      display: block;
+    }
+
+    .mobile-drawer {
+      font-family: var(--font-body);
+      position: fixed;
+      top: 80px;
+      left: 16px;
+      right: 16px;
+      background: var(--canvas);
+      border: none;
+      border-radius: var(--radius-panel, 20px);
+      padding: 20px;
+      z-index: 1100;
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+      max-height: calc(100vh - 110px);
+      overflow-y: auto;
+    }
+
+    .mobile-drawer.open {
+      display: flex;
+    }
+
+    .mobile-drawer a {
+      padding: 9px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: var(--radius-card, 10px);
+      color: var(--ink);
+      background: var(--soft-canvas);
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .mobile-drawer a:hover {
+      background: var(--field);
+    }
+
+    .mobile-drawer a.active {
+      font-weight: 700;
+      color: #15803D !important;
+      background: rgba(21, 128, 61, 0.08) !important;
+    }
+
+    /* =============================================================
+       5. PAGE HERO & MINIMAL PST TIMEKEEPER (Strict Rule 3 Standard)
+       ============================================================= */
+    .page-hero {
+      position: relative;
+      padding-top: calc(var(--header-height) + 52px);
+      padding-bottom: var(--sp-64, 64px);
+      background-color: #0E1A11;
+      background-image: linear-gradient(180deg, rgba(10, 26, 15, 0.78) 0%, rgba(8, 20, 12, 0.62) 50%, rgba(10, 20, 14, 0.90) 100%),
+                        url('assets/tumauini-municipal-hall-facade.jpg');
+      background-position: center 38%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+      color: #FFFFFF;
+    }
+
+    .hero-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--sp-24);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .hero-breadcrumb-link {
+      color: rgba(255, 255, 255, 0.75);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.15s ease;
+    }
+
+    .hero-breadcrumb-link:hover {
+      color: #FFFFFF;
+    }
+
+    .hero-breadcrumb-sep {
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 12px;
+    }
+
+    .hero-breadcrumb-current {
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    /* Official 3-Line Philippine Standard Time (Rule 3) */
+    .pst-timekeeper {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      text-align: right;
+      color: #FFFFFF;
+      user-select: none;
+    }
+
+    .pst-label {
+      font-size: 10.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.2;
+      margin-bottom: 2px;
+    }
+
+    .pst-clock {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: #FFFFFF;
+    }
+
+    .pst-date {
+      font-size: 11.5px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.2;
+      margin-top: 2px;
+    }
+
+    .page-hero .eyebrow {
+      color: #FCD116;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+
+    .page-hero .h1-title {
+      color: #FFFFFF;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
+      margin-bottom: 12px;
+    }
+
+    .page-hero .body-lead {
+      color: rgba(255, 255, 255, 0.9);
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .hero-top-row {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+      }
+      .pst-timekeeper {
+        align-items: flex-start;
+        text-align: left;
+      }
+    }
+
+    .news-search-box {
+      position: relative;
+      width: 100%;
+      max-width: 380px;
+    }
+
+    .news-search-input {
+      width: 100%;
+      padding: 12px 18px 12px 42px;
+      background: var(--canvas);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-pill);
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--ink);
+      transition: all 0.2s ease;
+    }
+    .news-search-input:focus {
+      outline: none;
+      border-color: var(--ink);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .news-search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      pointer-events: none;
+    }
+
+    .news-search-box {
+      position: relative;
+      width: 100%;
+      max-width: 380px;
+    }
+
+    .news-search-input {
+      width: 100%;
+      padding: 12px 18px 12px 42px;
+      background: var(--canvas);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-pill);
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--ink);
+      transition: all 0.2s ease;
+    }
+    .news-search-input:focus {
+      outline: none;
+      border-color: var(--ink);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .news-search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      pointer-events: none;
+    }
+
+    /* Category Filter Tabs */
+    .filter-tabs-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+    .filter-tabs-wrap::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filter-tab {
+      padding: 7px 16px;
+      border-radius: var(--radius-pill);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      background-color: var(--soft-canvas);
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .filter-tab:hover {
+      color: var(--ink);
+      background-color: var(--field);
+    }
+    .filter-tab.active {
+      color: #FFFFFF;
+      background-color: #15803D;
+      background-image: radial-gradient(ellipse 75px 36px at 100% 100%, #FCD116 0%, #EAB308 28%, #16A34A 62%, transparent 100%);
+      background-repeat: no-repeat;
+      border: none;
+      outline: none;
+      font-weight: 600;
+      box-shadow: none;
+    }
+
+    /* =============================================================
+       6. FEATURED EDITORIAL STORY
+       ============================================================= */
+    .featured-story-wrap {
+      padding: var(--sp-48) 0 var(--sp-32);
+    }
+
+    .featured-story-card {
+      background: var(--field);
+      border: none;
+      border-radius: var(--radius-panel);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      box-shadow: none;
+    }
+    @media (min-width: 900px) {
+      .featured-story-card {
+        grid-template-columns: 1.15fr 1fr;
+      }
+    }
+    .featured-story-card:hover {
+      transform: translateY(-2px);
+      box-shadow: none;
+    }
+
+    .featured-story-media {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 280px;
+      overflow: hidden;
+      background: var(--soft-canvas);
+    }
+    .featured-story-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .featured-story-card:hover .featured-story-media img {
+      transform: scale(1.025);
+    }
+
+    .featured-story-body {
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    /* =============================================================
+       7. MINIMAL 3-CARD WIDTH GRID (Matching User Design)
+       ============================================================= */
+    .news-grid-section {
+      padding: var(--sp-32) 0 var(--sp-80);
+    }
+
+    .news-card-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 600px) and (max-width: 959px) {
+      .news-card-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 960px) {
+      .news-card-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+    }
+
+    .news-card {
+      background-color: var(--field);
+      border: none;
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+      cursor: pointer;
+      text-align: left;
+      text-decoration: none;
+      color: inherit;
+      height: 100%;
+      box-shadow: none;
+    }
+
+    .news-card:hover {
+      transform: translateY(-2px);
+      box-shadow: none;
+    }
+
+    .news-card:focus-visible {
+      outline: 2px solid var(--ph-blue);
+      outline-offset: 2px;
+    }
+
+    .news-card-media {
+      position: relative;
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+      background-color: var(--soft-canvas);
+    }
+
+    .news-card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+      display: block;
+    }
+
+    .news-card:hover .news-card-media img {
+      transform: scale(1.025);
+    }
+
+    .news-card-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .news-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .news-meta .pill-badge {
+      font-size: 11px;
+      padding: 2px 8px;
+      line-height: 1.4;
+      font-weight: 500;
+    }
+
+    .news-card-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.4;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin: 6px 0 4px;
+      transition: color 0.15s ease;
+    }
+
+    .news-card:hover .news-card-title {
+      color: var(--ink);
+    }
+
+    .news-card-excerpt {
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--muted);
+      margin: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      flex-grow: 1;
+    }
+
+    .news-card-footer {
+      display: flex;
+      align-items: center;
+      padding-top: 8px;
+      margin-top: auto;
+    }
+
+    .news-read-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      background-color: #15803D;
+      background-image: radial-gradient(ellipse 75px 36px at 100% 100%, #FCD116 0%, #EAB308 28%, #16A34A 62%, transparent 100%);
+      background-repeat: no-repeat;
+      color: #FFFFFF;
+      border: none;
+      outline: none;
+      box-shadow: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .news-card:hover .news-read-btn {
+      background-color: #15803D;
+      background-image: radial-gradient(ellipse 75px 36px at 100% 100%, #FCD116 0%, #EAB308 28%, #16A34A 62%, transparent 100%);
+      color: #FFFFFF;
+      transform: translateY(-1px);
+      box-shadow: none;
+      gap: 8px;
+    }
+
+    .news-card:active .news-read-btn {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+
+    /* Public Advisory Banner */
+    .advisory-banner {
+      background-color: var(--soft-canvas);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-panel);
+      padding: 24px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: var(--sp-48);
+    }
+
+    /* =============================================================
+       8. MODAL DIALOG
+       ============================================================= */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-backdrop.active {
+      display: flex;
+    }
+    .modal-sheet {
+      background: var(--canvas);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-panel);
+      width: 100%;
+      max-width: 680px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 36px;
+      position: relative;
+      animation: modalSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes modalSlideUp {
+      from { opacity: 0; transform: translateY(16px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .modal-close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--soft-canvas);
+      border: 1px solid var(--hairline);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--ink);
+    }
+
+    /* =============================================================
+       9. INVERSE FOOTER (#141414)
+       ============================================================= */
+    .footer-inverse {
+      background-color: var(--footer-bg);
+      color: #FFFFFF;
+      border-top-left-radius: var(--radius-panel);
+      border-top-right-radius: var(--radius-panel);
+      padding-top: var(--sp-80);
+      padding-bottom: var(--sp-48);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      margin-bottom: var(--sp-48);
+    }
+    @media (min-width: 900px) {
+      .footer-grid {
+        grid-template-columns: 1.2fr 2fr;
+        gap: 64px;
+      }
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .footer-brand-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 650;
+      letter-spacing: -0.01em;
+    }
+    .footer-brand-sub {
+      font-size: 13.5px;
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.6;
+      max-width: 380px;
+    }
+
+    .footer-columns {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+    @media (min-width: 600px) {
+      .footer-columns {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .footer-col-title {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-link {
+      font-size: 13.5px;
+      color: rgba(255, 255, 255, 0.85);
+      transition: color 0.15s ease;
+    }
+    .footer-link:hover {
+      color: #FFFFFF;
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 12.5px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .footer-legal-links {
+      display: flex;
+      gap: 16px;
+      list-style: none;
+    }
+    .footer-legal-links a:hover {
+      color: #FFFFFF;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Accessible Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Global SVG Linear Gradient for Icons (Corner-to-Corner Green to Yellow) -->
+  <svg width="0" height="0" style="position: absolute; width: 0; height: 0; overflow: hidden;" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="icon-green-yellow" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#15803D" />
+        <stop offset="35%" stop-color="#16A34A" />
+        <stop offset="80%" stop-color="#EAB308" />
+        <stop offset="100%" stop-color="#FCD116" />
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <!-- ============================================================
+       HEADER / FLOATING STADIUM PILL NAVIGATION
+       ============================================================ -->
+  <header class="nav-wrap" role="banner">
+    <nav class="nav-pill" id="navbar" aria-label="Main Navigation">
+      <!-- Left: LGU Branding -->
+      <a href="index.html" class="nav-left" aria-label="Municipality of Tumauini Homepage">
+        <img src="assets/images/logo.png" alt="Seal of Tumauini" class="nav-logo" width="32" height="32" />
+        <div class="nav-title-wrap">
+          <span class="nav-republic">Republic of the Philippines</span>
+          <span class="nav-lgu">Municipality of Tumauini</span>
+        </div>
+      </a>
+
+      <!-- Center: Stadium Menu Items -->
+      <ul class="nav-menu" role="menubar">
+        <!-- 1. Home -->
+        <li role="none"><a href="index.html" class="nav-link" role="menuitem">Home</a></li>
+
+        <!-- 2. About Us Dropdown -->
+        <li class="nav-item dropdown" role="none">
+          <button class="nav-link dropdown-toggle" id="about-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+            <span>About Us</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="dropdown-menu" id="about-dropdown-menu" role="menu" aria-labelledby="about-dropdown-btn">
+            <a href="barangays.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">46 Barangays Directory</span>
+                <span class="dropdown-item-desc">Territorial & demographic profile</span>
+              </div>
+            </a>
+            <a href="municipal-profile.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Municipal Profile</span>
+                <span class="dropdown-item-desc">Geography, climate & demographics</span>
+              </div>
+            </a>
+            <a href="historical-background.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Historical Background</span>
+                <span class="dropdown-item-desc">1705 founding & heritage</span>
+              </div>
+            </a>
+            <a href="awards-and-recognition.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Awards & Citations</span>
+                <span class="dropdown-item-desc">Civic governance accolades</span>
+              </div>
+            </a>
+            <a href="elected-officials.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Elected Officials</span>
+                <span class="dropdown-item-desc">Mayor, Vice Mayor & Councilors</span>
+              </div>
+            </a>
+            <a href="department-heads.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><polyline points="16 11 18 13 22 9"></polyline></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Department Heads</span>
+                <span class="dropdown-item-desc">Executive directors & chiefs</span>
+              </div>
+            </a>
+            <a href="mission-and-vision.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Mission & Vision</span>
+                <span class="dropdown-item-desc">Strategic development & civic goals</span>
+              </div>
+            </a>
+          </div>
+        </li>
+
+        <!-- 3. Services Dropdown -->
+        <li class="nav-item dropdown" role="none">
+          <button class="nav-link dropdown-toggle" id="services-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+            <span>Services</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="dropdown-menu" id="services-dropdown-menu" role="menu" aria-labelledby="services-dropdown-btn">
+            <a href="services.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Citizen's Charter & Services</span>
+                <span class="dropdown-item-desc">Business, civil registry & permits</span>
+              </div>
+            </a>
+            <a href="tax-calculator.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line><line x1="16" y1="14" x2="16" y2="18"></line><path d="M16 10h.01"></path><path d="M12 10h.01"></path><path d="M8 10h.01"></path><path d="M12 14h.01"></path><path d="M8 14h.01"></path><path d="M12 18h.01"></path><path d="M8 18h.01"></path></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Business Tax Calculator</span>
+                <span class="dropdown-item-desc">Mayor's Permit & LBT estimates</span>
+              </div>
+            </a>
+            <a href="map.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Interactive GIS Map</span>
+                <span class="dropdown-item-desc">46 Barangays & flood zones</span>
+              </div>
+            </a>
+            <a href="mdrrmo.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">MDRRMO & Rescue 3325</span>
+                <span class="dropdown-item-desc">Disaster telemetry & 24/7 rescue</span>
+              </div>
+            </a>
+          </div>
+        </li>
+
+        <!-- 4. Transparency Dropdown -->
+        <li class="nav-item dropdown" role="none">
+          <button class="nav-link dropdown-toggle" id="transparency-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+            <span>Transparency</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="dropdown-menu" id="transparency-dropdown-menu" role="menu" aria-labelledby="transparency-dropdown-btn">
+            <a href="bids-and-awards.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Bids & Awards (BAC)</span>
+                <span class="dropdown-item-desc">Procurement notices, bids & awards</span>
+              </div>
+            </a>
+            <a href="fund-utilization.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Fund Utilization Report</span>
+                <span class="dropdown-item-desc">Form 74-A & COA disclosures</span>
+              </div>
+            </a>
+            <a href="ordinances.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Ordinances & Resolutions</span>
+                <span class="dropdown-item-desc">Sangguniang Bayan legislative acts</span>
+              </div>
+            </a>
+          </div>
+        </li>
+
+        <!-- 5. Explore Dropdown -->
+        <li class="nav-item dropdown" role="none">
+          <button class="nav-link dropdown-toggle" id="explore-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+            <span>Explore</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="dropdown-menu" id="explore-dropdown-menu" role="menu" aria-labelledby="explore-dropdown-btn">
+            <a href="tourism.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Tourism & Heritage</span>
+                <span class="dropdown-item-desc">San Matias Church & ecotourism</span>
+              </div>
+            </a>
+            <a href="smart-city.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Smart & Sustainable City</span>
+                <span class="dropdown-item-desc">Agri-tech, IoT & green roadmap</span>
+              </div>
+            </a>
+          </div>
+        </li>
+
+        <!-- 6. News -->
+        <li role="none"><a href="news.html" class="nav-link active" aria-current="page" role="menuitem">News</a></li>
+      </ul>
+
+      <!-- Right: Spotlight Search, Primary Action & Mobile Toggle -->
+      <div class="nav-right">
+                <button class="theme-toggle-btn" id="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle light or dark theme" title="Toggle Theme">
+          <svg class="sun-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="21" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg class="moon-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+        <button class="nav-spotlight-btn" onclick="openSpotlight()" aria-label="Search municipal portal (Ctrl+K)" title="Search (Ctrl + K)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <span>Search</span>
+          <kbd>Ctrl K</kbd>
+        </button>
+
+        <a href="services.html" class="btn btn-primary btn-sm" id="btn-nav-action">
+          <span>Online Services</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+        </a>
+
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Open mobile navigation menu" onclick="toggleMobileMenu()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer-overlay" id="mobile-drawer-overlay" onclick="toggleMobileMenu()"></div>
+  <div class="mobile-drawer" id="mobile-drawer">
+    <button onclick="toggleMobileMenu(); openSpotlight();" style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; font-size: 14px; font-weight: 500; border-radius: var(--radius-card); color: var(--ink); background: var(--field); border: none; cursor: pointer; text-align: left; width: 100%;">
+      <span style="display: flex; align-items: center; gap: 8px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        Search Portal (Ctrl + K)
+      </span>
+      <kbd style="font-size: 10px; font-weight: 700; background: #fff; padding: 2px 6px; border-radius: 4px; border: 1px solid #d4d4d4;">Ctrl K</kbd>
+    </button>
+    <button class="mobile-theme-btn" onclick="toggleTheme()" aria-label="Toggle light or dark theme" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; font-size: 13px; font-weight: 600; border-radius: var(--radius-card); color: var(--ink); background: var(--field); border: none; cursor: pointer; text-align: left; width: 100%; margin-top: 6px;">
+      <span style="display: flex; align-items: center; gap: 8px;">
+        <span class="theme-icon-slot">
+          <svg class="sun-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="21" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg class="moon-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </span>
+        <span>Theme Mode</span>
+      </span>
+      <span class="theme-mode-badge" style="font-size: 11px; padding: 2px 8px; border-radius: var(--radius-pill); background: var(--canvas); color: var(--muted); font-weight: 500;">Toggle</span>
+    </button>
+    <a href="index.html">Home</a>
+
+    <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #15803D; padding: 6px 14px 2px;">About Tumauini</div>
+    <a href="barangays.html">46 Barangays Directory ↗</a>
+    <a href="municipal-profile.html">Municipal Profile ↗</a>
+    <a href="historical-background.html">Historical Background ↗</a>
+    <a href="awards-and-recognition.html">Awards & Recognition ↗</a>
+    <a href="elected-officials.html">Elected Officials ↗</a>
+    <a href="department-heads.html">Department Heads ↗</a>
+    <a href="mission-and-vision.html">Mission & Vision ↗</a>
+
+    <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #15803D; padding: 8px 14px 2px;">Citizen Services</div>
+    <a href="services.html">Citizen's Charter & Services ↗</a>
+    <a href="tax-calculator.html">Business Tax Calculator ↗</a>
+    <a href="map.html">Interactive GIS Map ↗</a>
+    <a href="mdrrmo.html">MDRRMO & Rescue 3325 ↗</a>
+
+    <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #15803D; padding: 8px 14px 2px;">Transparency</div>
+    <a href="bids-and-awards.html">Bids & Awards Committee (BAC) ↗</a>
+    <a href="fund-utilization.html">Fund Utilization Report ↗</a>
+    <a href="ordinances.html">Ordinances & Resolutions ↗</a>
+
+    <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #15803D; padding: 8px 14px 2px;">Explore & Innovation</div>
+    <a href="tourism.html">Tourism & Cultural Heritage ↗</a>
+    <a href="smart-city.html">Smart & Sustainable City ↗</a>
+
+    <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #15803D; padding: 8px 14px 2px;">News & Updates</div>
+    <a href="news.html" class="active">News & Announcements ↗</a>
+  </div>
+
+  <main id="main-content">
+    
+    <!-- =============================================================
+         HERO SECTION WITH 3-LINE PST TIMEKEEPER (Rule 3)
+         ============================================================= -->
+    <!-- Page Hero with PST Timekeeper -->
+    <section class="page-hero" aria-labelledby="news-hero-title">
+      <div class="container">
+        
+        <div class="hero-top-row">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <a href="index.html" class="hero-breadcrumb-link">Home</a>
+            <span class="hero-breadcrumb-sep">/</span>
+            <span class="hero-breadcrumb-current">News &amp; Announcements</span>
+          </div>
+
+          <!-- Official 3-Line Philippine Standard Time (Rule 3) -->
+          <div class="pst-timekeeper" aria-label="Philippine Standard Time">
+            <span class="pst-label">Philippine Standard Time</span>
+            <span class="pst-clock" id="pst-live-time">12:00:00 PM</span>
+            <span class="pst-date" id="pst-live-date">Thursday, October 01, 2026</span>
+          </div>
+        </div>
+
+        <div style="max-width: 820px;">
+          <span class="eyebrow">Public Information Office · Official Bulletins</span>
+          <h1 class="h1-title" id="news-hero-title">News &amp; Public Announcements.</h1>
+          <p class="body-lead">
+            Official municipal reports, departmental advisories, and civic bulletins for Tumauini.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         FEATURED LEAD EDITORIAL STORY
+         ============================================================ -->
+    <section class="featured-story-wrap" id="featured-section">
+      <div class="container">
+        
+        <article class="featured-story-card" tabindex="0" role="button" aria-label="Read featured story: Municipal Agricultural Assistance & Farm-to-Market Support Commences for Isabela Rice and Corn Producers" onclick="openNewsModal('agri-story')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openNewsModal('agri-story');}">
+          <div class="featured-story-media">
+            <img src="assets/cagayan-valley-agriculture.jpg" alt="Irrigated farmland and corn fields in Cagayan Valley, Tumauini" width="800" height="460" loading="lazy">
+          </div>
+          <div class="featured-story-body">
+            <div>
+              <div class="news-meta" style="margin-bottom: 12px;">
+                <span class="pill-badge pill-badge-blue">Featured Story</span>
+                <span class="pill-badge">Programs</span>
+                <time datetime="2026-09-24">September 24, 2026</time>
+              </div>
+              <h2 class="h2-title" style="margin-bottom: 12px; font-size: clamp(22px, 2.5vw, 30px);">
+                Municipal Agricultural Assistance & Farm-to-Market Support Commences
+              </h2>
+              <p class="body-lead" style="font-size: 15px; line-height: 1.6; color: var(--muted);">
+                Subsidized seeds, fertilizer, and irrigation equipment distributed alongside farm-to-market road repairs.
+              </p>
+            </div>
+            <div>
+              <span class="btn btn-primary btn-sm" style="pointer-events: none;">
+                <span>Read Full Announcement</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PUBLIC ADVISORY ALERT TICKER
+         ============================================================ -->
+    <div class="container">
+      <div class="advisory-banner">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <span class="pill-badge pill-badge-red" style="font-weight: 600;">URGENT ADVISORY</span>
+          <p style="font-size: 13.5px; color: var(--ink); margin: 0;">
+            <strong>MDRRMO Alert:</strong> Monsoon rainfall along river basin headwaters. <strong>Rescue 3325</strong> on 24/7 standby.
+          </p>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="openNewsModal('advisory')">
+          <span>View Protocol Details</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         NEWS CARDS SECTION (3 Cards Across Width Grid)
+         ============================================================ -->
+    <section class="news-grid-section" id="news-grid-section">
+      <div class="container">
+
+        <!-- Search & Filter Controls -->
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; margin-bottom: 28px;">
+          <!-- Category Filter Tabs -->
+          <div class="filter-tabs-wrap" role="tablist" aria-label="News categories">
+            <button class="filter-tab active" data-category="all" onclick="setCategory('all', this)" role="tab" aria-selected="true">All Updates</button>
+            <button class="filter-tab" data-category="programs" onclick="setCategory('programs', this)" role="tab" aria-selected="false">Programs &amp; Subsidies</button>
+            <button class="filter-tab" data-category="advisory" onclick="setCategory('advisory', this)" role="tab" aria-selected="false">Public Advisories</button>
+            <button class="filter-tab" data-category="public-notice" onclick="setCategory('public-notice', this)" role="tab" aria-selected="false">Public Notices</button>
+            <button class="filter-tab" data-category="agriculture" onclick="setCategory('agriculture', this)" role="tab" aria-selected="false">Agriculture</button>
+            <button class="filter-tab" data-category="infrastructure" onclick="setCategory('infrastructure', this)" role="tab" aria-selected="false">Infrastructure</button>
+            <button class="filter-tab" data-category="culture" onclick="setCategory('culture', this)" role="tab" aria-selected="false">Heritage &amp; Tourism</button>
+          </div>
+
+          <!-- Instant Live Search Bar -->
+          <div class="news-search-box">
+            <svg class="news-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="news-search" class="news-search-input" placeholder="Search news, topics, or offices..." aria-label="Search news and announcements" oninput="filterArticles()">
+          </div>
+        </div>
+        
+        <div style="margin-bottom: 24px;">
+          <h2 class="h2-title" style="font-size: 22px;">Recent Updates & Announcements</h2>
+          <p style="font-size: 13.5px; color: var(--muted);">Click any announcement to read the complete official advisory.</p>
+        </div>
+
+        <div class="news-card-grid" id="articles-container">
+          
+          <!-- Card 1: Agriculture -->
+          <article class="news-card" data-category="programs agriculture" data-keywords="agricultural assistance seeds fertilizer corn rice farming harvest subsidies" tabindex="0" role="button" aria-label="Read announcement: Municipal Agricultural Assistance & Farm-to-Market Support Commences for Isabela Rice and Corn Producers" onclick="openNewsModal('agri-story')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openNewsModal('agri-story');}">
+            <div class="news-card-media">
+              <img src="assets/cagayan-valley-agriculture.jpg" alt="Agricultural fields and irrigation in Cagayan Valley, Tumauini" width="600" height="380" loading="lazy">
+            </div>
+            <div class="news-card-body">
+              <div>
+                <div class="news-meta">
+                  <span class="pill-badge pill-badge-blue">Programs</span>
+                  <time datetime="2026-09-24">Sep 24, 2026</time>
+                </div>
+                <h3 class="news-card-title">
+                  Municipal Agricultural Assistance & Farm-to-Market Support Commences
+                </h3>
+                <p class="news-card-excerpt">
+                  Seed subsidies, inputs, and irrigation equipment for agrarian cooperatives.
+                </p>
+              </div>
+              <div class="news-card-footer">
+                <span class="news-read-btn">
+                  <span>Read notice</span>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2: MDRRMO Advisory -->
+          <article class="news-card" data-category="advisory" data-keywords="mdrrmo weather monitoring flood preparedness river cagayan rescue advisory alert" tabindex="0" role="button" aria-label="Read announcement: MDRRMO Weather Monitoring & Flood Preparedness Protocol" onclick="openNewsModal('advisory')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openNewsModal('advisory');}">
+            <div class="news-card-media">
+              <img src="assets/civic-service.jpg" alt="MDRRMO disaster preparedness and emergency response unit in Tumauini" width="600" height="380" loading="lazy">
+            </div>
+            <div class="news-card-body">
+              <div>
+                <div class="news-meta">
+                  <span class="pill-badge pill-badge-red">Advisory</span>
+                  <time datetime="2026-09-25">Sep 25, 2026</time>
+                </div>
+                <h3 class="news-card-title">
+                  MDRRMO Weather Monitoring & Flood Preparedness Protocol
+                </h3>
+                <p class="news-card-excerpt">
+                  Rescue 3325 units placed on 24/7 monitoring alert along river basin.
+                </p>
+              </div>
+              <div class="news-card-footer">
+                <span class="news-read-btn">
+                  <span>Read notice</span>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3: Civil Registration -->
+          <article class="news-card" data-category="public-notice" data-keywords="civil registration birth certificate psa mobile outreach document legalization barangays" tabindex="0" role="button" aria-label="Read announcement: Mobile Community Civil Registration Schedule for Upland Barangays" onclick="openNewsModal('civil-reg-outreach')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openNewsModal('civil-reg-outreach');}">
+            <div class="news-card-media">
+              <img src="assets/tumauini-municipal-hall.jpg" alt="Tumauini Municipal Hall, Isabela" width="600" height="380" loading="lazy">
+            </div>
+            <div class="news-card-body">
+              <div>
+                <div class="news-meta">
+                  <span class="pill-badge">Public Notice</span>
+                  <time datetime="2026-09-20">Sep 20, 2026</time>
+                </div>
+                <h3 class="news-card-title">
+                  Mobile Community Civil Registration Schedule for Upland Barangays
+                </h3>
+                <p class="news-card-excerpt">
+                  Mobile civil registration and document legalization in upland barangays.
+                </p>
+              </div>
+              <div class="news-card-footer">
+                <span class="news-read-btn">
+                  <span>Read notice</span>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4: Infrastructure -->
+          <article class="news-card" data-category="infrastructure" data-keywords="infrastructure engineering road rehabilitation drainage barangay poblacion civil works" tabindex="0" role="button" aria-label="Read announcement: Progress Inspection on Barangay Poblacion Drainage & Road Rehabilitation" onclick="openNewsModal('infrastructure')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openNewsModal('infrastructure');}">
+            <div class="news-card-media">
+              <img src="assets/tumauini-municipal-hall.jpg" alt="Tumauini Engineering and municipal public works coordination" width="600" height="380" loading="lazy">
+            </div>
+            <div class="news-card-body">
+              <div>
+                <div class="news-meta">
+                  <span class="pill-badge">Infrastructure</span>
+                  <time datetime="2026-09-18">Sep 18, 2026</time>
+                </div>
+                <h3 class="news-card-title">
+                  Barangay Poblacion Drainage & Road Rehabilitation Progress
+                </h3>
+                <p class="news-card-excerpt">
+                  Site inspection on municipal road concreting and drainage at 78% completion.
+                </p>
+              </div>
+              <div class="news-card-footer">
+                <span class="news-read-btn">
+                  <span>Read notice</span>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 5: Agriculture Harvest -->
+          <article class="news-card" data-category="programs agriculture" data-keywords="corn production harvest yield agriculture farmers post-harvest crop insurance" tabindex="0" role="button" aria-label="Read announcement: Isabela Corn & Grain Yield Assessment Report" onclick="openNewsModal('grain-yield')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openNewsModal('grain-yield');}">
+            <div class="news-card-media">
+              <img src="assets/agriculture-corn.jpg" alt="High-yield yellow corn harvest in Tumauini, Isabela" width="600" height="380" loading="lazy">
+            </div>
+            <div class="news-card-body">
+              <div>
+                <div class="news-meta">
+                  <span class="pill-badge pill-badge-blue">Agriculture</span>
+                  <time datetime="2026-09-15">Sep 15, 2026</time>
+                </div>
+                <h3 class="news-card-title">
+                  Tumauini Corn & Grain Yield Assessment for Regular Cropping Season
+                </h3>
+                <p class="news-card-excerpt">
+                  Municipal Agriculturist reports an 11% increase in corn grain harvest.
+                </p>
+              </div>
+              <div class="news-card-footer">
+                <span class="news-read-btn">
+                  <span>Read notice</span>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 6: Cultural Heritage -->
+          <article class="news-card" data-category="culture" data-keywords="san matias parish church belfry national cultural treasure heritage tourism conservation" tabindex="0" role="button" aria-label="Read announcement: Heritage Conservation Assessment on San Matias Parish Church" onclick="openNewsModal('heritage')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openNewsModal('heritage');}">
+            <div class="news-card-media">
+              <img src="assets/tumauini-church-belfry.jpg" alt="San Matias Parish cylindrical brick belfry in Tumauini" width="600" height="380" loading="lazy">
+            </div>
+            <div class="news-card-body">
+              <div>
+                <div class="news-meta">
+                  <span class="pill-badge">Heritage</span>
+                  <time datetime="2026-09-10">Sep 10, 2026</time>
+                </div>
+                <h3 class="news-card-title">
+                  Heritage Conservation Assessment on 18th-Century Cylindrical Belfry
+                </h3>
+                <p class="news-card-excerpt">
+                  NHCP and LGU assess structural preservation of the historic cylindrical belfry.
+                </p>
+              </div>
+              <div class="news-card-footer">
+                <span class="news-read-btn">
+                  <span>Read notice</span>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- No Results Fallback -->
+        <div id="no-results-msg" style="display: none; text-align: center; padding: 48px 24px; background: var(--soft-canvas); border-radius: var(--radius-card); border: 1px solid var(--hairline); margin-top: 24px;">
+          <p style="font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 6px;">No announcements found</p>
+          <p style="font-size: 13.5px; color: var(--muted); margin-bottom: 16px;">Try adjusting your search terms or selecting a different category.</p>
+          <button class="btn btn-primary btn-sm" onclick="resetFilters()">Reset All Filters</button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       INVERSE FOOTER (#141414)
+       ============================================================ -->
+  <footer class="footer-inverse" role="contentinfo">
+    <div class="container">
+      
+      <div class="footer-grid">
+        
+        <div>
+          <div class="footer-brand">
+            <div class="seal-wrap" style="width: 44px; height: 44px; background: #FFFFFF; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 2px;">
+              <img src="assets/tumauini-official-seal.png" alt="Official Seal of Tumauini" class="seal-img" width="40" height="40" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+            <div>
+              <h3 class="footer-brand-title">Municipality of Tumauini</h3>
+              <span style="font-size: 12px; color: rgba(255, 255, 255, 0.85);">Province of Isabela, Philippines</span>
+            </div>
+          </div>
+          <p class="footer-brand-sub">
+            Serving Tumauini through accessible, transparent, and responsive local government across all 46 barangays.
+          </p>
+          <div style="margin-top: 16px; font-size: 12px; color: rgba(255, 255, 255, 0.85);">
+            <div><strong>Municipal Hall:</strong> National Highway, Tumauini, Isabela 3325</div>
+            <div style="margin-top: 4px;"><strong>Office Hours:</strong> Monday – Friday, 8:00 AM – 5:00 PM</div>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">About Tumauini</h4>
+          <ul class="footer-links">
+            <li><a href="ordinances.html" class="footer-link">Ordinances &amp; Resolutions</a></li>
+            <li><a href="barangays.html" class="footer-link">46 Barangays Directory</a></li>
+            <li><a href="municipal-profile.html" class="footer-link">Municipal Profile</a></li>
+            <li><a href="historical-background.html" class="footer-link">Historical Background</a></li>
+            <li><a href="awards-and-recognition.html" class="footer-link">Awards &amp; Recognition</a></li>
+            <li><a href="elected-officials.html" class="footer-link">Elected Officials</a></li>
+            <li><a href="department-heads.html" class="footer-link">Department Heads</a></li>
+            <li><a href="mission-and-vision.html" class="footer-link">Mission &amp; Vision</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Services &amp; Portals</h4>
+          <ul class="footer-links">
+            <li><a href="services.html" class="footer-link">Citizen’s Charter &amp; Services</a></li>
+            <li><a href="map.html" class="footer-link">Interactive GIS Map</a></li>
+            <li><a href="tax-calculator.html" class="footer-link">Tax &amp; Fee Calculator</a></li>
+            <li><a href="mdrrmo.html" class="footer-link">Disaster Telemetry (MDRRMO)</a></li>
+            <li><a href="news.html" class="footer-link" style="color: #FFFFFF; font-weight: 700;">News &amp; Bulletins</a></li>
+            <li><a href="smart-city.html" class="footer-link">Smart &amp; Sustainable City</a></li>
+            <li><a href="bids-and-awards.html" class="footer-link">Bids &amp; Awards (BAC)</a></li>
+            <li><a href="fund-utilization.html" class="footer-link">Fund Utilization (FDP)</a></li>
+            <li><a href="tourism.html" class="footer-link">Tourism &amp; Heritage</a></li>
+            <li><a href="index.html#transparency" class="footer-link">Full Disclosure Portal</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Emergency Hotlines</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#emergency" class="footer-link" style="color: #F87171;">Rescue 3325: (078) 323-2004</a></li>
+            <li><a href="index.html#emergency" class="footer-link">PNP Tumauini: 0917-123-4567</a></li>
+            <li><a href="index.html#emergency" class="footer-link">BFP Fire Station: 0917-987-6543</a></li>
+            <li><a href="index.html#emergency" class="footer-link">Municipal Health Office</a></li>
+            <li><a href="index.html#feedback" class="footer-link">Public Assistance &amp; Feedback</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 Municipal Government of Tumauini, Isabela. All public rights reserved. Official Philippine Government Portal.
+        </div>
+        <div style="display: flex; gap: 16px;">
+          <a href="index.html" class="footer-link">Home</a>
+          <a href="services.html" class="footer-link">Services</a>
+          <a href="index.html#transparency" class="footer-link">Transparency</a>
+          <a href="index.html#emergency" class="footer-link">Emergency</a>
+          <a href="index.html#feedback" class="footer-link">Citizen Feedback</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       MODAL DIALOG CONTAINER
+       ============================================================ -->
+  <div class="modal-backdrop" id="news-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" onclick="if(event.target===this)closeNewsModal()">
+    <div class="modal-sheet">
+      <button class="modal-close-btn" onclick="closeNewsModal()" aria-label="Close modal dialog">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+      <div id="news-modal-content">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // PST Live Clock (Rule 3)
+    function updatePSTClock() {
+      try {
+        const now = new Date();
+        const timeFormatter = new Intl.DateTimeFormat('en-US', {
+          timeZone: 'Asia/Manila',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: true
+        });
+        const dateFormatter = new Intl.DateTimeFormat('en-US', {
+          timeZone: 'Asia/Manila',
+          weekday: 'long',
+          month: '2-digit',
+          day: '2-digit',
+          year: 'numeric'
+        });
+
+        ['pst-live-clock', 'pst-live-time', 'pst-time'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.textContent = timeFormatter.format(now);
+        });
+        ['pst-live-date', 'pst-date'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.textContent = dateFormatter.format(now);
+        });
+      } catch (e) {
+        console.error('PST clock update error:', e);
+      }
+    }
+    updatePSTClock();
+    setInterval(updatePSTClock, 1000);
+
+    // 1. Mobile Menu Drawer Controller
+    // Standardized Mobile Menu Toggle
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobile-drawer');
+      const overlay = document.getElementById('mobile-drawer-overlay');
+      const toggleBtn = document.getElementById('mobile-toggle');
+      const isOpen = drawer?.classList.toggle('open');
+      overlay?.classList.toggle('open', !!isOpen);
+      if (toggleBtn) {
+        toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      }
+    }
+
+    // Keyboard and Touch Handlers for Nav
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        const drawer = document.getElementById('mobile-drawer');
+        const overlay = document.getElementById('mobile-drawer-overlay');
+        if (drawer && drawer.classList.contains('open')) {
+          drawer.classList.remove('open');
+          overlay?.classList.remove('open');
+        }
+        document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('open'));
+      }
+    });
+
+    document.querySelectorAll('.dropdown-toggle').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const menu = this.nextElementSibling;
+        if (!menu) return;
+        const isOpen = menu.classList.contains('open');
+        document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('open'));
+        if (!isOpen) {
+          menu.classList.add('open');
+          this.setAttribute('aria-expanded', 'true');
+        } else {
+          menu.classList.remove('open');
+          this.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.nav-item.dropdown')) {
+        document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('open'));
+        document.querySelectorAll('.dropdown-toggle').forEach(t => t.setAttribute('aria-expanded', 'false'));
+      }
+    });
+
+    // 2. News Stories Repository
+    const newsStories = {
+      'agri-story': {
+        tag: "Programs & Subsidies",
+        title: "Municipal Agricultural Assistance & Farm-to-Market Support Commences for Isabela Rice and Corn Producers",
+        date: "September 24, 2026 · Office of the Municipal Agriculturist",
+        body: `
+          <p class="body-muted" style="margin-bottom: 16px;">
+            TUMAUINI, ISABELA — In response to the opening of the regular cropping season, the Municipal Government of Tumauini has begun distributing subsidized high-yield seeds and agricultural fertilizers to registered local farmers across all 46 barangays.
+          </p>
+          <p class="body-muted" style="margin-bottom: 16px;">
+            The program prioritizes smallholder corn and palay farmers registered under the Registry System for Basic Sectors in Agriculture (RSBSA). In addition to input subsidies, the Municipal Engineering Department has completed grading works on key farm-to-market access routes in upland farming communities, reducing hauling costs and post-harvest losses.
+          </p>
+          <p class="body-muted" style="margin-bottom: 16px;">
+            Farmers are encouraged to verify their RSBSA enrollment at their respective Barangay Hall or directly with the Office of the Municipal Agriculturist at the Tumauini Municipal Hall.
+          </p>
+          <div style="background-color: var(--soft-canvas); border: 1px solid var(--hairline); border-radius: var(--radius-card); padding: 16px; margin-top: 16px;">
+            <p style="font-size: 13px; color: var(--muted); margin: 0;">
+              <strong>Office In-Charge:</strong> Office of the Municipal Agriculturist (OMA) · Trunkline: (078) 323-2004 loc. 108
+            </p>
+          </div>
+        `
+      },
+      'advisory': {
+        tag: "Public Advisory",
+        title: "MDRRMO Weather Monitoring & Flood Preparedness Protocol",
+        date: "September 25, 2026 · Municipal Disaster Risk Reduction & Management Office",
+        body: `
+          <p class="body-muted" style="margin-bottom: 16px;">
+            ADVISORY NO. 2026-0925: The Municipal Disaster Risk Reduction and Management Council (MDRRMC) has placed emergency quick response units on alert status due to continuous light to moderate rains in the Cagayan River basin headwaters.
+          </p>
+          <p class="body-muted" style="margin-bottom: 16px;">
+            Barangay Disaster Risk Reduction committees along riverside communities (including Brgy. Maligaya, Brgy. Lanna, and Brgy. Fermeldy) are instructed to monitor water levels closely and report any river swelling to the Tumauini MDRRMO Operation Center.
+          </p>
+          <p class="body-muted">
+            Emergency hotline <strong>Rescue 3325 / 0917-555-3325</strong> is on continuous standby 24/7.
+          </p>
+          <div style="background-color: var(--ph-red-tint); border: 1px solid rgba(206,17,38,0.2); border-radius: var(--radius-card); padding: 16px; margin-top: 16px;">
+            <p style="font-size: 13px; color: var(--ph-red); margin: 0;">
+              <strong>Emergency Dispatch:</strong> MDRRMO Operation Center, Tumauini Public Safety Building.
+            </p>
+          </div>
+        `
+      },
+      'civil-reg-outreach': {
+        tag: "Public Notice",
+        title: "Mobile Community Civil Registration Schedule for Upland Barangays",
+        date: "September 20, 2026 · Office of the Local Civil Registrar",
+        body: `
+          <p class="body-muted" style="margin-bottom: 16px;">
+            The Local Civil Registrar will conduct an on-site mobile civil registration outreach program during October 2026. This initiative brings government documentation services directly to residents living in remote barangays.
+          </p>
+          <p class="body-muted" style="margin-bottom: 16px;">
+            Services offered include: Free delayed registration of births, correction of clerical errors under RA 9048 / RA 10172, document authentication, and pre-marriage counseling documentation.
+          </p>
+          <p class="body-muted">
+            Residents are advised to check with their local Barangay Captain for exact barangay visit schedules and required supporting papers.
+          </p>
+        `
+      },
+      'infrastructure': {
+        tag: "Infrastructure",
+        title: "Progress Inspection on Barangay Poblacion Drainage & Road Rehabilitation",
+        date: "September 18, 2026 · Municipal Engineering Office",
+        body: `
+          <p class="body-muted" style="margin-bottom: 16px;">
+            Municipal engineers inspected ongoing storm drainage construction and concrete pavement rehabilitation in Barangay Poblacion. The project aims to eliminate recurring urban ponding along commercial avenues during monsoon events.
+          </p>
+          <p class="body-muted">
+            Funded under the 20% Municipal Development Fund, the civil works are currently at 78% completion and on schedule for turnover ahead of the year-end harvest rush.
+          </p>
+        `
+      },
+      'grain-yield': {
+        tag: "Agriculture & Economy",
+        title: "Tumauini Corn & Grain Yield Assessment for Regular Cropping Season",
+        date: "September 15, 2026 · Office of the Municipal Agriculturist",
+        body: `
+          <p class="body-muted" style="margin-bottom: 16px;">
+            The Office of the Municipal Agriculturist has concluded its quarterly production assessment, recording an 11% increase in high-yield yellow corn grain harvest across agrarian cooperatives in eastern Tumauini.
+          </p>
+          <p class="body-muted">
+            The growth is attributed to timely fertilizer distribution, expanded solar-powered shallow tube well irrigation systems, and active crop insurance enrollment through the Philippine Crop Insurance Corporation (PCIC).
+          </p>
+        `
+      },
+      'heritage': {
+        tag: "Cultural Heritage",
+        title: "Heritage Conservation Assessment on 18th-Century Cylindrical Belfry",
+        date: "September 10, 2026 · Municipal Tourism Office",
+        body: `
+          <p class="body-muted" style="margin-bottom: 16px;">
+            The Municipal Government of Tumauini, in coordination with the National Historical Commission of the Philippines (NHCP) and the San Matias Apostol Parish, has initiated a non-invasive structural integrity scan of the historic cylindrical red-brick belfry.
+          </p>
+          <p class="body-muted">
+            Declared a National Cultural Treasure, the San Matias Church is the only Spanish colonial church in the Philippines featuring a cylindrical red-brick bell tower. The ongoing assessment guarantees preservation protocols are maintained for future generations.
+          </p>
+        `
+      }
+    };
+
+    // 3. Modal Handlers
+    function openNewsModal(key) {
+      const story = newsStories[key];
+      if (!story) return;
+      const content = document.getElementById('news-modal-content');
+      content.innerHTML = `
+        <span class="pill-badge pill-badge-blue" style="margin-bottom: 12px;">${story.tag}</span>
+        <h3 id="modal-title" class="h2-title" style="margin-bottom: 8px; font-size: clamp(20px, 2.5vw, 26px);">${story.title}</h3>
+        <p style="font-size: 12.5px; color: var(--muted); margin-bottom: 20px;">${story.date}</p>
+        ${story.body}
+        <div style="margin-top: 28px; text-align: right;">
+          <button class="btn btn-primary btn-sm" onclick="closeNewsModal()">Close Announcement</button>
+        </div>
+      `;
+      document.getElementById('news-modal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeNewsModal() {
+      document.getElementById('news-modal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Keyboard support for modal
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeNewsModal();
+      }
+    });
+
+    // 4. Interactive Live Search & Category Filtering
+    let currentCategory = 'all';
+
+    function setCategory(category, el) {
+      currentCategory = category;
+      document.querySelectorAll('.filter-tab').forEach(tab => {
+        tab.classList.remove('active');
+        tab.setAttribute('aria-selected', 'false');
+      });
+      el.classList.add('active');
+      el.setAttribute('aria-selected', 'true');
+      filterArticles();
+    }
+
+    function filterArticles() {
+      const query = document.getElementById('news-search').value.toLowerCase().trim();
+      const cards = document.querySelectorAll('#articles-container .news-card');
+      const featuredSection = document.getElementById('featured-section');
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const categories = card.getAttribute('data-category') || '';
+        const keywords = card.getAttribute('data-keywords') || '';
+        const title = card.querySelector('.news-card-title')?.innerText.toLowerCase() || '';
+        const excerpt = card.querySelector('.news-card-excerpt')?.innerText.toLowerCase() || '';
+        
+        const matchesCategory = (currentCategory === 'all') || categories.includes(currentCategory);
+        const matchesSearch = query === '' || 
+                              title.includes(query) || 
+                              excerpt.includes(query) || 
+                              keywords.includes(query);
+
+        if (matchesCategory && matchesSearch) {
+          card.style.display = 'flex';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      // Hide or show featured section when search filter is active
+      if (query !== '' || currentCategory !== 'all') {
+        if (featuredSection) featuredSection.style.display = 'none';
+      } else {
+        if (featuredSection) featuredSection.style.display = 'block';
+      }
+
+      // No results message
+      const noResults = document.getElementById('no-results-msg');
+      if (visibleCount === 0) {
+        noResults.style.display = 'block';
+      } else {
+        noResults.style.display = 'none';
+      }
+    }
+
+    function resetFilters() {
+      document.getElementById('news-search').value = '';
+      const allTab = document.querySelector('.filter-tab[data-category="all"]');
+      if (allTab) setCategory('all', allTab);
+    }
+  </script>
+  <!-- Global Civic Spotlight Search Engine (Ctrl + K) -->
+  <script src="assets/js/spotlight.js"></script>
+</body>
+</html>

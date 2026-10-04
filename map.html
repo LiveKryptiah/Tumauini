@@ -1,0 +1,2613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f2f9f2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#060e06" media="(prefers-color-scheme: dark)">
+  <script src="assets/js/theme.js"></script>
+  <title>Interactive Municipal Map &amp; Evacuation Zones | Municipal Government of Tumauini</title>
+  <meta name="description" content="Explore the official geographic map of Tumauini, Isabela. Interactive directory of all 46 barangays, evacuation center shelters, flood hazard heatmaps, and heritage landmarks.">
+  <link rel="icon" type="image/png" href="assets/tumauini-official-seal.png">
+
+  <!-- Typography: Inter & Hanken Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Leaflet CSS for Map Engine -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+  <style>
+    /* =============================================================
+       1. ROOT DESIGN SYSTEM VARIABLES (Strict GEMINI.md Guidelines)
+       ============================================================= */
+    :root, [data-theme="light"] {
+      /* User Specified Palette - Light Mode */
+      --text: #0d150d;
+      --background: #f2f9f2;
+      --primary: #4dc24f;
+      --secondary: #8fe490;
+      --accent: #57e659;
+
+      /* Mapped Civic System Tokens */
+      --ink: var(--text);
+      --canvas: var(--background);
+      --soft-canvas: #FFFFFF;
+      --field: #E4F2E4;
+      --hairline: #D0E5D0;
+      --hairline-subtle: #E0EFE0;
+      --muted: #4B634B;
+      --muted-light: #708A70;
+      --civic-green: #15803D;
+
+      /* UI Element Surfaces */
+      --nav-bg: rgba(242, 249, 242, 0.92);
+      --nav-border: rgba(13, 21, 13, 0.08);
+      --dropdown-bg: #FFFFFF;
+      --card-bg: #FFFFFF;
+      --card-border: #D0E5D0;
+      --footer-bg: #15803D;
+      --footer-text: #FFFFFF;
+      --footer-border: #166534;
+      --glance-bg: #15803D;
+      --glance-card-bg: #14532D;
+
+      /* Restrained Government Accents (Philippine Identity Layer) */
+      --ph-blue: #0038A8;
+      --ph-red: #CE1126;
+      --ph-yellow: #FCD116;
+      --ph-blue-tint: rgba(0, 56, 168, 0.08);
+      --ph-red-tint: rgba(206, 17, 38, 0.08);
+      --ph-yellow-tint: rgba(252, 209, 22, 0.15);
+    }
+
+    [data-theme="dark"] {
+      /* User Specified Palette - Dark Mode */
+      --text: #e9f1e9;
+      --background: #060e06;
+      --primary: #3db33f;
+      --secondary: #1b6f1c;
+      --accent: #19a91c;
+
+      /* Mapped Civic System Tokens */
+      --ink: var(--text);
+      --canvas: var(--background);
+      --soft-canvas: #0C180C;
+      --field: #132413;
+      --hairline: #1C381C;
+      --hairline-subtle: #142814;
+      --muted: #9EB89E;
+      --muted-light: #6E886E;
+      --civic-green: #3db33f;
+
+      /* UI Element Surfaces */
+      --nav-bg: rgba(12, 24, 12, 0.94);
+      --nav-border: rgba(233, 241, 233, 0.12);
+      --dropdown-bg: #0E1C0E;
+      --card-bg: #0C180C;
+      --card-border: #1C381C;
+      --footer-bg: #081408;
+      --footer-text: #E9F1E9;
+      --footer-border: #1B6F1C;
+      --glance-bg: #0A170A;
+      --glance-card-bg: #102410;
+
+      /* Restrained Government Accents */
+      --ph-blue: #3B82F6;
+      --ph-red: #EF4444;
+      --ph-yellow: #FCD116;
+      --ph-blue-tint: rgba(59, 130, 246, 0.15);
+      --ph-red-tint: rgba(239, 68, 68, 0.15);
+      --ph-yellow-tint: rgba(252, 209, 22, 0.15);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        /* User Specified Palette - Dark Mode */
+        --text: #e9f1e9;
+        --background: #060e06;
+        --primary: #3db33f;
+        --secondary: #1b6f1c;
+        --accent: #19a91c;
+
+        /* Mapped Civic System Tokens */
+        --ink: var(--text);
+        --canvas: var(--background);
+        --soft-canvas: #0C180C;
+        --field: #132413;
+        --hairline: #1C381C;
+        --hairline-subtle: #142814;
+        --muted: #9EB89E;
+        --muted-light: #6E886E;
+        --civic-green: #3db33f;
+
+        /* UI Element Surfaces */
+        --nav-bg: rgba(12, 24, 12, 0.94);
+        --nav-border: rgba(233, 241, 233, 0.12);
+        --dropdown-bg: #0E1C0E;
+        --card-bg: #0C180C;
+        --card-border: #1C381C;
+        --footer-bg: #081408;
+        --footer-text: #E9F1E9;
+        --footer-border: #1B6F1C;
+        --glance-bg: #0A170A;
+        --glance-card-bg: #102410;
+
+        /* Restrained Government Accents */
+        --ph-blue: #3B82F6;
+        --ph-red: #EF4444;
+        --ph-yellow: #FCD116;
+        --ph-blue-tint: rgba(59, 130, 246, 0.15);
+        --ph-red-tint: rgba(239, 68, 68, 0.15);
+        --ph-yellow-tint: rgba(252, 209, 22, 0.15);
+      }
+    }
+
+    :root {
+
+      /* Alert / Hazard Palette */
+      --hazard-high: #CE1126;
+      --hazard-med: #EA580C;
+      --hazard-low: #15803D;
+
+      /* Typography */
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-display: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+      /* Radii */
+      --radius-pill: 9999px;
+      --radius-card: 16px;
+      --radius-panel: 24px;
+
+      /* Spacing Scale */
+      --sp-8: 8px;
+      --sp-12: 12px;
+      --sp-16: 16px;
+      --sp-24: 24px;
+      --sp-32: 32px;
+      --sp-48: 48px;
+      --sp-64: 64px;
+      --sp-80: 80px;
+
+      /* Dimensions */
+      --max-width: 1240px;
+      --container-max: 1200px;
+      --header-height: 76px;
+    }
+
+    /* CSS Reset */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      color-scheme: light;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 400;
+      color: var(--ink);
+      background-color: var(--canvas);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    button {
+      font-family: inherit;
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: clamp(16px, 3.5vw, 32px);
+      padding-right: clamp(16px, 3.5vw, 32px);
+    }
+
+    .section-wrap {
+      padding: var(--sp-80) 0;
+    }
+
+    /* Section Header with Left Gradient Bar */
+    .section-header {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: var(--sp-48);
+    }
+
+    .section-header::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 4px;
+      bottom: 4px;
+      width: 4px;
+      background: #15803D;
+      background: linear-gradient(180deg, #15803D 0%, #16A34A 70%, #FCD116 100%);
+      border-radius: 4px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: var(--sp-8);
+    }
+
+    .eyebrow-accent {
+      color: var(--civic-green);
+    }
+
+    .eyebrow-red {
+      color: var(--ph-red);
+    }
+
+    .h1-title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+    }
+
+    .h2-title {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 3.5vw, 34px);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+
+    .body-lead {
+      font-size: clamp(15px, 2vw, 17px);
+      color: var(--muted);
+      line-height: 1.5;
+      margin-top: var(--sp-12);
+      max-width: 720px;
+    }
+
+    /* Pill Badges */
+    .pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      background: var(--field);
+      border: none;
+      box-shadow: none;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    .pill-badge-green {
+      background: rgba(21, 128, 61, 0.08);
+      border: none;
+      color: #15803D;
+    }
+
+    .pill-badge-red {
+      background: var(--ph-red-tint);
+      border: none;
+      color: var(--ph-red);
+    }
+
+    .pill-badge-blue {
+      background: var(--ph-blue-tint);
+      border: none;
+      color: var(--ph-blue);
+    }
+
+    /* =============================================================
+       2. MANDATORY BUTTON STYLING (Strict Rule 1 Specification)
+       ============================================================= */
+    /* All Buttons with Mandatory Green-to-Yellow Radial Gradient (Stroke-Free & Shadow-Free) */
+    .btn,
+    .btn-primary,
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      background-color: #15803D !important;
+      background-image: radial-gradient(ellipse 75px 36px at 100% 100%, #FCD116 0%, #EAB308 28%, #16A34A 62%, transparent 100%) !important;
+      background-repeat: no-repeat !important;
+      color: #FFFFFF !important;
+      border: none !important;
+      outline: none !important;
+      box-shadow: none !important;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn:hover,
+    .btn-primary:hover,
+    .btn-secondary:hover {
+      background-color: #15803D !important;
+      background-image: radial-gradient(ellipse 75px 36px at 100% 100%, #FCD116 0%, #EAB308 28%, #16A34A 62%, transparent 100%) !important;
+      border: none !important;
+      outline: none !important;
+      color: #FFFFFF !important;
+      transform: translateY(-1px);
+      box-shadow: none !important;
+    }
+    .btn:active,
+    .btn-primary:active,
+    .btn-secondary:active {
+      transform: translateY(0);
+      box-shadow: none !important;
+    }
+    .btn svg,
+    .btn-primary svg,
+    .btn-secondary svg {
+      stroke: #FFFFFF !important;
+    }
+
+    .btn-sm {
+      padding: 7px 14px;
+      font-size: 12.5px;
+    }
+
+    /* =============================================================
+       3. FLOATING STADIUM NAVIGATION BAR (Rule 2)
+       ============================================================= */
+    /* =============================================================
+       STANDARDIZED CIVIC NAVIGATION & MOBILE DRAWER (Rule 2 & 4)
+       ============================================================= */
+    .nav-wrap, .nav-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .nav-pill {
+      font-family: var(--font-body);
+      pointer-events: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1200px;
+      height: 56px;
+      background: var(--nav-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--nav-border);
+      border-radius: 9999px;
+      padding: 0 12px 0 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .nav-pill:hover {
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .nav-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .nav-title-wrap {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .nav-republic {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .nav-lgu {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-link {
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover {
+      background: var(--field);
+      color: var(--ink);
+    }
+
+    .nav-link.active {
+      background: #15803D;
+      color: #FFFFFF !important;
+      font-weight: 600;
+    }
+
+    .nav-link.active svg {
+      stroke: #FFFFFF;
+    }
+
+    .nav-link.active:hover {
+      background: #15803D;
+      color: #FFFFFF !important;
+    }
+    .nav-link.active:hover svg {
+      stroke: #FFFFFF;
+    }
+
+    .nav-item.dropdown {
+      position: relative;
+    }
+
+    .dropdown-menu {
+      font-family: var(--font-body);
+      position: absolute;
+      top: calc(100% + 12px);
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      width: 320px;
+      background: var(--dropdown-bg);
+      border: 1px solid var(--hairline);
+      border-radius: 20px;
+      padding: 8px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .dropdown-menu::before {
+      content: '';
+      position: absolute;
+      top: -14px;
+      left: 0;
+      right: 0;
+      height: 14px;
+    }
+
+    .nav-item.dropdown:hover .dropdown-menu,
+    .nav-item.dropdown:focus-within .dropdown-menu,
+    .dropdown-menu.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 12px;
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--ink);
+      transition: background 0.15s ease;
+    }
+
+    .dropdown-item:hover {
+      background: var(--field);
+    }
+
+    .dropdown-item.active {
+      background: rgba(21, 128, 61, 0.08);
+    }
+
+    .dropdown-item.active .dropdown-item-title {
+      color: #15803D;
+      font-weight: 700;
+    }
+
+    .dropdown-item-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      background: transparent !important;
+      border: none !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+    }
+
+    .dropdown-item-icon svg {
+      stroke: url(#icon-green-yellow) !important;
+    }
+
+    .dropdown-item-content {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .dropdown-item-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+
+    .dropdown-item-desc {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.3;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .theme-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 9999px;
+      border: none;
+      background: var(--field);
+      color: var(--ink);
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      flex-shrink: 0;
+    }
+
+    .theme-toggle-btn:hover {
+      background: var(--soft-canvas);
+      color: var(--primary);
+      transform: scale(1.06);
+    }
+
+    :root:not([data-theme="dark"]) .theme-toggle-btn .sun-icon {
+      display: none !important;
+    }
+    :root:not([data-theme="dark"]) .theme-toggle-btn .moon-icon {
+      display: block !important;
+    }
+    [data-theme="dark"] .theme-toggle-btn .sun-icon {
+      display: block !important;
+    }
+    [data-theme="dark"] .theme-toggle-btn .moon-icon {
+      display: none !important;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .theme-toggle-btn .sun-icon {
+        display: block !important;
+      }
+      :root:not([data-theme="light"]) .theme-toggle-btn .moon-icon {
+        display: none !important;
+      }
+    }
+
+
+    .nav-spotlight-btn {
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      height: 36px;
+      border-radius: 9999px;
+      border: none;
+      background: var(--field);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .nav-spotlight-btn:hover {
+      background: var(--soft-canvas);
+      color: var(--ink);
+      border-color: #cbd5e1;
+    }
+
+    #btn-nav-action {
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .nav-spotlight-btn kbd {
+      font-size: 10px;
+      font-weight: 700;
+      background: #FFFFFF;
+      padding: 1px 5px;
+      border-radius: 4px;
+      border: 1px solid var(--hairline);
+      color: var(--muted);
+    }
+
+    .mobile-toggle {
+      display: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--hairline);
+      background: var(--canvas);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--ink);
+      transition: background 0.15s ease;
+    }
+
+    .mobile-toggle:hover {
+      background: var(--field);
+    }
+
+    @media (max-width: 1024px) {
+      .nav-menu {
+        display: none !important;
+      }
+      .mobile-toggle {
+        display: flex !important;
+      }
+    }
+
+    .mobile-drawer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      z-index: 1090;
+      display: none;
+    }
+
+    .mobile-drawer-overlay.open {
+      display: block;
+    }
+
+    .mobile-drawer {
+      font-family: var(--font-body);
+      position: fixed;
+      top: 80px;
+      left: 16px;
+      right: 16px;
+      background: var(--canvas);
+      border: none;
+      border-radius: var(--radius-panel, 20px);
+      padding: 20px;
+      z-index: 1100;
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+      max-height: calc(100vh - 110px);
+      overflow-y: auto;
+    }
+
+    .mobile-drawer.open {
+      display: flex;
+    }
+
+    .mobile-drawer a {
+      padding: 9px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: var(--radius-card, 10px);
+      color: var(--ink);
+      background: var(--soft-canvas);
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .mobile-drawer a:hover {
+      background: var(--field);
+    }
+
+    .mobile-drawer a.active {
+      font-weight: 700;
+      color: #15803D !important;
+      background: rgba(21, 128, 61, 0.08) !important;
+    }
+
+    /* =============================================================
+       4. PAGE HERO & MINIMAL PST TIMEKEEPER (Strict Rule 3 Standard)
+       ============================================================= */
+    .page-hero {
+      position: relative;
+      padding-top: calc(var(--header-height) + 52px);
+      padding-bottom: var(--sp-64);
+      background-color: #0E1A11;
+      background-image: linear-gradient(180deg, rgba(10, 26, 15, 0.78) 0%, rgba(8, 20, 12, 0.62) 50%, rgba(10, 20, 14, 0.90) 100%),
+                        url('assets/tumauini-municipal-hall-facade.jpg');
+      background-position: center 38%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+      color: #FFFFFF;
+    }
+
+    .hero-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--sp-24);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .hero-breadcrumb-link {
+      color: rgba(255, 255, 255, 0.75);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.15s ease;
+    }
+
+    .hero-breadcrumb-link:hover {
+      color: #FFFFFF;
+    }
+
+    .hero-breadcrumb-sep {
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 12px;
+    }
+
+    .hero-breadcrumb-current {
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    /* Official 3-Line Philippine Standard Time (Rule 3) */
+    .pst-timekeeper {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      text-align: right;
+      color: #FFFFFF;
+      user-select: none;
+    }
+
+    .pst-label {
+      font-size: 10.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.2;
+      margin-bottom: 2px;
+    }
+
+    .pst-clock {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: #FFFFFF;
+    }
+
+    .pst-date {
+      font-size: 11.5px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.2;
+      margin-top: 2px;
+    }
+
+    .page-hero .eyebrow {
+      color: #FCD116;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+
+    .page-hero .h1-title {
+      color: #FFFFFF;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
+      margin-bottom: 12px;
+    }
+
+    .page-hero .body-lead {
+      color: rgba(255, 255, 255, 0.9);
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+      line-height: 1.6;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: var(--sp-32);
+      flex-wrap: wrap;
+    }
+
+    .page-hero .btn-secondary {
+      background: rgba(255, 255, 255, 0.12);
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .page-hero .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.22);
+      color: #FFFFFF;
+      border-color: rgba(255, 255, 255, 0.6);
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 768px) {
+      .hero-top-row {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+      }
+      .pst-timekeeper {
+        align-items: flex-start;
+        text-align: left;
+      }
+    }
+
+    /* =============================================================
+       5. INTERACTIVE MAP WORKBENCH & DECK
+       ============================================================= */
+    .map-workbench {
+      position: relative;
+      width: 100%;
+      height: 750px;
+      background: #E8ECEF;
+      border-bottom: 1px solid var(--hairline);
+      overflow: hidden;
+    }
+
+    #tumauini-gis-map {
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+    }
+
+    /* Floating Map Control Deck */
+    .map-control-deck {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 500;
+      width: 360px;
+      max-height: calc(100% - 40px);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-panel);
+      padding: 20px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      overflow-y: auto;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .deck-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .deck-title {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .deck-search-wrap {
+      position: relative;
+      width: 100%;
+    }
+
+    .deck-search-input {
+      width: 100%;
+      height: 40px;
+      padding: 0 14px 0 36px;
+      background: var(--soft-canvas);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-pill);
+      font-size: 13px;
+      font-family: inherit;
+      color: var(--ink);
+      outline: none;
+      transition: all 0.15s ease;
+    }
+
+    .deck-search-input:focus {
+      background: #FFFFFF;
+      border-color: #15803D;
+      box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.12);
+    }
+
+    .deck-search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      pointer-events: none;
+    }
+
+    /* Layer Filters Grid */
+    .layer-filters-box {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .filter-section-label {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    .layer-checkbox-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      background: var(--soft-canvas);
+      border: 1px solid var(--hairline);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-size: 12.5px;
+      font-weight: 500;
+      user-select: none;
+    }
+
+    .layer-checkbox-item:hover {
+      background: var(--field);
+    }
+
+    .layer-label-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .layer-color-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    /* Selected Entity Detail Card inside Deck */
+    .entity-detail-card {
+      background: var(--canvas);
+      border: none;
+      border-radius: var(--radius-card);
+      padding: 16px;
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      animation: fadeIn 0.2s ease;
+      box-shadow: none;
+    }
+
+    .entity-detail-card.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .entity-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .entity-meta-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11.5px;
+      color: var(--muted);
+      border-bottom: 1px dashed var(--hairline);
+      padding-bottom: 6px;
+    }
+
+    .entity-meta-row:last-of-type {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    /* Floating Map Legend Widget (Bottom-Right) */
+    .map-legend-box {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      z-index: 500;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-card);
+      padding: 14px 18px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      font-size: 11.5px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      pointer-events: auto;
+    }
+
+    .legend-title {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    .legend-items-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 500;
+    }
+
+    .legend-swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+    }
+
+    /* Map Quick Zoom Bar (Top-Right) */
+    .map-quick-actions {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 500;
+      display: flex;
+      gap: 8px;
+    }
+
+    .map-action-btn {
+      padding: 8px 14px;
+      background: #FFFFFF;
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-pill);
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink);
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .map-action-btn:hover {
+      background: var(--field);
+      transform: translateY(-1px);
+    }
+
+    /* =============================================================
+       6. 46 BARANGAYS DIRECTORY ROSTER DIRECT ACCESS
+       ============================================================= */
+    .barangay-roster-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: var(--sp-32);
+    }
+
+    .roster-card {
+      background: var(--field);
+      border: none;
+      border-radius: var(--radius-card);
+      padding: 16px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+      box-shadow: none;
+    }
+
+    .roster-card:hover {
+      transform: translateY(-2px);
+      box-shadow: none;
+    }
+
+    .roster-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .roster-name {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .roster-captain {
+      font-size: 11.5px;
+      color: var(--muted);
+    }
+
+    .roster-badge-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--muted);
+      border-top: 1px solid var(--hairline);
+      padding-top: 8px;
+    }
+
+    /* Evac Table */
+    .shelter-table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-card);
+      background: var(--soft-canvas);
+      margin-top: var(--sp-24);
+    }
+
+    .shelter-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 13px;
+      min-width: 680px;
+    }
+
+    .shelter-table th {
+      background: var(--field);
+      padding: 12px 18px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .shelter-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--hairline);
+      vertical-align: middle;
+    }
+
+    .shelter-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* =============================================================
+       7. CIVIC GREEN FOOTER (Rule 2)
+       ============================================================= */
+    .footer-inverse {
+      background-color: var(--footer-bg);
+      color: #FFFFFF;
+      padding: var(--sp-64) 0 var(--sp-32) 0;
+      border-top: 1px solid var(--footer-border);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.2fr;
+      gap: 48px;
+      margin-bottom: var(--sp-48);
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .footer-brand-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.01em;
+    }
+
+    .footer-brand-sub {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.5;
+      max-width: 340px;
+    }
+
+    .footer-col-title {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 18px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-link {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.8);
+      transition: color 0.15s ease;
+    }
+
+    .footer-link:hover {
+      color: #FFFFFF;
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.75);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .barangay-roster-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+      }
+      .map-control-deck {
+        width: 320px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .map-workbench {
+        height: 600px;
+      }
+      .map-control-deck {
+        position: static;
+        width: 100%;
+        max-height: none;
+        border-radius: 0;
+        box-shadow: none;
+      }
+      .map-legend-box {
+        display: none;
+      }
+      .barangay-roster-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-top-row {
+        flex-direction: column-reverse;
+      }
+      .pst-timekeeper {
+        align-items: flex-start;
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =============================================================
+       GLOBAL HIDDEN SVG GRADIENT DEFINITION (Rule 4)
+       ============================================================= -->
+  <svg width="0" height="0" style="position: absolute; width: 0; height: 0; overflow: hidden;" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="icon-green-yellow" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#15803D" />
+        <stop offset="35%" stop-color="#16A34A" />
+        <stop offset="80%" stop-color="#EAB308" />
+        <stop offset="100%" stop-color="#FCD116" />
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <!-- =============================================================
+       FLOATING STADIUM NAVIGATION BAR (Rule 2)
+       ============================================================= -->
+  <header class="nav-wrap" role="banner">
+    <nav class="nav-pill" id="navbar" aria-label="Main Navigation">
+      <!-- Left: LGU Branding -->
+      <a href="index.html" class="nav-left" aria-label="Municipality of Tumauini Homepage">
+        <img src="assets/images/logo.png" alt="Seal of Tumauini" class="nav-logo" width="32" height="32" />
+        <div class="nav-title-wrap">
+          <span class="nav-republic">Republic of the Philippines</span>
+          <span class="nav-lgu">Municipality of Tumauini</span>
+        </div>
+      </a>
+
+      <!-- Center: Stadium Menu Items -->
+      <ul class="nav-menu" role="menubar">
+        <!-- 1. Home -->
+        <li role="none"><a href="index.html" class="nav-link" role="menuitem">Home</a></li>
+
+        <!-- 2. About Us Dropdown -->
+        <li class="nav-item dropdown" role="none">
+          <button class="nav-link dropdown-toggle" id="about-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+            <span>About Us</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="dropdown-menu" id="about-dropdown-menu" role="menu" aria-labelledby="about-dropdown-btn">
+            <a href="barangays.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">46 Barangays Directory</span>
+                <span class="dropdown-item-desc">Territorial & demographic profile</span>
+              </div>
+            </a>
+            <a href="municipal-profile.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Municipal Profile</span>
+                <span class="dropdown-item-desc">Geography, climate & demographics</span>
+              </div>
+            </a>
+            <a href="historical-background.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Historical Background</span>
+                <span class="dropdown-item-desc">1705 founding & heritage</span>
+              </div>
+            </a>
+            <a href="awards-and-recognition.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Awards & Citations</span>
+                <span class="dropdown-item-desc">Civic governance accolades</span>
+              </div>
+            </a>
+            <a href="elected-officials.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Elected Officials</span>
+                <span class="dropdown-item-desc">Mayor, Vice Mayor & Councilors</span>
+              </div>
+            </a>
+            <a href="department-heads.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><polyline points="16 11 18 13 22 9"></polyline></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Department Heads</span>
+                <span class="dropdown-item-desc">Executive directors & chiefs</span>
+              </div>
+            </a>
+            <a href="mission-and-vision.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Mission & Vision</span>
+                <span class="dropdown-item-desc">Strategic development & civic goals</span>
+              </div>
+            </a>
+          </div>
+        </li>
+
+        <!-- 3. Services Dropdown -->
+        <li class="nav-item dropdown" role="none">
+          <button class="nav-link dropdown-toggle active" id="services-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+            <span>Services</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="dropdown-menu" id="services-dropdown-menu" role="menu" aria-labelledby="services-dropdown-btn">
+            <a href="services.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Citizen's Charter & Services</span>
+                <span class="dropdown-item-desc">Business, civil registry & permits</span>
+              </div>
+            </a>
+            <a href="tax-calculator.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line><line x1="16" y1="14" x2="16" y2="18"></line><path d="M16 10h.01"></path><path d="M12 10h.01"></path><path d="M8 10h.01"></path><path d="M12 14h.01"></path><path d="M8 14h.01"></path><path d="M12 18h.01"></path><path d="M8 18h.01"></path></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Business Tax Calculator</span>
+                <span class="dropdown-item-desc">Mayor's Permit & LBT estimates</span>
+              </div>
+            </a>
+            <a href="map.html" class="dropdown-item active" aria-current="page" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Interactive GIS Map</span>
+                <span class="dropdown-item-desc">46 Barangays & flood zones</span>
+              </div>
+            </a>
+            <a href="mdrrmo.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">MDRRMO & Rescue 3325</span>
+                <span class="dropdown-item-desc">Disaster telemetry & 24/7 rescue</span>
+              </div>
+            </a>
+          </div>
+        </li>
+
+        <!-- 4. Transparency Dropdown -->
+        <li class="nav-item dropdown" role="none">
+          <button class="nav-link dropdown-toggle" id="transparency-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+            <span>Transparency</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="dropdown-menu" id="transparency-dropdown-menu" role="menu" aria-labelledby="transparency-dropdown-btn">
+            <a href="bids-and-awards.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Bids & Awards (BAC)</span>
+                <span class="dropdown-item-desc">Procurement notices, bids & awards</span>
+              </div>
+            </a>
+            <a href="fund-utilization.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Fund Utilization Report</span>
+                <span class="dropdown-item-desc">Form 74-A & COA disclosures</span>
+              </div>
+            </a>
+            <a href="ordinances.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Ordinances & Resolutions</span>
+                <span class="dropdown-item-desc">Sangguniang Bayan legislative acts</span>
+              </div>
+            </a>
+          </div>
+        </li>
+
+        <!-- 5. Explore Dropdown -->
+        <li class="nav-item dropdown" role="none">
+          <button class="nav-link dropdown-toggle" id="explore-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+            <span>Explore</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="dropdown-menu" id="explore-dropdown-menu" role="menu" aria-labelledby="explore-dropdown-btn">
+            <a href="tourism.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Tourism & Heritage</span>
+                <span class="dropdown-item-desc">San Matias Church & ecotourism</span>
+              </div>
+            </a>
+            <a href="smart-city.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Smart & Sustainable City</span>
+                <span class="dropdown-item-desc">Agri-tech, IoT & green roadmap</span>
+              </div>
+            </a>
+          </div>
+        </li>
+
+        <!-- 6. News -->
+        <li role="none"><a href="news.html" class="nav-link" role="menuitem">News</a></li>
+      </ul>
+
+      <!-- Right: Spotlight Search, Primary Action & Mobile Toggle -->
+      <div class="nav-right">
+                <button class="theme-toggle-btn" id="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle light or dark theme" title="Toggle Theme">
+          <svg class="sun-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="21" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg class="moon-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+        <button class="nav-spotlight-btn" onclick="openSpotlight()" aria-label="Search municipal portal (Ctrl+K)" title="Search (Ctrl + K)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <span>Search</span>
+          <kbd>Ctrl K</kbd>
+        </button>
+
+        <a href="services.html" class="btn btn-primary btn-sm" id="btn-nav-action">
+          <span>Online Services</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+        </a>
+
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Open mobile navigation menu" onclick="toggleMobileMenu()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer-overlay" id="mobile-drawer-overlay" onclick="toggleMobileMenu()"></div>
+  <div class="mobile-drawer" id="mobile-drawer">
+    <button onclick="toggleMobileMenu(); openSpotlight();" style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; font-size: 14px; font-weight: 500; border-radius: var(--radius-card); color: var(--ink); background: var(--field); border: none; cursor: pointer; text-align: left; width: 100%;">
+      <span style="display: flex; align-items: center; gap: 8px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        Search Portal (Ctrl + K)
+      </span>
+      <kbd style="font-size: 10px; font-weight: 700; background: #fff; padding: 2px 6px; border-radius: 4px; border: 1px solid #d4d4d4;">Ctrl K</kbd>
+    </button>
+    <button class="mobile-theme-btn" onclick="toggleTheme()" aria-label="Toggle light or dark theme" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; font-size: 13px; font-weight: 600; border-radius: var(--radius-card); color: var(--ink); background: var(--field); border: none; cursor: pointer; text-align: left; width: 100%; margin-top: 6px;">
+      <span style="display: flex; align-items: center; gap: 8px;">
+        <span class="theme-icon-slot">
+          <svg class="sun-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="21" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg class="moon-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </span>
+        <span>Theme Mode</span>
+      </span>
+      <span class="theme-mode-badge" style="font-size: 11px; padding: 2px 8px; border-radius: var(--radius-pill); background: var(--canvas); color: var(--muted); font-weight: 500;">Toggle</span>
+    </button>
+    <a href="index.html">Home</a>
+
+    <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #15803D; padding: 6px 14px 2px;">About Tumauini</div>
+    <a href="barangays.html">46 Barangays Directory ↗</a>
+    <a href="municipal-profile.html">Municipal Profile ↗</a>
+    <a href="historical-background.html">Historical Background ↗</a>
+    <a href="awards-and-recognition.html">Awards & Recognition ↗</a>
+    <a href="elected-officials.html">Elected Officials ↗</a>
+    <a href="department-heads.html">Department Heads ↗</a>
+    <a href="mission-and-vision.html">Mission & Vision ↗</a>
+
+    <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #15803D; padding: 8px 14px 2px;">Citizen Services</div>
+    <a href="services.html">Citizen's Charter & Services ↗</a>
+    <a href="tax-calculator.html">Business Tax Calculator ↗</a>
+    <a href="map.html" class="active">Interactive GIS Map ↗</a>
+    <a href="mdrrmo.html">MDRRMO & Rescue 3325 ↗</a>
+
+    <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #15803D; padding: 8px 14px 2px;">Transparency</div>
+    <a href="bids-and-awards.html">Bids & Awards Committee (BAC) ↗</a>
+    <a href="fund-utilization.html">Fund Utilization Report ↗</a>
+    <a href="ordinances.html">Ordinances & Resolutions ↗</a>
+
+    <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #15803D; padding: 8px 14px 2px;">Explore & Innovation</div>
+    <a href="tourism.html">Tourism & Cultural Heritage ↗</a>
+    <a href="smart-city.html">Smart & Sustainable City ↗</a>
+
+    <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #15803D; padding: 8px 14px 2px;">News & Updates</div>
+    <a href="news.html">News & Announcements ↗</a>
+  </div>
+
+  <main id="main-content">
+
+    <!-- =============================================================
+         HERO SECTION WITH 3-LINE PST TIMEKEEPER (Rule 3)
+         ============================================================= -->
+    <section class="page-hero" aria-labelledby="map-hero-title">
+      <div class="container">
+        
+        <div class="hero-top-row">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <a href="index.html" class="hero-breadcrumb-link">Home</a>
+            <span class="hero-breadcrumb-sep">/</span>
+            <span class="hero-breadcrumb-current">Interactive GIS Map</span>
+          </div>
+
+          <!-- Official 3-Line Philippine Standard Time (Rule 3) -->
+          <div class="pst-timekeeper" aria-label="Philippine Standard Time">
+            <span class="pst-label">Philippine Standard Time</span>
+            <span class="pst-clock" id="pst-live-clock">12:00:00 PM</span>
+            <span class="pst-date" id="pst-live-date">Thursday, October 01, 2026</span>
+          </div>
+        </div>
+
+        <div style="max-width: 860px;">
+          <span class="eyebrow">Municipal GIS &bull; MDRRMO &bull; MPDC Territory Data</span>
+          <h1 class="h1-title" id="map-hero-title">
+            Geographic Map &amp; Evacuation Zones.
+          </h1>
+          <p class="body-lead">
+            Full municipal cartography showing all 46 barangay centers, evacuation shelters, river gauges, and flood hazard boundaries.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#tumauini-gis-map" class="btn btn-primary">
+              <span>Explore Interactive GIS Map</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+            </a>
+            <a href="#shelter-section-title" class="btn btn-secondary">
+              <span>Evacuation Shelters Directory</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =============================================================
+         5. INTERACTIVE MAP WORKBENCH & GIS DECK
+         ============================================================= -->
+    <div class="map-workbench" aria-label="Interactive Geographic Map of Tumauini">
+      
+      <!-- Leaflet Canvas -->
+      <div id="tumauini-gis-map"></div>
+
+      <!-- Floating Map Control Deck -->
+      <aside class="map-control-deck" aria-label="Map Filter Deck">
+        
+        <div class="deck-header">
+          <div>
+            <span class="eyebrow eyebrow-accent" style="margin-bottom: 2px;">Municipal GIS</span>
+            <h2 class="deck-title">Interactive Navigator</h2>
+          </div>
+          <button class="btn btn-secondary btn-sm" style="padding: 4px 8px; font-size: 11px;" onclick="recenterMap()">Reset</button>
+        </div>
+
+        <!-- Search Autocomplete Bar -->
+        <div class="deck-search-wrap">
+          <svg class="deck-search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="map-search-input" class="deck-search-input" placeholder="Search 46 barangays, shelters, gauges..." oninput="handleMapSearch(this.value)">
+        </div>
+
+        <!-- Active Filter Layers -->
+        <div class="layer-filters-box">
+          <span class="filter-section-label">Active Map Layers</span>
+          
+          <label class="layer-checkbox-item">
+            <span class="layer-label-left">
+              <span class="layer-color-dot" style="background: #15803D;"></span>
+              <span>46 Barangays (All Zones)</span>
+            </span>
+            <input type="checkbox" id="layer-chk-barangays" checked onchange="toggleMapLayer('barangays')">
+          </label>
+
+          <label class="layer-checkbox-item">
+            <span class="layer-label-left">
+              <span class="layer-color-dot" style="background: #CE1126;"></span>
+              <span>Evacuation Centers (5 Shelters)</span>
+            </span>
+            <input type="checkbox" id="layer-chk-evac" checked onchange="toggleMapLayer('evac')">
+          </label>
+
+          <label class="layer-checkbox-item">
+            <span class="layer-label-left">
+              <span class="layer-color-dot" style="background: rgba(206, 17, 38, 0.45);"></span>
+              <span>Cagayan Flood Hazard Overlay</span>
+            </span>
+            <input type="checkbox" id="layer-chk-hazard" checked onchange="toggleMapLayer('hazard')">
+          </label>
+
+          <label class="layer-checkbox-item">
+            <span class="layer-label-left">
+              <span class="layer-color-dot" style="background: #0038A8;"></span>
+              <span>River Telemetry Stations (4 Gauges)</span>
+            </span>
+            <input type="checkbox" id="layer-chk-gauges" checked onchange="toggleMapLayer('gauges')">
+          </label>
+
+          <label class="layer-checkbox-item">
+            <span class="layer-label-left">
+              <span class="layer-color-dot" style="background: #EAB308;"></span>
+              <span>Cultural Heritage &amp; Landmarks</span>
+            </span>
+            <input type="checkbox" id="layer-chk-heritage" checked onchange="toggleMapLayer('heritage')">
+          </label>
+
+        </div>
+
+        <!-- Dynamic Selected Entity Card -->
+        <div class="entity-detail-card" id="entity-detail-card">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <span class="pill-badge pill-badge-green" id="entity-badge" style="font-size: 10px;">Barangay</span>
+            <button onclick="clearEntityCard()" style="background:none; border:none; cursor:pointer; font-size:16px; color:var(--muted);">&times;</button>
+          </div>
+          <h3 class="entity-title" id="entity-name">Barangay Name</h3>
+          <p id="entity-desc" style="font-size: 12px; color: var(--muted); line-height: 1.4;"></p>
+          
+          <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 4px;">
+            <div class="entity-meta-row">
+              <span>Leadership:</span>
+              <strong id="entity-leader" style="color: var(--ink);">Hon. Official</strong>
+            </div>
+            <div class="entity-meta-row">
+              <span>Hazard Classification:</span>
+              <strong id="entity-hazard" style="color: #15803D;">Normal Elevation</strong>
+            </div>
+            <div class="entity-meta-row">
+              <span>Primary Shelter:</span>
+              <span id="entity-shelter" style="font-weight: 600;">Cultural Center</span>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-sm" id="btn-route-shelter" style="width: 100%; margin-top: 4px;" onclick="routeToAssignedShelter()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            <span>Draw Evacuation Route</span>
+          </button>
+        </div>
+
+      </aside>
+
+      <!-- Quick Action Buttons (Top-Right) -->
+      <div class="map-quick-actions no-print">
+        <button class="map-action-btn" onclick="toggleSatelliteView()" id="btn-sat-toggle" title="Toggle Aerial Satellite View">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+          <span id="sat-toggle-label">Satellite Imagery</span>
+        </button>
+        <button class="map-action-btn" onclick="toggleMapFullscreen()" title="Fullscreen View">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
+          <span>Fullscreen</span>
+        </button>
+      </div>
+
+      <!-- Map Legend Widget (Bottom-Right) -->
+      <div class="map-legend-box" aria-label="Map Legend">
+        <span class="legend-title">Cartographic Legend</span>
+        <div class="legend-items-row">
+          <div class="legend-item">
+            <span class="legend-swatch" style="background: #15803D;"></span>
+            <span>Barangay Center</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-swatch" style="background: #CE1126;"></span>
+            <span>Evac Shelter</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-swatch" style="background: rgba(206, 17, 38, 0.45); border: 1px dashed #CE1126;"></span>
+            <span>High Flood Zone</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-swatch" style="background: #0038A8;"></span>
+            <span>River Gauge</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-swatch" style="background: #EAB308;"></span>
+            <span>Heritage Site</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- =============================================================
+         6. DESIGNATED EVACUATION FACILITIES DIRECTORY
+         ============================================================= -->
+    <section class="section-wrap" aria-labelledby="shelter-section-title">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="eyebrow eyebrow-red">MDRRMO Rescue 3325 Civil Defense</span>
+          <h2 class="h2-title" id="shelter-section-title">Municipal Evacuation Shelters Roster.</h2>
+          <p class="body-lead">Permanent engineered disaster complexes equipped with backup power generators and sanitation bays.</p>
+        </div>
+
+        <div class="shelter-table-wrap">
+          <table class="shelter-table">
+            <thead>
+              <tr>
+                <th>Shelter Facility</th>
+                <th>Location / Barangay</th>
+                <th>Capacity</th>
+                <th>Auxiliary Systems</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Tumauini Cultural Center &amp; Gymnasium</strong></td>
+                <td>District 2 (Poblacion)</td>
+                <td><span class="pill-badge pill-badge-green">850 Persons</span></td>
+                <td>Commercial Generator • Potable Water Filter • Medical Desks</td>
+                <td><button class="btn btn-secondary btn-sm" onclick="zoomToCoordinate(17.2788, 121.8068, 16)">Locate on Map</button></td>
+              </tr>
+              <tr>
+                <td><strong>Lanna Multi-Purpose Disaster Gym</strong></td>
+                <td>Barangay Lanna (Highway Corridor)</td>
+                <td><span class="pill-badge pill-badge-green">420 Persons</span></td>
+                <td>Diesel Generator • Elevated Flood Flooring • Kitchen Bays</td>
+                <td><button class="btn btn-secondary btn-sm" onclick="zoomToCoordinate(17.2615, 121.8155, 16)">Locate on Map</button></td>
+              </tr>
+              <tr>
+                <td><strong>Santa National High School Complex</strong></td>
+                <td>Barangay Santa (Riverine Defense)</td>
+                <td><span class="pill-badge pill-badge-green">650 Persons</span></td>
+                <td>Two-Storey Concrete Hall • Deepwell Pump • Medical Room</td>
+                <td><button class="btn btn-secondary btn-sm" onclick="zoomToCoordinate(17.2645, 121.7890, 16)">Locate on Map</button></td>
+              </tr>
+              <tr>
+                <td><strong>Fugu Island High-Ground Evacuation Center</strong></td>
+                <td>Barangay Fugu (Cagayan Basin)</td>
+                <td><span class="pill-badge pill-badge-green">300 Persons</span></td>
+                <td>Reinforced Mound • Solar Battery Bank • Emergency Water Tanks</td>
+                <td><button class="btn btn-secondary btn-sm" onclick="zoomToCoordinate(17.2955, 121.7760, 16)">Locate on Map</button></td>
+              </tr>
+              <tr>
+                <td><strong>Camp Samal Disaster Emergency Base</strong></td>
+                <td>Barangay Camp Samal (Eastern Foothills)</td>
+                <td><span class="pill-badge pill-badge-green">350 Persons</span></td>
+                <td>Upland Elevation • Direct Road Access • Helipad Cleared</td>
+                <td><button class="btn btn-secondary btn-sm" onclick="zoomToCoordinate(17.2925, 121.8910, 16)">Locate on Map</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =============================================================
+         7. 46 BARANGAYS QUICK LOCATOR INDEX
+         ============================================================= -->
+    <section class="section-wrap" id="barangay-roster-section" aria-labelledby="roster-heading">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="eyebrow">Grassroots Directory</span>
+          <h2 class="h2-title" id="roster-heading">All 46 Barangays Quick Navigator.</h2>
+          <p class="body-lead">Click any barangay card to fly directly to its coordinate on the interactive GIS map above.</p>
+        </div>
+
+        <div class="barangay-roster-grid" id="roster-cards-container">
+          <!-- Dynamically populated via JavaScript -->
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =============================================================
+       8. CIVIC GREEN FOOTER (Rule 2)
+       ============================================================= -->
+  <footer class="footer-inverse" role="contentinfo">
+    <div class="container">
+      
+      <div class="footer-grid">
+        
+        <div>
+          <div class="footer-brand">
+            <div class="seal-wrap" style="width: 44px; height: 44px; background: #FFFFFF; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 2px;">
+              <img src="assets/tumauini-official-seal.png" alt="Official Seal of Tumauini" class="seal-img" width="40" height="40" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+            <div>
+              <h3 class="footer-brand-title">Municipality of Tumauini</h3>
+              <span style="font-size: 12px; color: rgba(255, 255, 255, 0.85);">Province of Isabela, Philippines</span>
+            </div>
+          </div>
+          <p class="footer-brand-sub">
+            Serving Tumauini through accessible, transparent, and responsive local government across all 46 barangays.
+          </p>
+          <div style="margin-top: 16px; font-size: 12px; color: rgba(255, 255, 255, 0.85);">
+            <div><strong>Municipal Hall:</strong> National Highway, Tumauini, Isabela 3325</div>
+            <div style="margin-top: 4px;"><strong>Office Hours:</strong> Monday – Friday, 8:00 AM – 5:00 PM</div>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">About Tumauini</h4>
+          <ul class="footer-links">
+            <li><a href="ordinances.html" class="footer-link">Ordinances &amp; Resolutions</a></li>
+            <li><a href="barangays.html" class="footer-link">46 Barangays Directory</a></li>
+            <li><a href="municipal-profile.html" class="footer-link">Municipal Profile</a></li>
+            <li><a href="historical-background.html" class="footer-link">Historical Background</a></li>
+            <li><a href="awards-and-recognition.html" class="footer-link">Awards &amp; Recognition</a></li>
+            <li><a href="elected-officials.html" class="footer-link">Elected Officials</a></li>
+            <li><a href="department-heads.html" class="footer-link">Department Heads</a></li>
+            <li><a href="mission-and-vision.html" class="footer-link">Mission &amp; Vision</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Services &amp; Portals</h4>
+          <ul class="footer-links">
+            <li><a href="services.html" class="footer-link">Citizen’s Charter &amp; Services</a></li>
+            <li><a href="map.html" class="footer-link" style="color: #FFFFFF; font-weight: 700;">Interactive GIS Map</a></li>
+            <li><a href="tax-calculator.html" class="footer-link">Tax &amp; Fee Calculator</a></li>
+            <li><a href="mdrrmo.html" class="footer-link">Disaster Telemetry (MDRRMO)</a></li>
+            <li><a href="news.html" class="footer-link">News &amp; Bulletins</a></li>
+            <li><a href="smart-city.html" class="footer-link">Smart &amp; Sustainable City</a></li>
+            <li><a href="bids-and-awards.html" class="footer-link">Bids &amp; Awards (BAC)</a></li>
+            <li><a href="fund-utilization.html" class="footer-link">Fund Utilization (FDP)</a></li>
+            <li><a href="tourism.html" class="footer-link">Tourism &amp; Heritage</a></li>
+            <li><a href="index.html#transparency" class="footer-link">Full Disclosure Portal</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Emergency Hotlines</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#emergency" class="footer-link" style="color: #F87171;">Rescue 3325: (078) 323-2004</a></li>
+            <li><a href="index.html#emergency" class="footer-link">PNP Tumauini: 0917-123-4567</a></li>
+            <li><a href="index.html#emergency" class="footer-link">BFP Fire Station: 0917-987-6543</a></li>
+            <li><a href="index.html#emergency" class="footer-link">Municipal Health Office</a></li>
+            <li><a href="index.html#feedback" class="footer-link">Public Assistance &amp; Feedback</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 Municipal Government of Tumauini, Isabela. All public rights reserved. Official Philippine Government Portal.
+        </div>
+        <div style="display: flex; gap: 16px;">
+          <a href="index.html" class="footer-link">Home</a>
+          <a href="services.html" class="footer-link">Services</a>
+          <a href="index.html#transparency" class="footer-link">Transparency</a>
+          <a href="index.html#emergency" class="footer-link">Emergency</a>
+          <a href="index.html#feedback" class="footer-link">Citizen Feedback</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <!-- =============================================================
+       9. JAVASCRIPT: GIS ENGINE, LEAFLET CONTROLS & GEODATA
+       ============================================================= -->
+  <script>
+    // 1. Live 3-Line Philippine Standard Time (Rule 3)
+    function updatePstTime() {
+      const clockEl = document.getElementById('pst-live-clock') || document.getElementById('pst-live-time');
+      const dateEl = document.getElementById('pst-live-date');
+      if (!clockEl || !dateEl) return;
+
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString('en-US', {
+        timeZone: 'Asia/Manila',
+        hour12: true,
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      });
+      const dateStr = now.toLocaleDateString('en-US', {
+        timeZone: 'Asia/Manila',
+        weekday: 'long',
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric'
+      });
+
+      clockEl.textContent = timeStr;
+      dateEl.textContent = dateStr;
+    }
+    updatePstTime();
+    setInterval(updatePstTime, 1000);
+
+    // 2. Mobile Menu Toggle
+    // Standardized Mobile Menu Toggle
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobile-drawer');
+      const overlay = document.getElementById('mobile-drawer-overlay');
+      const toggleBtn = document.getElementById('mobile-toggle');
+      const isOpen = drawer?.classList.toggle('open');
+      overlay?.classList.toggle('open', !!isOpen);
+      if (toggleBtn) {
+        toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      }
+    }
+
+    // Keyboard and Touch Handlers for Nav
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        const drawer = document.getElementById('mobile-drawer');
+        const overlay = document.getElementById('mobile-drawer-overlay');
+        if (drawer && drawer.classList.contains('open')) {
+          drawer.classList.remove('open');
+          overlay?.classList.remove('open');
+        }
+        document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('open'));
+      }
+    });
+
+    document.querySelectorAll('.dropdown-toggle').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const menu = this.nextElementSibling;
+        if (!menu) return;
+        const isOpen = menu.classList.contains('open');
+        document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('open'));
+        if (!isOpen) {
+          menu.classList.add('open');
+          this.setAttribute('aria-expanded', 'true');
+        } else {
+          menu.classList.remove('open');
+          this.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.nav-item.dropdown')) {
+        document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('open'));
+        document.querySelectorAll('.dropdown-toggle').forEach(t => t.setAttribute('aria-expanded', 'false'));
+      }
+    });
+
+    // =============================================================
+    // 3. COMPREHENSIVE GEOGRAPHIC DATA OF TUMAUINI (46 Barangays)
+    // =============================================================
+    const BARANGAYS_GIS = [
+      // Poblacion Urban Core
+      { id: "dist1", name: "Barangay 1 (Poblacion)", lat: 17.2790, lng: 121.8060, zone: "Urban Poblacion", captain: "Hon. Roberto S. Guzman", hazard: "Low (Safe)", shelter: "Tumauini Cultural Center", shelterCoord: [17.2788, 121.8068] },
+      { id: "dist2", name: "Barangay 2 (Poblacion)", lat: 17.2775, lng: 121.8045, zone: "Urban Poblacion", captain: "Hon. Eduardo M. Ramos", hazard: "Low (Safe)", shelter: "Tumauini Cultural Center", shelterCoord: [17.2788, 121.8068] },
+      { id: "dist3", name: "Barangay 3 (Poblacion)", lat: 17.2760, lng: 121.8070, zone: "Urban Poblacion", captain: "Hon. Ferdinand P. Cruz", hazard: "Low (Safe)", shelter: "Tumauini Cultural Center", shelterCoord: [17.2788, 121.8068] },
+      { id: "dist4", name: "Barangay 4 (Poblacion)", lat: 17.2815, lng: 121.8085, zone: "Urban Poblacion", captain: "Hon. Mario C. Del Rosario", hazard: "Low (Safe)", shelter: "Tumauini Cultural Center", shelterCoord: [17.2788, 121.8068] },
+      
+      // Riverine Basin (High Flood Hazard)
+      { id: "fugu", name: "Fugu (River Island)", lat: 17.2950, lng: 121.7750, zone: "Riverine Basin", captain: "Hon. Benigno K. Zipagan", hazard: "High (Critical)", shelter: "Fugu High-Ground Center", shelterCoord: [17.2955, 121.7760] },
+      { id: "banigan", name: "Banigan", lat: 17.2880, lng: 121.7820, zone: "Riverine Basin", captain: "Hon. Manuel C. Caronan", hazard: "High (Critical)", shelter: "Santa NHS Complex", shelterCoord: [17.2645, 121.7890] },
+      { id: "minanga", name: "Minanga", lat: 17.3050, lng: 121.7720, zone: "Riverine Basin", captain: "Hon. Lorenzo S. Gumaru", hazard: "High (Critical)", shelter: "Fugu High-Ground Center", shelterCoord: [17.2955, 121.7760] },
+      { id: "lalauanan", name: "Lalauanan", lat: 17.2720, lng: 121.7850, zone: "Riverine Basin", captain: "Hon. Cesar M. Aggabao", hazard: "High (Critical)", shelter: "Santa NHS Complex", shelterCoord: [17.2645, 121.7890] },
+      { id: "santa", name: "Santa", lat: 17.2650, lng: 121.7880, zone: "Riverine Basin", captain: "Hon. Severino M. Sison", hazard: "High (Critical)", shelter: "Santa NHS Complex", shelterCoord: [17.2645, 121.7890] },
+      { id: "santa_vis", name: "Santa Visitacion", lat: 17.2550, lng: 121.7790, zone: "Riverine Basin", captain: "Hon. Urbano B. Telan", hazard: "High (Critical)", shelter: "Santa NHS Complex", shelterCoord: [17.2645, 121.7890] },
+      { id: "lapogan", name: "Lapogan", lat: 17.2820, lng: 121.7920, zone: "Riverine Basin", captain: "Hon. Emilio S. Bacani", hazard: "Moderate Risk", shelter: "Tumauini Cultural Center", shelterCoord: [17.2788, 121.8068] },
+      { id: "sisimon", name: "Sisimon", lat: 17.3120, lng: 121.7800, zone: "Riverine Basin", captain: "Hon. Zacarias L. Zipagan", hazard: "High (Critical)", shelter: "Fugu High-Ground Center", shelterCoord: [17.2955, 121.7760] },
+      { id: "ugac_n", name: "Ugac Norte", lat: 17.3220, lng: 121.7860, zone: "Riverine Basin", captain: "Hon. Bernardo C. Baccay", hazard: "High (Critical)", shelter: "Fugu High-Ground Center", shelterCoord: [17.2955, 121.7760] },
+      { id: "ugac_s", name: "Ugac Sur", lat: 17.3180, lng: 121.7900, zone: "Riverine Basin", captain: "Hon. Crispin S. Calubaquib", hazard: "High (Critical)", shelter: "Fugu High-Ground Center", shelterCoord: [17.2955, 121.7760] },
+
+      // Highway Corridor & Agricultural Lowlands
+      { id: "lanna", name: "Lanna", lat: 17.2620, lng: 121.8150, zone: "Highway Lowland", captain: "Hon. Domingo C. Allauigan", hazard: "Moderate Risk", shelter: "Lanna Disaster Gym", shelterCoord: [17.2615, 121.8155] },
+      { id: "fermeldy", name: "Fermeldy", lat: 17.2950, lng: 121.8140, zone: "Highway Lowland", captain: "Hon. Salvador V. Umayam", hazard: "Low (Safe)", shelter: "Tumauini Cultural Center", shelterCoord: [17.2788, 121.8068] },
+      { id: "balug", name: "Balug", lat: 17.3050, lng: 121.8200, zone: "Agricultural Lowland", captain: "Hon. Antonio R. Balisi", hazard: "Moderate Risk", shelter: "Tumauini Cultural Center", shelterCoord: [17.2788, 121.8068] },
+      { id: "annafunan", name: "Annafunan", lat: 17.2500, lng: 121.8120, zone: "Highway Lowland", captain: "Hon. Danilo V. Paguirigan", hazard: "Moderate Risk", shelter: "Lanna Disaster Gym", shelterCoord: [17.2615, 121.8155] },
+      { id: "arcon", name: "Arcon", lat: 17.2750, lng: 121.8220, zone: "Agricultural Lowland", captain: "Hon. Virgilio S. Aquino", hazard: "Moderate Risk", shelter: "Tumauini Cultural Center", shelterCoord: [17.2788, 121.8068] },
+      { id: "bantug", name: "Bantug", lat: 17.2700, lng: 121.8300, zone: "Agricultural Lowland", captain: "Hon. Ernesto L. Corpuz", hazard: "Moderate Risk", shelter: "Tumauini Cultural Center", shelterCoord: [17.2788, 121.8068] },
+      { id: "camasi", name: "Camasi", lat: 17.2850, lng: 121.8250, zone: "Agricultural Lowland", captain: "Hon. Reynaldo B. Pascual", hazard: "Moderate Risk", shelter: "Tumauini Cultural Center", shelterCoord: [17.2788, 121.8068] },
+      { id: "moldero", name: "Moldero", lat: 17.2650, lng: 121.8020, zone: "Agricultural Lowland", captain: "Hon. Marcelino R. Laggui", hazard: "Moderate Risk", shelter: "Tumauini Cultural Center", shelterCoord: [17.2788, 121.8068] },
+      { id: "maligaya", name: "Maligaya", lat: 17.2800, lng: 121.8180, zone: "Agricultural Lowland", captain: "Hon. Juanito D. De Leon", hazard: "Low (Safe)", shelter: "Tumauini Cultural Center", shelterCoord: [17.2788, 121.8068] },
+      { id: "san_mateo", name: "San Mateo", lat: 17.2900, lng: 121.8350, zone: "Agricultural Lowland", captain: "Hon. Pedro T. Pagauitan", hazard: "Moderate Risk", shelter: "Tumauini Cultural Center", shelterCoord: [17.2788, 121.8068] },
+      { id: "san_vicente", name: "San Vicente", lat: 17.2820, lng: 121.8380, zone: "Agricultural Lowland", captain: "Hon. Renato S. Ramos", hazard: "Moderate Risk", shelter: "Tumauini Cultural Center", shelterCoord: [17.2788, 121.8068] },
+      { id: "santo_nino", name: "Santo Niño", lat: 17.2740, lng: 121.8420, zone: "Agricultural Lowland", captain: "Hon. Victoriano G. Tumolva", hazard: "Low (Safe)", shelter: "Tumauini Cultural Center", shelterCoord: [17.2788, 121.8068] },
+      { id: "sinippil", name: "Sinippil", lat: 17.3000, lng: 121.8380, zone: "Agricultural Lowland", captain: "Hon. Wilfredo D. Zinampan", hazard: "Moderate Risk", shelter: "Tumauini Cultural Center", shelterCoord: [17.2788, 121.8068] },
+      { id: "lingaling", name: "Lingaling", lat: 17.2920, lng: 121.8280, zone: "Agricultural Lowland", captain: "Hon. Felix R. Barias", hazard: "Moderate Risk", shelter: "Tumauini Cultural Center", shelterCoord: [17.2788, 121.8068] },
+      { id: "liwanag", name: "Liwanag", lat: 17.2600, lng: 121.8320, zone: "Agricultural Lowland", captain: "Hon. Gregorio T. Cabantac", hazard: "Moderate Risk", shelter: "Lanna Disaster Gym", shelterCoord: [17.2615, 121.8155] },
+      { id: "malamag_e", name: "Malamag East", lat: 17.3080, lng: 121.8150, zone: "Agricultural Lowland", captain: "Hon. Hernando P. Caddauan", hazard: "Moderate Risk", shelter: "Tumauini Cultural Center", shelterCoord: [17.2788, 121.8068] },
+      { id: "malamag_w", name: "Malamag West", lat: 17.3060, lng: 121.8080, zone: "Agricultural Lowland", captain: "Hon. Ismael V. Calimag", hazard: "Moderate Risk", shelter: "Tumauini Cultural Center", shelterCoord: [17.2788, 121.8068] },
+      { id: "pangal_sur", name: "Pangal Sur", lat: 17.2420, lng: 121.8180, zone: "Highway Lowland", captain: "Hon. Noel P. Mallillin", hazard: "Moderate Risk", shelter: "Lanna Disaster Gym", shelterCoord: [17.2615, 121.8155] },
+      { id: "caligayan", name: "Caligayan", lat: 17.2500, lng: 121.8380, zone: "Agricultural Lowland", captain: "Hon. Rodolfo D. Evangelista", hazard: "Moderate Risk", shelter: "Lanna Disaster Gym", shelterCoord: [17.2615, 121.8155] },
+      { id: "cumabao", name: "Cumabao", lat: 17.2620, lng: 121.8450, zone: "Agricultural Lowland", captain: "Hon. Rogelio P. Tolentino", hazard: "Moderate Risk", shelter: "Tumauini Cultural Center", shelterCoord: [17.2788, 121.8068] },
+      { id: "villa_cruz", name: "Villa Cruz", lat: 17.2860, lng: 121.8480, zone: "Agricultural Lowland", captain: "Hon. Diosdado R. Danao", hazard: "Low (Safe)", shelter: "Tumauini Cultural Center", shelterCoord: [17.2788, 121.8068] },
+      { id: "santa_cat", name: "Santa Catalina", lat: 17.2960, lng: 121.8500, zone: "Agricultural Lowland", captain: "Hon. Teodoro F. Taguba", hazard: "Low (Safe)", shelter: "Tumauini Cultural Center", shelterCoord: [17.2788, 121.8068] },
+      { id: "bayabo", name: "Bayabo East", lat: 17.2720, lng: 121.8550, zone: "Agricultural Lowland", captain: "Hon. Jaime G. Domingo", hazard: "Low (Safe)", shelter: "Tumauini Cultural Center", shelterCoord: [17.2788, 121.8068] },
+      { id: "san_pedro", name: "San Pedro", lat: 17.2800, lng: 121.8620, zone: "Agricultural Lowland", captain: "Hon. Quirino C. Quilang", hazard: "Low (Safe)", shelter: "Tumauini Cultural Center", shelterCoord: [17.2788, 121.8068] },
+
+      // Eastern Uplands (Low Flood Risk / Elevated Foothills)
+      { id: "antagan1", name: "Antagan I", lat: 17.2780, lng: 121.8850, zone: "Eastern Uplands", captain: "Hon. Nestor T. Manuel", hazard: "Low (Safe)", shelter: "Camp Samal Base", shelterCoord: [17.2925, 121.8910] },
+      { id: "antagan2", name: "Antagan II", lat: 17.2750, lng: 121.9050, zone: "Eastern Uplands", captain: "Hon. Rolando F. Tumaliuan", hazard: "Low (Safe)", shelter: "Camp Samal Base", shelterCoord: [17.2925, 121.8910] },
+      { id: "camp_samal", name: "Camp Samal", lat: 17.2920, lng: 121.8900, zone: "Eastern Uplands", captain: "Hon. Alfonso T. Sanchez", hazard: "Low (Safe)", shelter: "Camp Samal Base", shelterCoord: [17.2925, 121.8910] },
+      { id: "compania", name: "Compania", lat: 17.2850, lng: 121.8980, zone: "Eastern Uplands", captain: "Hon. Alfredo M. Soriano", hazard: "Low (Safe)", shelter: "Camp Samal Base", shelterCoord: [17.2925, 121.8910] },
+      { id: "parang", name: "Parang", lat: 17.2650, lng: 121.8950, zone: "Eastern Uplands", captain: "Hon. Oscar B. Maramag", hazard: "Low (Safe)", shelter: "Camp Samal Base", shelterCoord: [17.2925, 121.8910] },
+      { id: "tunggui", name: "Tunggui", lat: 17.3050, lng: 121.9150, zone: "Eastern Uplands", captain: "Hon. Artemio B. Allam", hazard: "Low (Safe)", shelter: "Camp Samal Base", shelterCoord: [17.2925, 121.8910] },
+      { id: "villa_pereda", name: "Villa Pereda", lat: 17.2980, lng: 121.9250, zone: "Eastern Uplands", captain: "Hon. Esteban P. Eugenio", hazard: "Low (Safe)", shelter: "Camp Samal Base", shelterCoord: [17.2925, 121.8910] },
+      { id: "villa_rey", name: "Villa Rey", lat: 17.2880, lng: 121.9350, zone: "Eastern Uplands", captain: "Hon. Florante M. Fernando", hazard: "Low (Safe)", shelter: "Camp Samal Base", shelterCoord: [17.2925, 121.8910] }
+    ];
+
+    // 4. EVACUATION CENTERS DATA
+    const EVAC_CENTERS = [
+      { id: "evac1", name: "Tumauini Cultural Center & Gym", lat: 17.2788, lng: 121.8068, cap: "850 persons", details: "Commercial Generator • Water Filtration • Medical Desk" },
+      { id: "evac2", name: "Lanna Multi-Purpose Disaster Gym", lat: 17.2615, lng: 121.8155, cap: "420 persons", details: "Elevated Flood Floors • Commercial Kitchen" },
+      { id: "evac3", name: "Santa National High School Complex", lat: 17.2645, lng: 121.7890, cap: "650 persons", details: "Concrete Two-Storey Hall • Deepwell Water" },
+      { id: "evac4", name: "Fugu High-Ground Evacuation Center", lat: 17.2955, lng: 121.7760, cap: "300 persons", details: "Elevated River Mound • Solar Battery Bank" },
+      { id: "evac5", name: "Camp Samal Disaster Emergency Base", lat: 17.2925, lng: 121.8910, cap: "350 persons", details: "Eastern Foothills Elevation • Helipad Ready" }
+    ];
+
+    // 5. RIVER TELEMETRY GAUGES (MDRRMO)
+    const RIVER_GAUGES = [
+      { id: "gauge1", name: "Station 01 • Tumauini Bridge", lat: 17.2835, lng: 121.8020, level: "11.8 m (Normal)", basin: "Pinacanauan River" },
+      { id: "gauge2", name: "Station 02 • Fugu-Banigan Delta", lat: 17.2910, lng: 121.7790, level: "15.4 m (Normal)", basin: "Cagayan River Main Basin" },
+      { id: "gauge3", name: "Station 03 • Santa-Arcon Catchment", lat: 17.2760, lng: 121.8500, level: "8.9 m (Normal)", basin: "Upper Pinacanauan" },
+      { id: "gauge4", name: "Station 04 • Lapogan-Tunggui Dike", lat: 17.2840, lng: 121.7910, level: "13.2 m (Normal)", basin: "Lower Flood Defense" }
+    ];
+
+    // 6. CULTURAL HERITAGE LANDMARKS
+    const HERITAGE_SITES = [
+      { id: "san_matias", name: "San Matias Parish Church & Cylindrical Belfry", lat: 17.2798, lng: 121.8048, type: "National Cultural Treasure (1783)" },
+      { id: "mun_hall", name: "Tumauini Municipal Hall Complex", lat: 17.2785, lng: 121.8055, type: "Seat of Local Government" },
+      { id: "rescue_opcen", name: "Rescue 3325 OpCen & Municipal Health Office", lat: 17.2778, lng: 121.8062, type: "Emergency Command Center" },
+      { id: "camp_samal_park", name: "Camp Samal Historical Camp & Ecopark", lat: 17.2920, lng: 121.8900, type: "Historical Heritage & Ecotourism" }
+    ];
+
+    // =============================================================
+    // 7. LEAFLET MAP INITIALIZATION & LAYER GROUPS
+    // =============================================================
+    const defaultCenter = [17.2850, 121.8350];
+    const defaultZoom = 12;
+
+    const map = L.map('tumauini-gis-map', {
+      center: defaultCenter,
+      zoom: defaultZoom,
+      zoomControl: false
+    });
+
+    // Custom Zoom Control at Top-Right below quick bar
+    L.control.zoom({ position: 'topright' }).addTo(map);
+
+    // Tile Layers: OSM Default & Satellite Esri
+    const osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    const satLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 18,
+      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS'
+    });
+
+    let isSatellite = false;
+    function toggleSatelliteView() {
+      if (isSatellite) {
+        map.removeLayer(satLayer);
+        map.addLayer(osmLayer);
+        document.getElementById('sat-toggle-label').textContent = 'Satellite Imagery';
+        isSatellite = false;
+      } else {
+        map.removeLayer(osmLayer);
+        map.addLayer(satLayer);
+        document.getElementById('sat-toggle-label').textContent = 'Street Map View';
+        isSatellite = true;
+      }
+    }
+
+    // Layer Groups
+    const layerBarangays = L.layerGroup().addTo(map);
+    const layerEvac = L.layerGroup().addTo(map);
+    const layerHazard = L.layerGroup().addTo(map);
+    const layerGauges = L.layerGroup().addTo(map);
+    const layerHeritage = L.layerGroup().addTo(map);
+    const layerRoutes = L.layerGroup().addTo(map);
+
+    // Custom Icon Generators
+    function createCircleIcon(bgColor, borderColor, text) {
+      return L.divIcon({
+        className: 'custom-map-icon',
+        html: `<div style="background: ${bgColor}; border: 2px solid ${borderColor}; color: #FFFFFF; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; box-shadow: 0 3px 8px rgba(0,0,0,0.25);">${text}</div>`,
+        iconSize: [26, 26],
+        iconAnchor: [13, 13]
+      });
+    }
+
+    // 1. Populate Flood Hazard Polygon (Cagayan & Pinacanauan River Corridor)
+    const cagayanFloodPolygon = [
+      [17.3300, 121.7700],
+      [17.3200, 121.7820],
+      [17.3050, 121.7700],
+      [17.2950, 121.7720],
+      [17.2850, 121.7800],
+      [17.2750, 121.7820],
+      [17.2550, 121.7750],
+      [17.2400, 121.7800],
+      [17.2450, 121.7950],
+      [17.2600, 121.7980],
+      [17.2750, 121.7950],
+      [17.2850, 121.8020], // Confluence at Tumauini Bridge
+      [17.2920, 121.7900],
+      [17.3100, 121.7900],
+      [17.3250, 121.7920]
+    ];
+
+    const hazardPoly = L.polygon(cagayanFloodPolygon, {
+      color: '#CE1126',
+      weight: 2,
+      dashArray: '5, 8',
+      fillColor: '#CE1126',
+      fillOpacity: 0.18
+    }).bindPopup(`
+      <div style="font-family: var(--font-body); padding: 4px;">
+        <span style="font-size: 10px; font-weight: 700; color: #CE1126; text-transform: uppercase;">MDRRMO Flood Hazard Tier</span>
+        <h4 style="font-family: var(--font-display); font-size: 14px; margin: 2px 0 6px;">Cagayan &amp; Pinacanauan Lowland Flood Corridor</h4>
+        <p style="font-size: 11.5px; color: #555; line-height: 1.35;">Vulnerable to 2-year and 5-year monsoon river overtopping. Preemptive evacuation advised during Code Orange and Red.</p>
+      </div>
+    `);
+    layerHazard.addLayer(hazardPoly);
+
+    // Pinacanauan Upper Inflow Hazard Zone
+    const pinacanauanPoly = [
+      [17.2850, 121.8020],
+      [17.2820, 121.8300],
+      [17.2780, 121.8600],
+      [17.2720, 121.8650],
+      [17.2700, 121.8350],
+      [17.2750, 121.8050]
+    ];
+    const pinPoly = L.polygon(pinacanauanPoly, {
+      color: '#EA580C',
+      weight: 1.5,
+      dashArray: '4, 6',
+      fillColor: '#EA580C',
+      fillOpacity: 0.14
+    }).bindPopup(`
+      <div style="font-family: var(--font-body); padding: 4px;">
+        <span style="font-size: 10px; font-weight: 700; color: #EA580C; text-transform: uppercase;">Moderate Flood Hazard</span>
+        <h4 style="font-family: var(--font-display); font-size: 14px; margin: 2px 0 6px;">Pinacanauan River Tributary Channel</h4>
+        <p style="font-size: 11.5px; color: #555; line-height: 1.35;">Seasonal siltation and runoff channel from Sierra Madre range.</p>
+      </div>
+    `);
+    layerHazard.addLayer(pinPoly);
+
+    // 2. Populate 46 Barangays
+    BARANGAYS_GIS.forEach(b => {
+      let iconColor = '#15803D';
+      let iconBorder = '#166534';
+      if (b.hazard.includes('High')) {
+        iconColor = '#CE1126';
+        iconBorder = '#991B1B';
+      } else if (b.hazard.includes('Moderate')) {
+        iconColor = '#EA580C';
+        iconBorder = '#C2410C';
+      }
+
+      const icon = L.divIcon({
+        className: 'brgy-marker',
+        html: `<div style="background: ${iconColor}; border: 2px solid #FFFFFF; box-shadow: 0 2px 6px rgba(0,0,0,0.3); width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #FFFFFF; font-size: 10px; font-weight: 800;">•</div>`,
+        iconSize: [22, 22],
+        iconAnchor: [11, 11]
+      });
+
+      const marker = L.marker([b.lat, b.lng], { icon: icon });
+      marker.bindPopup(`
+        <div style="font-family: var(--font-body); min-width: 180px;">
+          <span style="font-size: 10px; font-weight: 700; color: var(--muted); text-transform: uppercase;">${b.zone}</span>
+          <h3 style="font-family: var(--font-display); font-size: 15px; font-weight: 800; color: #141414; margin: 2px 0 4px;">${b.name}</h3>
+          <p style="font-size: 11.5px; color: #666; margin-bottom: 6px;">PB: <strong>${b.captain}</strong></p>
+          <div style="font-size: 11px; margin-bottom: 8px;">
+            <span>Hazard: </span><strong style="color: ${b.hazard.includes('High') ? '#CE1126' : '#15803D'};">${b.hazard}</strong>
+          </div>
+          <button onclick="selectBarangay('${b.id}')" style="width: 100%; padding: 6px 10px; background: #15803D; color: #FFF; border: none; border-radius: 9999px; font-size: 11px; font-weight: 600; cursor: pointer;">Show In Navigator</button>
+        </div>
+      `);
+      marker.on('click', () => selectBarangay(b.id));
+      layerBarangays.addLayer(marker);
+    });
+
+    // 3. Populate Evacuation Centers
+    EVAC_CENTERS.forEach(e => {
+      const evacIcon = L.divIcon({
+        className: 'evac-marker',
+        html: `<div style="background: #CE1126; border: 2px solid #FFFFFF; color: #FFFFFF; width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; box-shadow: 0 4px 10px rgba(206,17,38,0.4);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></div>`,
+        iconSize: [30, 30],
+        iconAnchor: [15, 15]
+      });
+
+      const marker = L.marker([e.lat, e.lng], { icon: evacIcon });
+      marker.bindPopup(`
+        <div style="font-family: var(--font-body); min-width: 200px;">
+          <span style="font-size: 10px; font-weight: 700; color: #CE1126; text-transform: uppercase;">MDRRMO Evacuation Shelter</span>
+          <h3 style="font-family: var(--font-display); font-size: 15px; font-weight: 800; color: #141414; margin: 2px 0 4px;">${e.name}</h3>
+          <p style="font-size: 12px; font-weight: 600; color: #15803D; margin-bottom: 4px;">Capacity: ${e.cap}</p>
+          <p style="font-size: 11px; color: #666;">${e.details}</p>
+        </div>
+      `);
+      layerEvac.addLayer(marker);
+    });
+
+    // 4. Populate River Telemetry Gauges
+    RIVER_GAUGES.forEach(g => {
+      const gaugeIcon = L.divIcon({
+        className: 'gauge-marker',
+        html: `<div style="background: #0038A8; border: 2px solid #FFFFFF; color: #FFFFFF; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; box-shadow: 0 3px 8px rgba(0,56,168,0.35);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></div>`,
+        iconSize: [28, 28],
+        iconAnchor: [14, 14]
+      });
+
+      const marker = L.marker([g.lat, g.lng], { icon: gaugeIcon });
+      marker.bindPopup(`
+        <div style="font-family: var(--font-body);">
+          <span style="font-size: 10px; font-weight: 700; color: #0038A8; text-transform: uppercase;">Telemetry Sensor</span>
+          <h4 style="font-family: var(--font-display); font-size: 14px; margin: 2px 0;">${g.name}</h4>
+          <p style="font-size: 12px; color: #15803D; font-weight: 700;">Live Water Level: ${g.level}</p>
+          <a href="mdrrmo.html#gauges-section-title" style="display:inline-block; font-size: 11px; color: #0038A8; text-decoration: underline; margin-top: 4px;">View Live OpCen Feed ↗</a>
+        </div>
+      `);
+      layerGauges.addLayer(marker);
+    });
+
+    // 5. Populate Heritage & Landmarks
+    HERITAGE_SITES.forEach(h => {
+      const hIcon = L.divIcon({
+        className: 'heritage-marker',
+        html: `<div style="background: #EAB308; border: 2px solid #FFFFFF; color: #FFFFFF; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; box-shadow: 0 3px 8px rgba(234,179,8,0.4);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"></path><circle cx="12" cy="10" r="3"></circle></svg></div>`,
+        iconSize: [28, 28],
+        iconAnchor: [14, 14]
+      });
+
+      const marker = L.marker([h.lat, h.lng], { icon: hIcon });
+      marker.bindPopup(`
+        <div style="font-family: var(--font-body);">
+          <span style="font-size: 10px; font-weight: 700; color: #CA8A04; text-transform: uppercase;">Heritage &amp; Civic Site</span>
+          <h4 style="font-family: var(--font-display); font-size: 14px; margin: 2px 0;">${h.name}</h4>
+          <p style="font-size: 11.5px; color: #666;">${h.type}</p>
+          <a href="tourism.html" style="display:inline-block; font-size: 11px; color: #15803D; text-decoration: underline; margin-top: 4px;">Tourism Portal ↗</a>
+        </div>
+      `);
+      layerHeritage.addLayer(marker);
+    });
+
+    // =============================================================
+    // 8. INTERACTIVE SEARCH, SELECTION & ROUTING ENGINE
+    // =============================================================
+    let currentSelectedBarangay = null;
+
+    function selectBarangay(id) {
+      const b = BARANGAYS_GIS.find(item => item.id === id);
+      if (!b) return;
+
+      currentSelectedBarangay = b;
+
+      // Pan & Zoom
+      map.flyTo([b.lat, b.lng], 15, { duration: 1.2 });
+
+      // Update Floating Deck Card
+      const card = document.getElementById('entity-detail-card');
+      document.getElementById('entity-name').textContent = b.name;
+      document.getElementById('entity-desc').textContent = `${b.zone} community in Tumauini, Isabela.`;
+      document.getElementById('entity-leader').textContent = b.captain;
+      document.getElementById('entity-hazard').textContent = b.hazard;
+      document.getElementById('entity-hazard').style.color = b.hazard.includes('High') ? '#CE1126' : (b.hazard.includes('Moderate') ? '#EA580C' : '#15803D');
+      document.getElementById('entity-shelter').textContent = b.shelter;
+      
+      card.classList.add('active');
+
+      // Scroll smoothly to map on mobile
+      if (window.innerWidth <= 640) {
+        document.getElementById('tumauini-gis-map').scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function clearEntityCard() {
+      document.getElementById('entity-detail-card').classList.remove('active');
+      layerRoutes.clearLayers();
+      currentSelectedBarangay = null;
+    }
+
+    // Draw pulsating polyline evacuation route
+    function routeToAssignedShelter() {
+      if (!currentSelectedBarangay) return;
+      layerRoutes.clearLayers();
+
+      const start = [currentSelectedBarangay.lat, currentSelectedBarangay.lng];
+      const end = currentSelectedBarangay.shelterCoord;
+
+      const poly = L.polyline([start, end], {
+        color: '#CE1126',
+        weight: 4,
+        dashArray: '8, 8',
+        opacity: 0.9
+      }).addTo(layerRoutes);
+
+      map.fitBounds(poly.getBounds(), { padding: [60, 60], maxZoom: 15 });
+
+      // Popup on line
+      poly.bindPopup(`
+        <div style="font-family: var(--font-body); font-size: 12px;">
+          <strong>Evacuation Route:</strong> ${currentSelectedBarangay.name} ➔ ${currentSelectedBarangay.shelter}
+        </div>
+      `).openPopup();
+    }
+
+    function handleMapSearch(val) {
+      const q = val.toLowerCase().trim();
+      if (!q) return;
+
+      const found = BARANGAYS_GIS.find(b => b.name.toLowerCase().includes(q) || b.captain.toLowerCase().includes(q));
+      if (found) {
+        selectBarangay(found.id);
+      }
+    }
+
+    function toggleMapLayer(layerName) {
+      if (layerName === 'barangays') {
+        if (map.hasLayer(layerBarangays)) map.removeLayer(layerBarangays);
+        else map.addLayer(layerBarangays);
+      } else if (layerName === 'evac') {
+        if (map.hasLayer(layerEvac)) map.removeLayer(layerEvac);
+        else map.addLayer(layerEvac);
+      } else if (layerName === 'hazard') {
+        if (map.hasLayer(layerHazard)) map.removeLayer(layerHazard);
+        else map.addLayer(layerHazard);
+      } else if (layerName === 'gauges') {
+        if (map.hasLayer(layerGauges)) map.removeLayer(layerGauges);
+        else map.addLayer(layerGauges);
+      } else if (layerName === 'heritage') {
+        if (map.hasLayer(layerHeritage)) map.removeLayer(layerHeritage);
+        else map.addLayer(layerHeritage);
+      }
+    }
+
+    function focusLayer(type) {
+      if (type === 'evac') {
+        map.flyTo([17.2788, 121.8068], 13);
+        if (!map.hasLayer(layerEvac)) map.addLayer(layerEvac);
+      } else if (type === 'hazard') {
+        map.flyTo([17.2880, 121.7820], 13);
+        if (!map.hasLayer(layerHazard)) map.addLayer(layerHazard);
+      }
+    }
+
+    function recenterMap() {
+      map.flyTo(defaultCenter, defaultZoom, { duration: 1.2 });
+      clearEntityCard();
+    }
+
+    function zoomToCoordinate(lat, lng, zoom) {
+      map.flyTo([lat, lng], zoom || 15, { duration: 1.2 });
+      document.querySelector('.map-workbench').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function toggleMapFullscreen() {
+      const elem = document.querySelector('.map-workbench');
+      if (!document.fullscreenElement) {
+        elem.requestFullscreen?.().catch(err => alert(`Fullscreen error: ${err.message}`));
+      } else {
+        document.exitFullscreen?.();
+      }
+    }
+
+    // Populate Lower Barangay Quick Index
+    function renderRosterCards() {
+      const container = document.getElementById('roster-cards-container');
+      if (!container) return;
+
+      container.innerHTML = '';
+      BARANGAYS_GIS.forEach(b => {
+        const card = document.createElement('div');
+        card.className = 'roster-card';
+        card.onclick = () => {
+          selectBarangay(b.id);
+          window.scrollTo({ top: document.querySelector('.map-workbench').offsetTop - 60, behavior: 'smooth' });
+        };
+        card.innerHTML = `
+          <div>
+            <div class="roster-top">
+              <h3 class="roster-name">${b.name}</h3>
+              <span style="font-size: 10px; font-weight: 700; color: ${b.hazard.includes('High') ? '#CE1126' : '#15803D'};">${b.hazard.includes('High') ? 'High Flood' : 'Safe'}</span>
+            </div>
+            <p class="roster-captain">PB: ${b.captain}</p>
+          </div>
+          <div class="roster-badge-row">
+            <span>${b.zone}</span>
+            <span style="color: #15803D; font-weight: 600;">Locate ↗</span>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+    renderRosterCards();
+  </script>
+
+  <!-- Global Civic Spotlight Search Engine (Ctrl + K) -->
+  <script src="assets/js/spotlight.js"></script>
+</body>
+</html>
