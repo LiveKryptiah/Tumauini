@@ -13,6 +13,16 @@
   const CIVIC_DATABASE = [
     // --- LIVE INTERACTIVE TOOLS & TRACKING ---
     {
+      id: 'tool-careers-peso',
+      type: 'service',
+      category: 'services',
+      title: 'PESO Job Portal & LGU Careers',
+      desc: 'Browse municipal civil service plantilla vacancies, job orders, and private jobs.',
+      badge: 'PESO Portal',
+      url: 'careers.html',
+      keywords: ['jobs', 'careers', 'peso', 'work', 'hiring', 'plantilla', 'vacancies', 'civil service', 'job order', 'spes', 'employment']
+    },
+    {
       id: 'tool-permit-tracker',
       type: 'service',
       category: 'services',
