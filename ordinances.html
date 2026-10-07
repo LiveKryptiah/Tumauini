@@ -1264,23 +1264,21 @@
       margin-bottom: 12px;
     }
 
+
     /* =============================================================
-       8. INTERACTIVE LEGISLATION MODAL
+       8. INTERACTIVE PDF GAZETTE VIEWER MODAL
        ============================================================= */
     .modal-backdrop {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
+      inset: 0;
+      background: rgba(10, 20, 10, 0.78);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       z-index: 2000;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: 16px;
       opacity: 0;
       visibility: hidden;
       transition: all 0.25s ease;
@@ -1291,32 +1289,182 @@
       visibility: visible;
     }
 
-    .modal-card {
+    .modal-card.pdf-viewer-card {
       background-color: var(--soft-canvas);
       border: 1px solid var(--hairline);
       border-radius: var(--radius-panel);
       width: 100%;
-      max-width: 740px;
-      max-height: 90vh;
-      overflow-y: auto;
-      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.16);
+      max-width: 1060px;
+      height: 92vh;
+      max-height: 92vh;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
       transform: scale(0.96);
-      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       display: flex;
       flex-direction: column;
+      overflow: hidden;
     }
 
-    .modal-backdrop.open .modal-card {
+    .modal-backdrop.open .modal-card.pdf-viewer-card {
       transform: scale(1);
     }
 
-    .modal-header {
-      padding: 24px 28px 20px;
+    .modal-card.pdf-viewer-card.maximized {
+      max-width: 100vw;
+      height: 100vh;
+      max-height: 100vh;
+      border-radius: 0;
+    }
+
+    .pdf-viewer-header {
+      padding: 16px 24px;
+      background: var(--soft-canvas);
       border-bottom: 1px solid var(--hairline);
+      flex-shrink: 0;
       display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .pdf-header-top {
+      display: flex;
+      align-items: center;
       justify-content: space-between;
-      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .pdf-header-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       gap: 16px;
+    }
+
+    .pdf-header-title {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.35;
+      margin: 0;
+    }
+
+    .pdf-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding-top: 4px;
+    }
+
+    .pdf-tab-group {
+      display: flex;
+      background: var(--field);
+      padding: 3px;
+      border-radius: var(--radius-pill);
+      gap: 4px;
+    }
+
+    .pdf-tab-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      font-size: 12.5px;
+      font-weight: 600;
+      border-radius: var(--radius-pill);
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .pdf-tab-btn.active {
+      background: #15803d;
+      color: #FFFFFF;
+      box-shadow: none;
+    }
+
+    .pdf-tool-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pdf-search-box {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--field);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-sm);
+      padding: 4px 10px;
+      color: var(--muted);
+    }
+
+    .pdf-search-box input {
+      background: transparent;
+      border: none;
+      outline: none;
+      font-size: 12px;
+      color: var(--ink);
+      width: 120px;
+    }
+
+    .pdf-zoom-control {
+      display: flex;
+      align-items: center;
+      background: var(--field);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-sm);
+      padding: 2px 4px;
+      gap: 4px;
+    }
+
+    .pdf-zoom-btn {
+      background: transparent;
+      border: none;
+      color: var(--ink);
+      font-weight: 700;
+      font-size: 12px;
+      padding: 4px 8px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.15s ease;
+    }
+
+    .pdf-zoom-btn:hover {
+      background: var(--hairline);
+    }
+
+    .pdf-zoom-label {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--muted);
+      min-width: 36px;
+      text-align: center;
+    }
+
+    .pdf-tool-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--hairline);
+      background: var(--soft-canvas);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      transition: all 0.15s ease;
+    }
+
+    .pdf-tool-btn:hover {
+      background: var(--field);
+      color: var(--ink);
     }
 
     .modal-close-btn {
@@ -1329,7 +1477,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 16px;
+      font-size: 18px;
       color: var(--muted);
       transition: all 0.15s ease;
     }
@@ -1339,18 +1487,375 @@
       color: var(--ink);
     }
 
-    .modal-body {
-      padding: 24px 28px;
+    /* Viewer Viewport */
+    .pdf-viewer-viewport {
+      flex: 1;
+      overflow-y: auto;
+      background: #252b33;
+      padding: 28px 20px;
+      position: relative;
+    }
+
+    [data-theme="dark"] .pdf-viewer-viewport {
+      background: #091009;
+    }
+
+    .pdf-tab-panel {
+      display: none;
+    }
+
+    .pdf-tab-panel.active {
+      display: block;
+    }
+
+    /* Gazette Paper Sheet (Official Document) */
+    .gazette-paper-wrap {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .gazette-paper-sheet {
+      background: #FFFFFF;
+      color: #111827;
+      width: 100%;
+      max-width: 820px;
+      min-height: 1050px;
+      padding: 48px 54px;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+      border-radius: 3px;
+      font-family: 'Times New Roman', Georgia, serif;
+      line-height: 1.6;
+      font-size: 14px;
+      position: relative;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      transform-origin: top center;
+    }
+
+    .gazette-letterhead {
+      display: grid;
+      grid-template-columns: 70px 1fr 70px;
+      align-items: center;
+      gap: 16px;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .letterhead-seal {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gazette-seal-img {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+    }
+
+    .letterhead-text {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 1px;
+    }
+
+    .lh-country {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #374151;
+    }
+
+    .lh-province {
+      font-size: 12px;
+      color: #374151;
+    }
+
+    .lh-lgu {
+      font-size: 17px;
+      font-weight: 700;
+      color: #111827;
+      letter-spacing: 0.04em;
+    }
+
+    .lh-office {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #15803d;
+      letter-spacing: 0.06em;
+      margin-top: 2px;
+    }
+
+    .lh-sub {
+      font-size: 10.5px;
+      color: #6B7280;
+      margin-top: 1px;
+    }
+
+    .lh-email {
+      font-size: 10px;
+      color: #6B7280;
+    }
+
+    .gazette-rule-double {
+      border-top: 3px double #111827;
+      margin: 14px 0 18px;
+    }
+
+    .gazette-excerpt-box {
+      border: 1px solid #D1D5DB;
+      background: #F9FAFB;
+      padding: 12px 16px;
+      margin-bottom: 22px;
+      border-radius: 2px;
+    }
+
+    .excerpt-heading {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #111827;
+      border-bottom: 1px solid #E5E7EB;
+      padding-bottom: 6px;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .excerpt-attendance-grid {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr;
+      gap: 16px;
+      font-size: 11.5px;
+      line-height: 1.45;
+    }
+
+    .attendance-col-title {
+      font-weight: 700;
+      color: #15803d;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .attendance-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      color: #1F2937;
+    }
+
+    .gazette-title-block {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .gazette-act-type {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #15803d;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .gazette-main-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #111827;
+      line-height: 1.4;
+      text-transform: uppercase;
+      margin: 0 auto 8px;
+      max-width: 680px;
+    }
+
+    .gazette-sponsor-line {
+      font-size: 12px;
+      color: #4B5563;
+      font-style: italic;
+    }
+
+    .gazette-whereas-block {
+      margin-bottom: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align: justify;
+      text-justify: inter-word;
+    }
+
+    .whereas-clause {
+      text-indent: 32px;
+      font-size: 13.5px;
+      color: #1F2937;
+    }
+
+    .whereas-clause strong {
+      letter-spacing: 0.04em;
+    }
+
+    .gazette-enacting-clause {
+      text-align: justify;
+      font-weight: 700;
+      margin: 16px 0 20px;
+      font-size: 14px;
+      text-indent: 32px;
+      color: #111827;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .gazette-sections-body {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      text-align: justify;
+      text-justify: inter-word;
+      margin-bottom: 28px;
+    }
+
+    .gazette-section-item {
+      font-size: 13.5px;
+      color: #1F2937;
+    }
+
+    .gazette-section-title {
+      font-weight: 700;
+      text-decoration: underline;
+      display: inline;
+    }
+
+    .gazette-section-text {
+      display: inline;
+    }
+
+    .gazette-attestation-block {
+      margin-top: 28px;
+      border-top: 1px solid #E5E7EB;
+      padding-top: 18px;
+    }
+
+    .certify-intro {
+      font-size: 12px;
+      color: #374151;
+      font-style: italic;
+      text-indent: 28px;
+      margin-bottom: 24px;
+    }
+
+    .sig-secretary-box {
+      margin-bottom: 32px;
+      width: 280px;
+    }
+
+    .sig-dual-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 28px;
+    }
+
+    .sig-col {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sig-role-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #4B5563;
+      margin-bottom: 36px;
+    }
+
+    .sig-line {
+      border-bottom: 1.5px solid #111827;
+      width: 220px;
+      margin-bottom: 4px;
+    }
+
+    .sig-name {
+      font-weight: 700;
+      font-size: 13.5px;
+      color: #111827;
+      text-transform: uppercase;
+    }
+
+    .sig-title {
+      font-size: 12px;
+      color: #4B5563;
+    }
+
+    .sig-date-note {
+      font-size: 11px;
+      color: #6B7280;
+      font-style: italic;
+      margin-top: 2px;
+    }
+
+    .gazette-seal-verification-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 2px dashed #D1D5DB;
+      padding-top: 16px;
+      margin-top: 24px;
+    }
+
+    .embossed-seal-mark {
+      flex-shrink: 0;
+    }
+
+    .gazette-barcode-info {
+      text-align: right;
+    }
+
+    .barcode-graphic {
+      font-family: monospace;
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: #4B5563;
+    }
+
+    .barcode-code {
+      font-family: monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: #15803d;
+      margin-top: 2px;
+    }
+
+    .barcode-note {
+      font-size: 10px;
+      color: #6B7280;
+      margin-top: 2px;
+    }
+
+    /* Tab 2: Overview Styling */
+    .overview-content-wrap {
+      max-width: 820px;
+      margin: 0 auto;
+      background: var(--soft-canvas);
+      padding: 28px 32px;
+      border-radius: var(--radius-card);
+      border: 1px solid var(--hairline);
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .overview-section-box {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
 
     .modal-meta-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 12px;
-      background: var(--soft-canvas);
+      background: var(--field);
       border: 1px solid var(--hairline);
       border-radius: var(--radius-card);
       padding: 16px;
@@ -1383,7 +1888,7 @@
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--civic-green);
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .modal-provisions-list {
@@ -1391,6 +1896,7 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
+      padding: 0;
     }
 
     .modal-provisions-list li {
@@ -1398,26 +1904,114 @@
       line-height: 1.5;
       color: var(--ink);
       position: relative;
-      padding-left: 18px;
+      padding-left: 20px;
     }
 
     .modal-provisions-list li::before {
-      content: '•';
+      content: '✓';
       position: absolute;
-      left: 4px;
-      color: var(--civic-green);
+      left: 2px;
+      color: #15803d;
       font-weight: bold;
     }
 
-    .modal-footer {
-      padding: 18px 28px;
-      border-top: 1px solid var(--hairline);
+    /* Legislative Timeline Stepper */
+    .legislative-timeline-stepper {
       display: flex;
-      justify-content: flex-end;
+      flex-direction: column;
       gap: 12px;
-      background: var(--field);
-      border-bottom-left-radius: var(--radius-panel);
-      border-bottom-right-radius: var(--radius-panel);
+      position: relative;
+      padding-left: 24px;
+      margin-top: 8px;
+    }
+
+    .legislative-timeline-stepper::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: var(--hairline);
+    }
+
+    .timeline-step-item {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .timeline-step-item::before {
+      content: '';
+      position: absolute;
+      left: -24px;
+      top: 4px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #15803d;
+      border: 3px solid var(--soft-canvas);
+    }
+
+    .timeline-step-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .timeline-step-meta {
+      font-size: 11.5px;
+      color: var(--muted);
+    }
+
+    /* Search Highlights in Gazette */
+    mark.gz-highlight {
+      background: #FEF08A;
+      color: #854D0E;
+      padding: 1px 3px;
+      border-radius: 2px;
+    }
+
+    /* Print Optimization Rules (Strict Rule 2/3) */
+    @media print {
+      body * {
+        visibility: hidden !important;
+      }
+      #printable-gazette-sheet,
+      #printable-gazette-sheet * {
+        visibility: visible !important;
+      }
+      #printable-gazette-sheet {
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 15mm 20mm !important;
+        box-shadow: none !important;
+        border: none !important;
+        background: #FFFFFF !important;
+        color: #000000 !important;
+      }
+      .modal-backdrop {
+        position: static !important;
+        background: transparent !important;
+        padding: 0 !important;
+        overflow: visible !important;
+      }
+      .pdf-viewer-card {
+        box-shadow: none !important;
+        border: none !important;
+        height: auto !important;
+        max-height: none !important;
+      }
+      .pdf-viewer-header,
+      .pdf-toolbar,
+      .pdf-viewer-viewport::-webkit-scrollbar {
+        display: none !important;
+      }
     }
 
     /* =============================================================
@@ -1564,7 +2158,7 @@
     <nav class="nav-pill" id="navbar" aria-label="Main Navigation">
       <!-- Left: LGU Branding -->
       <a href="index.html" class="nav-left" aria-label="Municipality of Tumauini Homepage">
-        <img src="assets/images/logo.png" alt="Seal of Tumauini" class="nav-logo" width="32" height="32" />
+        <img src="assets/tumauini-official-seal.png" alt="Seal of Tumauini" class="nav-logo" width="32" height="32" />
         <div class="nav-title-wrap">
           <span class="nav-republic">Republic of the Philippines</span>
           <span class="nav-lgu">Municipality of Tumauini</span>
@@ -1663,6 +2257,24 @@
               <div class="dropdown-item-content">
                 <span class="dropdown-item-title">Citizen's Charter & Services</span>
                 <span class="dropdown-item-desc">Business, civil registry & permits</span>
+              </div>
+            </a>
+            <a href="agri-hub.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">Corn Capital Agri-Hub</span>
+                <span class="dropdown-item-desc">Crop prices, subsidies &amp; machinery</span>
+              </div>
+            </a>
+            <a href="careers.html" class="dropdown-item" role="menuitem">
+              <div class="dropdown-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+              </div>
+              <div class="dropdown-item-content">
+                <span class="dropdown-item-title">PESO Job Portal & Careers</span>
+                <span class="dropdown-item-desc">Plantilla, job orders & private jobs</span>
               </div>
             </a>
             <a href="tax-calculator.html" class="dropdown-item" role="menuitem">
@@ -1821,6 +2433,8 @@
 
     <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #15803D; padding: 8px 14px 2px;">Citizen Services</div>
     <a href="services.html">Citizen's Charter & Services ↗</a>
+    <a href="agri-hub.html">Corn Capital Agri-Hub ↗</a>
+    <a href="careers.html">PESO Job Portal & Careers ↗</a>
     <a href="tax-calculator.html">Business Tax Calculator ↗</a>
     <a href="map.html">Interactive GIS Map ↗</a>
     <a href="mdrrmo.html">MDRRMO & Rescue 3325 ↗</a>
@@ -2068,86 +2682,286 @@
   </main>
 
   <!-- =============================================================
-       8. INTERACTIVE LEGISLATION MODAL
+       8. INTERACTIVE SANGGUNIANG BAYAN PDF GAZETTE VIEWER MODAL
        ============================================================= -->
   <div class="modal-backdrop" id="legislation-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-doc-title">
-    <div class="modal-card">
+    <div class="modal-card pdf-viewer-card" id="pdf-viewer-modal-card">
       
-      <div class="modal-header">
-        <div>
-          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+      <!-- Sticky Viewer Header & Controls Bar -->
+      <div class="pdf-viewer-header">
+        <div class="pdf-header-top">
+          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
             <span class="doc-badge badge-ord" id="modal-type-badge">Ordinance</span>
-            <span class="pill-badge" id="modal-doc-number">Ord. No. 2024-12</span>
-            <span class="pill-badge pill-badge-green" id="modal-status-badge">Enacted & In Effect</span>
+            <span class="pill-badge" id="modal-doc-number" style="font-weight: 700; font-family: monospace;">Ord. No. 2024-12</span>
+            <span class="pill-badge pill-badge-green" id="modal-status-badge">
+              <span class="indicator-dot indicator-green"></span>
+              <span id="modal-status-text">Enacted &amp; In Effect</span>
+            </span>
           </div>
-          <h2 style="font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--ink); line-height: 1.35;" id="modal-doc-title">Legislation Title</h2>
+
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <button class="pdf-tool-btn" onclick="toggleMaximizeViewer()" id="btn-maximize-viewer" title="Toggle Fullscreen" aria-label="Toggle Fullscreen">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
+            </button>
+            <button class="modal-close-btn" onclick="closeLegislationModal()" aria-label="Close modal">&times;</button>
+          </div>
         </div>
-        <button class="modal-close-btn" onclick="closeLegislationModal()" aria-label="Close modal">&times;</button>
+
+        <div class="pdf-header-title-row">
+          <h2 class="pdf-header-title" id="modal-doc-title">Legislation Title</h2>
+        </div>
+
+        <!-- Toolbar: Tabs, Zoom, Search, Actions -->
+        <div class="pdf-toolbar">
+          <div class="pdf-tab-group" role="tablist">
+            <button class="pdf-tab-btn active" id="tab-btn-gazette" onclick="switchViewerTab('gazette')" role="tab" aria-selected="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              <span>Official Gazette (PDF View)</span>
+            </button>
+            <button class="pdf-tab-btn" id="tab-btn-overview" onclick="switchViewerTab('overview')" role="tab" aria-selected="false">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              <span>Executive Summary &amp; Journey</span>
+            </button>
+          </div>
+
+          <div class="pdf-tool-group">
+            <!-- Search within document -->
+            <div class="pdf-search-box">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="gazette-find-input" placeholder="Find in docket..." oninput="findInGazette(this.value)" aria-label="Find text in docket">
+            </div>
+
+            <!-- Zoom Controls -->
+            <div class="pdf-zoom-control">
+              <button class="pdf-zoom-btn" onclick="zoomGazette(-0.1)" title="Zoom Out" aria-label="Zoom Out">−</button>
+              <span class="pdf-zoom-label" id="gazette-zoom-label">100%</span>
+              <button class="pdf-zoom-btn" onclick="zoomGazette(0.1)" title="Zoom In" aria-label="Zoom In">+</button>
+              <button class="pdf-zoom-btn" onclick="resetZoomGazette()" title="Reset to 100%" aria-label="Reset zoom">Fit</button>
+            </div>
+
+            <!-- Actions -->
+            <button class="btn btn-secondary btn-sm" onclick="copyDocumentLink()" title="Copy Shareable Link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <span>Share</span>
+            </button>
+            <button class="btn btn-secondary btn-sm" onclick="printCertifiedDocket()" title="Print Official Certified Copy">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+              <span>Print Copy</span>
+            </button>
+            <button class="btn btn-primary btn-sm" onclick="downloadOfficialPdfGazette()" title="Download Official Signed PDF Gazette">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              <span>Download PDF</span>
+            </button>
+          </div>
+        </div>
       </div>
 
-      <div class="modal-body">
-        
-        <!-- Metadata Grid -->
-        <div class="modal-meta-grid">
-          <div class="meta-item">
-            <span class="meta-item-label">Principal Author / Sponsor</span>
-            <span class="meta-item-val" id="modal-author">Hon. Elena S. Calimag</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-item-label">Standing Committee</span>
-            <span class="meta-item-val" id="modal-committee">Rules, Laws, Ordinances & Ethics</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-item-label">Date of Enactment</span>
-            <span class="meta-item-val" id="modal-enacted">October 14, 2024</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-item-label">Official Effectivity Date</span>
-            <span class="meta-item-val" id="modal-effectivity">November 01, 2024</span>
+      <!-- Scrollable Document Viewport -->
+      <div class="pdf-viewer-viewport" id="pdf-viewer-viewport">
+
+        <!-- TAB 1: OFFICIAL GAZETTE LEGAL PARCHMENT SHEET -->
+        <div class="pdf-tab-panel active" id="panel-gazette-view">
+          <div class="gazette-paper-wrap" id="gazette-paper-wrap">
+            <article class="gazette-paper-sheet" id="printable-gazette-sheet">
+              
+              <!-- Letterhead -->
+              <div class="gazette-letterhead">
+                <div class="letterhead-seal">
+                  <!-- National Flag / Coat of Arms Graphic -->
+                  <div class="republic-emblem-seal" title="Republic of the Philippines">
+                    <svg width="54" height="54" viewBox="0 0 100 100" fill="none">
+                      <circle cx="50" cy="50" r="48" stroke="#0038A8" stroke-width="3" fill="#FFF"/>
+                      <path d="M50 15 L50 85 M15 50 L85 50" stroke="#CE1126" stroke-width="2"/>
+                      <polygon points="50,22 58,40 78,40 62,52 68,72 50,60 32,72 38,52 22,40 42,40" fill="#FCD116" stroke="#C59B00" stroke-width="1"/>
+                      <circle cx="50" cy="50" r="8" fill="#FCD116"/>
+                    </svg>
+                  </div>
+                </div>
+
+                <div class="letterhead-text">
+                  <div class="lh-country">Republic of the Philippines</div>
+                  <div class="lh-province">Province of Isabela</div>
+                  <div class="lh-lgu">MUNICIPALITY OF TUMAUINI</div>
+                  <div class="lh-office">OFFICE OF THE SANGGUNIANG BAYAN</div>
+                  <div class="lh-sub">2nd Floor, Legislative Building, National Highway, Tumauini, Isabela 3325</div>
+                  <div class="lh-email">Email: sangguniangbayan@tumauini.gov.ph &bull; Tel: (078) 323-2004</div>
+                </div>
+
+                <div class="letterhead-seal">
+                  <img src="assets/tumauini-official-seal.png" alt="Official Seal of Tumauini" width="60" height="60" class="gazette-seal-img">
+                </div>
+              </div>
+
+              <div class="gazette-rule-double"></div>
+
+              <!-- Formal Session Excerpt Header -->
+              <div class="gazette-excerpt-box">
+                <div class="excerpt-heading">
+                  EXCERPT FROM THE MINUTES OF THE REGULAR SESSION OF THE SANGGUNIANG BAYAN OF TUMAUINI, ISABELA HELD AT THE SB SESSION HALL ON <span id="gz-session-date-banner">OCTOBER 14, 2024</span>.
+                </div>
+                
+                <div class="excerpt-attendance-grid">
+                  <div>
+                    <span class="attendance-col-title">PRESENT:</span>
+                    <ul class="attendance-list" id="gz-attendance-present">
+                      <!-- Rendered by JS -->
+                    </ul>
+                  </div>
+                  <div>
+                    <span class="attendance-col-title">ABSENT:</span>
+                    <p style="font-size: 11.5px; font-style: italic; color: #4B5563; margin-top: 4px;">None (All Members Present; Quorum Duly Constituted)</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Formal Enactment Number & Title -->
+              <div class="gazette-title-block">
+                <div class="gazette-act-type" id="gz-act-badge">ORDINANCE NO. 2024-12</div>
+                <h1 class="gazette-main-title" id="gz-full-title">
+                  AN ORDINANCE REVISING THE REVENUE CODE OF THE MUNICIPALITY OF TUMAUINI...
+                </h1>
+                <div class="gazette-sponsor-line">
+                  Authored by: <strong id="gz-author-name">Hon. Mark Lester P. Rivera</strong> &bull; Standing Committee on <span id="gz-committee-name">Appropriations, Budget & Finance</span>
+                </div>
+              </div>
+
+              <!-- Preamble / Whereas Clauses -->
+              <div class="gazette-whereas-block" id="gz-whereas-block">
+                <!-- Rendered by JS -->
+              </div>
+
+              <!-- Enacting Clause -->
+              <div class="gazette-enacting-clause" id="gz-enacting-clause">
+                BE IT ORDAINED by the Sangguniang Bayan of Tumauini, Isabela, in regular session assembled:
+              </div>
+
+              <!-- Articles & Sections Body -->
+              <div class="gazette-sections-body" id="gz-sections-body">
+                <!-- Rendered by JS -->
+              </div>
+
+              <!-- Attestation, Verification & Signature Blocks -->
+              <div class="gazette-attestation-block">
+                <p class="certify-intro">
+                  I HEREBY CERTIFY that the foregoing legislative measure was duly enacted by the Sangguniang Bayan of Tumauini on its Third and Final Reading on <span id="gz-enactment-date-cert">October 14, 2024</span>.
+                </p>
+
+                <div class="sig-secretary-box">
+                  <div class="sig-line"></div>
+                  <div class="sig-name">ATTY. MA. CIELO P. TAGUBA</div>
+                  <div class="sig-title">Secretary to the Sangguniang Bayan</div>
+                </div>
+
+                <div class="sig-dual-row">
+                  <div class="sig-col">
+                    <span class="sig-role-label">ATTESTED AND CERTIFIED TO BE DULY ENACTED:</span>
+                    <div class="sig-line"></div>
+                    <div class="sig-name" id="gz-vice-mayor-sig">HON. CHRISTOPHER B. UY</div>
+                    <div class="sig-title">Municipal Vice Mayor &amp; Presiding Officer</div>
+                  </div>
+
+                  <div class="sig-col">
+                    <span class="sig-role-label">APPROVED:</span>
+                    <div class="sig-line"></div>
+                    <div class="sig-name">HON. VENANCIO M. LABASAN</div>
+                    <div class="sig-title">Municipal Mayor</div>
+                    <div class="sig-date-note" id="gz-mayor-approved-date">Approved on: October 21, 2024</div>
+                  </div>
+                </div>
+
+                <!-- Embossed Seal & Barcode Verification Footer -->
+                <div class="gazette-seal-verification-footer">
+                  <div class="embossed-seal-mark" title="Official Sangguniang Bayan Dry Seal">
+                    <svg width="68" height="68" viewBox="0 0 100 100" fill="none">
+                      <circle cx="50" cy="50" r="46" stroke="#15803D" stroke-width="2" stroke-dasharray="3 3"/>
+                      <circle cx="50" cy="50" r="40" stroke="#15803D" stroke-width="1.5"/>
+                      <path id="curve" d="M20,50 A30,30 0 1,1 80,50 A30,30 0 1,1 20,50" fill="transparent"/>
+                      <text font-size="7.5" font-family="serif" font-weight="bold" fill="#15803D" letter-spacing="1.5">
+                        <textPath href="#curve" startOffset="50%" text-anchor="middle">
+                          SANGGUNIANG BAYAN • TUMAUINI ISABELA
+                        </textPath>
+                      </text>
+                      <circle cx="50" cy="50" r="16" fill="#15803D" fill-opacity="0.1" stroke="#15803D" stroke-width="1"/>
+                      <text x="50" y="48" font-size="7" font-weight="bold" fill="#15803D" text-anchor="middle">OFFICIAL</text>
+                      <text x="50" y="56" font-size="7" font-weight="bold" fill="#15803D" text-anchor="middle">SEAL</text>
+                    </svg>
+                  </div>
+                  <div class="gazette-barcode-info">
+                    <div class="barcode-graphic">||| | ||||| || |||| |||||| ||| |||| | ||| |||| || |||</div>
+                    <div class="barcode-code" id="gz-barcode-ref">TMN-SB-ORD-2024-012 &bull; CERTIFIED DIGITAL COPY</div>
+                    <div class="barcode-note">Republic of the Philippines &bull; DILG Local Government Full Disclosure Compliance Record</div>
+                  </div>
+                </div>
+
+              </div>
+
+            </article>
           </div>
         </div>
 
-        <!-- Plain English Executive Summary -->
-        <div>
-          <h4 class="modal-section-title">Executive Summary</h4>
-          <p style="font-size: 14px; color: var(--ink); line-height: 1.6;" id="modal-summary">
-            Detailed plain English summary describing the rationale, legal foundation, and objectives of this measure.
-          </p>
-        </div>
+        <!-- TAB 2: EXECUTIVE SUMMARY & LEGISLATIVE JOURNEY -->
+        <div class="pdf-tab-panel" id="panel-overview-view">
+          <div class="overview-content-wrap">
+            
+            <!-- Metadata Cards Grid -->
+            <div class="modal-meta-grid">
+              <div class="meta-item">
+                <span class="meta-item-label">Principal Author / Sponsor</span>
+                <span class="meta-item-val" id="ov-author">Hon. Mark Lester P. Rivera</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-item-label">Standing Committee</span>
+                <span class="meta-item-val" id="ov-committee">Appropriations, Budget & Finance</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-item-label">Date of Enactment</span>
+                <span class="meta-item-val" id="ov-enacted">October 14, 2024</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-item-label">Official Effectivity Date</span>
+                <span class="meta-item-val" id="ov-effectivity">January 01, 2025</span>
+              </div>
+            </div>
 
-        <!-- Key Provisions List -->
-        <div>
-          <h4 class="modal-section-title">Key Provisions &amp; Implementation</h4>
-          <ul class="modal-provisions-list" id="modal-provisions">
-            <li>Mandatory compliance across commercial enterprises and residential zones.</li>
-            <li>Designated implementing agency: Municipal Treasury and BPLO.</li>
-            <li>Periodic monitoring reports submitted to the Sangguniang Bayan quarterly.</li>
-          </ul>
-        </div>
+            <!-- Plain English Executive Summary -->
+            <div class="overview-section-box">
+              <h4 class="modal-section-title">Plain-English Executive Summary</h4>
+              <p style="font-size: 14px; color: var(--ink); line-height: 1.6;" id="ov-summary">
+                Executive summary text here...
+              </p>
+            </div>
 
-        <!-- Enforcement & Scope -->
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 14px; background: var(--soft-canvas); border-radius: var(--radius-card); border: 1px solid var(--hairline);">
-          <div>
-            <span style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--muted);">Jurisdiction / Scope</span>
-            <p style="font-weight: 600; font-size: 13px; color: var(--ink); margin-top: 2px;" id="modal-scope">All 46 Barangays of Tumauini</p>
+            <!-- Key Provisions List -->
+            <div class="overview-section-box">
+              <h4 class="modal-section-title">Key Provisions &amp; Implementation Directives</h4>
+              <ul class="modal-provisions-list" id="ov-provisions">
+                <!-- Rendered by JS -->
+              </ul>
+            </div>
+
+            <!-- 6-Stage Legislative Journey Stepper -->
+            <div class="overview-section-box">
+              <h4 class="modal-section-title">Legislative Enactment Journey &amp; Passage History</h4>
+              <div class="legislative-timeline-stepper" id="ov-timeline">
+                <!-- Rendered by JS -->
+              </div>
+            </div>
+
+            <!-- Implementing Agency & Coverage -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 16px; background: var(--field); border-radius: var(--radius-card); border: 1px solid var(--hairline);">
+              <div>
+                <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: 0.05em;">Jurisdiction &amp; Coverage</span>
+                <p style="font-weight: 600; font-size: 13.5px; color: var(--ink); margin-top: 4px;" id="ov-scope">Commercial enterprises across all 46 barangays</p>
+              </div>
+              <div>
+                <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: 0.05em;">Primary Implementing Offices</span>
+                <p style="font-weight: 600; font-size: 13.5px; color: var(--ink); margin-top: 4px;" id="ov-implementers">Municipal Treasury, BPLO, &amp; MPDO</p>
+              </div>
+            </div>
+
           </div>
-          <div>
-            <span style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--muted);">Affirmation / Signatories</span>
-            <p style="font-weight: 600; font-size: 13px; color: var(--ink); margin-top: 2px;">Presiding: Vice Mayor Christopher B. Uy</p>
-          </div>
         </div>
 
-      </div>
-
-      <div class="modal-footer">
-        <button class="btn btn-secondary btn-sm" onclick="printLegislationSlip()">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
-          <span>Print Docket Slip</span>
-        </button>
-        <button class="btn btn-primary btn-sm" onclick="downloadPdfGazette()">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-          <span>Download PDF Gazette</span>
-        </button>
       </div>
 
     </div>
@@ -2198,6 +3012,8 @@
           <h4 class="footer-col-title">Services &amp; Portals</h4>
           <ul class="footer-links">
             <li><a href="services.html" class="footer-link">Citizen’s Charter &amp; Services</a></li>
+            <li><a href="agri-hub.html" class="footer-link">Corn Capital Agri-Hub</a></li>
+            <li><a href="careers.html" class="footer-link">PESO Job Portal &amp; Careers</a></li>
             <li><a href="map.html" class="footer-link">Interactive GIS Map</a></li>
             <li><a href="tax-calculator.html" class="footer-link">Tax &amp; Fee Calculator</a></li>
             <li><a href="mdrrmo.html" class="footer-link">Disaster Telemetry (MDRRMO)</a></li>
@@ -2808,8 +3624,336 @@
       }
     }
 
-    // 6. Interactive Legislation Modal
+    // =============================================================
+    // 6. OFFICIAL SANGGUNIANG BAYAN PDF GAZETTE VIEWER ENGINE
+    // =============================================================
+    const SB_OFFICIAL_ROSTER = [
+      { name: "HON. CHRISTOPHER B. UY", title: "Municipal Vice Mayor & Presiding Officer" },
+      { name: "HON. ELENA S. CALIMAG", title: "Sangguniang Bayan Member (Floor Leader)" },
+      { name: "HON. MARK LESTER P. RIVERA", title: "Sangguniang Bayan Member" },
+      { name: "HON. CORAZON L. MALANA", title: "Sangguniang Bayan Member" },
+      { name: "HON. DANILO G. MARAMAG", title: "Sangguniang Bayan Member" },
+      { name: "HON. DR. GRACE M. PASCUAL", title: "Sangguniang Bayan Member" },
+      { name: "HON. RODRIGO F. TAGUBA", title: "Sangguniang Bayan Member" },
+      { name: "HON. RAMON V. ALLAM", title: "Sangguniang Bayan Member" },
+      { name: "HON. JERRY K. SY", title: "Sangguniang Bayan Member" },
+      { name: "HON. VICENTE B. GAMMAD", title: "President, Liga ng mga Barangay (Ex-Officio)" },
+      { name: "HON. ALTHEA JOY C. RAMOS", title: "President, Pambayang Pederasyon ng mga SK (Ex-Officio)" }
+    ];
+
     let activeDoc = null;
+    let currentZoom = 1.0;
+    let activeTab = 'gazette';
+
+    function switchViewerTab(tab) {
+      activeTab = tab;
+      const gazetteBtn = document.getElementById('tab-btn-gazette');
+      const overviewBtn = document.getElementById('tab-btn-overview');
+      const gazettePanel = document.getElementById('panel-gazette-view');
+      const overviewPanel = document.getElementById('panel-overview-view');
+
+      if (tab === 'gazette') {
+        gazetteBtn?.classList.add('active');
+        gazetteBtn?.setAttribute('aria-selected', 'true');
+        overviewBtn?.classList.remove('active');
+        overviewBtn?.setAttribute('aria-selected', 'false');
+        gazettePanel?.classList.add('active');
+        overviewPanel?.classList.remove('active');
+      } else {
+        overviewBtn?.classList.add('active');
+        overviewBtn?.setAttribute('aria-selected', 'true');
+        gazetteBtn?.classList.remove('active');
+        gazetteBtn?.setAttribute('aria-selected', 'false');
+        overviewPanel?.classList.add('active');
+        gazettePanel?.classList.remove('active');
+      }
+    }
+
+    function zoomGazette(delta) {
+      currentZoom = Math.min(1.4, Math.max(0.7, parseFloat((currentZoom + delta).toFixed(2))));
+      applyZoom();
+    }
+
+    function resetZoomGazette() {
+      currentZoom = 1.0;
+      applyZoom();
+    }
+
+    function applyZoom() {
+      const sheet = document.getElementById('printable-gazette-sheet');
+      const label = document.getElementById('gazette-zoom-label');
+      if (sheet) {
+        sheet.style.transform = `scale(${currentZoom})`;
+      }
+      if (label) {
+        label.textContent = `${Math.round(currentZoom * 100)}%`;
+      }
+    }
+
+    function toggleMaximizeViewer() {
+      const card = document.getElementById('pdf-viewer-modal-card');
+      card?.classList.toggle('maximized');
+    }
+
+    function copyDocumentLink() {
+      if (!activeDoc) return;
+      const url = `${window.location.origin}${window.location.pathname}#${activeDoc.id}`;
+      navigator.clipboard.writeText(url).then(() => {
+        showToast(`Document share link copied: ${activeDoc.number}`);
+      }).catch(() => {
+        showToast(`Docket reference: ${activeDoc.number}`);
+      });
+    }
+
+    function printCertifiedDocket() {
+      if (!activeDoc) return;
+      switchViewerTab('gazette');
+      window.print();
+    }
+
+    function downloadOfficialPdfGazette() {
+      if (!activeDoc) return;
+      const sheet = document.getElementById('printable-gazette-sheet');
+      if (!sheet) return;
+
+      const printWindow = window.open('', '_blank');
+      if (!printWindow) {
+        alert('Please allow popups to download or print the official docket.');
+        return;
+      }
+      printWindow.document.write(`
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8">
+          <title>${activeDoc.number} - Official Gazette Docket</title>
+          <style>
+            @page { size: A4 portrait; margin: 15mm 20mm; }
+            body { margin: 0; padding: 20px; font-family: 'Times New Roman', Georgia, serif; background: #FFF; color: #111; line-height: 1.55; }
+            .gazette-paper-sheet { box-shadow: none !important; border: none !important; padding: 0 !important; max-width: 100% !important; margin: 0 !important; }
+            .gazette-letterhead { display: grid; grid-template-columns: 70px 1fr 70px; align-items: center; text-align: center; }
+            .gazette-seal-img { width: 60px; height: 60px; }
+            .gazette-rule-double { border-top: 3px double #111; margin: 12px 0 16px; }
+            .gazette-excerpt-box { border: 1px solid #CCC; background: #FAFAFA; padding: 10px 14px; margin-bottom: 18px; }
+            .excerpt-attendance-grid { display: grid; grid-template-columns: 1.8fr 1fr; gap: 12px; font-size: 11px; }
+            .gazette-title-block { text-align: center; margin-bottom: 20px; }
+            .gazette-act-type { font-size: 15px; font-weight: bold; color: #15803d; letter-spacing: 0.05em; }
+            .gazette-main-title { font-size: 15px; font-weight: bold; text-transform: uppercase; margin: 6px 0; }
+            .gazette-sponsor-line { font-size: 12px; font-style: italic; color: #555; }
+            .whereas-clause { text-indent: 28px; text-align: justify; font-size: 13.5px; margin-bottom: 10px; }
+            .gazette-enacting-clause { text-indent: 28px; font-weight: bold; margin: 14px 0 16px; text-transform: uppercase; }
+            .gazette-section-item { text-align: justify; font-size: 13px; margin-bottom: 14px; }
+            .gazette-section-title { font-weight: bold; text-decoration: underline; }
+            .sig-dual-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 24px 0 16px; }
+            .sig-line { border-bottom: 1px solid #000; width: 220px; margin-bottom: 4px; }
+            .sig-name { font-weight: bold; font-size: 13px; text-transform: uppercase; }
+            .gazette-seal-verification-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed #CCC; padding-top: 14px; margin-top: 20px; }
+          </style>
+        </head>
+        <body>
+          ${sheet.innerHTML}
+          <script>
+            window.onload = function() {
+              window.print();
+            };
+          <\/script>
+        </body>
+        </html>
+      `);
+      printWindow.document.close();
+    }
+
+    function findInGazette(term) {
+      if (!activeDoc) return;
+      renderGazetteContent(activeDoc);
+
+      const query = term ? term.trim() : '';
+      if (query.length < 2) return;
+
+      const sheet = document.getElementById('printable-gazette-sheet');
+      if (!sheet) return;
+
+      const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+
+      function highlight(node) {
+        if (node.nodeType === 3) {
+          if (regex.test(node.nodeValue)) {
+            const span = document.createElement('span');
+            span.innerHTML = node.nodeValue.replace(regex, '<mark class="gz-highlight">$1</mark>');
+            node.parentNode.replaceChild(span, node);
+          }
+        } else if (node.nodeType === 1 && !['SCRIPT', 'STYLE', 'MARK', 'SVG'].includes(node.nodeName)) {
+          for (let i = 0; i < node.childNodes.length; i++) {
+            highlight(node.childNodes[i]);
+          }
+        }
+      }
+      highlight(sheet);
+    }
+
+    function renderGazetteContent(doc) {
+      // 1. Session Date Banner
+      const dateBanner = document.getElementById('gz-session-date-banner');
+      if (dateBanner) dateBanner.textContent = (doc.enacted + ' (REGULAR SESSION)').toUpperCase();
+
+      // 2. Attendance
+      const attendanceList = document.getElementById('gz-attendance-present');
+      if (attendanceList) {
+        attendanceList.innerHTML = SB_OFFICIAL_ROSTER.map(m => `
+          <li><strong>${m.name}</strong> &bull; ${m.title}</li>
+        `).join('');
+      }
+
+      // 3. Act Header
+      const actBadge = document.getElementById('gz-act-badge');
+      if (actBadge) actBadge.textContent = doc.number.toUpperCase();
+
+      const mainTitle = document.getElementById('gz-full-title');
+      if (mainTitle) mainTitle.textContent = doc.title;
+
+      const authorName = document.getElementById('gz-author-name');
+      if (authorName) authorName.textContent = doc.author;
+
+      const committeeName = document.getElementById('gz-committee-name');
+      if (committeeName) committeeName.textContent = doc.committee;
+
+      // 4. Whereas Clauses
+      const whereasBlock = document.getElementById('gz-whereas-block');
+      if (whereasBlock) {
+        whereasBlock.innerHTML = `
+          <div class="whereas-clause">
+            <strong>WHEREAS,</strong> Section 16 of Republic Act No. 7160, otherwise known as the Local Government Code of 1991, mandates all local government units to exercise powers essential to the promotion of the general welfare, economic development, and preservation of public safety and heritage within their territorial jurisdiction;
+          </div>
+          <div class="whereas-clause">
+            <strong>WHEREAS,</strong> the Sangguniang Bayan of Tumauini, Isabela, through its Committee on ${doc.committee}, conducted multi-sectoral hearings, barangay leadership consultations across all 46 barangays, and thorough legal reviews to ensure democratic civic alignment;
+          </div>
+          <div class="whereas-clause">
+            <strong>WHEREAS,</strong> after exhaustive parliamentary scrutiny and second reading floor deliberations, the Council finds the enactment of this measure imperative for the continuous progress and civic protection of the Municipality of Tumauini;
+          </div>
+        `;
+      }
+
+      // 5. Enacting Clause
+      const enactingClause = document.getElementById('gz-enacting-clause');
+      if (enactingClause) {
+        enactingClause.textContent = doc.type === 'ordinance'
+          ? 'BE IT ORDAINED by the Sangguniang Bayan of Tumauini, Isabela, in regular session assembled:'
+          : 'NOW, THEREFORE, on motion of Hon. ' + doc.author + ', duly seconded by the Council, BE IT RESOLVED:';
+      }
+
+      // 6. Detailed Sections Body
+      const sectionsBody = document.getElementById('gz-sections-body');
+      if (sectionsBody) {
+        const provItems = doc.provisions || [];
+        sectionsBody.innerHTML = `
+          <div class="gazette-section-item">
+            <span class="gazette-section-title">SECTION 1. Short Title.</span> — 
+            <span class="gazette-section-text">This measure shall be officially cited and known as <em>"${doc.title}"</em>.</span>
+          </div>
+
+          <div class="gazette-section-item">
+            <span class="gazette-section-title">SECTION 2. Declaration of Policy & Intent.</span> — 
+            <span class="gazette-section-text">${doc.summary}</span>
+          </div>
+
+          <div class="gazette-section-item">
+            <span class="gazette-section-title">SECTION 3. Territorial Scope & Jurisdiction.</span> — 
+            <span class="gazette-section-text">The operational coverage of this measure applies fully to ${doc.scope}, binding all commercial, civil, and institutional entities situated within the Municipality of Tumauini.</span>
+          </div>
+
+          <div class="gazette-section-item">
+            <span class="gazette-section-title">SECTION 4. Implementing Provisions & Regulatory Standards.</span> — 
+            <span class="gazette-section-text">In furtherance of the statutory objectives of this measure, the following covenants and standards are hereby established:</span>
+            <ul style="margin: 8px 0 0 24px; padding: 0; line-height: 1.6;">
+              ${provItems.map((p, idx) => `
+                <li style="margin-bottom: 6px;"><strong>Paragraph 4.${idx + 1}.</strong> ${p}</li>
+              `).join('')}
+            </ul>
+          </div>
+
+          <div class="gazette-section-item">
+            <span class="gazette-section-title">SECTION 5. Enforcement Authority & Implementing Agencies.</span> — 
+            <span class="gazette-section-text">The primary implementing office shall be the appropriate municipal department in close operational coordination with the Philippine National Police (PNP) Tumauini Station and the 46 Barangay Councils.</span>
+          </div>
+
+          <div class="gazette-section-item">
+            <span class="gazette-section-title">SECTION 6. Separability Clause.</span> — 
+            <span class="gazette-section-text">If any section, provision, or clause of this measure is declared unconstitutional or invalid by a court of competent jurisdiction, the remaining sections and provisions shall continue in full force and effect.</span>
+          </div>
+
+          <div class="gazette-section-item">
+            <span class="gazette-section-title">SECTION 7. Repealing & Effectivity Clause.</span> — 
+            <span class="gazette-section-text">All prior municipal enactments, executive orders, or parts thereof contrary to or inconsistent with the provisions of this measure are hereby repealed or amended accordingly. This measure shall take effect on <strong>${doc.effectivity}</strong> following official gazette publication.</span>
+          </div>
+        `;
+      }
+
+      // 7. Certifications & Signatures
+      const certDate = document.getElementById('gz-enactment-date-cert');
+      if (certDate) certDate.textContent = doc.enacted;
+
+      const mayorApprovedDate = document.getElementById('gz-mayor-approved-date');
+      if (mayorApprovedDate) mayorApprovedDate.textContent = `Approved on: ${doc.enacted}`;
+
+      const barcodeRef = document.getElementById('gz-barcode-ref');
+      if (barcodeRef) barcodeRef.textContent = `TMN-SB-DOC-${doc.year}-${doc.id.toUpperCase()} • CERTIFIED OFFICIAL DOCKET`;
+    }
+
+    function renderOverviewContent(doc) {
+      document.getElementById('ov-author').textContent = doc.author;
+      document.getElementById('ov-committee').textContent = doc.committee;
+      document.getElementById('ov-enacted').textContent = doc.enacted;
+      document.getElementById('ov-effectivity').textContent = doc.effectivity;
+      document.getElementById('ov-summary').textContent = doc.summary;
+      document.getElementById('ov-scope').textContent = doc.scope;
+
+      // Implementers
+      const implementersMap = {
+        tax: 'Municipal Treasury, BPLO, & Municipal Assessor',
+        safety: 'MDRRMO, Rescue 3325, PNP Tumauini & BFP',
+        zoning: 'Municipal Planning & Development Office (MPDO) & MENRO',
+        health: 'Rural Health Unit (RHU), Municipal Health Office & Sanitary Desk'
+      };
+      const implementers = implementersMap[doc.category] || 'Municipal Administration & Sangguniang Bayan Secretariat';
+      document.getElementById('ov-implementers').textContent = implementers;
+
+      // Provisions
+      const provList = document.getElementById('ov-provisions');
+      if (provList) {
+        provList.innerHTML = doc.provisions.map(p => `<li>${p}</li>`).join('');
+      }
+
+      // Legislative Timeline
+      const timelineBox = document.getElementById('ov-timeline');
+      if (timelineBox) {
+        timelineBox.innerHTML = `
+          <div class="timeline-step-item">
+            <span class="timeline-step-title">1. Filing & First Reading</span>
+            <span class="timeline-step-meta">Introduced and sponsored by ${doc.author}; officially referred to Committee on ${doc.committee}.</span>
+          </div>
+          <div class="timeline-step-item">
+            <span class="timeline-step-title">2. Committee Public Hearings</span>
+            <span class="timeline-step-meta">Multi-sectoral consultations conducted with barangay officials, local business leaders, and civic stakeholders.</span>
+          </div>
+          <div class="timeline-step-item">
+            <span class="timeline-step-title">3. Committee Report & Second Reading</span>
+            <span class="timeline-step-meta">Favorable committee report rendered; floor sponsorship speech and plenary debates held in SB Hall.</span>
+          </div>
+          <div class="timeline-step-item">
+            <span class="timeline-step-title">4. Third & Final Reading Enactment (${doc.enacted})</span>
+            <span class="timeline-step-meta">Passed with unanimous roll-call affirmation by the members of the Sangguniang Bayan of Tumauini.</span>
+          </div>
+          <div class="timeline-step-item">
+            <span class="timeline-step-title">5. Executive Mayoral Approval</span>
+            <span class="timeline-step-meta">Transmitted to Municipal Mayor Hon. Venancio M. Labasan and approved in accordance with Section 54, RA 7160.</span>
+          </div>
+          <div class="timeline-step-item">
+            <span class="timeline-step-title">6. Official Gazette Publication & Effectivity (${doc.effectivity})</span>
+            <span class="timeline-step-meta">Posted across public bulletin boards and filed with the Sangguniang Panlalawigan of Isabela.</span>
+          </div>
+        `;
+      }
+    }
 
     function openLegislationModal(id) {
       const doc = legislationList.find(item => item.id === id);
@@ -2817,30 +3961,39 @@
 
       activeDoc = doc;
       const backdrop = document.getElementById('legislation-modal-backdrop');
-      
+
+      // Top Badges
       const typeBadge = document.getElementById('modal-type-badge');
-      typeBadge.textContent = doc.typeLabel;
-      typeBadge.className = `doc-badge ${doc.type === 'ordinance' ? 'badge-ord' : 'badge-res'}`;
+      if (typeBadge) {
+        typeBadge.textContent = doc.typeLabel;
+        typeBadge.className = `doc-badge ${doc.type === 'ordinance' ? 'badge-ord' : 'badge-res'}`;
+      }
 
-      document.getElementById('modal-doc-number').textContent = doc.number;
-      document.getElementById('modal-doc-title').textContent = doc.title;
-      document.getElementById('modal-author').textContent = doc.author;
-      document.getElementById('modal-committee').textContent = doc.committee;
-      document.getElementById('modal-enacted').textContent = doc.enacted;
-      document.getElementById('modal-effectivity').textContent = doc.effectivity;
-      document.getElementById('modal-scope').textContent = doc.scope;
-      document.getElementById('modal-summary').textContent = doc.summary;
+      const docNumber = document.getElementById('modal-doc-number');
+      if (docNumber) docNumber.textContent = doc.number;
 
-      const provList = document.getElementById('modal-provisions');
-      provList.innerHTML = '';
-      doc.provisions.forEach(p => {
-        const li = document.createElement('li');
-        li.textContent = p;
-        provList.appendChild(li);
-      });
+      const docTitle = document.getElementById('modal-doc-title');
+      if (docTitle) docTitle.textContent = doc.title;
 
-      backdrop.classList.add('open');
+      // Render Both Views
+      renderGazetteContent(doc);
+      renderOverviewContent(doc);
+
+      // Reset controls
+      currentZoom = 1.0;
+      applyZoom();
+      const findInput = document.getElementById('gazette-find-input');
+      if (findInput) findInput.value = '';
+
+      switchViewerTab('gazette');
+
+      backdrop?.classList.add('open');
       document.body.style.overflow = 'hidden';
+
+      // Update URL hash without reload
+      if (window.location.hash !== '#' + doc.id) {
+        history.replaceState(null, '', '#' + doc.id);
+      }
     }
 
     function closeLegislationModal() {
@@ -2848,6 +4001,9 @@
       if (backdrop) backdrop.classList.remove('open');
       document.body.style.overflow = 'auto';
       activeDoc = null;
+      if (window.location.hash.startsWith('#ord-') || window.location.hash.startsWith('#res-')) {
+        history.replaceState(null, '', window.location.pathname);
+      }
     }
 
     document.getElementById('legislation-modal-backdrop')?.addEventListener('click', (e) => {
@@ -2860,14 +4016,32 @@
       if (e.key === 'Escape') closeLegislationModal();
     });
 
-    function printLegislationSlip() {
-      if (!activeDoc) return;
-      window.print();
+    // Deep linking on load & hashchange
+    function checkHashForModal() {
+      const hash = window.location.hash.replace('#', '');
+      if (hash && (hash.startsWith('ord-') || hash.startsWith('res-'))) {
+        openLegislationModal(hash);
+      }
     }
+    window.addEventListener('hashchange', checkHashForModal);
+    setTimeout(checkHashForModal, 350);
 
-    function downloadPdfGazette() {
-      if (!activeDoc) return;
-      alert(`[Official Gazette Download]\nGenerating official certified docket for ${activeDoc.number}:\n"${activeDoc.title}"\n\nPresiding Signatory: Hon. Christopher B. Uy\nDocument signed and archived in the Sangguniang Bayan Secretariat.`);
+    // Toast Notice Helper
+    function showToast(msg) {
+      let toast = document.getElementById('civic-toast-notice');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'civic-toast-notice';
+        toast.style.cssText = 'position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: #15803d; color: #FFFFFF; font-size: 13px; font-weight: 600; padding: 10px 20px; border-radius: 9999px; box-shadow: 0 10px 30px rgba(0,0,0,0.25); z-index: 3000; transition: opacity 0.25s ease, transform 0.25s ease; opacity: 0; pointer-events: none;';
+        document.body.appendChild(toast);
+      }
+      toast.textContent = msg;
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateX(-50%) translateY(0)';
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(-50%) translateY(10px)';
+      }, 3200);
     }
   </script>
   <!-- Global Civic Spotlight Search Engine (Ctrl + K) -->

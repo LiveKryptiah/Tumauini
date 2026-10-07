@@ -232,7 +232,7 @@
       title: 'Ord. No. 2024-12: Revised Omnibus Revenue Code & Tax Ordinance',
       desc: 'Market fees, gross tax tiers, and regulatory charges.',
       badge: 'Tax & Revenue',
-      url: 'ordinances.html',
+      url: 'ordinances.html#ord-2024-12',
       keywords: ['ord 2024-12', 'tax ordinance', 'revenue code', 'local tax', 'rivera', 'market fees', 'ordinance']
     },
     {
@@ -242,7 +242,7 @@
       title: 'Ord. No. 2024-09: San Matias Heritage Zone & Aesthetic Preservation',
       desc: 'Facade heights, zoning buffers, and cultural preservation.',
       badge: 'Heritage & Zoning',
-      url: 'ordinances.html',
+      url: 'ordinances.html#ord-2024-09',
       keywords: ['ord 2024-09', 'heritage', 'san matias', 'facade', 'church', 'belfry', 'zoning', 'malana', 'ordinance']
     },
     {
@@ -252,7 +252,7 @@
       title: 'Ord. No. 2024-06: Integrated Solid Waste Management & Single-Use Plastic Ban',
       desc: 'Mandatory waste segregation and commercial plastic reduction.',
       badge: 'Environment',
-      url: 'ordinances.html',
+      url: 'ordinances.html#ord-2024-06',
       keywords: ['ord 2024-06', 'plastic ban', 'solid waste', 'segregation', 'garbage', 'calimag', 'environment', 'ordinance']
     },
     {
@@ -262,7 +262,7 @@
       title: 'Ord. No. 2024-03: Disaster Risk Reduction & Riverine Early Warning Protocol',
       desc: 'Pinacanauan river warning sirens and evacuation triggers.',
       badge: 'Public Safety',
-      url: 'ordinances.html',
+      url: 'ordinances.html#ord-2024-03',
       keywords: ['ord 2024-03', 'disaster protocol', 'early warning', 'river gauge', 'pinacanauan', 'allam', 'mdrrmo', 'flood']
     },
     {
@@ -272,7 +272,7 @@
       title: 'Ord. No. 2023-18: Tumauini Agro-Industrial Investment Incentives Code',
       desc: 'Tax holidays for post-harvest corn and dairy plants.',
       badge: 'Investment',
-      url: 'ordinances.html',
+      url: 'ordinances.html#ord-2023-18',
       keywords: ['ord 2023-18', 'investment incentives', 'tax holiday', 'agro-industrial', 'corn', 'sy', 'ordinance']
     },
     {
@@ -282,7 +282,7 @@
       title: 'Ord. No. 2023-14: Municipal Health & Sanitation Code',
       desc: 'Food sanitation, medical clearances, and hygiene cards.',
       badge: 'Public Health',
-      url: 'ordinances.html',
+      url: 'ordinances.html#ord-2023-14',
       keywords: ['ord 2023-14', 'health code', 'sanitation', 'food handler', 'pascual', 'ordinance']
     },
     {
@@ -292,7 +292,7 @@
       title: 'Ord. No. 2023-08: Tricycle Route Franchising & Fare Matrix',
       desc: 'Tricycle route zones, fare matrix, and terminal hubs.',
       badge: 'Transportation',
-      url: 'ordinances.html',
+      url: 'ordinances.html#ord-2023-08',
       keywords: ['ord 2023-08', 'tricycle fare', 'toda fare', 'taguba', 'route franchising', 'transportation', 'ordinance']
     },
     {
@@ -302,7 +302,7 @@
       title: 'Ord. No. 2022-21: Youth Leadership & Tertiary Scholarship Assistance',
       desc: 'Financial grants and allowances for college scholars.',
       badge: 'Youth & Education',
-      url: 'ordinances.html',
+      url: 'ordinances.html#ord-2022-21',
       keywords: ['ord 2022-21', 'scholarship', 'tertiary education', 'college grants', 'sk', 'ramos', 'youth', 'ordinance']
     },
     {
@@ -312,7 +312,7 @@
       title: 'Res. No. 2024-39: UNESCO World Heritage Inscription Endorsement',
       desc: 'World heritage nomination dossier and international endorsement.',
       badge: 'Resolution',
-      url: 'ordinances.html',
+      url: 'ordinances.html#res-2024-39',
       keywords: ['res 2024-39', 'unesco', 'world heritage', 'san matias church', 'belfry', 'resolution']
     },
     {
@@ -322,7 +322,7 @@
       title: 'Res. No. 2024-76: Solar Irrigation Modernization MOA with NIA',
       desc: 'Solar communal irrigation systems for corn and palay.',
       badge: 'Resolution',
-      url: 'ordinances.html',
+      url: 'ordinances.html#res-2024-76',
       keywords: ['res 2024-76', 'nia moa', 'solar irrigation', 'maramag', 'farmers', 'water pump', 'resolution']
     },
 
