@@ -13,6 +13,16 @@
   const CIVIC_DATABASE = [
     // --- LIVE INTERACTIVE TOOLS & TRACKING ---
     {
+      id: 'tool-agri-hub',
+      type: 'service',
+      category: 'services',
+      title: 'Corn Capital Agri-Hub & Farmers Market',
+      desc: 'Daily crop farmgate prices, RSBSA subsidy vouchers, and municipal tractor lending.',
+      badge: 'Agri-Hub',
+      url: 'agri-hub.html',
+      keywords: ['agri', 'corn', 'farmer', 'tractor', 'rsbsa', 'palay', 'subsidy', 'price', 'farmgate', 'fertilizer', 'crops', 'lending', 'equipment', 'agriculture']
+    },
+    {
       id: 'tool-careers-peso',
       type: 'service',
       category: 'services',
