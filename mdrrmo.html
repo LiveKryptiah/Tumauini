@@ -23,9 +23,9 @@
       /* User Specified Palette - Light Mode */
       --text: #0d150d;
       --background: #f2f9f2;
-      --primary: #4dc24f;
-      --secondary: #8fe490;
-      --accent: #57e659;
+      --primary: #15803d;
+      --secondary: #166534;
+      --accent: #16a34a;
 
       /* Mapped Civic System Tokens */
       --ink: var(--text);
@@ -63,9 +63,9 @@
       /* User Specified Palette - Dark Mode */
       --text: #e9f1e9;
       --background: #060e06;
-      --primary: #3db33f;
-      --secondary: #1b6f1c;
-      --accent: #19a91c;
+      --primary: #16a34a;
+      --secondary: #15803d;
+      --accent: #22c55e;
 
       /* Mapped Civic System Tokens */
       --ink: var(--text);
@@ -104,9 +104,9 @@
         /* User Specified Palette - Dark Mode */
         --text: #e9f1e9;
         --background: #060e06;
-        --primary: #3db33f;
-        --secondary: #1b6f1c;
-        --accent: #19a91c;
+        --primary: #16a34a;
+        --secondary: #15803d;
+        --accent: #22c55e;
 
         /* Mapped Civic System Tokens */
         --ink: var(--text);
@@ -308,7 +308,7 @@
       cursor: pointer;
       white-space: nowrap;
       background-color: #15803D !important;
-      background-image: radial-gradient(ellipse 75px 36px at 100% 100%, #FCD116 0%, #EAB308 28%, #16A34A 62%, transparent 100%) !important;
+      background-image: none !important;
       background-repeat: no-repeat !important;
       color: #FFFFFF !important;
       border: none !important;
@@ -319,8 +319,8 @@
     .btn:hover,
     .btn-primary:hover,
     .btn-secondary:hover {
-      background-color: #15803D !important;
-      background-image: radial-gradient(ellipse 75px 36px at 100% 100%, #FCD116 0%, #EAB308 28%, #16A34A 62%, transparent 100%) !important;
+      background-color: #166534 !important;
+      background-image: none !important;
       border: none !important;
       outline: none !important;
       color: #FFFFFF !important;
@@ -1120,6 +1120,427 @@
     }
 
     /* =============================================================
+       5B. REGIONAL HYDRO-METEOROLOGICAL & MAGAT DAM TELEMETRY
+       ============================================================= */
+    .regional-telemetry-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      margin-top: var(--sp-32);
+    }
+
+    .telemetry-dashboard-card {
+      background: var(--field);
+      border: none;
+      border-radius: var(--radius-card);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      box-shadow: none;
+    }
+
+    .telemetry-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .telemetry-card-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .telemetry-card-subtitle {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* Magat Dam Visual Meter */
+    .dam-level-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      background: var(--soft-canvas);
+      padding: 16px;
+      border-radius: 14px;
+    }
+
+    .dam-metric-box {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dam-metric-val {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .dam-metric-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .dam-gates-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      background: var(--soft-canvas);
+      border-radius: 12px;
+      font-size: 12px;
+    }
+
+    .gate-indicators-wrap {
+      display: flex;
+      gap: 6px;
+    }
+
+    .gate-indicator {
+      width: 14px;
+      height: 24px;
+      border-radius: 4px;
+      background: rgba(21, 128, 61, 0.2);
+      border: 1px solid rgba(21, 128, 61, 0.4);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      position: relative;
+    }
+
+    .gate-indicator.active {
+      background: #CE1126;
+      border-color: #B91C1C;
+    }
+
+    /* 24-Hour Hydrograph Interactive Chart */
+    .hydrograph-card {
+      background: var(--field);
+      border: none;
+      border-radius: var(--radius-card);
+      padding: 24px;
+      margin-top: var(--sp-32);
+      box-shadow: none;
+    }
+
+    .hydro-top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .hydro-station-tabs {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      background: var(--soft-canvas);
+      padding: 4px;
+      border-radius: var(--radius-pill);
+    }
+
+    .hydro-tab-btn {
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: var(--radius-pill);
+      color: var(--muted);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .hydro-tab-btn.active {
+      background: #15803D !important;
+      color: #FFFFFF !important;
+    }
+
+    [data-theme="dark"] .hydro-tab-btn.active {
+      background: #16A34A !important;
+      color: #FFFFFF !important;
+    }
+
+    .hydro-svg-wrap {
+      position: relative;
+      width: 100%;
+      height: 240px;
+      overflow: hidden;
+      background: var(--soft-canvas);
+      border-radius: 14px;
+      padding: 10px;
+    }
+
+    .hydro-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .hydro-legend-row {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 12px;
+      font-weight: 500;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend-line {
+      width: 14px;
+      height: 3px;
+      border-radius: 2px;
+    }
+
+    /* Emergency EAS Ticker Bar */
+    .eas-broadcast-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 16px;
+      background: rgba(21, 128, 61, 0.08);
+      border-radius: var(--radius-pill);
+      margin-top: var(--sp-24);
+      font-size: 13px;
+      color: var(--ink);
+    }
+
+    .eas-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+      background: #15803D;
+      color: #FFFFFF;
+      flex-shrink: 0;
+    }
+
+    /* Barangay Flood Vulnerability Matrix */
+    .brgy-matrix-section {
+      margin-top: var(--sp-64);
+    }
+
+    .brgy-controls-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .brgy-search-input {
+      font-family: inherit;
+      padding: 8px 16px;
+      font-size: 13px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--hairline);
+      background: var(--soft-canvas);
+      color: var(--ink);
+      min-width: 260px;
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+
+    .brgy-search-input:focus {
+      border-color: #15803D;
+    }
+
+    .brgy-filter-pills {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .brgy-filter-btn {
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      background: var(--field);
+      color: var(--muted);
+      border: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .brgy-filter-btn.active {
+      background: #15803D !important;
+      color: #FFFFFF !important;
+    }
+
+    [data-theme="dark"] .brgy-filter-btn.active {
+      background: #16A34A !important;
+      color: #FFFFFF !important;
+    }
+
+    .brgy-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .brgy-card {
+      background: var(--field);
+      border-radius: var(--radius-card);
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+      transition: transform 0.15s ease;
+    }
+
+    .brgy-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .brgy-name-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .brgy-name {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .brgy-zone {
+      font-size: 11.5px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .brgy-risk-pill {
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+      white-space: nowrap;
+    }
+
+    .risk-high { background: var(--ph-red-tint); color: var(--ph-red); }
+    .risk-mod { background: #FEF3C7; color: #B45309; }
+    .risk-low { background: rgba(21, 128, 61, 0.1); color: var(--civic-green); }
+
+    .brgy-meta-box {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--muted);
+      border-top: 1px solid var(--hairline);
+      padding-top: 8px;
+    }
+
+    /* Floating Emergency Quick Dock */
+    .emergency-quick-dock {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 1050;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--soft-canvas);
+      padding: 6px 8px 6px 14px;
+      border-radius: var(--radius-pill);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+      border: 1px solid var(--hairline);
+    }
+
+    .emergency-dock-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ph-red);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dock-call-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #15803D !important;
+      color: #FFFFFF !important;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      border: none !important;
+      outline: none !important;
+      box-shadow: none !important;
+    }
+
+    .dock-call-btn:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+      color: #FFFFFF !important;
+      background: #166534 !important;
+    }
+
+    /* Siren Simulator Styling */
+    .siren-visual-pulse {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin: 16px 0;
+      padding: 16px;
+      background: var(--field);
+      border-radius: 12px;
+    }
+
+    .siren-wave-bar {
+      width: 6px;
+      height: 16px;
+      background: #15803D;
+      border-radius: 3px;
+      transition: height 0.1s ease;
+    }
+
+    .siren-wave-bar.active {
+      animation: waveAnimate 0.8s ease-in-out infinite alternate;
+    }
+
+    @keyframes waveAnimate {
+      0% { height: 8px; background: #CA8A04; }
+      50% { height: 36px; background: #EA580C; }
+      100% { height: 16px; background: #CE1126; }
+    }
+
+    /* =============================================================
        6. THRESHOLD CRITERIA & EARLY WARNING PROTOCOLS
        ============================================================= */
     .threshold-cards-grid {
@@ -1508,6 +1929,12 @@
 
     /* Responsive */
     @media (max-width: 1024px) {
+      .regional-telemetry-grid {
+        grid-template-columns: 1fr;
+      }
+      .brgy-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
       .river-gauges-grid {
         grid-template-columns: 1fr;
       }
@@ -1527,6 +1954,22 @@
     }
 
     @media (max-width: 640px) {
+      .dam-level-metrics {
+        grid-template-columns: 1fr;
+      }
+      .brgy-grid {
+        grid-template-columns: 1fr;
+      }
+      .brgy-search-input {
+        width: 100%;
+        min-width: unset;
+      }
+      .emergency-quick-dock {
+        bottom: 16px;
+        right: 16px;
+        left: 16px;
+        justify-content: space-between;
+      }
       .threshold-cards-grid {
         grid-template-columns: 1fr;
       }
@@ -1557,10 +2000,9 @@
   <svg width="0" height="0" style="position: absolute; width: 0; height: 0; overflow: hidden;" aria-hidden="true" focusable="false">
     <defs>
       <linearGradient id="icon-green-yellow" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#15803D" />
-        <stop offset="35%" stop-color="#16A34A" />
-        <stop offset="80%" stop-color="#EAB308" />
-        <stop offset="100%" stop-color="#FCD116" />
+        <stop offset="0%" stop-color="#15803d" />
+        <stop offset="50%" stop-color="#16a34a" />
+        <stop offset="100%" stop-color="#22c55e" />
       </linearGradient>
     </defs>
   </svg>
@@ -1887,9 +2329,133 @@
               <span>24/7 Emergency Hotlines Directory</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
             </button>
+            <button type="button" class="btn btn-secondary" onclick="openSirenModal()">
+              <span>🚨 Test Flood Sirens</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+            </button>
+          </div>
+
+          <!-- Emergency EAS Live Telemetry Broadcast Bar -->
+          <div class="eas-broadcast-bar" role="alert" aria-live="polite">
+            <span class="eas-badge">EAS Broadcast</span>
+            <span style="font-weight: 500;" id="eas-broadcast-msg">MDRRMO Telemetry Active • Magat Dam radial gates closed • All national highway river bridges 100% passable.</span>
           </div>
         </div>
 
+      </div>
+    </section>
+
+    <!-- =============================================================
+         5A. REGIONAL UPSTREAM CATCHMENT & MAGAT DAM DISCHARGE TELEMETRY
+         ============================================================= -->
+    <section class="section-wrap" style="padding-top: var(--sp-48); padding-bottom: 0;" aria-labelledby="regional-telemetry-title">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Upstream Catchment &amp; Atmospheric Telemetry</span>
+          <h2 class="h2-title" id="regional-telemetry-title">Magat Dam Discharge &amp; Radar Telemetry.</h2>
+          <p class="body-lead">Real-time upstream spillway reservoir data and PAGASA Doppler precipitation tracker.</p>
+        </div>
+
+        <div class="regional-telemetry-grid">
+          <!-- Card 1: Magat Dam Spillway Reservoir Monitor -->
+          <div class="telemetry-dashboard-card">
+            <div>
+              <div class="telemetry-card-header">
+                <div>
+                  <span class="pill-badge pill-badge-blue" style="margin-bottom: 6px;">NIA-MARIIS Telemetry</span>
+                  <h3 class="telemetry-card-title">Magat Dam Reservoir &amp; Spillway</h3>
+                  <p class="telemetry-card-subtitle">Major upstream feeder of Cagayan River • 120km upstream of Tumauini</p>
+                </div>
+                <span class="pill-badge pill-badge-green" id="dam-status-badge">Normal Standby</span>
+              </div>
+
+              <div class="dam-level-metrics" style="margin: 16px 0;">
+                <div class="dam-metric-box">
+                  <span class="dam-metric-val" id="dam-water-level">189.42 m</span>
+                  <span class="dam-metric-label">Water Level (MASL)</span>
+                  <span style="font-size: 10px; color: var(--muted); margin-top: 2px;">Spill Level: 193.00 m</span>
+                </div>
+                <div class="dam-metric-box">
+                  <span class="dam-metric-val" id="dam-inflow">420 m³/s</span>
+                  <span class="dam-metric-label">Reservoir Inflow</span>
+                  <span style="font-size: 10px; color: var(--muted); margin-top: 2px;">Sierra Madre Watershed</span>
+                </div>
+                <div class="dam-metric-box">
+                  <span class="dam-metric-val" id="dam-outflow">385 m³/s</span>
+                  <span class="dam-metric-label">Turbine Outflow</span>
+                  <span style="font-size: 10px; color: var(--muted); margin-top: 2px;">Hydroelectric Generation</span>
+                </div>
+              </div>
+
+              <!-- Radial Spillway Gates Status -->
+              <div class="dam-gates-row">
+                <div>
+                  <strong style="color: var(--ink);">Radial Spillway Gates:</strong>
+                  <span id="dam-gates-text" style="color: var(--muted); margin-left: 6px;">0 of 7 Gates Open (Closed)</span>
+                </div>
+                <div class="gate-indicators-wrap" id="gate-indicators">
+                  <div class="gate-indicator" id="gate-1" title="Gate 1 (Closed)"></div>
+                  <div class="gate-indicator" id="gate-2" title="Gate 2 (Closed)"></div>
+                  <div class="gate-indicator" id="gate-3" title="Gate 3 (Closed)"></div>
+                  <div class="gate-indicator" id="gate-4" title="Gate 4 (Closed)"></div>
+                  <div class="gate-indicator" id="gate-5" title="Gate 5 (Closed)"></div>
+                  <div class="gate-indicator" id="gate-6" title="Gate 6 (Closed)"></div>
+                  <div class="gate-indicator" id="gate-7" title="Gate 7 (Closed)"></div>
+                </div>
+              </div>
+            </div>
+
+            <div style="font-size: 11.5px; color: var(--muted); display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--hairline); padding-top: 12px; flex-wrap: wrap; gap: 8px;">
+              <span>Surge Travel Time to Tumauini: <strong id="dam-travel-time" style="color: var(--ink);">9.5 to 11.0 Hours</strong></span>
+              <div style="display: flex; gap: 6px;">
+                <button class="btn btn-secondary btn-sm" style="padding: 3px 8px; font-size: 11px;" onclick="simulateDamSpill(0)">Reset (0 Gates)</button>
+                <button class="btn btn-secondary btn-sm" style="padding: 3px 8px; font-size: 11px;" onclick="simulateDamSpill(2)">Simulate 2 Gates Open</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: DOST-PAGASA Northern Luzon Doppler Radar -->
+          <div class="telemetry-dashboard-card">
+            <div>
+              <div class="telemetry-card-header">
+                <div>
+                  <span class="pill-badge pill-badge-blue" style="margin-bottom: 6px;">DOST-PAGASA Synoptic</span>
+                  <h3 class="telemetry-card-title">Precipitation &amp; Cyclone Radar</h3>
+                  <p class="telemetry-card-subtitle">Aparri Doppler Radar &amp; Tumauini Agromet Weather Station</p>
+                </div>
+                <span class="pill-badge pill-badge-green" id="tcws-badge">No Storm Signal</span>
+              </div>
+
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 16px 0;">
+                <div style="background: var(--soft-canvas); padding: 14px; border-radius: 12px;">
+                  <div style="font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase;">24h Rainfall Total</div>
+                  <div style="font-family: var(--font-display); font-size: 24px; font-weight: 800; color: var(--ink); margin-top: 4px;" id="weather-rainfall">14.8 mm</div>
+                  <div style="font-size: 10.5px; color: #15803D; font-weight: 600; margin-top: 2px;">Light to Moderate (Normal)</div>
+                </div>
+                <div style="background: var(--soft-canvas); padding: 14px; border-radius: 12px;">
+                  <div style="font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase;">Wind &amp; Gusts</div>
+                  <div style="font-family: var(--font-display); font-size: 24px; font-weight: 800; color: var(--ink); margin-top: 4px;">12 km/h</div>
+                  <div style="font-size: 10.5px; color: var(--muted); margin-top: 2px;">East-Northeast (ENE) • Calm</div>
+                </div>
+                <div style="background: var(--soft-canvas); padding: 14px; border-radius: 12px;">
+                  <div style="font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase;">Barometer</div>
+                  <div style="font-family: var(--font-display); font-size: 24px; font-weight: 800; color: var(--ink); margin-top: 4px;">1011.2 hPa</div>
+                  <div style="font-size: 10.5px; color: var(--muted); margin-top: 2px;">Normal Atmospheric Pressure</div>
+                </div>
+                <div style="background: var(--soft-canvas); padding: 14px; border-radius: 12px;">
+                  <div style="font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase;">Sierra Madre Inflow</div>
+                  <div style="font-family: var(--font-display); font-size: 24px; font-weight: 800; color: #15803D; margin-top: 4px;">Stable</div>
+                  <div style="font-size: 10.5px; color: var(--muted); margin-top: 2px;">Zero Headwater Flash Flooding</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="font-size: 11.5px; color: var(--muted); display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--hairline); padding-top: 12px;">
+              <span>Station ID: PAGASA-TMU-02</span>
+              <span>Radar Mode: Continuous Volume Scan</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -2099,8 +2665,34 @@
               <span>Sensor ID: US-LOWER-04 (Digital Dike Telemetry)</span>
               <span id="timestamp-4">Updated: Just now</span>
             </div>
+        </div>
+
+        <!-- Interactive 24-Hour Hydrograph SVG Chart -->
+        <div class="hydrograph-card">
+          <div class="hydro-top-bar">
+            <div>
+              <span class="pill-badge pill-badge-green" style="margin-bottom: 6px;">Live Basin Hydrograph</span>
+              <h3 style="font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--ink); margin: 0;">24-Hour Water Level Trendline &amp; Hydrograph</h3>
+              <p style="font-size: 12px; color: var(--muted); margin: 2px 0 0 0;">Hourly ultrasonic telemetry readings plotted against standardized municipal threshold warning planes.</p>
+            </div>
+            <div class="hydro-station-tabs" role="tablist">
+              <button class="hydro-tab-btn active" onclick="switchHydroStation(0)" id="hydro-btn-0">Station 1: Tumauini Bridge</button>
+              <button class="hydro-tab-btn" onclick="switchHydroStation(1)" id="hydro-btn-1">Station 2: Fugu-Banigan</button>
+              <button class="hydro-tab-btn" onclick="switchHydroStation(2)" id="hydro-btn-2">Station 3: Santa-Arcon</button>
+              <button class="hydro-tab-btn" onclick="switchHydroStation(3)" id="hydro-btn-3">Station 4: Lapogan Dike</button>
+            </div>
           </div>
 
+          <div class="hydro-svg-wrap" id="hydro-chart-container">
+            <!-- Dynamic SVG Hydrograph rendered via JavaScript -->
+          </div>
+
+          <div class="hydro-legend-row">
+            <div class="legend-item"><span class="legend-line" style="background: #15803D;"></span><span>Recorded Water Level (MASL)</span></div>
+            <div class="legend-item"><span class="legend-line" style="background: #CA8A04;"></span><span>Alert Threshold</span></div>
+            <div class="legend-item"><span class="legend-line" style="background: #EA580C;"></span><span>Warning Threshold</span></div>
+            <div class="legend-item"><span class="legend-line" style="background: #CE1126;"></span><span>Critical Threshold</span></div>
+          </div>
         </div>
 
       </div>
@@ -2168,6 +2760,35 @@
             </div>
           </div>
 
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =============================================================
+         6B. BARANGAY RIVERBANK FLOOD VULNERABILITY MATRIX (46 Barangays)
+         ============================================================= -->
+    <section class="section-wrap" style="padding-top: 0;" aria-labelledby="matrix-title">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="eyebrow">Territorial Risk Profiling</span>
+          <h2 class="h2-title" id="matrix-title">Barangay Riverbank Flood Vulnerability Directory.</h2>
+          <p class="body-lead">Hydrological threat classifications, river dike status, and BHERT tanod readiness across 46 barangays.</p>
+        </div>
+
+        <div class="brgy-controls-row">
+          <div class="brgy-filter-pills" role="tablist">
+            <button class="brgy-filter-btn active" onclick="filterBrgy('all')" id="brgy-filter-all">All 46 Barangays</button>
+            <button class="brgy-filter-btn" onclick="filterBrgy('riverine')" id="brgy-filter-riverine">Riverine High-Risk (8)</button>
+            <button class="brgy-filter-btn" onclick="filterBrgy('lowland')" id="brgy-filter-lowland">Low-Lying Agrarian (14)</button>
+            <button class="brgy-filter-btn" onclick="filterBrgy('upland')" id="brgy-filter-upland">Safe High-Ground (24)</button>
+          </div>
+          <input type="text" id="brgy-search-input" class="brgy-search-input" placeholder="Search barangay by name..." oninput="searchBrgy()" aria-label="Search barangays">
+        </div>
+
+        <div class="brgy-grid" id="brgy-grid-container">
+          <!-- Populated dynamically with all 46 barangays -->
         </div>
 
       </div>
@@ -2414,6 +3035,78 @@
         <!-- Rendered via incident-reporter.js -->
       </div>
     </div>
+  </div>
+
+  <!-- =============================================================
+       9C. MUNICIPAL FLOOD SIREN & AUDIO ALERT SIMULATOR MODAL
+       ============================================================= -->
+  <div class="modal-backdrop" id="siren-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="siren-modal-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <span class="pill-badge pill-badge-red" style="margin-bottom: 6px;">Audible Civil Defense</span>
+          <h2 style="font-family: var(--font-display); font-size: 20px; font-weight: 800; color: var(--ink); margin: 0;" id="siren-modal-title">Emergency Flood Siren Audio Simulator</h2>
+          <p style="font-size: 12.5px; color: var(--muted); margin-top: 4px; margin-bottom: 0;">Standardized siren audio frequencies broadcast across Tumauini during flood contingencies.</p>
+        </div>
+        <button class="modal-close-btn" onclick="closeSirenModal()" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="siren-visual-pulse" id="siren-pulse-box">
+          <div class="siren-wave-bar"></div>
+          <div class="siren-wave-bar"></div>
+          <div class="siren-wave-bar"></div>
+          <div class="siren-wave-bar"></div>
+          <div class="siren-wave-bar"></div>
+          <div class="siren-wave-bar"></div>
+          <div class="siren-wave-bar"></div>
+          <div class="siren-wave-bar"></div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr; gap: 12px;">
+          <button class="btn btn-secondary" style="justify-content: space-between; padding: 14px 18px;" onclick="playSirenSound('alert')">
+            <div style="text-align: left;">
+              <div style="font-weight: 700; color: #FFFFFF;">1. Advisory Alert Horn (Code Yellow)</div>
+              <div style="font-size: 11.5px; opacity: 0.85;">Intermittent 440Hz horn bursts (every 2s)</div>
+            </div>
+            <span>▶ Play Tone</span>
+          </button>
+          <button class="btn btn-secondary" style="justify-content: space-between; padding: 14px 18px;" onclick="playSirenSound('evac')">
+            <div style="text-align: left;">
+              <div style="font-weight: 700; color: #FFFFFF;">2. Evacuation Siren (Code Orange/Red)</div>
+              <div style="font-size: 11.5px; opacity: 0.85;">High-pitch wailing siren frequency sweep (600Hz-1100Hz)</div>
+            </div>
+            <span>▶ Play Tone</span>
+          </button>
+          <button class="btn btn-secondary" style="justify-content: space-between; padding: 14px 18px;" onclick="playSirenSound('clear')">
+            <div style="text-align: left;">
+              <div style="font-weight: 700; color: #FFFFFF;">3. All-Clear Chime (Code White)</div>
+              <div style="font-size: 11.5px; opacity: 0.85;">Steady harmonious 520Hz chime indicating safe river level</div>
+            </div>
+            <span>▶ Play Tone</span>
+          </button>
+          <button class="btn btn-primary" style="margin-top: 8px;" onclick="stopSirenSound()">
+            <span>⏹ Stop Audio Signal</span>
+          </button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary btn-sm" onclick="closeSirenModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating 1-Tap Emergency Quick Dock -->
+  <div class="emergency-quick-dock" id="emergency-dock" role="complementary" aria-label="Emergency Hotline Quick Dock">
+    <div class="emergency-dock-label">
+      <span class="alert-pulse-dot" style="width: 8px; height: 8px; background: #CE1126;"></span>
+      <span>Rescue 3325</span>
+    </div>
+    <a href="tel:0783232004" class="dock-call-btn" title="Call Rescue 3325">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+      <span>(078) 323-2004</span>
+    </a>
+    <button type="button" class="btn btn-secondary btn-sm" style="padding: 4px 10px; font-size: 11px;" onclick="openIncidentReporterModal()">
+      <span>Report Hazard</span>
+    </button>
   </div>
 
   <!-- =============================================================
@@ -2683,6 +3376,441 @@
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeEmergencySOSModal();
     });
+
+    // =============================================================
+    // 6. INTERACTIVE 24-HOUR HYDROGRAPH ENGINE
+    // =============================================================
+    const HYDRO_STATIONS = [
+      {
+        name: 'Station 1: Tumauini Bridge (Pinacanauan)',
+        unit: 'm (MASL)',
+        bed: 0,
+        alert: 14.0,
+        warning: 16.5,
+        critical: 18.0,
+        maxScale: 20.0,
+        current: 11.8,
+        // 24 hours of readings ending at current
+        data: [11.2, 11.2, 11.3, 11.3, 11.4, 11.4, 11.5, 11.5, 11.6, 11.6, 11.7, 11.7, 11.7, 11.8, 11.8, 11.8, 11.9, 11.9, 11.8, 11.8, 11.8, 11.8, 11.8, 11.8]
+      },
+      {
+        name: 'Station 2: Fugu-Banigan Confluence (Cagayan River)',
+        unit: 'm (MASL)',
+        bed: 0,
+        alert: 18.0,
+        warning: 20.5,
+        critical: 22.0,
+        maxScale: 24.0,
+        current: 15.4,
+        data: [14.6, 14.7, 14.7, 14.8, 14.9, 15.0, 15.1, 15.2, 15.2, 15.3, 15.3, 15.4, 15.4, 15.4, 15.5, 15.5, 15.4, 15.4, 15.4, 15.4, 15.4, 15.4, 15.4, 15.4]
+      },
+      {
+        name: 'Station 3: Santa-Arcon (Upper Pinacanauan)',
+        unit: 'm (MASL)',
+        bed: 0,
+        alert: 11.5,
+        warning: 13.0,
+        critical: 14.5,
+        maxScale: 16.0,
+        current: 8.9,
+        data: [8.4, 8.4, 8.5, 8.5, 8.6, 8.6, 8.7, 8.7, 8.8, 8.8, 8.8, 8.9, 8.9, 8.9, 8.9, 8.9, 9.0, 9.0, 8.9, 8.9, 8.9, 8.9, 8.9, 8.9]
+      },
+      {
+        name: 'Station 4: Lapogan-Tunggui Dike (Lower Cagayan)',
+        unit: 'm (MASL)',
+        bed: 0,
+        alert: 16.5,
+        warning: 18.5,
+        critical: 20.0,
+        maxScale: 22.0,
+        current: 13.2,
+        data: [12.6, 12.7, 12.7, 12.8, 12.9, 12.9, 13.0, 13.0, 13.1, 13.1, 13.1, 13.2, 13.2, 13.2, 13.3, 13.3, 13.2, 13.2, 13.2, 13.2, 13.2, 13.2, 13.2, 13.2]
+      }
+    ];
+
+    let currentStationIdx = 0;
+
+    function renderHydrograph(stationIdx) {
+      const container = document.getElementById('hydro-chart-container');
+      if (!container) return;
+
+      const st = HYDRO_STATIONS[stationIdx];
+      const svgW = 800;
+      const svgH = 220;
+      const padL = 50;
+      const padR = 25;
+      const padT = 20;
+      const padB = 35;
+      const chartW = svgW - padL - padR;
+      const chartH = svgH - padT - padB;
+
+      // Coordinate converter
+      const getY = (val) => padT + chartH - ((val / st.maxScale) * chartH);
+      const getX = (i) => padL + (i / (st.data.length - 1)) * chartW;
+
+      // Build points path
+      let pointsStr = '';
+      let areaStr = `M ${getX(0)},${padT + chartH} `;
+      st.data.forEach((val, i) => {
+        const x = getX(i);
+        const y = getY(val);
+        pointsStr += `${i === 0 ? 'M' : 'L'} ${x.toFixed(1)},${y.toFixed(1)} `;
+        areaStr += `L ${x.toFixed(1)},${y.toFixed(1)} `;
+      });
+      areaStr += `L ${getX(st.data.length - 1)},${padT + chartH} Z`;
+
+      const yAlert = getY(st.alert);
+      const yWarning = getY(st.warning);
+      const yCritical = getY(st.critical);
+
+      let circlesSvg = '';
+      st.data.forEach((val, i) => {
+        const x = getX(i).toFixed(1);
+        const y = getY(val).toFixed(1);
+        const hourLabel = i === st.data.length - 1 ? 'Now' : `-${23 - i}h`;
+        circlesSvg += `
+          <circle cx="${x}" cy="${y}" r="3.5" fill="#15803D" stroke="#FFFFFF" stroke-width="1.5">
+            <title>${hourLabel}: ${val} ${st.unit}</title>
+          </circle>
+        `;
+      });
+
+      const svgHtml = `
+        <svg viewBox="0 0 ${svgW} ${svgH}" class="hydro-svg" preserveAspectRatio="none" role="img" aria-label="24-Hour Hydrograph for ${st.name}">
+          <defs>
+            <linearGradient id="hydroFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#15803D" stop-opacity="0.25"/>
+              <stop offset="100%" stop-color="#15803D" stop-opacity="0.0"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Horizontal Grid & Guidelines -->
+          <line x1="${padL}" y1="${yCritical}" x2="${svgW - padR}" y2="${yCritical}" stroke="#CE1126" stroke-width="1" stroke-dasharray="4,4"/>
+          <text x="${padL - 6}" y="${yCritical + 4}" fill="#CE1126" font-size="10" font-weight="700" text-anchor="end">${st.critical}m</text>
+
+          <line x1="${padL}" y1="${yWarning}" x2="${svgW - padR}" y2="${yWarning}" stroke="#EA580C" stroke-width="1" stroke-dasharray="4,4"/>
+          <text x="${padL - 6}" y="${yWarning + 4}" fill="#EA580C" font-size="10" font-weight="700" text-anchor="end">${st.warning}m</text>
+
+          <line x1="${padL}" y1="${yAlert}" x2="${svgW - padR}" y2="${yAlert}" stroke="#CA8A04" stroke-width="1" stroke-dasharray="4,4"/>
+          <text x="${padL - 6}" y="${yAlert + 4}" fill="#CA8A04" font-size="10" font-weight="700" text-anchor="end">${st.alert}m</text>
+
+          <!-- River Baseline Grid -->
+          <line x1="${padL}" y1="${padT + chartH}" x2="${svgW - padR}" y2="${padT + chartH}" stroke="currentColor" stroke-opacity="0.15" stroke-width="1"/>
+          <text x="${padL - 6}" y="${padT + chartH + 3}" fill="currentColor" fill-opacity="0.4" font-size="10" font-weight="600" text-anchor="end">0m</text>
+
+          <!-- Shaded Area & Polyline -->
+          <path d="${areaStr}" fill="url(#hydroFill)"/>
+          <path d="${pointsStr}" fill="none" stroke="#15803D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+          <!-- Interactive Hover Points -->
+          ${circlesSvg}
+
+          <!-- X-Axis Timeline Labels -->
+          <text x="${padL}" y="${svgH - 8}" fill="currentColor" fill-opacity="0.5" font-size="10" font-weight="600">24h ago</text>
+          <text x="${padL + chartW * 0.25}" y="${svgH - 8}" fill="currentColor" fill-opacity="0.5" font-size="10" font-weight="600" text-anchor="middle">18h ago</text>
+          <text x="${padL + chartW * 0.5}" y="${svgH - 8}" fill="currentColor" fill-opacity="0.5" font-size="10" font-weight="600" text-anchor="middle">12h ago</text>
+          <text x="${padL + chartW * 0.75}" y="${svgH - 8}" fill="currentColor" fill-opacity="0.5" font-size="10" font-weight="600" text-anchor="middle">6h ago</text>
+          <text x="${svgW - padR}" y="${svgH - 8}" fill="#15803D" font-size="10" font-weight="800" text-anchor="end">Latest (Now)</text>
+        </svg>
+      `;
+
+      container.innerHTML = svgHtml;
+    }
+
+    function switchHydroStation(idx) {
+      currentStationIdx = idx;
+      for (let i = 0; i < 4; i++) {
+        const btn = document.getElementById(`hydro-btn-${i}`);
+        if (btn) btn.classList.toggle('active', i === idx);
+      }
+      renderHydrograph(idx);
+    }
+    renderHydrograph(0);
+
+    // =============================================================
+    // 7. MAGAT DAM RELEASE & WATERSHED SIMULATOR
+    // =============================================================
+    function simulateDamSpill(gatesOpen) {
+      const waterLevelEl = document.getElementById('dam-water-level');
+      const outflowEl = document.getElementById('dam-outflow');
+      const gatesText = document.getElementById('dam-gates-text');
+      const badge = document.getElementById('dam-status-badge');
+      const easMsg = document.getElementById('eas-broadcast-msg');
+
+      if (gatesOpen > 0) {
+        if (waterLevelEl) waterLevelEl.textContent = '192.35 m';
+        if (outflowEl) outflowEl.textContent = '1,450 m³/s';
+        if (gatesText) gatesText.textContent = `${gatesOpen} of 7 Radial Spillway Gates Open`;
+        if (badge) {
+          badge.textContent = 'Spillway Water Discharge';
+          badge.className = 'pill-badge pill-badge-red';
+        }
+        for (let i = 1; i <= 7; i++) {
+          const g = document.getElementById(`gate-${i}`);
+          if (g) {
+            if (i <= gatesOpen) g.classList.add('active');
+            else g.classList.remove('active');
+          }
+        }
+        if (easMsg) {
+          easMsg.innerHTML = '<strong style="color: #CE1126;">WARNING:</strong> Magat Dam opened 2 radial gates. Outflow surging at 1,450 m³/s. Est. downstream arrival in Tumauini lowlands: ~9.5 hours. All riverbank communities on Code Yellow advisory.';
+        }
+        setAlertLevel('yellow');
+      } else {
+        if (waterLevelEl) waterLevelEl.textContent = '189.42 m';
+        if (outflowEl) outflowEl.textContent = '385 m³/s';
+        if (gatesText) gatesText.textContent = '0 of 7 Gates Open (Closed)';
+        if (badge) {
+          badge.textContent = 'Normal Standby';
+          badge.className = 'pill-badge pill-badge-green';
+        }
+        for (let i = 1; i <= 7; i++) {
+          const g = document.getElementById(`gate-${i}`);
+          if (g) g.classList.remove('active');
+        }
+        if (easMsg) {
+          easMsg.textContent = 'MDRRMO Telemetry Active • Magat Dam radial gates closed • All national highway river bridges 100% passable.';
+        }
+        setAlertLevel('normal');
+      }
+    }
+
+    // =============================================================
+    // 8. 46 BARANGAYS RIVERBANK FLOOD VULNERABILITY DIRECTORY
+    // =============================================================
+    const TUMAUINI_BARANGAYS = [
+      // High-Risk Riverine (8)
+      { name: 'Fugu Abajo', category: 'riverine', risk: 'High', river: 'Cagayan River Confluence', dike: 'Riprap Revetment Active', evac: 'Tumauini Cultural Center', radio: 'BHERT-FUGU-1' },
+      { name: 'Fugu Norte', category: 'riverine', risk: 'High', river: 'Cagayan Main Basin', dike: 'Earthen Dike Reinforced', evac: 'Tumauini Cultural Center', radio: 'BHERT-FUGU-2' },
+      { name: 'Banigan', category: 'riverine', risk: 'High', river: 'Cagayan Delta Siltation', dike: 'Concrete Seawall Barrier', evac: 'Tumauini Cultural Center', radio: 'BHERT-BAN-1' },
+      { name: 'Lapogan', category: 'riverine', risk: 'High', river: 'Lower Cagayan Riprap', dike: 'Continuous Flood Dike', evac: 'Santa NHS Gym', radio: 'BHERT-LAP-1' },
+      { name: 'Tunggui', category: 'riverine', risk: 'High', river: 'Lower Cagayan River', dike: 'River Wall Defenses', evac: 'Santa NHS Gym', radio: 'BHERT-TNG-1' },
+      { name: 'Santa', category: 'riverine', risk: 'High', river: 'Pinacanauan Upper Inflow', dike: 'Elevated Dike Corridor', evac: 'Santa NHS Gym', radio: 'BHERT-STA-1' },
+      { name: 'Arcon', category: 'riverine', risk: 'High', river: 'Sierra Madre Foothills', dike: 'Gabion Flood Barrier', evac: 'Santa NHS Gym', radio: 'BHERT-ARC-1' },
+      { name: 'Minante 1', category: 'riverine', risk: 'High', river: 'Pinacanauan Riverbank', dike: 'Spillway Drainage Outflow', evac: 'Tumauini Cultural Center', radio: 'BHERT-MIN-1' },
+
+      // Low-Lying Agrarian (14)
+      { name: 'Minante 2', category: 'lowland', risk: 'Moderate', river: 'Agricultural Lowland', dike: 'Canal Floodway Passable', evac: 'Tumauini Cultural Center', radio: 'BHERT-MIN-2' },
+      { name: 'Malamag East', category: 'lowland', risk: 'Moderate', river: 'Irrigation Collector Zone', dike: 'Drainage Culverts Cleared', evac: 'Lanna Complex', radio: 'BHERT-MAL-E' },
+      { name: 'Malamag West', category: 'lowland', risk: 'Moderate', river: 'Lowland Ricefield Basin', dike: 'Open Canal Drainage', evac: 'Lanna Complex', radio: 'BHERT-MAL-W' },
+      { name: 'Lanna', category: 'lowland', risk: 'Moderate', river: 'Corn Corridor Agrarian', dike: 'Sump Basin Functional', evac: 'Lanna Complex', radio: 'BHERT-LAN-1' },
+      { name: 'Balug', category: 'lowland', risk: 'Moderate', river: 'Cagayan Tributary Creek', dike: 'Natural Bank Infiltration', evac: 'Lanna Complex', radio: 'BHERT-BLG-1' },
+      { name: 'Camasi', category: 'lowland', risk: 'Moderate', river: 'Alluvial Corn Basin', dike: 'Elevated Access Road', evac: 'Lanna Complex', radio: 'BHERT-CMS-1' },
+      { name: 'Annafunan', category: 'lowland', risk: 'Moderate', river: 'Lowland Agricultural Plains', dike: 'Lateral Earth Berm', evac: 'Tumauini Cultural Center', radio: 'BHERT-ANN-1' },
+      { name: 'Paragu', category: 'lowland', risk: 'Moderate', river: 'Pinacanauan Silt Delta', dike: 'Spillway Gate Inspected', evac: 'Santa NHS Gym', radio: 'BHERT-PRG-1' },
+      { name: 'Fermeldy', category: 'lowland', risk: 'Moderate', river: 'Highway Inundation Zone', dike: 'Concrete Box Culverts', evac: 'Tumauini Cultural Center', radio: 'BHERT-FRM-1' },
+      { name: 'Pilitan', category: 'lowland', risk: 'Moderate', river: 'Valley Floor Farm Zone', dike: 'Drainage Ditch Network', evac: 'Lanna Complex', radio: 'BHERT-PLT-1' },
+      { name: 'San Vicente', category: 'lowland', risk: 'Moderate', river: 'Agricultural Runoff Basin', dike: 'Ditch Network Cleared', evac: 'Lanna Complex', radio: 'BHERT-SVC-1' },
+      { name: 'San Mateo', category: 'lowland', risk: 'Moderate', river: 'Agrarian Lowland Field', dike: 'Box Culvert Inspected', evac: 'Tumauini Cultural Center', radio: 'BHERT-SMT-1' },
+      { name: 'Liwanag', category: 'lowland', risk: 'Moderate', river: 'Creek Confluence Lowland', dike: 'Lateral Ditch Cleared', evac: 'Lanna Complex', radio: 'BHERT-LWN-1' },
+      { name: 'Bayabo East', category: 'lowland', risk: 'Moderate', river: 'Eastern Plain Drainage', dike: 'Canal Flow Unhindered', evac: 'Lanna Complex', radio: 'BHERT-BYE-1' },
+
+      // Safe High-Ground / Uplands (24)
+      { name: 'District 1 (Poblacion)', category: 'upland', risk: 'Low', river: 'Town Center Commercial', dike: 'Municipal Storm Drain', evac: 'Tumauini Cultural Center', radio: 'BHERT-POB-1' },
+      { name: 'District 2 (Poblacion)', category: 'upland', risk: 'Low', river: 'Historic Church Plateau', dike: 'Heritage District Storm Drain', evac: 'Tumauini Cultural Center', radio: 'BHERT-POB-2' },
+      { name: 'District 3 (Poblacion)', category: 'upland', risk: 'Low', river: 'Administrative Core', dike: 'Municipal Plaza System', evac: 'Tumauini Cultural Center', radio: 'BHERT-POB-3' },
+      { name: 'District 4 (Poblacion)', category: 'upland', risk: 'Low', river: 'Civic Center High-Ground', dike: 'Storm Drain Active', evac: 'Tumauini Cultural Center', radio: 'BHERT-POB-4' },
+      { name: 'San Pedro', category: 'upland', risk: 'Low', river: 'Elevated Valley Plateau', dike: 'Natural Contour Drainage', evac: 'Tumauini Cultural Center', radio: 'BHERT-SPD-1' },
+      { name: 'Maligaya', category: 'upland', risk: 'Low', river: 'Rolling Foothill Ridge', dike: 'Natural Slope Runoff', evac: 'Tumauini Cultural Center', radio: 'BHERT-MLG-1' },
+      { name: 'Antagan 1st', category: 'upland', risk: 'Low', river: 'Sierra Madre Ridge', dike: 'Mountain Contour Defenses', evac: 'Santa NHS Gym', radio: 'BHERT-ANT-1' },
+      { name: 'Antagan 2nd', category: 'upland', risk: 'Low', river: 'Foothill Forest Plateau', dike: 'Creek Runoff Channel', evac: 'Santa NHS Gym', radio: 'BHERT-ANT-2' },
+      { name: 'Camp Samal', category: 'upland', risk: 'Low', river: 'Elevated Military Crest', dike: 'High Ridge Runoff', evac: 'Tumauini Cultural Center', radio: 'BHERT-SML-1' },
+      { name: 'Cumabao', category: 'upland', risk: 'Low', river: 'Eastern Upland Cornfield', dike: 'Slope Drain Unrestricted', evac: 'Lanna Complex', radio: 'BHERT-CMB-1' },
+      { name: 'Lalauanan', category: 'upland', risk: 'Low', river: 'Terraced Farmland', dike: 'Terraced Earth Contours', evac: 'Lanna Complex', radio: 'BHERT-LLN-1' },
+      { name: 'Moldero', category: 'upland', risk: 'Low', river: 'Elevated Northern Sector', dike: 'Highway Cross Drain', evac: 'Tumauini Cultural Center', radio: 'BHERT-MLD-1' },
+      { name: 'San Bernardo', category: 'upland', risk: 'Low', river: 'Upland Rolling Savannah', dike: 'Natural Creek Descent', evac: 'Lanna Complex', radio: 'BHERT-SBN-1' },
+      { name: 'San Isidro', category: 'upland', risk: 'Low', river: 'Highland Agricultural Crest', dike: 'Slope Drain Network', evac: 'Lanna Complex', radio: 'BHERT-SIS-1' },
+      { name: 'San Jose', category: 'upland', risk: 'Low', river: 'Interior Highland Ridge', dike: 'Natural Gully Diversion', evac: 'Tumauini Cultural Center', radio: 'BHERT-SJS-1' },
+      { name: 'San Juan', category: 'upland', risk: 'Low', river: 'Elevated Agrarian Basin', dike: 'Field Trench Passable', evac: 'Tumauini Cultural Center', radio: 'BHERT-SJN-1' },
+      { name: 'Santa Catalina', category: 'upland', risk: 'Low', river: 'Upper Foothill Plain', dike: 'Slope Diverter Ditch', evac: 'Santa NHS Gym', radio: 'BHERT-SCT-1' },
+      { name: 'Santa Visitacion', category: 'upland', risk: 'Low', river: 'Northern Valley Ridge', dike: 'Ridge Contour Runoff', evac: 'Tumauini Cultural Center', radio: 'BHERT-SVT-1' },
+      { name: 'Santo Domingo', category: 'upland', risk: 'Low', river: 'High Terrace Plains', dike: 'Natural Slope Gully', evac: 'Lanna Complex', radio: 'BHERT-SDM-1' },
+      { name: 'Sinippil', category: 'upland', risk: 'Low', river: 'High Savannah Elevation', dike: 'Open Slope Runoff', evac: 'Lanna Complex', radio: 'BHERT-SNP-1' },
+      { name: 'Sisimon', category: 'upland', risk: 'Low', river: 'Upper Hillside Zone', dike: 'Natural Infiltration Bank', evac: 'Santa NHS Gym', radio: 'BHERT-SSM-1' },
+      { name: 'Ugac', category: 'upland', risk: 'Low', river: 'Elevated Highway Plateau', dike: 'Reinforced Highway Culvert', evac: 'Tumauini Cultural Center', radio: 'BHERT-UGC-1' },
+      { name: 'Bayabo West', category: 'upland', risk: 'Low', river: 'Elevated Corn Terraces', dike: 'Valley Diverter System', evac: 'Lanna Complex', radio: 'BHERT-BYW-1' },
+      { name: 'Carpentero', category: 'upland', risk: 'Low', river: 'Upper Agro-forestry Crest', dike: 'Ridge Contour Barriers', evac: 'Tumauini Cultural Center', radio: 'BHERT-CRP-1' }
+    ];
+
+    let currentBrgyCategory = 'all';
+
+    function renderBarangayGrid(list) {
+      const container = document.getElementById('brgy-grid-container');
+      if (!container) return;
+
+      if (list.length === 0) {
+        container.innerHTML = `
+          <div style="grid-column: 1 / -1; padding: 40px 20px; text-align: center; color: var(--muted); background: var(--field); border-radius: 16px;">
+            <p style="font-size: 15px; font-weight: 600;">No barangays matching your search criteria.</p>
+            <p style="font-size: 12px; margin-top: 4px;">Try searching by another keyword or reset the filter.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = list.map(b => {
+        const riskClass = b.risk === 'High' ? 'risk-high' : b.risk === 'Moderate' ? 'risk-mod' : 'risk-low';
+        return `
+          <div class="brgy-card">
+            <div>
+              <div class="brgy-name-row">
+                <div>
+                  <h4 class="brgy-name">${b.name}</h4>
+                  <p class="brgy-zone">${b.river}</p>
+                </div>
+                <span class="brgy-risk-pill ${riskClass}">${b.risk} Risk</span>
+              </div>
+              <div style="font-size: 12px; color: var(--muted); margin-top: 8px;">
+                <strong>Defense:</strong> ${b.dike}
+              </div>
+            </div>
+            <div class="brgy-meta-box">
+              <span>Shelter: <strong>${b.evac}</strong></span>
+              <span>${b.radio}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function filterBrgy(category) {
+      currentBrgyCategory = category;
+      const buttons = ['all', 'riverine', 'lowland', 'upland'];
+      buttons.forEach(cat => {
+        const btn = document.getElementById(`brgy-filter-${cat}`);
+        if (btn) btn.classList.toggle('active', cat === category);
+      });
+
+      const query = document.getElementById('brgy-search-input')?.value.toLowerCase().trim() || '';
+      applyBrgyFilters(query, category);
+    }
+
+    function searchBrgy() {
+      const query = document.getElementById('brgy-search-input')?.value.toLowerCase().trim() || '';
+      applyBrgyFilters(query, currentBrgyCategory);
+    }
+
+    function applyBrgyFilters(query, category) {
+      let filtered = TUMAUINI_BARANGAYS;
+      if (category !== 'all') {
+        filtered = filtered.filter(b => b.category === category);
+      }
+      if (query) {
+        filtered = filtered.filter(b => b.name.toLowerCase().includes(query) || b.river.toLowerCase().includes(query) || b.dike.toLowerCase().includes(query));
+      }
+      renderBarangayGrid(filtered);
+    }
+    renderBarangayGrid(TUMAUINI_BARANGAYS);
+
+    // =============================================================
+    // 9. NATIVE WEB AUDIO API FLOOD SIREN SIMULATOR
+    // =============================================================
+    let audioCtx = null;
+    let sirenOsc = null;
+    let sirenGain = null;
+    let sirenIntervalId = null;
+
+    function openSirenModal() {
+      const backdrop = document.getElementById('siren-modal-backdrop');
+      if (backdrop) {
+        backdrop.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeSirenModal() {
+      stopSirenSound();
+      const backdrop = document.getElementById('siren-modal-backdrop');
+      if (backdrop) {
+        backdrop.classList.remove('open');
+        document.body.style.overflow = 'auto';
+      }
+    }
+
+    document.getElementById('siren-modal-backdrop')?.addEventListener('click', (e) => {
+      if (e.target.id === 'siren-modal-backdrop') closeSirenModal();
+    });
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioContextClass) audioCtx = new AudioContextClass();
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playSirenSound(type) {
+      stopSirenSound();
+      const ctx = getAudioContext();
+      if (!ctx) return;
+
+      document.querySelectorAll('.siren-wave-bar').forEach(b => b.classList.add('active'));
+
+      sirenGain = ctx.createGain();
+      sirenGain.gain.setValueAtTime(0.12, ctx.currentTime);
+      sirenGain.connect(ctx.destination);
+
+      sirenOsc = ctx.createOscillator();
+
+      if (type === 'alert') {
+        // Intermittent 440Hz horn beeps
+        sirenOsc.type = 'sawtooth';
+        sirenOsc.frequency.setValueAtTime(440, ctx.currentTime);
+        sirenOsc.connect(sirenGain);
+        sirenOsc.start();
+
+        let isOn = true;
+        sirenIntervalId = setInterval(() => {
+          isOn = !isOn;
+          if (sirenGain && ctx) {
+            sirenGain.gain.setValueAtTime(isOn ? 0.12 : 0.001, ctx.currentTime);
+          }
+        }, 900);
+
+      } else if (type === 'evac') {
+        // Wailing frequency sweep (600Hz to 1100Hz)
+        sirenOsc.type = 'sine';
+        sirenOsc.frequency.setValueAtTime(600, ctx.currentTime);
+        sirenOsc.connect(sirenGain);
+        sirenOsc.start();
+
+        let goingUp = true;
+        sirenIntervalId = setInterval(() => {
+          if (!sirenOsc || !ctx) return;
+          const targetFreq = goingUp ? 1100 : 600;
+          sirenOsc.frequency.linearRampToValueAtTime(targetFreq, ctx.currentTime + 1.2);
+          goingUp = !goingUp;
+        }, 1200);
+
+      } else if (type === 'clear') {
+        // Harmonious 520Hz calming civic tone
+        sirenOsc.type = 'triangle';
+        sirenOsc.frequency.setValueAtTime(520, ctx.currentTime);
+        sirenOsc.connect(sirenGain);
+        sirenOsc.start();
+      }
+    }
+
+    function stopSirenSound() {
+      if (sirenIntervalId) {
+        clearInterval(sirenIntervalId);
+        sirenIntervalId = null;
+      }
+      if (sirenGain && audioCtx) {
+        sirenGain.gain.linearRampToValueAtTime(0.0001, audioCtx.currentTime + 0.1);
+      }
+      setTimeout(() => {
+        if (sirenOsc) {
+          try { sirenOsc.stop(); sirenOsc.disconnect(); } catch (err) {}
+          sirenOsc = null;
+        }
+      }, 120);
+
+      document.querySelectorAll('.siren-wave-bar').forEach(b => b.classList.remove('active'));
+    }
   </script>
 
   <!-- Centralized Rescue 3325 Incident Dispatch Reporter Engine -->

@@ -11,6 +11,17 @@
   // 1. COMPREHENSIVE CIVIC INDEX (Services, Barangays, Legislation, Officials, Pages)
   // =========================================================================
   const CIVIC_DATABASE = [
+    // --- LIVE INTERACTIVE TOOLS & TRACKING ---
+    {
+      id: 'tool-permit-tracker',
+      type: 'service',
+      category: 'services',
+      title: 'Citizen Application & Permit Tracker',
+      desc: 'Track live status for Business Permits, Civil Registry, and Building Clearances.',
+      badge: 'Live Tracker',
+      url: 'index.html#tracker',
+      keywords: ['track', 'tracker', 'permit tracker', 'status', 'application status', 'check status', 'reference id', 'bplo tracker', 'lcr status']
+    },
     // --- CITIZEN CHARTER SERVICES ---
     {
       id: 'srv-bplo-new',
@@ -159,7 +170,7 @@
       title: 'Rescue 3325 & Emergency Ambulance Dispatch',
       desc: '24/7 medical response, patient transport, and vehicular rescue.',
       badge: 'MDRRMO',
-      url: 'index.html#emergency',
+      url: 'mdrrmo.html',
       keywords: ['rescue 3325', 'ambulance', 'emergency', 'mdrrmo', 'hotline', 'hospital', 'trauma', 'accident']
     },
     {

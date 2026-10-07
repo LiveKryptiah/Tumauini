@@ -4,47 +4,60 @@ This file defines the mandatory design rules and coding standards for all existi
 
 ---
 
-## 1. Mandatory Button Styling (Green to Yellow Radial Gradient)
+## 1. Mandatory Button Styling (Solid Civic Green from login.php)
 
-Whenever building or styling buttons across **any** webpage in this project, all primary green buttons (`.btn-primary` or equivalent main call-to-action buttons) **MUST** strictly adhere to the following specification:
+Whenever building or styling buttons across **any** webpage in this project, all primary buttons (`.btn-primary`, `.btn-secondary`, `.btn`, or equivalent main call-to-action buttons) **MUST** strictly adhere to the clean, professional civic green palette from `login.php`:
 
 ### CSS Specification
 ```css
-/* Primary Button with Corner-Anchored Radial Yellow Accent (Stroke-Free & Shadow-Free) */
-.btn-primary {
-  background-color: #15803D;
-  background-image: radial-gradient(ellipse 75px 36px at 100% 100%, #FCD116 0%, #EAB308 28%, #16A34A 62%, transparent 100%);
-  background-repeat: no-repeat;
+/* Primary Button: Solid Civic Green (Stroke-Free & Shadow-Free) */
+.btn-primary,
+.btn {
+  background-color: #15803d;
+  background-image: none !important;
   color: #FFFFFF;
   border: none;
   outline: none;
   font-weight: 600;
   box-shadow: none;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: background-color 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
 }
 
-.btn-primary:hover {
-  background-color: #15803D;
-  background-image: radial-gradient(ellipse 75px 36px at 100% 100%, #FCD116 0%, #EAB308 28%, #16A34A 62%, transparent 100%);
+.btn-primary:hover,
+.btn:hover {
+  background-color: #166534;
+  background-image: none !important;
   border: none;
   outline: none;
   color: #FFFFFF;
-  transform: translateY(-1px);
+  opacity: 0.95;
+  transform: translateY(-2px);
   box-shadow: none;
 }
 
-.btn-primary:active {
+.btn-primary:active,
+.btn:active {
   transform: translateY(0);
   box-shadow: none;
+}
+
+/* Dark Mode States */
+[data-theme="dark"] .btn-primary,
+[data-theme="dark"] .btn {
+  background-color: #16a34a;
+}
+
+[data-theme="dark"] .btn-primary:hover,
+[data-theme="dark"] .btn:hover {
+  background-color: #15803d;
 }
 ```
 
 ### Critical Rules for Buttons:
-1. **Corner-Anchored Only**: The yellow accent (`#FCD116`) must strictly be an elliptical radial gradient anchored at `100% 100%` (bottom-right corner). Never use diagonal linear gradients across the entire button, as they bleed yellow onto top/left/right borders.
-2. **Stroke-Free (Zero Borders)**: Must explicitly specify `border: none; outline: none;` on normal and hover states. No 1px perimeter border strokes allowed on primary buttons.
-3. **Subtle Yellow Ratio**: The green base (`#15803D`) dominates ~80% of the surface area, while the golden-yellow accent provides a gentle civic glow confined to the bottom-right corner.
-4. **Shadow-Free (Zero Box Shadows)**: Buttons must have `box-shadow: none;` across normal, hover, and active states for a modern, crisp, flat civic aesthetic.
-5. **Zero Hover Color Mutation**: The hover state must preserve the exact same background-color (`#15803D`) and corner-anchored radial gradient stops (`#FCD116 0%, #EAB308 28%, #16A34A 62%`) without changing or darkening colors. The interactive affordance is provided cleanly by `transform: translateY(-1px)`.
+1. **Solid Civic Green (Zero Radial Yellow Bleed)**: Primary buttons use pure solid civic green (`#15803d` in Light Mode, `#16a34a` in Dark Mode). Yellow radial/linear gradients are strictly forbidden on buttons.
+2. **Stroke-Free (Zero Borders)**: Must explicitly specify `border: none; outline: none;` on normal and hover states. No 1px perimeter border strokes allowed.
+3. **Shadow-Free (Zero Box Shadows)**: Buttons must have `box-shadow: none;` across normal, hover, and active states for a crisp, flat civic aesthetic.
+4. **Subtle Interactive Lift**: The hover state smoothly darkens/shifts color (`#166534` light / `#15803d` dark) with `opacity: 0.95` and `transform: translateY(-2px)`.
 
 ---
 
@@ -78,17 +91,16 @@ Whenever rendering icons across **any** webpage in this project (service icons, 
    - Icon wrappers (`.service-icon-wrap`, `.pillar-icon-box`, or equivalent containers) must have **zero background color, zero borders, zero border-radius, and zero box-shadow** (`background: transparent !important; border: none !important; border-radius: 0 !important; box-shadow: none !important;`).
    - Icons must float cleanly and seamlessly directly on the card or panel canvas without any square container or bounding box.
 
-2. **Diagonal Green-to-Yellow Gradient**:
-   - The SVG strokes or fills must use the standardized civic green-to-yellow gradient via `stroke: url(#icon-green-yellow) !important;` or `fill: url(#icon-green-yellow) !important;`.
+2. **Pure Civic Green Tonal Gradient**:
+   - The SVG strokes or fills must use the standardized civic green gradient via `stroke: url(#icon-green-yellow) !important;` or `fill: url(#icon-green-yellow) !important;`.
    - Each page must include the global hidden SVG gradient definition:
      ```html
      <svg width="0" height="0" style="position: absolute; width: 0; height: 0; overflow: hidden;" aria-hidden="true" focusable="false">
        <defs>
          <linearGradient id="icon-green-yellow" x1="0%" y1="0%" x2="100%" y2="100%">
-           <stop offset="0%" stop-color="#15803D" />
-           <stop offset="35%" stop-color="#16A34A" />
-           <stop offset="80%" stop-color="#EAB308" />
-           <stop offset="100%" stop-color="#FCD116" />
+           <stop offset="0%" stop-color="#15803d" />
+           <stop offset="50%" stop-color="#16a34a" />
+           <stop offset="100%" stop-color="#22c55e" />
          </linearGradient>
        </defs>
      </svg>
@@ -132,16 +144,16 @@ All webpages across this project strictly adhere to the standardized Light and D
 - **Light Mode**:
   - `--text: #0d150d;` (Deep forest dark charcoal / primary ink)
   - `--background: #f2f9f2;` (Pale honeydew canvas)
-  - `--primary: #4dc24f;` (Vibrant leaf green)
-  - `--secondary: #8fe490;` (Soft pastel green)
-  - `--accent: #57e659;` (Electric lime/spring green)
+  - `--primary: #15803d;` (Solid civic green from login.php)
+  - `--secondary: #166534;` (Deep forest green / button hover)
+  - `--accent: #16a34a;` (Vibrant leaf green)
 
 - **Dark Mode**:
   - `--text: #e9f1e9;` (Pale tinted off-white)
   - `--background: #060e06;` (Very deep midnight pine black)
-  - `--primary: #3db33f;` (Luminous primary green)
-  - `--secondary: #1b6f1c;` (Deep forest green)
-  - `--accent: #19a91c;` (Vibrant emerald green)
+  - `--primary: #16a34a;` (Luminous civic green)
+  - `--secondary: #15803d;` (Solid civic green / button hover)
+  - `--accent: #22c55e;` (Bright emerald green)
 
 ### Implementation Standards:
 1. **Explicit Token Declaration**: Custom properties `--text`, `--background`, `--primary`, `--secondary`, and `--accent` must be explicitly declared on `:root, [data-theme="light"]`, and overridden on `[data-theme="dark"]` and `@media (prefers-color-scheme: dark)`.
@@ -149,7 +161,7 @@ All webpages across this project strictly adhere to the standardized Light and D
    - `--ink: var(--text);`
    - `--canvas: var(--background);`
    - `--soft-canvas`: `#FFFFFF` in Light Mode, `#0C180C` in Dark Mode.
-   - `--field`: `#E5F3E5` in Light Mode, `#132413` in Dark Mode.
+   - `--field`: `#E4F2E4` in Light Mode, `#132413` in Dark Mode.
    - `--hairline`: `#D0E5D0` in Light Mode, `#1C381C` in Dark Mode.
    - `--muted`: `#4B634B` in Light Mode, `#9EB89E` in Dark Mode.
 3. **Synchronized Theme Switching**: Theme preference is managed via `assets/js/theme.js`, with persistence in `localStorage.setItem('tumauini-theme', ...)` and support for system OS preference (`prefers-color-scheme`).
