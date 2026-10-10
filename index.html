@@ -4370,20 +4370,6 @@
     /* =============================================================
        MODERN SCROLL EFFECTS & SECTION REVEAL SYSTEM
        ============================================================= */
-    /* Scroll Progress Indicator across top of viewport */
-    .scroll-progress-line {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 3.5px;
-      width: 0%;
-      background: linear-gradient(90deg, #15803d 0%, #16a34a 50%, #22c55e 100%);
-      z-index: 9999;
-      pointer-events: none;
-      transition: width 0.08s ease-out;
-      box-shadow: 0 1px 6px rgba(22, 163, 74, 0.45);
-    }
-
     /* Floating Stadium Navbar Elevation on Scroll */
     .nav-pill {
       transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
@@ -8927,14 +8913,6 @@
 
     // 11. Modern IntersectionObserver Scroll & Section Entrance System
     function initModernScrollEffects() {
-      if (!document.getElementById('scroll-progress-line')) {
-        const progressBar = document.createElement('div');
-        progressBar.className = 'scroll-progress-line';
-        progressBar.id = 'scroll-progress-line';
-        document.body.appendChild(progressBar);
-      }
-
-      const progressBar = document.getElementById('scroll-progress-line');
       const navWrap = document.querySelector('.nav-wrap');
 
       let ticking = false;
@@ -8942,11 +8920,6 @@
         if (!ticking) {
           window.requestAnimationFrame(() => {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
-            if (progressBar) {
-              progressBar.style.width = Math.min(100, Math.max(0, progress)) + '%';
-            }
 
             if (navWrap) {
               if (scrollTop > 30) {
