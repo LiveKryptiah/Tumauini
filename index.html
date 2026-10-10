@@ -1237,12 +1237,45 @@
       padding: var(--sp-24) 0;
     }
 
+    .hero-official-seals {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      margin-bottom: 14px;
+    }
+
+    .hero-seal-img {
+      width: 54px;
+      height: 54px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.6));
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease;
+    }
+
+    .hero-seal-img:hover {
+      transform: scale(1.1) translateY(-2px);
+      filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.75));
+    }
+
+    @media (max-width: 640px) {
+      .hero-official-seals {
+        gap: 12px;
+        margin-bottom: 10px;
+      }
+      .hero-seal-img {
+        width: 44px;
+        height: 44px;
+      }
+    }
+
     .hero-minimal-kicker {
       font-size: 13px;
       font-weight: 500;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.75);
+      color: rgba(255, 255, 255, 0.85);
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
       margin-bottom: 12px;
       display: inline-block;
     }
@@ -4889,6 +4922,11 @@
 
         <!-- Minimal Centered Editorial Copy -->
         <div class="hero-editorial">
+          <div class="hero-official-seals" aria-label="Official Government Seals">
+            <img src="assets/philippines-national-seal.svg" alt="Republic of the Philippines Coat of Arms" class="hero-seal-img" width="54" height="54" title="Republic of the Philippines">
+            <img src="assets/isabela-provincial-seal.svg" alt="Official Seal of the Province of Isabela" class="hero-seal-img" width="54" height="54" title="Province of Isabela">
+            <img src="assets/tumauini-official-seal.png" alt="Official Seal of the Municipality of Tumauini" class="hero-seal-img" width="54" height="54" title="Municipality of Tumauini">
+          </div>
           <span class="hero-minimal-kicker">Province of Isabela · Republic of the Philippines</span>
           <h1 class="display-title" id="hero-heading">Welcome to Tumauini.</h1>
           <p class="hero-subline">A municipality moving forward through better public service.</p>
