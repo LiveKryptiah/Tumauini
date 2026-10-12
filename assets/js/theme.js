@@ -2,16 +2,13 @@
  * Sangguniang Bayan & Municipal Government of Tumauini
  * Centralized Civic Theme Engine (Light / Dark Mode Controller)
  * Strictly follows GEMINI.md Design System Guidelines.
+ * Default Mode: Light Mode.
  */
 
 (function () {
   'use strict';
 
   const STORAGE_KEY = 'tumauini-theme';
-
-  function getSystemPreference() {
-    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  }
 
   function getSavedTheme() {
     try {
@@ -21,31 +18,40 @@
     }
   }
 
+  function getActiveTheme() {
+    const saved = getSavedTheme();
+    return saved === 'dark' ? 'dark' : 'light';
+  }
+
   function applyTheme(theme) {
-    if (theme === 'dark' || theme === 'light') {
-      document.documentElement.setAttribute('data-theme', theme);
-    } else {
-      document.documentElement.removeAttribute('data-theme');
-    }
-    updateToggleButtons(theme || getSystemPreference());
+    const effectiveTheme = theme === 'dark' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', effectiveTheme);
+    updateThemeColorMeta(effectiveTheme);
+    updateToggleButtons(effectiveTheme);
+  }
+
+  function updateThemeColorMeta(activeTheme) {
+    const themeColor = activeTheme === 'dark' ? '#060e06' : '#f2f9f2';
+    document.querySelectorAll('meta[name="theme-color"]').forEach(meta => {
+      meta.setAttribute('content', themeColor);
+    });
   }
 
   function updateToggleButtons(activeTheme) {
+    const isDark = activeTheme === 'dark';
     document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
-      const isDark = activeTheme === 'dark';
       btn.setAttribute('aria-label', isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode');
       btn.setAttribute('title', isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode');
     });
 
     document.querySelectorAll('.theme-mode-badge').forEach(badge => {
-      badge.textContent = activeTheme === 'dark' ? 'Dark' : 'Light';
+      badge.textContent = isDark ? 'Dark' : 'Light';
     });
   }
 
   window.toggleTheme = function () {
-    const currentAttr = document.documentElement.getAttribute('data-theme');
-    const isCurrentlyDark = currentAttr === 'dark' || (!currentAttr && getSystemPreference() === 'dark');
-    const nextTheme = isCurrentlyDark ? 'light' : 'dark';
+    const currentAttr = document.documentElement.getAttribute('data-theme') || 'light';
+    const nextTheme = currentAttr === 'dark' ? 'light' : 'dark';
 
     try {
       localStorage.setItem(STORAGE_KEY, nextTheme);
@@ -54,29 +60,18 @@
     applyTheme(nextTheme);
   };
 
-  // Immediate execution on load
-  const initialTheme = getSavedTheme();
-  if (initialTheme) {
-    applyTheme(initialTheme);
-  }
-
-  // Listen for OS system theme changes if user hasn't explicitly set a preference
-  if (window.matchMedia) {
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-      if (!getSavedTheme()) {
-        updateToggleButtons(e.matches ? 'dark' : 'light');
-      }
-    });
-  }
+  // Immediate synchronous execution on load (in <head>)
+  const initialTheme = getActiveTheme();
+  applyTheme(initialTheme);
 
   // Update button icons on DOM ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
-      const current = document.documentElement.getAttribute('data-theme') || getSystemPreference();
+      const current = document.documentElement.getAttribute('data-theme') || 'light';
       updateToggleButtons(current);
     });
   } else {
-    const current = document.documentElement.getAttribute('data-theme') || getSystemPreference();
+    const current = document.documentElement.getAttribute('data-theme') || 'light';
     updateToggleButtons(current);
   }
 })();

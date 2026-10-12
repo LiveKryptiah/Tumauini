@@ -4,60 +4,63 @@ This file defines the mandatory design rules and coding standards for all existi
 
 ---
 
-## 1. Mandatory Button Styling (Solid Civic Green from login.php)
+## 1. Mandatory Button Styling (Green to Yellow Radial Gradient)
 
-Whenever building or styling buttons across **any** webpage in this project, all primary buttons (`.btn-primary`, `.btn-secondary`, `.btn`, or equivalent main call-to-action buttons) **MUST** strictly adhere to the clean, professional civic green palette from `login.php`:
+Whenever building or styling buttons across **any** webpage in this project, all primary green buttons (`.btn-primary`, `.btn`, or equivalent main call-to-action buttons) **MUST** strictly adhere to the following specification:
 
 ### CSS Specification
 ```css
-/* Primary Button: Solid Civic Green (Stroke-Free & Shadow-Free) */
+/* Primary Button with Corner-Anchored Radial Yellow Accent (Stroke-Free & Shadow-Free) */
 .btn-primary,
 .btn {
-  background-color: #15803d;
-  background-image: none !important;
-  color: #FFFFFF;
-  border: none;
-  outline: none;
+  background-color: #15803D !important;
+  background-image: radial-gradient(ellipse 75px 36px at 100% 100%, #FCD116 0%, #EAB308 28%, #16A34A 62%, transparent 100%) !important;
+  background-repeat: no-repeat !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  outline: none !important;
   font-weight: 600;
-  box-shadow: none;
-  transition: background-color 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
+  box-shadow: none !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-primary:hover,
 .btn:hover {
-  background-color: #166534;
-  background-image: none !important;
-  border: none;
-  outline: none;
-  color: #FFFFFF;
-  opacity: 0.95;
-  transform: translateY(-2px);
-  box-shadow: none;
+  background-color: #15803D !important;
+  background-image: radial-gradient(ellipse 75px 36px at 100% 100%, #FCD116 0%, #EAB308 28%, #16A34A 62%, transparent 100%) !important;
+  border: none !important;
+  outline: none !important;
+  color: #FFFFFF !important;
+  transform: translateY(-1px);
+  box-shadow: none !important;
 }
 
 .btn-primary:active,
 .btn:active {
   transform: translateY(0);
-  box-shadow: none;
+  box-shadow: none !important;
 }
 
 /* Dark Mode States */
 [data-theme="dark"] .btn-primary,
 [data-theme="dark"] .btn {
-  background-color: #16a34a;
+  background-color: #16A34A !important;
+  background-image: radial-gradient(ellipse 75px 36px at 100% 100%, #FCD116 0%, #EAB308 28%, #22C55E 62%, transparent 100%) !important;
 }
 
 [data-theme="dark"] .btn-primary:hover,
 [data-theme="dark"] .btn:hover {
-  background-color: #15803d;
+  background-color: #15803D !important;
+  background-image: radial-gradient(ellipse 75px 36px at 100% 100%, #FCD116 0%, #EAB308 28%, #16A34A 62%, transparent 100%) !important;
 }
 ```
 
 ### Critical Rules for Buttons:
-1. **Solid Civic Green (Zero Radial Yellow Bleed)**: Primary buttons use pure solid civic green (`#15803d` in Light Mode, `#16a34a` in Dark Mode). Yellow radial/linear gradients are strictly forbidden on buttons.
-2. **Stroke-Free (Zero Borders)**: Must explicitly specify `border: none; outline: none;` on normal and hover states. No 1px perimeter border strokes allowed.
-3. **Shadow-Free (Zero Box Shadows)**: Buttons must have `box-shadow: none;` across normal, hover, and active states for a crisp, flat civic aesthetic.
-4. **Subtle Interactive Lift**: The hover state smoothly darkens/shifts color (`#166534` light / `#15803d` dark) with `opacity: 0.95` and `transform: translateY(-2px)`.
+1. **Corner-Anchored Only**: The yellow accent (`#FCD116`) must strictly be an elliptical radial gradient anchored at `100% 100%` (bottom-right corner). Never use diagonal linear gradients across the entire button, as they bleed yellow onto top/left/right borders.
+2. **Stroke-Free (Zero Borders)**: Must explicitly specify `border: none; outline: none;` on normal and hover states. No 1px perimeter border strokes allowed on primary buttons.
+3. **Subtle Yellow Ratio**: The green base (`#15803D`) dominates ~80% of the surface area, while the golden-yellow accent provides a gentle civic glow confined to the bottom-right corner.
+4. **Shadow-Free (Zero Box Shadows)**: Buttons must have `box-shadow: none;` across normal, hover, and active states for a modern, crisp, flat civic aesthetic.
+5. **Interactive Lift**: The interactive affordance is provided cleanly by `transform: translateY(-1px)` without changing background colors.
 
 ---
 
