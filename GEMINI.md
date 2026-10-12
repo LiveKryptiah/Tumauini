@@ -31,7 +31,7 @@ Whenever building or styling buttons across **any** webpage in this project, all
   border: none !important;
   outline: none !important;
   color: #FFFFFF !important;
-  transform: translateY(-1px);
+  transform: none !important;
   box-shadow: none !important;
 }
 
@@ -60,7 +60,7 @@ Whenever building or styling buttons across **any** webpage in this project, all
 2. **Stroke-Free (Zero Borders)**: Must explicitly specify `border: none; outline: none;` on normal and hover states. No 1px perimeter border strokes allowed on primary buttons.
 3. **Subtle Yellow Ratio**: The green base (`#15803D`) dominates ~80% of the surface area, while the golden-yellow accent provides a gentle civic glow confined to the bottom-right corner.
 4. **Shadow-Free (Zero Box Shadows)**: Buttons must have `box-shadow: none;` across normal, hover, and active states for a modern, crisp, flat civic aesthetic.
-5. **Interactive Lift**: The interactive affordance is provided cleanly by `transform: translateY(-1px)` without changing background colors.
+5. **Zero Hover Mutation (Make No Changes)**: The hover and active states make no changes to position (`transform: none !important;`), opacity (`opacity: 1 !important;`), border, or background color (`#15803D` with identical corner radial accent). Buttons stay completely static without jumping or altering on hover.
 
 ---
 
